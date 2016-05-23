@@ -64,7 +64,7 @@
 <body style="background-color: #f5f5f5;">
 
     <!-- Navigation -->
-    <nav style="background-color: #FFFFFF; border: 2px solid #f5f5f5;box-shadow: 0 1px 4px #ccc" class="navbar navbar-fixed-top" role="navigation">
+    <nav style="background-color: #FFFFFF; border: 1px solid #fbfbfb;box-shadow: 0 1px 4px #ccc" class="navbar navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -74,11 +74,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png">
-                <a class="navbar-brand" style="color: #57ADFD" href="/">     &nbsp;&nbsp;&nbsp;首页</a>
-                <a class="navbar-brand" href="/">     &nbsp;&nbsp;&nbsp;  社区</a>
-                <a class="navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  二手广场</a>
-                <a class="navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  其他</a>
+                <a href="/"><img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png"></a>
+                <a class="navbar-brand" style="color: #57ADFD" href="/">     &nbsp;&nbsp;&nbsp;&nbsp;首页</a>
+                <a class="navbar-brand" href="/">     &nbsp;&nbsp;&nbsp;&nbsp;  社区</a>
+                <a class="navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;&nbsp;  二手广场</a>
+                <a class="navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;&nbsp;  其他</a>
                 @if (isset($user))
                     <a class="navbar-brand"  style="margin-left: 250px" href="/myinfo?name={{ $user['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $user['name'] }}</a>
                     <a class="navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
@@ -100,7 +100,7 @@
 
         <div class="htmleaf-content bgcolor-13">
             <div class='sangar-slideshow-container' id='sangar-example'>
-                <div class='sangar-content-wrapper' style='display:none; height:580px;'>
+                <div class='sangar-content-wrapper' style='display:none;'>
                     <div class='sangar-content'><a href="/article"></a><img src='http://s.dgtle.com/portal/201605/20/210446ovppnnvbljyb0x22.jpg?szhdl=imageview/2/w/1200' /></div>
                     <div class='sangar-content'><a href="/article"></a><img src='http://s.dgtle.com/portal/201605/20/175632kexko4k8yj6o9xik.jpg?szhdl=imageview/2/w/1200' /></div>
                     <div class='sangar-content'><a href="/article"></a><img src='http://s.dgtle.com/portal/201605/17/140154xv4ztjv67y72vbqb.jpg?szhdl=imageview/2/w/1200' /></div>
@@ -309,9 +309,9 @@
             var sangar = $('#sangar-example').sangarSlider({
                 timer :  true, // true or false to have the timer
                 pagination : 'content-horizontal', // bullet, content, none
-                paginationContent : ["http://s.dgtle.com/portal/201605/20/210446ovppnnvbljyb0x22.jpg?szhdl=imageview/2/w/1200", "http://s.dgtle.com/portal/201605/20/175632kexko4k8yj6o9xik.jpg?szhdl=imageview/2/w/1200", "http://s.dgtle.com/portal/201605/17/140154xv4ztjv67y72vbqb.jpg?szhdl=imageview/2/w/1200", "http://s.dgtle.com/portal/201605/19/104358kimi38ti5z9m7s89.jpg?szhdl=imageview/2/w/1200","http://s.dgtle.com/portal/201605/19/113602kwwyh0m8x9o7z0os.png?szhdl=imageview/2/w/1200" ,"http://s.dgtle.com/portal/201605/17/173346wssczbbeqycccehs.jpg?szhdl=imageview/2/w/1200","http://s.dgtle.com/portal/201605/13/111824g8r1td8vgttrr1cq.jpg?szhdl=imageview/2/w/1200s","http://s.dgtle.com/portal/201605/12/144107nowz1u1uu318lldo.jpg?szhdl=imageview/2/w/1200"], // can be text, image, or something
+                paginationContent : ["http://s.dgtle.com/portal/201605/20/210446ovppnnvbljyb0x22.jpg?szhdl=imageview/2/w/1200 " , "http://s.dgtle.com/portal/201605/20/175632kexko4k8yj6o9xik.jpg?szhdl=imageview/2/w/1200", "http://s.dgtle.com/portal/201605/17/140154xv4ztjv67y72vbqb.jpg?szhdl=imageview/2/w/1200", "http://s.dgtle.com/portal/201605/19/104358kimi38ti5z9m7s89.jpg?szhdl=imageview/2/w/1200","http://s.dgtle.com/portal/201605/19/113602kwwyh0m8x9o7z0os.png?szhdl=imageview/2/w/1200" ,"http://s.dgtle.com/portal/201605/17/173346wssczbbeqycccehs.jpg?szhdl=imageview/2/w/1200","http://s.dgtle.com/portal/201605/13/111824g8r1td8vgttrr1cq.jpg?szhdl=imageview/2/w/1200s","http://s.dgtle.com/portal/201605/12/144107nowz1u1uu318lldo.jpg?szhdl=imageview/2/w/1200"], // can be text, image, or something
                 paginationContentType : 'image', // text, image
-                paginationContentWidth : 150, // pagination content width in pixel
+                paginationContentWidth : 155, // pagination content width in pixel
                 paginationImageHeight : 110, // pagination image height
                 width : 1200, // slideshow width
                 height : 420, // slideshow height

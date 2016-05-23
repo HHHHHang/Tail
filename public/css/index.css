@@ -41,3 +41,14 @@ a:hover {
 	display: inline;
 }
 
+.navbar-brand {
+	height: 40px;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 5px 10px;
+/*padding-top: 10px;*/
+}
+.navbar {
+	min-height: 40px;
+}
+

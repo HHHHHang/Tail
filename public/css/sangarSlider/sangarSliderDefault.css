@@ -84,7 +84,7 @@
     color: #FFF;
 }
 .sangar-slideshow-container > .default ul.sangar-pagination-type-image > li {
-    padding: 5px 0 0px 0;
+    padding: 2px 0 0px 0;
 }
 .sangar-slideshow-container > .default ul.sangar-pagination-content-vertical > li.sangar-pagination-active {
     background-color: #A64E48;
@@ -93,9 +93,9 @@
     background: none;
 }
 .sangar-slideshow-container > .default ul.sangar-pagination-type-image > li.sangar-pagination-active > img {
-    border:3px solid white;
+    border:2px solid white;
     /*opacity: 1;*/
-    margin: -3px;
+    margin: -1px;
 }
 .sangar-slideshow-container > .default ul.sangar-pagination-content-vertical > li:hover {
     background-color: #A64E48;

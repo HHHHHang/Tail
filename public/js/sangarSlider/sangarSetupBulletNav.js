@@ -28,7 +28,7 @@ var sangarSetupBulletNav;
                 else if (opt.pagination == 'content-horizontal' && opt.paginationContentType == 'image')
                 {
                     var paginationContent = opt.paginationContent.length > 0 ? opt.paginationContent[i] : "";
-                    var liMarkup = $('<li class="sangar-slideshow-nav-pagination"><img style="border-radius: 3px;" src="' + paginationContent + '" width="' + (opt.paginationContentWidth - 5) + '" height="' + opt.paginationImageHeight + '"></li>');      
+                    var liMarkup = $('<li class="sangar-slideshow-nav-pagination"><img style="border-radius: 0px;" src="' + paginationContent + '" width="' + (opt.paginationContentWidth - 5) + '" height="' + opt.paginationImageHeight + '"></li>');
                 }
                 else if (opt.pagination == 'content-vertical' && opt.paginationContentType == 'text') 
                 {
@@ -38,7 +38,7 @@ var sangarSetupBulletNav;
                 else if (opt.pagination == 'content-vertical' && opt.paginationContentType == 'image')
                 {
                     var paginationContent = opt.paginationContent.length > 0 ? opt.paginationContent[i] : "";
-                    var liMarkup = $('<li class="sangar-slideshow-nav-pagination"><img style="border-radius: 3px;" src="' + paginationContent + '" width="' + (opt.paginationContentWidth - 5) + '" height="' + opt.paginationImageHeight + '"></li>');      
+                    var liMarkup = $('<li class="sangar-slideshow-nav-pagination"><img style="border-radius: 0px;" src="' + paginationContent + '" width="' + (opt.paginationContentWidth - 5) + '" height="' + opt.paginationImageHeight + '"></li>');
                 }
 
                 base.$sangarWrapper.children('ul.sangar-pagination').append(liMarkup);
@@ -153,8 +153,8 @@ var sangarSetupBulletNav;
                                 
                 spagination.parent().css('overflow', 'hidden');
                 spagination.css('background-color', spagination.children('li').last().css("background-color"));
-                spagination.children('li.sangar-slideshow-nav-pagination').css('width',eachWidth + 'px');                
-                                
+                spagination.children('li.sangar-slideshow-nav-pagination').css('width',eachWidth + 'px');
+
                 setupBulletPosition(); // vertical or horizontal
                 setupPaginationWidth(); // vertical or horizontal
                 setupWalkingPagination(); // vertical or horizontal
