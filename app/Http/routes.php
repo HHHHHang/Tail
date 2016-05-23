@@ -30,7 +30,7 @@ Route::post('/test', 'SearchController@testResult');
 
 
 Route::get('/frank',function(){
-	return "frank!";
+	return "frank~";
 });
 
 Route::get('profile','UserController@profile');
@@ -50,5 +50,11 @@ Route::get('/login', 'LoginController@index');
 Route::get('/logout', 'IndexController@logout');
 Route::get('/article', 'IndexController@article');
 Route::post('/article', 'IndexController@articlePost');
+
+Route::get('/forum', 'ForumController@index');
+Route::get('/forum/Detail', 'ForumController@forum');
+
+Route::get('/search/forum', 'SearchController@searchForum');
+Route::get('/search/article', 'SearchController@searchArticle');
 
 Route::get('/myinfo', 'MyInfoController@index');

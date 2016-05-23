@@ -1,0 +1,144 @@
+.forumDetailDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 14px;
+    padding: 20px 25px;
+}
+
+.forumDetailDiv > a {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #eeeeee;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+.forumDetailDiv > span {
+    font-size: 30px;
+    align-self: center;
+    margin: 20px 0;
+}
+
+.forumDetailInfo {
+    margin-top: 10px;
+    width: 100%;
+    border-top: #B0B4B7 solid 1px;
+    padding: 15px 0;
+    display: flex;
+}
+.forumDetailInfo > span{
+    font-size: 16px;
+    color: #B0B4B7;
+    margin-right: 20px;
+}
+
+.forumDetailInfo > span:nth-child(3) {
+    flex: 1;
+    text-align: left;
+}
+.forumDetailInfo > span:last-child {
+    margin-right: 0;
+    font-size: 20px;
+    position: relative;
+    top: -8px;
+}
+.forumDetailInfo > span:nth-child(4) {
+    font-size: 20px;
+    position: relative;
+    top: -8px;
+}
+.forumDetailInfo > span:nth-child(4) > span,
+.forumDetailInfo > span:last-child > span {
+    margin-right: 10px;
+    font-size: 20px;
+    position: relative;
+    top: 4px;
+}
+.forumDetailContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.forumDetailContent span {
+    font-size: 16px;
+    display: block;
+    margin: 5px 0;
+}
+.forumDetailContent div.btn-group {
+    width: 100%;
+
+}
+.forumDetailContent div.radio {
+    font-size: 18px;
+    padding: 10px 0;
+    border-bottom: #eeeeee solid 1px;
+    width: 100%;
+}
+.forumDetailContent div.checkbox {
+    font-size: 18px;
+    padding: 10px 0;
+    border-bottom: #eeeeee solid 1px;
+    width: 100%;
+}
+
+.forumDetailContent button {
+    align-self: flex-end;
+    font-size: 16px;
+    width: 20%;
+    padding: 6px;
+    background-color: #57adfd;
+    color: #ffffff;
+}
+
+.forumDetailContent > button:hover {
+    background-color: #458ac9;
+    color: #ffffff;
+}
+.forumDetailDiv > div:last-child {
+    margin-top: 25px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.forumDetailDiv > div:last-child > button {
+    width: 70px;
+    height: 40px;
+    display: block;
+    border-radius: 20px;
+    background-color: transparent;
+    border: #B0B4B7 solid 1px;
+    padding: 10px;
+    margin-left: 20px;
+}
+.forumWriterInfo > span:first-child {
+    display: block;
+    font-size: 16px;
+}
+
+.forumDetailComment > span {
+    font-size: 16px;
+}
+.forumDetailComment > form {
+    padding-bottom: 20px;
+    margin: 10px 0;
+    border-bottom: #B0B4B7 solid 1px;
+    display: flex;
+    flex-direction: column;
+}
+.forumDetailComment > form > button {
+    font-size: 16px;
+    width: 20%;
+    padding: 6px;
+    background-color: #57adfd;
+    color: #ffffff;
+    align-self: flex-end;
+}
+
+.forumDetailComment > form > button:hover {
+    background-color: #458ac9;
+    color: #ffffff;
+}
