@@ -27,7 +27,9 @@ Route::get('/table', function(){
 Route::get('/test', 'SearchController@test');
 Route::post('/test', 'SearchController@testResult');
 
-
+Route::get('/searchTest', function(){
+	return view('tail.search');
+});
 
 Route::get('/frank',function(){
 	return "frank!";

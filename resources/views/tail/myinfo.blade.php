@@ -42,30 +42,54 @@
     <nav style="background-color: #FFFFFF; border: 2px solid #f5f5f5;box-shadow: 0 1px 4px #ccc" class="navbar navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png">
-                <a class="navbar-brand" style="color: #57ADFD" href="/">     &nbsp;&nbsp;&nbsp;首页</a>
-                <a class="navbar-brand" href="/">     &nbsp;&nbsp;&nbsp;  社区</a>
-                <a class="navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  二手广场</a>
-                <a class="navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  其他</a>
-                @if (isset($user))
-                    <a class="navbar-brand"  style="margin-left: 250px" href="/myinfo?name={{ $user['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $user['name'] }}</a>
-                    <a class="navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
-                @endif
-                @if (!isset($user))
-                    <a class="navbar-brand" style="margin-left: 250px" href="/login">     &nbsp;&nbsp;&nbsp;  登陆</a>
-                    <a class="navbar-brand" href="/login">     &nbsp;&nbsp;&nbsp;  注册</a>
-                @endif
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="container-fluid">
+                <div class="navbar-header">
 
-            <!-- /.navbar-collapse -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png">
+                            <a class="navbar-brand" style="color: #57ADFD" href="/">     &nbsp;&nbsp;&nbsp;首页</a>
+                            <a class="navbar-brand" href="/">     &nbsp;&nbsp;&nbsp;  社区</a>
+                            <a class="navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  二手广场</a>
+                            <a class="navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  其他</a>
+                        </div>
+                        <div class="col-md-3">
+                            <div style="padding: 18px 10px">
+                                <form method="post" action="">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="搜索文章、帖子">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            @if (isset($user))
+                                <a class="navbar-brand"  style="margin-left: 0px" href="/myinfo?name={{ $user['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $user['name'] }}</a>
+                                <a class="navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
+                            @endif
+                            @if (!isset($user))
+                                <a class="navbar-brand" style="margin-left: 0px" href="/login">     &nbsp;&nbsp;&nbsp;  登陆</a>
+                                <a class="navbar-brand" href="/login">     &nbsp;&nbsp;&nbsp;  注册</a>
+                                <ul class="navbar-right">
+                                    <li><a href="#"><span class=""></span> Sign Up</a></li>
+                                    <li><a href="#"><span class=""></span> Login</a></li>
+                                </ul>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+            </div>
+                <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>
@@ -80,24 +104,72 @@
 
                 <!-- My Info -->
                 <div class="well">
-                <ul class="nav nav-pills">
-                      <li role="presentation" class="active"><a href="#">基本信息</a></li>
-                      <li role="presentation"><a href="#">隐私相关</a></li>
-                </ul>
-                    <br>
-                    <br>
-                    <br>
-                    <form>
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">个人主页</span>
-                          <input type="text" class="form-control" placeholder="example: github.com/xxx/" aria-describedby="basic-addon1">
+                    <ul class="nav nav-pills" style="font-size: x-large;">
+                        <li role="presentation" class="active"><a href="#info" data-toggle="pill">基本信息</a></li>
+                        <li role="presentation"><a href="#post" data-toggle="pill">帖子</a></li>
+                        <li><a href="#comment" data-toggle="pill">评论</a></li>
+                    </ul>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="info">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul style="font-size: 16px; padding:0px 20%;">
+                                        <li>用户名:   {{ $user['name'] }}</li>
+                                        <br/><br/>
+                                        <li>个人网页:   </li>
+                                        <br/><br/>
+                                        <li>微博:   </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-5">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <div class="col-md-6">
+                                        <ul style="font-size: 16px; text-align: center">
+                                            <li>积分:4   </li>
+                                            <br/><br/>
+                                            <li>威望:0   </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul style="font-size: 16px; text-align: center">
+                                            <li>金钱:3   </li>
+                                            <br/><br/>
+                                            <li>创作积分:0   </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <button type="button" class="btn btn-default btn-lg btn-block">查看更多信息</button>
                         </div>
-                        <br>
-                        <div class="input-group">
-                          <span class="input-group-addon" id="basic-addon1">个性签名</span>
-                          <input type="text" class="form-control" placeholder="个性签名" aria-describedby="basic-addon1">
+                        <div class="tab-pane fade" id="post">
+                            <p></p>
                         </div>
-                    </form>
+                        <div class="tab-pane fade" id="comment">
+                            <p></p>
+                        </div>
+                    </div>
+
+                    {{--<form>--}}
+                        {{--<div class="input-group">--}}
+                          {{--<span class="input-group-addon" id="basic-addon1">个人主页</span>--}}
+                          {{--<input type="text" class="form-control" placeholder="example: github.com/xxx/" aria-describedby="basic-addon1">--}}
+                        {{--</div>--}}
+                        {{--<br>--}}
+                        {{--<div class="input-group">--}}
+                          {{--<span class="input-group-addon" id="basic-addon1">个性签名</span>--}}
+                          {{--<input type="text" class="form-control" placeholder="个性签名" aria-describedby="basic-addon1">--}}
+                        {{--</div>--}}
+                    {{--</form>--}}
 
                 </div>
             </div>
@@ -106,17 +178,17 @@
             <div class="col-md-3">
 
                 <!-- Blog Search Well -->
-                <div class="well">
-                    <h4>站内搜索</h4>
-                    <div class="input-group">
-                        <input type="text" class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
-                                <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                        </span>
-                    </div>
-                </div>
+                {{--<div class="well">--}}
+                    {{--<h4>站内搜索</h4>--}}
+                    {{--<div class="input-group">--}}
+                        {{--<input type="text" class="form-control">--}}
+                        {{--<span class="input-group-btn">--}}
+                            {{--<button class="btn btn-default" type="button">--}}
+                                {{--<span class="glyphicon glyphicon-search"></span>--}}
+                        {{--</button>--}}
+                        {{--</span>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
                 <!-- Blog Categories Well -->
                 <div class="well">
@@ -124,6 +196,10 @@
                         <img width="250" height="130" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-19%20%E4%B8%8A%E5%8D%881.14.18.png"></img>
                         <!-- /.col-lg-6 -->
                         <h1 style="text-align: center; font-size: 16px"> {{ $user['name'] }}</h1>
+                        <br/>
+                        <p style="text-align: center">
+                        <button type="button" class="btn btn-success" style="font-size: large;"><span>+加关注</span></button>
+                        </p>
                         <hr>
                         <div style="font-size: 16px; text-align: center">0 关注 &nbsp;&nbsp; 0 粉丝 &nbsp;&nbsp;  0 帖子</div>
                     </div>
@@ -144,6 +220,8 @@
 
         </div>
         <!-- /.row -->
+
+
 
         <hr>
 

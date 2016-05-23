@@ -15,6 +15,10 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
+
+	function viewTest(){
+		return view('tail.search');
+	}
 	function index(Request $request) {
 
 		$phoneNum = $request->get('phone');
