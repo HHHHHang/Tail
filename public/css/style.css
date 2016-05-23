@@ -325,3 +325,11 @@ body {
   min-height: 40px;
 }
 
+.postHead{
+  margin-bottom: 10px;
+}
+
+.postContent p{
+  line-height: normal;
+  font-size: medium;
+}

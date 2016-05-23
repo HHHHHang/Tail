@@ -146,8 +146,8 @@
                 <hr>
                 <img class="img-responsive" src="http://7xq64h.com1.z0.glb.clouddn.com/nano.jpg" alt="">
                 <hr>
-                <a href="/article" class="title-phone">深夜俱乐部 | 晒晒你喜欢的那款播放器</a>
-                <p class="content-phone">音乐可能是每一个人打发闲暇时光的选择之一，好的音乐触动着我们内心那些细微的情感，也牵连着我们那些感性的思绪。体现一首好音乐的最佳表现不仅仅只靠一副不错...</p>
+                <div class="postHead"><a href="/article" class="title-phone">深夜俱乐部 | 晒晒你喜欢的那款播放器</a></div>
+                <div class="postContent"><p class="content-phone">音乐可能是每一个人打发闲暇时光的选择之一，好的音乐触动着我们内心那些细微的情感，也牵连着我们那些感性的思绪。体现一首好音乐的最佳表现不仅仅只靠一副不错...</p></div>
                 <a style="margin-left: 550px" href="#"><span class="glyphicon glyphicon-thumbs-up" style="color: #B0B4B7; font-size:20px;">&nbsp;3&nbsp;</span></a>
                 <a href="#"><span class="glyphicon glyphicon-comment" style="color: #B0B4B7; font-size:20px;">&nbsp;3</span></a>
                 </div>
@@ -163,8 +163,8 @@
                 <hr>
                 <img class="img-responsive" src="http://7xq64h.com1.z0.glb.clouddn.com/phone.jpg" alt="">
                 <hr>
-                <a href="#" class="title-phone">溢于「颜」表，华为 G9 青春版体验</a>
-                <p class="content-phone">主打中端市场的华为 G 系列在 5 月 4 日迎来了旗下新成员 — 华为 G9 青春版，该款新机虽以 G 字母为开头，但却更为像是华为 P9 的衍生机型（实际上就是华为在国...</p>
+                    <div class="postHead"><a href="#" class="title-phone">溢于「颜」表，华为 G9 青春版体验</a></div>
+                <div class="postContent"><p class="content-phone">主打中端市场的华为 G 系列在 5 月 4 日迎来了旗下新成员 — 华为 G9 青春版，该款新机虽以 G 字母为开头，但却更为像是华为 P9 的衍生机型（实际上就是华为在国...</p></div>
                 <a style="margin-left: 550px" href="#"><span class="glyphicon glyphicon-thumbs-up" style="color: #B0B4B7; font-size:20px;">&nbsp;9&nbsp;</span></a>
                 <a href="#"><span class="glyphicon glyphicon-comment" style="color: #B0B4B7; font-size:20px;">&nbsp;42</span></a>
                 </div>
