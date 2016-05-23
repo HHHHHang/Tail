@@ -14,6 +14,25 @@
     <!-- jQuery -->
     <script src="{{URL::asset('js/jquery.js')}}"></script>
 
+    <script src="{{asset('js/jquery.touchSwipe.min.js')}}"></script>
+    <script src="{{asset('js/imagesloaded.min.js')}}" ></script>
+    <!-- jQuery Sangar Slider -->
+    <script src="{{asset('js/sangarSlider/sangarBaseClass.js')}}"></script>
+    <script src="{{asset('js/sangarSlider/sangarSetupLayout.js')}}"></script>
+    <script src="{{asset('js/sangarSlider/sangarSizeAndScale.js')}}"></script>
+    <script src="{{asset('js/sangarSlider/sangarShift.js')}}"></script>
+    <script src="{{asset('js/sangarSlider/sangarSetupBulletNav.js')}}"></script>
+    <script src="{{asset('js/sangarSlider/sangarSetupNavigation.js')}}"></script>
+    <script src="{{asset('js/sangarSlider/sangarSetupSwipeTouch.js')}}"></script>
+    <script src="{{asset('js/sangarSlider/sangarSetupTimer.js')}}"></script>
+    <script src="{{asset('js/sangarSlider/sangarBeforeAfter.js')}}"></script>
+    <script src="{{asset('js/sangarSlider/sangarLock.js')}}"></script>
+    <script src="{{asset('js/sangarSlider/sangarResponsiveClass.js')}}"></script>
+    <script src="{{asset('js/sangarSlider/sangarResetSlider.js')}}"></script>
+    <script src="{{asset('js/sangarSlider/sangarTextbox.js')}}"></script>
+    <script src="{{asset('js/sangarSlider.js')}}"></script>
+    {{--<script src="{{asset('js/slider.js')}}"></script>--}}
+
     <!-- Bootstrap Core JavaScript -->
     <script src="{{URL::asset('js/bootstrap.min.js')}}"></script>
 
@@ -23,7 +42,13 @@
 
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" >
 
-
+    <!-- sangarSlider Sangar Slider -->
+    <link href="{{ asset('css/normalize.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/default.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/index.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/sangarSlider.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/default.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/sangarSliderDefault.css') }}" rel="stylesheet" type="text/css">
     <!-- Custom CSS -->
     <link href="{{URL::asset('css/blog-home.css')}}" rel="stylesheet" type="text/css" />
 
@@ -69,6 +94,34 @@
         </div>
         <!-- /.container -->
     </nav>
+
+    <!-- Slider -->
+    <div class="htmleaf-container">
+
+        <div class="htmleaf-content bgcolor-13">
+            <div class='sangar-slideshow-container' id='sangar-example'>
+                <div class='sangar-content-wrapper' style='display:none; height:580px;'>
+                    <div class='sangar-content'><a href="/article"></a><img src='http://s.dgtle.com/portal/201605/20/210446ovppnnvbljyb0x22.jpg?szhdl=imageview/2/w/1200' /></div>
+                    <div class='sangar-content'><a href="/article"></a><img src='http://s.dgtle.com/portal/201605/20/175632kexko4k8yj6o9xik.jpg?szhdl=imageview/2/w/1200' /></div>
+                    <div class='sangar-content'><a href="/article"></a><img src='http://s.dgtle.com/portal/201605/17/140154xv4ztjv67y72vbqb.jpg?szhdl=imageview/2/w/1200' /></div>
+                    <div class='sangar-content'><a href="/article"></a><img src='http://s.dgtle.com/portal/201605/19/104358kimi38ti5z9m7s89.jpg?szhdl=imageview/2/w/1200' /></div>
+                    <div class='sangar-content'><a href="/article"></a><img src='http://s.dgtle.com/portal/201605/19/113602kwwyh0m8x9o7z0os.png?szhdl=imageview/2/w/1200' /></div>
+                    <div class='sangar-content'><a href="/article"></a><img src='http://s.dgtle.com/portal/201605/17/173346wssczbbeqycccehs.jpg?szhdl=imageview/2/w/1200' /></div>
+                    <div class='sangar-content'><a href="/article"></a><img src='http://s.dgtle.com/portal/201605/13/111824g8r1td8vgttrr1cq.jpg?szhdl=imageview/2/w/1200' /></div>
+                    <div class='sangar-content'><a href="/article"></a><img src='http://s.dgtle.com/portal/201605/12/144107nowz1u1uu318lldo.jpg?szhdl=imageview/2/w/1200' /></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+
+                <h1 class="page-header">
+                    <small>尾巴体验</small>
+                </h1>
+
+        </div>
 
     <!-- Page Content -->
     <div class="container">
@@ -248,7 +301,25 @@
     </div>
     <!-- /.container -->
 
-
+    <script type='text/javascript'>
+        jQuery(document).ready(function($) {
+            /**
+             * identifier variable must be unique ID
+             */
+            var sangar = $('#sangar-example').sangarSlider({
+                timer :  true, // true or false to have the timer
+                pagination : 'content-horizontal', // bullet, content, none
+                paginationContent : ["http://s.dgtle.com/portal/201605/20/210446ovppnnvbljyb0x22.jpg?szhdl=imageview/2/w/1200", "http://s.dgtle.com/portal/201605/20/175632kexko4k8yj6o9xik.jpg?szhdl=imageview/2/w/1200", "http://s.dgtle.com/portal/201605/17/140154xv4ztjv67y72vbqb.jpg?szhdl=imageview/2/w/1200", "http://s.dgtle.com/portal/201605/19/104358kimi38ti5z9m7s89.jpg?szhdl=imageview/2/w/1200","http://s.dgtle.com/portal/201605/19/113602kwwyh0m8x9o7z0os.png?szhdl=imageview/2/w/1200" ,"http://s.dgtle.com/portal/201605/17/173346wssczbbeqycccehs.jpg?szhdl=imageview/2/w/1200","http://s.dgtle.com/portal/201605/13/111824g8r1td8vgttrr1cq.jpg?szhdl=imageview/2/w/1200s","http://s.dgtle.com/portal/201605/12/144107nowz1u1uu318lldo.jpg?szhdl=imageview/2/w/1200"], // can be text, image, or something
+                paginationContentType : 'image', // text, image
+                paginationContentWidth : 150, // pagination content width in pixel
+                paginationImageHeight : 110, // pagination image height
+                width : 1200, // slideshow width
+                height : 420, // slideshow height
+                fixedHeight: true,
+                scaleSlide : false // slider will scale to the container size
+            });
+        })
+    </script>
 </body>
 
 </html>
