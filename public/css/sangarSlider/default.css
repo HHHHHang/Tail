@@ -145,56 +145,56 @@ a:hover,a:focus{color:#74777b;}
 .htmleaf-small{font-size: 0.8em;}
 .center{text-align: center;}
 /****/
-.related {
-	color: #fff;
-	background: #333;
-	text-align: center;
-	font-size: 1.25em;
-	padding: 0.5em 0;
-	overflow: hidden;
-}
+/*.related {*/
+	/*color: #fff;*/
+	/*background: #333;*/
+	/*text-align: center;*/
+	/*font-size: 1.25em;*/
+	/*padding: 0.5em 0;*/
+	/*overflow: hidden;*/
+/*}*/
 
-.related > a {
-	vertical-align: top;
-	width: calc(100% - 20px);
-	max-width: 340px;
-	display: inline-block;
-	text-align: center;
-	margin: 20px 10px;
-	padding: 25px;
-	font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif;
-}
-.related a {
-	display: inline-block;
-	text-align: left;
-	margin: 20px auto;
-	padding: 10px 20px;
-	opacity: 0.8;
-	-webkit-transition: opacity 0.3s;
-	transition: opacity 0.3s;
-	-webkit-backface-visibility: hidden;
-}
+/*.related > a {*/
+	/*vertical-align: top;*/
+	/*width: calc(100% - 20px);*/
+	/*max-width: 340px;*/
+	/*display: inline-block;*/
+	/*text-align: center;*/
+	/*margin: 20px 10px;*/
+	/*padding: 25px;*/
+	/*font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif;*/
+/*}*/
+/*.related a {*/
+	/*display: inline-block;*/
+	/*text-align: left;*/
+	/*margin: 20px auto;*/
+	/*padding: 10px 20px;*/
+	/*opacity: 0.8;*/
+	/*-webkit-transition: opacity 0.3s;*/
+	/*transition: opacity 0.3s;*/
+	/*-webkit-backface-visibility: hidden;*/
+/*}*/
 
-.related a:hover,
-.related a:active {
-	opacity: 1;
-}
+/*.related a:hover,*/
+/*.related a:active {*/
+	/*opacity: 1;*/
+/*}*/
 
-.related a img {
-	max-width: 100%;
-	opacity: 0.8;
-	border-radius: 4px;
-}
-.related a:hover img,
-.related a:active img {
-	opacity: 1;
-}
-.related h3{font-family: "Microsoft YaHei", sans-serif;}
-.related a h3 {
-	font-weight: 300;
-	margin-top: 0.15em;
-	color: #fff;
-}
+/*.related a img {*/
+	/*max-width: 100%;*/
+	/*opacity: 0.8;*/
+	/*border-radius: 4px;*/
+/*}*/
+/*.related a:hover img,*/
+/*.related a:active img {*/
+	/*opacity: 1;*/
+/*}*/
+/*.related h3{font-family: "Microsoft YaHei", sans-serif;}*/
+/*.related a h3 {*/
+	/*font-weight: 300;*/
+	/*margin-top: 0.15em;*/
+	/*color: #fff;*/
+/*}*/
 /* icomoon */
 .icon-htmleaf-home-outline:before {
 	content: "\e5000";

@@ -43,12 +43,12 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" >
 
     <!-- sangarSlider Sangar Slider -->
-    <link href="{{ asset('css/normalize.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/default.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/sangarSlider/normalize.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/sangarSlider/default.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/index.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/sangarSlider.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/default.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/sangarSliderDefault.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/sangarSlider/sangarSlider.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/sangarSlider/sangarSliderDefault.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/sangarSlider/responsive.css') }}" rel="stylesheet" type="text/css">
     <!-- Custom CSS -->
     <link href="{{URL::asset('css/blog-home.css')}}" rel="stylesheet" type="text/css" />
 
