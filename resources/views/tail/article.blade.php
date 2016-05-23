@@ -22,7 +22,6 @@
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" >
 
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" >
-    <link href="{{ asset('css/index.css') }}" rel="stylesheet" type="text/css">
 
 
     <!-- Custom CSS -->

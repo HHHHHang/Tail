@@ -45,7 +45,6 @@
     <!-- sangarSlider Sangar Slider -->
     <link href="{{ asset('css/sangarSlider/normalize.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/sangarSlider/default.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/index.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/sangarSlider/sangarSlider.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/sangarSlider/sangarSliderDefault.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/sangarSlider/responsive.css') }}" rel="stylesheet" type="text/css">
@@ -118,7 +117,7 @@
     <div class="container">
 
                 <h1 class="page-header">
-                    <small>尾巴体验</small>
+                    <small>尾巴精选</small>
                 </h1>
 
         </div>
