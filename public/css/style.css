@@ -312,3 +312,24 @@ body {
   text-align: center;
   margin-top: 10px;
 }
+
+
+.navbar-brand {
+  height: 40px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 10px;
+  /*padding-top: 10px;*/
+}
+.navbar {
+  min-height: 40px;
+}
+
+.postHead{
+  margin-bottom: 10px;
+}
+
+.postContent p{
+  line-height: normal;
+  font-size: medium;
+}
