@@ -51,7 +51,7 @@ Route::post('/auth/register', 'Auth\AuthController@postRegister');
 Route::get('/login', 'LoginController@index');
 Route::get('/logout', 'IndexController@logout');
 Route::get('/article', 'IndexController@article');
-Route::post('/article', 'IndexController@articlePost');
+Route::post('/article', 'IndexController@articlePost'); 
 
 Route::get('/forum', 'ForumController@index');
 Route::get('/forum/Detail', 'ForumController@forum');

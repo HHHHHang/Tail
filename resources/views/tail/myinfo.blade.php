@@ -39,7 +39,7 @@
 <body style="background-color: #f5f5f5;">
 
     <!-- Navigation -->
-    <nav style="background-color: #FFFFFF; border: 2px solid #f5f5f5;box-shadow: 0 1px 4px #ccc" class="navbar navbar-fixed-top" role="navigation">
+    <nav style="background-color: #FFFFFF; border: 2px solid #f5f5f5;box-shadow: 0 1px 4px #ccc" class="navbar navbar-fixed-top custom_navbar" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="container-fluid">
@@ -54,13 +54,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png">
-                            <a class="navbar-brand" style="color: #57ADFD" href="/">     &nbsp;&nbsp;&nbsp;首页</a>
-                            <a class="navbar-brand" href="/">     &nbsp;&nbsp;&nbsp;  社区</a>
-                            <a class="navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  二手广场</a>
-                            <a class="navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  其他</a>
+                            <a class="navbar-brand custom_navbar-brand" href="/">     &nbsp;&nbsp;&nbsp;首页</a>
+                            <a class="navbar-brand custom_navbar-brand" href="/forum">     &nbsp;&nbsp;&nbsp;  社区</a>
+                            <a class="navbar-brand custom_navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  二手广场</a>
+                            <a class="navbar-brand custom_navbar-brand" href="/search/article">     &nbsp;&nbsp;&nbsp;  搜索</a>
                         </div>
                         <div class="col-md-3">
-                            <div style="padding: 18px 10px">
+                            <div style="padding: 12px 10px">
                                 <form method="post" action="">
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="搜索文章、帖子">
@@ -73,12 +73,12 @@
                         </div>
                         <div class="col-md-3">
                             @if (isset($user))
-                                <a class="navbar-brand"  style="margin-left: 0px" href="/myinfo?name={{ $user['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $user['name'] }}</a>
-                                <a class="navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
+                                <a class="navbar-brand custom_navbar-brand"  style="margin-left: 0px;color: #57ADFD" href="/myinfo?name={{ $user['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $user['name'] }}</a>
+                                <a class="navbar-brand custom_navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
                             @endif
                             @if (!isset($user))
-                                <a class="navbar-brand" style="margin-left: 0px" href="/login">     &nbsp;&nbsp;&nbsp;  登陆</a>
-                                <a class="navbar-brand" href="/login">     &nbsp;&nbsp;&nbsp;  注册</a>
+                                <a class="navbar-brand custom_navbar-brand" style="margin-left: 0px" href="/login">     &nbsp;&nbsp;&nbsp;  登陆</a>
+                                <a class="navbar-brand custom_navbar-brand" href="/login">     &nbsp;&nbsp;&nbsp;  注册</a>
                                 <ul class="navbar-right">
                                     <li><a href="#"><span class=""></span> Sign Up</a></li>
                                     <li><a href="#"><span class=""></span> Login</a></li>

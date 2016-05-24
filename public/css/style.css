@@ -314,14 +314,14 @@ body {
 }
 
 
-.custome_navbar-brand {
+.custom_navbar-brand {
   height: 40px;
   font-size: 16px;
   font-weight: bold;
   padding: 5px 10px;
   /*padding-top: 10px;*/
 }
-.custome_bar {
+.custom_navbar {
   min-height: 40px;
 }
 

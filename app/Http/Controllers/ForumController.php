@@ -35,7 +35,7 @@ class ForumController extends Controller{
             return view('tail.forum')->with('user1', $user1)->with('data', $data);
         }
     }
-    
+
     public function forum(Request $request) {
 
         $user = $request->user();

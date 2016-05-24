@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,17 +11,17 @@
     <meta name="author" content="">
 
     <!-- jQuery -->
-    <script src="{{URL::asset('js/jquery.js')}}"></script>
+    <script src="http://115.28.180.158:84/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="{{URL::asset('js/bootstrap.min.js')}}"></script>
+    <script src="http://115.28.180.158:84/js/bootstrap.min.js"></script>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" >
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" >
+    <link href="http://115.28.180.158:84/css/bootstrap.css" rel="stylesheet" type="text/css" >
+    <link href="http://115.28.180.158:84/css/style.css" rel="stylesheet" type="text/css" >
 
     <!-- Custom CSS -->
-    <link href="{{URL::asset('css/forum-home.css')}}" rel="stylesheet" type="text/css" />
+    <link href="http://115.28.180.158:84/css/forum-home.css" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,7 +36,7 @@
 <body style="background-color: #f5f5f5;">
 
 <!-- Navigation -->
-<nav style="background-color: #FFFFFF; border: 2px solid #f5f5f5;box-shadow: 0 1px 4px #ccc" class="navbar navbar-fixed-top" role="navigation">
+<nav style="background-color: #FFFFFF; border: 2px solid #f5f5f5;box-shadow: 0 1px 4px #ccc" class="navbar navbar-fixed-top custom_navbar" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -46,17 +47,17 @@
                 <span class="icon-bar"></span>
             </button>
             <img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png">
-            <a class="navbar-brand" href="/">     &nbsp;&nbsp;&nbsp;首页</a>
-            <a class="navbar-brand" style="color: #57ADFD" href="/forum">     &nbsp;&nbsp;&nbsp;  社区</a>
-            <a class="navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  二手广场</a>
-            <a class="navbar-brand" href="/search/article">     &nbsp;&nbsp;&nbsp;  搜索</a>
+            <a class="navbar-brand custom_navbar-brand" href="/">     &nbsp;&nbsp;&nbsp;首页</a>
+            <a class="navbar-brand custom_navbar-brand" style="color: #57ADFD" href="/forum">     &nbsp;&nbsp;&nbsp;  社区</a>
+            <a class="navbar-brand custom_navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  二手广场</a>
+            <a class="navbar-brand custom_navbar-brand" href="/search/article">     &nbsp;&nbsp;&nbsp;  搜索</a>
             @if (isset($user))
-                <a class="navbar-brand"  style="margin-left: 250px" href="/myinfo?name={{ $user['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $user['name'] }}</a>
-                <a class="navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
+                <a class="navbar-brand custom_navbar-brand"  style="margin-left: 250px" href="/myinfo?name={{ $user['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $user['name'] }}</a>
+                <a class="navbar-brand custom_navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
             @endif
             @if (!isset($user))
-                <a class="navbar-brand" style="margin-left: 250px" href="/login">     &nbsp;&nbsp;&nbsp;  登陆</a>
-                <a class="navbar-brand" href="/login">     &nbsp;&nbsp;&nbsp;  注册</a>
+                <a class="navbar-brand custom_navbar-brand" style="margin-left: 250px" href="/login">     &nbsp;&nbsp;&nbsp;  登陆</a>
+                <a class="navbar-brand custom_navbar-brand" href="/login">     &nbsp;&nbsp;&nbsp;  注册</a>
             @endif
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -92,42 +93,120 @@
                 <span><a>排序方式</a></span>
             </div>
             <div class="forumListDiv">
-                @foreach ( $data as $item )
-                    <div class="forumItemDiv">
-                        <img width="50" height="50" src="{{ $item['icon'] }}"  class="forumItemPic img-circle img-responsive">
+                <div class="forumItemDiv">
+                    <img width="50" height="50" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"  class="forumItemPic img-circle img-responsive">
 
-                        <div class="forumItemContent">
-                            <div>
-                                <a href="/forum/Detail">{{ $item['title'] }}</a>
-                            </div>
-                            <div class="forumItemContentInfo">
-                                <span><a href="#">{{ $item['writer'] }}</a></span>
-                                <span>类别 <a href="#">{{ $item['type'] }}</a></span>
-                                <span>发表时间 {{ $item['publishTime'] }}</span>
-                                <span><span class="glyphicon glyphicon-comment"></span>{{ $item['commentCount'] }}</span>
-                            </div>
-
+                    <div class="forumItemContent">
+                        <div>
+                            <a href="/forum/Detail">深夜俱乐部 | 晒晒你喜欢的那款播放器</a>
                         </div>
+                        <div class="forumItemContentInfo">
+                            <span><a href="#">测试用户</a></span>
+                            <span>类别 <a href="#">影音</a></span>
+                            <span>发表时间 昨天</span>
+                            <span><span class="glyphicon glyphicon-comment"></span>1</span>
+                        </div>
+
                     </div>
-                @endforeach
+                </div>
+                <div class="forumItemDiv">
+                    <img width="50" height="50" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"  class="forumItemPic img-circle img-responsive">
+
+                    <div class="forumItemContent">
+                        <div>
+                            <a href="/forum/Detail">深夜俱乐部 | 晒晒你喜欢的那款播放器晒晒你喜欢的那款播放器</a>
+                        </div>
+                        <div class="forumItemContentInfo">
+                            <span><a href="#">测试用户</a></span>
+                            <span>类别 <a href="#">影音</a></span>
+                            <span>发表时间 昨天</span>
+                            <span><span class="glyphicon glyphicon-comment"></span>2</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="forumItemDiv">
+                    <img width="50" height="50" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"  class="forumItemPic img-circle img-responsive">
+
+                    <div class="forumItemContent">
+                        <div>
+                            <a href="/forum/Detail">深夜俱乐部 | 晒晒你喜欢的那款播放器</a>
+                        </div>
+                        <div class="forumItemContentInfo">
+                            <span><a href="#">测试用户</a></span>
+                            <span>类别 <a href="#">影音</a></span>
+                            <span>发表时间 昨天</span>
+                            <span><span class="glyphicon glyphicon-comment"></span>3</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="forumItemDiv">
+                    <img width="50" height="50" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"  class="forumItemPic img-circle img-responsive">
+
+                    <div class="forumItemContent">
+                        <div>
+                            <a href="/forum/Detail">深夜俱乐部 | 晒晒你喜欢的那款播放器</a>
+                        </div>
+                        <div class="forumItemContentInfo">
+                            <span><a href="#">测试用户</a></span>
+                            <span>类别 <a href="#">影音</a></span>
+                            <span>发表时间 昨天</span>
+                            <span><span class="glyphicon glyphicon-comment"></span>4</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="forumItemDiv">
+                    <img width="50" height="50" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"  class="forumItemPic img-circle img-responsive">
+
+                    <div class="forumItemContent">
+                        <div>
+                            <a href="/forum/Detail">深夜俱乐部 | 晒晒你喜欢的那款播放器晒晒你喜欢的那款播放器晒晒你喜欢的那款播放器</a>
+                        </div>
+                        <div class="forumItemContentInfo">
+                            <span><a href="#">测试用户</a></span>
+                            <span>类别 <a href="#">影音</a></span>
+                            <span>发表时间 昨天</span>
+                            <span><span class="glyphicon glyphicon-comment"></span>5</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="forumItemDiv">
+                    <img width="50" height="50" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"  class="forumItemPic img-circle img-responsive">
+
+                    <div class="forumItemContent">
+                        <div>
+                            <a href="/forum/Detail">深夜俱乐部 | 晒晒你喜欢的那款播放器</a>
+                        </div>
+                        <div class="forumItemContentInfo">
+                            <span><a href="#">测试用户</a></span>
+                            <span>类别 <a href="#">影音</a></span>
+                            <span>发表时间 昨天</span>
+                            <span><span class="glyphicon glyphicon-comment"></span>6</span>
+                        </div>
+
+                    </div>
+                </div>
             </div>
 
-        <!-- Blog Sidebar Widgets Column -->
+            <!-- Blog Sidebar Widgets Column -->
         </div>
         <div class="forumRightPart col-md-4">
 
             <div class="well forumUserInfo">
                 <div>
-                    <img width="90" height="90" src="{{ $user1['icon'] }}"  class="img-responsive">
-                    <span>{{ $user1['level'] }}</span>
+                    <img width="90" height="90" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"  class="img-responsive">
+                    <span>初级</span>
                 </div>
 
                 <div>
-                    <span>{{$user1['name']}}</span>
+                    <span>用户名</span>
                     <div>
-                        <a><span>{{ $user1['forumCount'] }}</span><span>帖子</span></a>
-                        <a><span>{{ $user1['commentCount'] }}</span><span>评论</span></a>
-                        <a><span>{{ $user1['followCount'] }}</span><span>关注</span></a>
+                        <a><span>0</span><span>帖子</span></a>
+                        <a><span>0</span><span>评论</span></a>
+                        <a><span>0</span><span>关注</span></a>
                     </div>
                 </div>
             </div>

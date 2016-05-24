@@ -63,7 +63,7 @@
 <body style="background-color: #f5f5f5;">
 
     <!-- Navigation -->
-    <nav style="background-color: #FFFFFF; border: 1px solid #fbfbfb;box-shadow: 0 1px 4px #ccc" class="navbar navbar-fixed-top custome_navbar" role="navigation">
+    <nav style="background-color: #FFFFFF; border: 1px solid #fbfbfb;box-shadow: 0 1px 4px #ccc" class="navbar navbar-fixed-top custom_navbar" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -73,18 +73,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/"><img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png"></a>
-                <a class="navbar-brand custome_navbar-brand" style="color: #57ADFD" href="/">     &nbsp;&nbsp;&nbsp;&nbsp;首页</a>
-                <a class="navbar-brand custome_navbar-brand" href="/">     &nbsp;&nbsp;&nbsp;&nbsp;  社区</a>
-                <a class="navbar-brand custome_navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;&nbsp;  二手广场</a>
-                <a class="navbar-brand custome_navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;&nbsp;  其他</a>
+                <img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png">
+                <a class="navbar-brand custom_navbar-brand" style="color: #57ADFD" href="/">     &nbsp;&nbsp;&nbsp;首页</a>
+                <a class="navbar-brand custom_navbar-brand" href="/forum">     &nbsp;&nbsp;&nbsp;  社区</a>
+                <a class="navbar-brand custom_navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  二手广场</a>
+                <a class="navbar-brand custom_navbar-brand" href="/search/article">     &nbsp;&nbsp;&nbsp;  搜索</a>
                 @if (isset($user))
-                    <a class="navbar-brand custome_navbar-brand"  style="margin-left: 250px" href="/myinfo?name={{ $user['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $user['name'] }}</a>
-                    <a class="navbar-brand custome_navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
+                    <a class="navbar-brand custom_navbar-brand"  style="margin-left: 250px" href="/myinfo?name={{ $user['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $user['name'] }}</a>
+                    <a class="navbar-brand custom_navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
                 @endif
                 @if (!isset($user))
-                    <a class="navbar-brand custome_navbar-brand" style="margin-left: 250px" href="/login">     &nbsp;&nbsp;&nbsp;  登陆</a>
-                    <a class="navbar-brand custome_navbar-brand" href="/login">     &nbsp;&nbsp;&nbsp;  注册</a>
+                    <a class="navbar-brand custom_navbar-brand" style="margin-left: 250px" href="/login">     &nbsp;&nbsp;&nbsp;  登陆</a>
+                    <a class="navbar-brand custom_navbar-brand" href="/login">     &nbsp;&nbsp;&nbsp;  注册</a>
                 @endif
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -112,7 +112,7 @@
     <div class="container">
 
                 <h1 class="page-header">
-                    <small>尾巴精选</small>
+                    尾巴精选
                 </h1>
 
         </div>
@@ -182,16 +182,16 @@
                 <div class="well">
                     <h4>站内搜索</h4>
                     <hr>
-                    <div class="input-group">
-                        <input type="text" class="form-control">
+                    <form class="input-group" method="GET" role="form" action="/search/article">
+                        <input type="text" class="form-control" name="searchTar">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
+                            <button class="btn btn-default" type="submit">
                                 <span class="glyphicon glyphicon-search"></span>
-                        </button>
+                            </button>
                         </span>
+                    </form>
                     </div>
                     <!-- /.input-group -->
-                </div>
 
                 <!-- Blog Categories Well -->
                 <div class="well">

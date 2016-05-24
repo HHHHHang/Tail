@@ -8,3 +8,12 @@
     border: transparent;
     box-shadow: none;
 }
+
+.postHead{
+    margin-bottom: 10px;
+}
+
+.postContent p{
+    line-height: 22px;
+    font-size: medium;
+}
