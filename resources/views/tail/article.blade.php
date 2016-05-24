@@ -51,9 +51,9 @@
                 </button>
                 <a href="/"><img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png"></a>
                 <a class="navbar-brand" style="color: #57ADFD" href="/">     &nbsp;&nbsp;&nbsp;&nbsp;首页</a>
-                <a class="navbar-brand" href="/">     &nbsp;&nbsp;&nbsp;&nbsp;  社区</a>
+                <a class="navbar-brand" href="/forum">     &nbsp;&nbsp;&nbsp;&nbsp;  社区</a>
                 <a class="navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;&nbsp;  二手广场</a>
-                <a class="navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;&nbsp;  其他</a>
+                <a class="navbar-brand" href="/search/article">     &nbsp;&nbsp;&nbsp;  搜索</a>
                 @if (isset($user))
                     <a class="navbar-brand"  style="margin-left: 250px" href="/myinfo?name={{ $user['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $user['name'] }}</a>
                     <a class="navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
@@ -147,14 +147,14 @@
                 <div class="well">
                     <h4>站内搜索</h4>
                     <hr>
-                    <div class="input-group">
-                        <input type="text" class="form-control">
+                    <form class="input-group" method="GET" role="form" action="/search/article">
+                        <input type="text" class="form-control" name="searchTar">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
+                            <button class="btn btn-default" type="submit">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
                         </span>
-                    </div>
+                    </form>
                     <!-- /.input-group -->
                 </div>
 
