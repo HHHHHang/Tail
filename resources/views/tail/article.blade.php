@@ -148,7 +148,7 @@
                     <h4>站内搜索</h4>
                     <hr>
                     <form class="input-group" method="GET" role="form" action="/search/article">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="searchTar">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="submit">
                                 <span class="glyphicon glyphicon-search"></span>
