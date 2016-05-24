@@ -314,14 +314,14 @@ body {
 }
 
 
-.navbar-brand {
+.custome_navbar-brand {
   height: 40px;
   font-size: 16px;
   font-weight: bold;
   padding: 5px 10px;
   /*padding-top: 10px;*/
 }
-.navbar {
+.custome_bar {
   min-height: 40px;
 }
 
@@ -330,6 +330,6 @@ body {
 }
 
 .postContent p{
-  line-height: normal;
+  line-height: 22px;
   font-size: medium;
 }

@@ -50,17 +50,17 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a href="/"><img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png"></a>
-                <a class="navbar-brand" style="color: #57ADFD" href="/">     &nbsp;&nbsp;&nbsp;&nbsp;首页</a>
-                <a class="navbar-brand" href="/">     &nbsp;&nbsp;&nbsp;&nbsp;  社区</a>
-                <a class="navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;&nbsp;  二手广场</a>
-                <a class="navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;&nbsp;  其他</a>
+                <a class="navbar-brand custome_navbar-brand" style="color: #57ADFD" href="/">     &nbsp;&nbsp;&nbsp;&nbsp;首页</a>
+                <a class="navbar-brand custome_navbar-brand" href="/">     &nbsp;&nbsp;&nbsp;&nbsp;  社区</a>
+                <a class="navbar-brand custome_navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;&nbsp;  二手广场</a>
+                <a class="navbar-brand custome_navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;&nbsp;  其他</a>
                 @if (isset($user))
-                    <a class="navbar-brand"  style="margin-left: 250px" href="/myinfo?name={{ $user['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $user['name'] }}</a>
-                    <a class="navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
+                    <a class="navbar-brand custome_navbar-brand"  style="margin-left: 250px" href="/myinfo?name={{ $user['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $user['name'] }}</a>
+                    <a class="navbar-brand custome_navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
                 @endif
                 @if (!isset($user))
-                    <a class="navbar-brand" style="margin-left: 250px" href="/login">     &nbsp;&nbsp;&nbsp;  登陆</a>
-                    <a class="navbar-brand" href="/login">     &nbsp;&nbsp;&nbsp;  注册</a>
+                    <a class="navbar-brand custome_navbar-brand" style="margin-left: 250px" href="/login">     &nbsp;&nbsp;&nbsp;  登陆</a>
+                    <a class="navbar-brand custome_navbar-brand" href="/login">     &nbsp;&nbsp;&nbsp;  注册</a>
                 @endif
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->

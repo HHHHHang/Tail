@@ -29,8 +29,11 @@ class IndexController extends Controller{
 //		Auth::logout();
 		$user = $request->user();
 
-		if ($user) return view('tail.welcome')->with('user', $user);
-		return view('tail.welcome');
+		$pics = array("http://s.dgtle.com/portal/201605/20/210446ovppnnvbljyb0x22.jpg?szhdl=imageview/2/w/1200 " , "http://s.dgtle.com/portal/201605/20/175632kexko4k8yj6o9xik.jpg?szhdl=imageview/2/w/1200", "http://s.dgtle.com/portal/201605/17/140154xv4ztjv67y72vbqb.jpg?szhdl=imageview/2/w/1200", "http://s.dgtle.com/portal/201605/19/104358kimi38ti5z9m7s89.jpg?szhdl=imageview/2/w/1200","http://s.dgtle.com/portal/201605/19/113602kwwyh0m8x9o7z0os.png?szhdl=imageview/2/w/1200" ,"http://s.dgtle.com/portal/201605/17/173346wssczbbeqycccehs.jpg?szhdl=imageview/2/w/1200","http://s.dgtle.com/portal/201605/13/111824g8r1td8vgttrr1cq.jpg?szhdl=imageview/2/w/1200s","http://s.dgtle.com/portal/201605/12/144107nowz1u1uu318lldo.jpg?szhdl=imageview/2/w/1200");
+		$picsArr = json_encode($pics);
+		
+		if ($user) return view('tail.welcome')->with('user', $user)->with('picsArr',$picsArr)->with('pics',$pics);
+		return view('tail.welcome')->with('picsArr',$picsArr)->with('pics',$pics);
 	}
 
 	public function logout() {
