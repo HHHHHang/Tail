@@ -73,7 +73,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png">
+                <a href="/"><img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png"></a>
                 <a class="navbar-brand custom_navbar-brand" style="color: #57ADFD" href="/">     &nbsp;&nbsp;&nbsp;首页</a>
                 <a class="navbar-brand custom_navbar-brand" href="/forum">     &nbsp;&nbsp;&nbsp;  社区</a>
                 <a class="navbar-brand custom_navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  二手广场</a>
@@ -307,7 +307,6 @@
                 timer :  true, // true or false to have the timer
                 pagination : 'content-horizontal', // bullet, content, none
                 paginationContent:data,
-//                paginationContent : ["http://s.dgtle.com/portal/201605/20/210446ovppnnvbljyb0x22.jpg?szhdl=imageview/2/w/1200 " , "http://s.dgtle.com/portal/201605/20/175632kexko4k8yj6o9xik.jpg?szhdl=imageview/2/w/1200", "http://s.dgtle.com/portal/201605/17/140154xv4ztjv67y72vbqb.jpg?szhdl=imageview/2/w/1200", "http://s.dgtle.com/portal/201605/19/104358kimi38ti5z9m7s89.jpg?szhdl=imageview/2/w/1200","http://s.dgtle.com/portal/201605/19/113602kwwyh0m8x9o7z0os.png?szhdl=imageview/2/w/1200" ,"http://s.dgtle.com/portal/201605/17/173346wssczbbeqycccehs.jpg?szhdl=imageview/2/w/1200","http://s.dgtle.com/portal/201605/13/111824g8r1td8vgttrr1cq.jpg?szhdl=imageview/2/w/1200s","http://s.dgtle.com/portal/201605/12/144107nowz1u1uu318lldo.jpg?szhdl=imageview/2/w/1200"], // can be text, image, or something
                 paginationContentType : 'image', // text, image
                 paginationContentWidth : 155, // pagination content width in pixel
                 paginationImageHeight : 110, // pagination image height

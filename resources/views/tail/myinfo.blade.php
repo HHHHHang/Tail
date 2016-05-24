@@ -53,7 +53,7 @@
                     </button>
                     <div class="row">
                         <div class="col-md-6">
-                            <img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png">
+                            <a href="/"><img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png"></a>
                             <a class="navbar-brand custom_navbar-brand" href="/">     &nbsp;&nbsp;&nbsp;首页</a>
                             <a class="navbar-brand custom_navbar-brand" href="/forum">     &nbsp;&nbsp;&nbsp;  社区</a>
                             <a class="navbar-brand custom_navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  二手广场</a>
