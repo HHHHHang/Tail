@@ -301,7 +301,8 @@ var sangarBaseClass;
 
             // height for bullet or pagination
             if(opt.pagination == 'content-horizontal') {
-                var containerHeight = height + base.$pagination.outerHeight(true);                
+                // var containerHeight = height + base.$pagination.outerHeight(true);
+                containerHeight = height + opt.paginationImageHeight - (opt.paginationImageHeight*percentMinus/100);
             }
             else {
                 var containerHeight = height;
