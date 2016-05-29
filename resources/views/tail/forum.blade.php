@@ -35,10 +35,8 @@
 
 <body style="background-color: #f5f5f5;">
 
-<!-- Navigation -->
 <nav style="background-color: #FFFFFF; border: 2px solid #f5f5f5;box-shadow: 0 1px 4px #ccc" class="navbar navbar-fixed-top custom_navbar" role="navigation">
     <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
@@ -60,11 +58,7 @@
                 <a class="navbar-brand custom_navbar-brand" href="/login">     &nbsp;&nbsp;&nbsp;  注册</a>
             @endif
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-
-        <!-- /.navbar-collapse -->
     </div>
-    <!-- /.container -->
 </nav>
 
 <div class="container">
@@ -93,102 +87,24 @@
                 <span><a>排序方式</a></span>
             </div>
             <div class="forumListDiv">
-                <div class="forumItemDiv">
-                    <img width="50" height="50" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"  class="forumItemPic img-circle img-responsive">
+                @foreach ( $data as $item )
+                    <div class="forumItemDiv">
+                        <img width="50" height="50" src="{{ $item['icon'] }}"  class="forumItemPic img-circle img-responsive">
 
-                    <div class="forumItemContent">
-                        <div>
-                            <a href="/forum/Detail">深夜俱乐部 | 晒晒你喜欢的那款播放器</a>
-                        </div>
-                        <div class="forumItemContentInfo">
-                            <span><a href="#">测试用户</a></span>
-                            <span>类别 <a href="#">影音</a></span>
-                            <span>发表时间 昨天</span>
-                            <span><span class="glyphicon glyphicon-comment"></span>1</span>
-                        </div>
+                        <div class="forumItemContent">
+                            <div>
+                                <a href="/forum/Detail">{{ $item['title'] }}</a>
+                            </div>
+                            <div class="forumItemContentInfo">
+                                <span><a href="#">{{ $item['writer'] }}</a></span>
+                                <span>类别 <a href="#">{{ $item['type'] }}</a></span>
+                                <span>发表时间 {{ $item['publishTime'] }}</span>
+                                <span><span class="glyphicon glyphicon-comment"></span>{{ $item['commentCount'] }}</span>
+                            </div>
 
+                        </div>
                     </div>
-                </div>
-                <div class="forumItemDiv">
-                    <img width="50" height="50" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"  class="forumItemPic img-circle img-responsive">
-
-                    <div class="forumItemContent">
-                        <div>
-                            <a href="/forum/Detail">深夜俱乐部 | 晒晒你喜欢的那款播放器晒晒你喜欢的那款播放器</a>
-                        </div>
-                        <div class="forumItemContentInfo">
-                            <span><a href="#">测试用户</a></span>
-                            <span>类别 <a href="#">影音</a></span>
-                            <span>发表时间 昨天</span>
-                            <span><span class="glyphicon glyphicon-comment"></span>2</span>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="forumItemDiv">
-                    <img width="50" height="50" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"  class="forumItemPic img-circle img-responsive">
-
-                    <div class="forumItemContent">
-                        <div>
-                            <a href="/forum/Detail">深夜俱乐部 | 晒晒你喜欢的那款播放器</a>
-                        </div>
-                        <div class="forumItemContentInfo">
-                            <span><a href="#">测试用户</a></span>
-                            <span>类别 <a href="#">影音</a></span>
-                            <span>发表时间 昨天</span>
-                            <span><span class="glyphicon glyphicon-comment"></span>3</span>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="forumItemDiv">
-                    <img width="50" height="50" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"  class="forumItemPic img-circle img-responsive">
-
-                    <div class="forumItemContent">
-                        <div>
-                            <a href="/forum/Detail">深夜俱乐部 | 晒晒你喜欢的那款播放器</a>
-                        </div>
-                        <div class="forumItemContentInfo">
-                            <span><a href="#">测试用户</a></span>
-                            <span>类别 <a href="#">影音</a></span>
-                            <span>发表时间 昨天</span>
-                            <span><span class="glyphicon glyphicon-comment"></span>4</span>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="forumItemDiv">
-                    <img width="50" height="50" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"  class="forumItemPic img-circle img-responsive">
-
-                    <div class="forumItemContent">
-                        <div>
-                            <a href="/forum/Detail">深夜俱乐部 | 晒晒你喜欢的那款播放器晒晒你喜欢的那款播放器晒晒你喜欢的那款播放器</a>
-                        </div>
-                        <div class="forumItemContentInfo">
-                            <span><a href="#">测试用户</a></span>
-                            <span>类别 <a href="#">影音</a></span>
-                            <span>发表时间 昨天</span>
-                            <span><span class="glyphicon glyphicon-comment"></span>5</span>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="forumItemDiv">
-                    <img width="50" height="50" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"  class="forumItemPic img-circle img-responsive">
-
-                    <div class="forumItemContent">
-                        <div>
-                            <a href="/forum/Detail">深夜俱乐部 | 晒晒你喜欢的那款播放器</a>
-                        </div>
-                        <div class="forumItemContentInfo">
-                            <span><a href="#">测试用户</a></span>
-                            <span>类别 <a href="#">影音</a></span>
-                            <span>发表时间 昨天</span>
-                            <span><span class="glyphicon glyphicon-comment"></span>6</span>
-                        </div>
-
-                    </div>
-                </div>
+                @endforeach
             </div>
 
             <!-- Blog Sidebar Widgets Column -->
@@ -212,7 +128,7 @@
             </div>
 
             <div class="forumNewBtn">
-                <button type="button" class="btn">发布帖子</button>
+                <button type="button" class="btn" onclick="{location.href = '/new/article'}">发布帖子</button>
             </div>
 
             <div class="forumSearch well">

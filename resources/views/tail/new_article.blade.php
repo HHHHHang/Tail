@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>NEW Template</title>
+    <title>发布文章</title>
 
     <!-- jQuery -->
     <script src="{{asset('js/jquery.js')}}"></script>
@@ -17,9 +17,7 @@
     <script src="{{URL::asset('js/jquery.touchSwipe.min.js')}}"></script>
     <script src="{{URL::asset('js/imagesloaded.min.js')}}" ></script>
 
-    {{--<script src="{{asset('js/slider.js')}}"></script>--}}
-
-            <!-- Bootstrap Core JavaScript -->
+    <!-- Bootstrap Core JavaScript -->
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
 
 
@@ -29,17 +27,19 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" >
 
     <!-- Custom CSS -->
-
     <link href="{{asset('css/blog-home.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('styles/simditor.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/new_artical.css') }}" rel="stylesheet" type="text/css">
-    <script src="{{asset('scripts/jquery.min.js')}}"></script>
-    <script src="{{asset('scripts/module.js')}}"></script>
-    <script src="{{asset('scripts/hotkeys.js')}}"></script>
-    <script src="{{asset('scripts/uploader.js')}}"></script>
-    <script src="{{asset('scripts/simditor.js')}}"></script>
-    <script src="{{asset('scripts/simditor-dropzone.js')}}"></script>
+    <link href="{{ asset('css/new-article.css') }}" rel="stylesheet" type="text/css">
 
+    <!-- simditor CSS -->
+    <link href="{{ asset('css/simditor/simditor.css') }}" rel="stylesheet" type="text/css">
+
+    <!-- simditor JavaScript -->
+    <script src="{{asset('js/simditor/jquery.min.js')}}"></script>
+    <script src="{{asset('js/simditor/module.js')}}"></script>
+    <script src="{{asset('js/simditor/hotkeys.js')}}"></script>
+    <script src="{{asset('js/simditor/uploader.js')}}"></script>
+    <script src="{{asset('js/simditor/simditor.js')}}"></script>
+    <script src="{{asset('js/simditor/simditor-dropzone.js')}}"></script>
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -66,10 +66,10 @@
                     <span class="icon-bar"></span>
                 </button>
                 <img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png">
-                <a class="navbar-brand" style="color: #57ADFD" href="/">     &nbsp;&nbsp;&nbsp;首页</a>
-                <a class="navbar-brand" href="/">     &nbsp;&nbsp;&nbsp;  社区</a>
+                <a class="navbar-brand" href="/">     &nbsp;&nbsp;&nbsp;首页</a>
+                <a class="navbar-brand" style="color: #57ADFD" href="/forum">     &nbsp;&nbsp;&nbsp;  社区</a>
                 <a class="navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  二手广场</a>
-                <a class="navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  其他</a>
+                <a class="navbar-brand" href="/search/article">     &nbsp;&nbsp;&nbsp;  其他</a>
                 @if (isset($user))
                     <a class="navbar-brand"  style="margin-left: 250px" href="/myinfo?name={{ $user['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $user['name'] }}</a>
                     <a class="navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
@@ -87,33 +87,65 @@
     </nav>
 
 
-    <!--<form action="/frank" method="get"></form>-->
-
-
-
-
     <div class="container">
         <div class="row">
             <div class="col-md-1">
             </div>
 
-            <div class="col-md-10">
+            <div class="col-md-10 mainBody">
+                <a href="/forum"><span class="glyphicon glyphicon-chevron-left"></span> 纠结帖子</a>
+                <div class="postTitleDiv">
+                    <a id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-menu-hamburger"></span> 选择类别</a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        @foreach ( $data->type as $item )
+                            <li><a href="#">{{$item}}</a></li>
+                        @endforeach
+                    </ul>
+                    <input id="postTitle" type="text" placeholder="标题" maxlength="30"/>
+                    <span id="postTitleLengthMinder">还可输入30个字符</span>
 
-              <!--  <a class="z_title" href="/frank" >尾巴主板</a>  -->
+                </div>
 
-                <textarea name="content" id="editor" placeholder="Balabala" autofocus></textarea>
+
+                <div class="postOptionDiv">
+                    <div>
+                        <div>
+                            <span>选项:最多可以填写20个选项</span>
+                            <a id="addOptionBtn"><span class="glyphicon glyphicon-plus-sign"></span> 添加一条选项</a>
+                        </div>
+                        @for ($x=0; $x< $data->choiceNum; $x++)
+                            <div class="input-group postOptions">
+                                <input type="text" class="form-control">
+                                <span class="input-group-addon">
+                                    <a class="removeBtn"><span class="glyphicon glyphicon-remove"></span></a>
+                                </span>
+                            </div>
+                        @endfor
+                    </div>
+                    <div>
+                        <span>最多可选: <select id="optionNumSelect"></select>项</span>
+                        <div>
+                            <input type="checkbox" value="投票后结果可见"/>
+                            <span>投票后结果可见</span>
+                        </div>
+                        <div>
+                            <input type="checkbox" value="公开投票参与人"/>
+                            <span>公开投票参与人</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="postEditorDiv">
+                    <textarea name="content" id="editor" placeholder="正文" autofocus></textarea>
+                </div>
+
+                <div class="postBtns">
+                    <button onclick="submit()">发表帖子</button>
+                    <button onclick="save()">保存草稿</button>
+                </div>
 
             </div>
         </div>
     </div>
-    <button type="submit" >发表帖子</button>
-
-
-
-
-
-
-
 
 
     <footer>
@@ -141,11 +173,47 @@
            Pace.stop();
            $.unblockUI();
        });
+
+       $("#addOptionBtn").on( "click", function( event ) {
+           $(".postOptionDiv > div:first-child").append('<div class="input-group postOptions"> ' +
+                   '<input type="text" class="form-control"> ' +
+                   '<span class="input-group-addon"> ' +
+                   '<a class="removeBtn"><span class="glyphicon glyphicon-remove"></span></a> ' +
+                   '</span> ' +
+                   '</div>'
+                   );
+           setSelectOption();
+       });
+
+       var setSelectOption = function () {
+           var length = $('.postOptions').size();
+           $("#optionNumSelect").html('');
+           for (var i = 1; i <= length; i++) {
+               $("#optionNumSelect").append('<option>' + i + '</option>');
+           }
+       };
+       setSelectOption();
+
+       $('#postTitle').on('input', function() {
+           var length = 30 - $(this).val().length;
+           $('#postTitleLengthMinder').text('还可输入'+ length +'个字符');
+       });
+
+
+       var submit = function () {
+           var length = $('.postOptions').size();
+           var options = [];
+           for (var i = 0; i < length; i++) {
+               var str = $($('.postOptions input')[i]).val();
+               if (str != null && str != '') {
+                   options.push(str);
+               }
+           }
+
+           var title = $('#postTitle').val();
+           console.log('标题: ' + title);
+           console.log('选项: ' + options);
+       }
    </script>
-
-
-
-
-
 </body>
 </html>
