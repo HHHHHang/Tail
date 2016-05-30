@@ -60,3 +60,4 @@ Route::get('/search/forum', 'SearchController@searchForum');
 Route::get('/search/article', 'SearchController@searchArticle');
 
 Route::get('/myinfo', 'MyInfoController@index');
+Route::get('/new/article', 'NewController@newArticle');
