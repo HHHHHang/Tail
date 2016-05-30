@@ -49,3 +49,6 @@ Route::get('/mongo', 'MongoController@testMongo');
 Route::get('/api/test/{id}', function ($id) {
 	return App\Banner_img::findOrFail($id);
 });
+
+Route::get('/myinfo', 'MyInfoController@index');
+Route::get('/new/article', 'NewController@newArticle');
