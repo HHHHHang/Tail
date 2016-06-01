@@ -142,7 +142,7 @@
 					<hr>
 					<img class="img-responsive" src="{{ $article->image }}" alt="">
 					<hr>
-					<div class="postHead"><a href="/article/{{ $article->aid }}" class="title-phone">{{ $article->title  }}</a></div>
+					<div class="postHead"><a href="/article/{{ $article->id }}" class="title-phone">{{ $article->title  }}</a></div>
 					<div class="postContent"><p class="content-phone">{{ $article->content  }}</p></div>
 					<a style="margin-left: 550px" href="#"><span class="glyphicon glyphicon-thumbs-up" style="color: #B0B4B7; font-size:20px;">&nbsp;{{ $article->upNum }}&nbsp;</span></a>
 					<a href="#"><span class="glyphicon glyphicon-comment" style="color: #B0B4B7; font-size:20px;">&nbsp;{{ $article->commentNum }}</span></a>

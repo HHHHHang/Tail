@@ -86,26 +86,18 @@
             <div class="well">
                 <div>
                     <img style="float: left" width="50" height="50" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"   class="img-rounded img-circle img-responsive">
-                    <p class="tie-head">&nbsp;&nbsp;测试用户</p>
-                    <span><a href="#">&nbsp;&nbsp;<span class="glyphicon glyphicon-film" style="color: rgb(108, 118, 127); font-size: 12px;">影音</span></a></span>
+                    <p class="tie-head">&nbsp;&nbsp;{{ $params['postName'] }}</p>
+                    <span><a href="#">&nbsp;&nbsp;<span class="glyphicon glyphicon-film" style="color: rgb(108, 118, 127); font-size: 12px;">{{ $params['type'] }}</span></a></span>
 
                 </div>
                 <p class="postTime"><span class="glyphicon glyphicon-time"></span> &nbsp;昨天</p>
                 {{--<img class="img-responsive" src="http://7xq64h.com1.z0.glb.clouddn.com/nano.jpg" alt="">--}}
                 <hr>
-                <p style="text-align:center" href="#" class="title-phone">深夜俱乐部 | 晒晒你喜欢的那款播放器</p>
+                <p style="text-align:center" href="#" class="title-phone">{{ $params['title'] }}</p>
                 <hr>
-                <p class="content-nano">音乐可能是每一个人打发闲暇时光的选择之一，好的音乐触动着我们内心那些细微的情感，也牵连着我们那些感性的思绪。体现一首好音乐的最佳表现不仅仅只靠一副不错的耳机就行，适合自己的播放器也同样重要，这里的播放器可以是手机、音频播放器或者录音笔，只要是你喜欢的就欢迎晒出来。今晚深夜俱乐部我们就来聊一聊自己喜欢的那款播放器吧。</p>
-                <br>
-                <p class="content-nano">
-                    @小淼-海：要说播放器我用过的其实蛮多，喜欢的也蛮多，就说一下近期较为钟意的那款吧。前段时间用了一下 iBasso DX80，其清澈干净的声音十分吸引我，听感上不会十分刺激，温和平淡的底子十分耐听，对于每天有很多东西听的我来说再合适不过了。
-                </p>
-                <img class="img-responsive" src="http://7xq64h.com1.z0.glb.clouddn.com/nano.jpg" alt="">
-                <p class="content-nano">
-                    @罗莱尔特：我最喜欢的播放器可能是手上的手机了，反正我平时带它的次数比带女朋友的次数还多，能够在线收听音乐也是一个强项。当然了，论音质的话，肯定还是专业的播放器好。
-                </p>
-                <a style="margin-left: 550px" href="#"><span class="glyphicon glyphicon-thumbs-up" style="color: #B0B4B7; font-size:20px;">&nbsp;3&nbsp;</span></a>
-                <a href="#"><span class="glyphicon glyphicon-comment" style="color: #B0B4B7; font-size:20px;">&nbsp;3</span></a>
+                {!! $params['content'] !!}
+                <a style="margin-left: 550px" href="#"><span class="glyphicon glyphicon-thumbs-up" style="color: #B0B4B7; font-size:20px;">&nbsp;{{ $params['upNum'] }}&nbsp;</span></a>
+                <a href="#"><span class="glyphicon glyphicon-comment" style="color: #B0B4B7; font-size:20px;">&nbsp;{{ $params['commentNum'] }}</span></a>
             </div>
 
             <div class="well">
