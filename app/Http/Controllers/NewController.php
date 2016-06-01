@@ -26,7 +26,7 @@ class NewController extends Controller
         $user = $request->user();
         $data = new data();
 
-        return view('tail.new_article')->with('data', $data);
+        return view('tail.newForum')->with('data', $data);
     }
 
     public function postForum(Request $request)

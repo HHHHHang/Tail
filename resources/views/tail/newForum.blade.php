@@ -30,7 +30,7 @@
 
     <!-- Custom CSS -->
     <link href="{{asset('css/blog-home.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('new-forum.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/new-forum.css') }}" rel="stylesheet" type="text/css">
 
     <!-- simditor CSS -->
     <link href="{{ asset('css/simditor/simditor.css') }}" rel="stylesheet" type="text/css">
