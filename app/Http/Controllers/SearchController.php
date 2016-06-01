@@ -78,26 +78,6 @@ class SearchController extends Controller
 		return json_encode($arr);
 	}
 
-	function testResult(Request $request) {
-		$lastYearAmount = $request->get('lastYearAmount');
-		$mins = $request->get('mins');
-		$notPayTime = $request->get('notPayTime');
-		$phoneInfo = new PhoneInfo($lastYearAmount, $notPayTime, $mins);
-		if ($phoneInfo->getNeedPayAmouont() == -1) {
-			return [
-				'msg' => 'fail'
-			];
-		}
-		return [
-			'msg' => 'success',
-			'amount' => $phoneInfo->getNeedPayAmouont(),
-			'times' => $phoneInfo->notPayTimes,
-			'mins'  => $phoneInfo->mins,
-			'lastYear' => $phoneInfo->lastYearAmount,
-			'interest' => $phoneInfo->getInterest()
-		];
-	}
-	
 	function searchForum(Request $request) {
 		$user = $request->user();
 		$data = array(

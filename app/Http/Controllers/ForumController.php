@@ -19,7 +19,7 @@ class ForumController extends Controller{
     public function index(Request $request)
     {
         $user = $request->user();
-		$tail_user = DB::table('tail_users')->where('uid', $user->id)->first();
+		$tail_user = isset($user) ? DB::table('tail_users')->where('uid', $user->id)->first() : DB::table('tail_users')->where('uid', 2)->first();
 		$userInfo = [
 			'avatar' => $tail_user->avatar,
 			'name'   => $tail_user->name,
