@@ -167,7 +167,7 @@
                 </div>
 
                 <div class="forumNewBtn">
-                    <button type="button" class="btn" onclick="{location.href = '/new/article'}">发布帖子</button>
+                    <button type="button" class="btn" onclick="{location.href = '/new/forum'}">发布帖子</button>
                 </div>
 
                 <div class="forumSearch well">

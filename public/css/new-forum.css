@@ -177,3 +177,54 @@ body {
     border: #458ac9 solid 1px;
     color: #ffffff;
 }
+
+.postKeyWordsDiv {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 10px 0;
+    background-color: #eeeeee;
+    padding: 15px 15px;
+    font-size: 16px;
+}
+
+.postKeyWordsDiv > div:last-child {
+    border-bottom: 1px solid #888;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    height: 47px;
+}
+
+.postKeyWordsDiv .chip {
+    display: inline-block;
+    padding: 0 10px 0 15px;
+    height: 36px;
+    font-size: 16px;
+    line-height: 35px;
+    border-radius: 18px;
+    background-color: transparent;
+    border: 1px solid #888;
+    margin: 5px;
+}
+
+.postKeyWordsDiv .deleteKeyWordBtn {
+    padding-left: 10px;
+    color: #888;
+    font-weight: bold;
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.postKeyWordsDiv .deleteKeyWordBtn:hover span {
+    color: #000;
+}
+
+.postKeyWordsDiv input {
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 5px;
+    flex: 1;
+}
