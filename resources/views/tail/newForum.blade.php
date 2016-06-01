@@ -8,8 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    <title>发布文章</title>
+
+    <title>发布帖子</title>
 
     <!-- jQuery -->
     <script src="{{asset('js/jquery.js')}}"></script>
@@ -28,7 +30,7 @@
 
     <!-- Custom CSS -->
     <link href="{{asset('css/blog-home.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/new-article.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('new-forum.css') }}" rel="stylesheet" type="text/css">
 
     <!-- simditor CSS -->
     <link href="{{ asset('css/simditor/simditor.css') }}" rel="stylesheet" type="text/css">
@@ -98,7 +100,7 @@
                     <a id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-menu-hamburger"></span> 选择类别</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         @foreach ( $data->type as $item )
-                            <li><a href="#">{{$item}}</a></li>
+                            <li><a onclick="chooseType(event)" >{{$item}}</a></li>
                         @endforeach
                     </ul>
                     <input id="postTitle" type="text" placeholder="标题" maxlength="30"/>
@@ -191,6 +193,17 @@
        });
 
 
+       $.ajaxSetup({
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           }
+       });
+
+       var chooseType = function (event) {
+           var type = event.target.text;
+           var html = '<span class="glyphicon glyphicon-menu-hamburger"></span> ';
+           $('#dropdownMenu1').html(html + type);
+       };
        $("#keyWordsInput").keyup(function(event){
            if(event.keyCode == 13){
                var newKeyWord = $("#keyWordsInput").val();
@@ -261,16 +274,37 @@
 
            var title = $('#postTitle').val();
            var optionNum = $('#optionNumSelect').val();
+           var contentHtml = editor.getValue();
+           var type = $('#dropdownMenu1').text().slice(1);
            console.log('标题: ' + title);
            console.log('关键词: ' + keyWords);
            console.log('选项: ' + options);
            console.log('最多选项个数: ' + optionNum);
-           console.log('正文: ' + editor.getValue());
-           $('.testDiv').append(editor.getValue());
+           console.log('正文: ' + contentHtml);
+           console.log('分类: ' + type);
 
-
-           $()
-
+           $.ajax({
+               type: 'POST',
+               url: '/new/forum',
+               data: {
+                   title: title,
+                   keywords: keyWords,
+                   options: options,
+                   optionMaxNum: optionNum,
+                   contentHtml: contentHtml,
+                   type: type
+               },
+               dataType: 'json',
+               success: function (data) {
+                   console.log(data);
+                   console.log('success');
+                   location.href = '/forum';
+               },
+               error: function (error) {
+                   console.log(error);
+                   console.log('error');
+               }
+           });
        }
    </script>
 </body>

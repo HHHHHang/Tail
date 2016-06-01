@@ -37,27 +37,27 @@
 
 <nav style="background-color: #FFFFFF; border: 2px solid #f5f5f5;box-shadow: 0 1px 4px #ccc" class="navbar navbar-fixed-top custom_navbar" role="navigation">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="/"><img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png"></a>
-            <a class="navbar-brand custom_navbar-brand" href="/">     &nbsp;&nbsp;&nbsp;首页</a>
-            <a class="navbar-brand custom_navbar-brand" style="color: #57ADFD" href="/forum">     &nbsp;&nbsp;&nbsp;  社区</a>
-            <a class="navbar-brand custom_navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  二手广场</a>
-            <a class="navbar-brand custom_navbar-brand" href="/search/article">     &nbsp;&nbsp;&nbsp;  搜索</a>
-            @if (isset($user))
-                <a class="navbar-brand custom_navbar-brand"  style="margin-left: 250px" href="/myinfo?name={{ $user['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $user['name'] }}</a>
-                <a class="navbar-brand custom_navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
-            @endif
-            @if (!isset($user))
-                <a class="navbar-brand custom_navbar-brand" style="margin-left: 250px" href="/login">     &nbsp;&nbsp;&nbsp;  登陆</a>
-                <a class="navbar-brand custom_navbar-brand" href="/login">     &nbsp;&nbsp;&nbsp;  注册</a>
-            @endif
-        </div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/"><img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png"></a>
+                <a class="navbar-brand custom_navbar-brand" style="color: #57ADFD" href="/">     &nbsp;&nbsp;&nbsp;首页</a>
+                <a class="navbar-brand custom_navbar-brand" href="/forum">     &nbsp;&nbsp;&nbsp;  社区</a>
+                <a class="navbar-brand custom_navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  二手广场</a>
+                <a class="navbar-brand custom_navbar-brand" href="/search/article">     &nbsp;&nbsp;&nbsp;  搜索</a>
+                @if (isset($params['user']))
+                    <a class="navbar-brand custom_navbar-brand"  style="margin-left: 250px" href="/myinfo?name={{ $params['user']['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $params['user']['name'] }}</a>
+                    <a class="navbar-brand custom_navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
+                @endif
+                @if (!isset($params['user']))
+                    <a class="navbar-brand custom_navbar-brand" style="margin-left: 250px" href="/login">     &nbsp;&nbsp;&nbsp;  登陆</a>
+                    <a class="navbar-brand custom_navbar-brand" href="/login">     &nbsp;&nbsp;&nbsp;  注册</a>
+                @endif
+            </div>
     </div>
 </nav>
 
@@ -87,19 +87,19 @@
                 <span><a>排序方式</a></span>
             </div>
             <div class="forumListDiv">
-                @foreach ( $data as $item )
+                @foreach ( $params['articlesInfo'] as $item )
                     <div class="forumItemDiv">
-                        <img width="50" height="50" src="{{ $item['icon'] }}"  class="forumItemPic img-circle img-responsive">
+                        <img width="50" height="50" src="{{ $item['avatar'] }}"  class="forumItemPic img-circle img-responsive">
 
                         <div class="forumItemContent">
                             <div>
                                 <a href="/forum/Detail">{{ $item['title'] }}</a>
                             </div>
                             <div class="forumItemContentInfo">
-                                <span><a href="#">{{ $item['writer'] }}</a></span>
+                                <span><a href="#">{{ $item['name'] }}</a></span>
                                 <span>类别 <a href="#">{{ $item['type'] }}</a></span>
                                 <span>发表时间 {{ $item['publishTime'] }}</span>
-                                <span><span class="glyphicon glyphicon-comment"></span>{{ $item['commentCount'] }}</span>
+                                <span><span class="glyphicon glyphicon-comment"></span>{{ $item['commentNum'] }}</span>
                             </div>
 
                         </div>
@@ -113,22 +113,22 @@
 
             <div class="well forumUserInfo">
                 <div>
-                    <img width="90" height="90" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"  class="img-responsive">
-                    <span>初级</span>
+                    <img width="90" height="90" src="{{ $params['user']['avatar'] }}"  class="img-responsive">
+                    <span>{{ $params['user']['level'] }}</span>
                 </div>
 
                 <div>
-                    <span>用户名</span>
+                    <span>{{ $params['user']['name'] }}</span>
                     <div>
-                        <a><span>0</span><span>帖子</span></a>
-                        <a><span>0</span><span>评论</span></a>
-                        <a><span>0</span><span>关注</span></a>
+                        <a><span>{{ $params['user']['postNum'] }}</span><span>帖子</span></a>
+                        <a><span>{{ $params['user']['commentNum'] }}</span><span>评论</span></a>
+                        <a><span>{{ $params['user']['followNum'] }}</span><span>关注</span></a>
                     </div>
                 </div>
             </div>
 
             <div class="forumNewBtn">
-                <button type="button" class="btn" onclick="{location.href = '/new/article'}">发布帖子</button>
+                <button type="button" class="btn" onclick="{location.href = '/new/forum'}">发布帖子</button>
             </div>
 
             <div class="forumSearch well">

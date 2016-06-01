@@ -51,4 +51,5 @@ Route::get('/api/test/{id}', function ($id) {
 });
 
 Route::get('/myinfo', 'MyInfoController@index');
-Route::get('/new/article', 'NewController@newArticle');
+Route::get('/new/forum', 'NewController@newForum');
+Route::post('/new/forum', 'NewController@postForum');
