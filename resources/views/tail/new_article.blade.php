@@ -106,18 +106,30 @@
 
                 </div>
 
+                <div class="postKeyWordsDiv">
+                    <div>
+                        <span>关键词: 可添加多个关键词</span>
+                    </div>
+                    <div>
+                        <div class="chip">
+                            <span>2016</span>
+                            <a class="deleteKeyWordBtn" onclick="deleteKeyWord(event)"><span>&times;</span></a>
+                        </div>
+                        <input type="text" placeholder="添加关键词" id="keyWordsInput"/>
+                    </div>
+                </div>
 
                 <div class="postOptionDiv">
                     <div>
                         <div>
-                            <span>选项:最多可以填写20个选项</span>
+                            <span>选项: 最多可以填写20个选项</span>
                             <a id="addOptionBtn"><span class="glyphicon glyphicon-plus-sign"></span> 添加一条选项</a>
                         </div>
                         @for ($x=0; $x< $data->choiceNum; $x++)
                             <div class="input-group postOptions">
                                 <input type="text" class="form-control">
                                 <span class="input-group-addon">
-                                    <a class="removeBtn"><span class="glyphicon glyphicon-remove"></span></a>
+                                    <a class="removeOptionBtn"><span class="glyphicon glyphicon-remove"></span></a>
                                 </span>
                             </div>
                         @endfor
@@ -141,6 +153,10 @@
                 <div class="postBtns">
                     <button onclick="submit()">发表帖子</button>
                     <button onclick="save()">保存草稿</button>
+                </div>
+
+                <div class="testDiv">
+
                 </div>
 
             </div>
@@ -174,7 +190,25 @@
            $.unblockUI();
        });
 
-       $("#addOptionBtn").on( "click", function( event ) {
+
+       $("#keyWordsInput").keyup(function(event){
+           if(event.keyCode == 13){
+               var newKeyWord = $("#keyWordsInput").val();
+               if (newKeyWord != null && newKeyWord != '') {
+                   $("#keyWordsInput").before('<div class="chip"> ' +
+                           '<span>' + newKeyWord + '</span> ' +
+                           '<a class="deleteKeyWordBtn" onclick="deleteKeyWord(event)"><span>&times;</span></a>' +
+                           '</div>');
+                   $("#keyWordsInput").val('');
+               }
+           }
+       });
+
+       var deleteKeyWord =  function(event) {
+           event.target.parentNode.parentNode.remove();
+       };
+
+       $("#addOptionBtn").on("click", function(event) {
            $(".postOptionDiv > div:first-child").append('<div class="input-group postOptions"> ' +
                    '<input type="text" class="form-control"> ' +
                    '<span class="input-group-addon"> ' +
@@ -184,12 +218,21 @@
                    );
            setSelectOption();
        });
+       $(".removeOptionBtn").on("click", function (event) {
+           event.target.parentNode.parentNode.parentNode.remove();
+           setSelectOption();
+       });
 
        var setSelectOption = function () {
+           var optionNum = $('#optionNumSelect').val();
+           console.log( optionNum );
            var length = $('.postOptions').size();
            $("#optionNumSelect").html('');
            for (var i = 1; i <= length; i++) {
                $("#optionNumSelect").append('<option>' + i + '</option>');
+           }
+           if (optionNum != null) {
+               $('#optionNumSelect').val(optionNum >= length ? length : optionNum);
            }
        };
        setSelectOption();
@@ -209,10 +252,25 @@
                    options.push(str);
                }
            }
+           var keyWords = [];
+           length = $('.chip > span').size();
+           for (var i = 0; i < length; i++) {
+               var str = $($('.chip > span')[i]).text();
+               keyWords.push(str);
+           }
 
            var title = $('#postTitle').val();
+           var optionNum = $('#optionNumSelect').val();
            console.log('标题: ' + title);
+           console.log('关键词: ' + keyWords);
            console.log('选项: ' + options);
+           console.log('最多选项个数: ' + optionNum);
+           console.log('正文: ' + editor.getValue());
+           $('.testDiv').append(editor.getValue());
+
+
+           $()
+
        }
    </script>
 </body>
