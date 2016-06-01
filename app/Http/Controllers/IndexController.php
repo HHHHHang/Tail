@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use DB;
 use App\Banner_img;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -26,8 +27,6 @@ class IndexController extends Controller{
 
 	public function index(Request $request)
 	{
-//		return "helloworld";
-//		Auth::logout();
 		$banner_imgs = DB::table('banner_imgs')->get();
 		foreach ($banner_imgs as $banner_img) {
 			$pics[] = $banner_img->file;
@@ -37,7 +36,6 @@ class IndexController extends Controller{
 		$picsArr = json_encode($pics);
 
 		$articles = DB::select("SELECT * FROM articles ORDER BY createTime DESC");
-//		var_dump($articles);
 		$params = [
 			'user' => $user,
 			'picsArr' => $picsArr,
@@ -51,18 +49,7 @@ class IndexController extends Controller{
 
 	public function logout() {
 		Auth::logout();
-		$banner_imgs = DB::table('banner_imgs')->get();
-		foreach ($banner_imgs as $banner_img) {
-			$pics[] = $banner_img->file;
-		}
-		$articles = DB::select("SELECT * FROM articles ORDER BY createTime DESC");
-		$picsArr = json_encode($pics);
-		$params = [
-			'picsArr' => $picsArr,
-			'pics'    => $pics,
-			'articles' => $articles
-		];
-		return view('tail.welcome')->with('params', $params);
+		return redirect('/');
 	}
 
 	public function article(Request $request) {

@@ -16,7 +16,7 @@ use League\Flysystem\AdapterInterface;
 
 class ForumController extends Controller{
 
-    public function index(Request $request)
+    public function index(Request $request, $type='')
     {
         $user = $request->user();
 		$tail_user = isset($user) ? DB::table('tail_users')->where('uid', $user->id)->first() : DB::table('tail_users')->where('uid', 2)->first();
@@ -29,7 +29,8 @@ class ForumController extends Controller{
 			'followNum'     => $tail_user->followNum,
 			'fans'       => $tail_user->fans
 		];
-		$articles = DB::select("SELECT * FROM articles ORDER BY createTime DESC");
+		$articles = $type ? DB::table('articles')->where('type', $type)->get() :
+			DB::table('articles')->orderBy('createTime', 'desc')->get();
 		$articlesInfo = [];
 		foreach ($articles as $article) {
 			$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();

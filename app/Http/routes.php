@@ -34,10 +34,12 @@ Route::post('/article/{aid}', 'ArticleController@articlePost');
 // 论坛模板
 Route::get('/forum', 'ForumController@index');
 Route::get('/forum/Detail', 'ForumController@forum');
+Route::get('/forum/{type}', 'ForumController@index');
 
 //搜索界面模板
 Route::get('/search/forum', 'SearchController@searchForum');
 Route::get('/search/article', 'SearchController@searchArticle');
+Route::get('/search/article/{keyword}', 'SearchController@searchArticle');
 
 //个人信息页模板
 Route::get('/myinfo', 'MyInfoController@index');
