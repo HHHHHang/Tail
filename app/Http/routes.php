@@ -11,52 +11,44 @@
 |
 */
 
+// 主页面
 Route::get('/', 'IndexController@index');
 
-Route::get('/search', 'SearchController@index');
-Route::post('/search', 'SearchController@index');
-Route::get('/api', 'SearchController@getData');
 
-Route::get('/lin', function(){
-	return view('phone');
-});
-Route::get('/table', function(){
-	return view('test');
-});
-
-Route::get('/test', 'SearchController@test');
-Route::post('/test', 'SearchController@testResult');
-
-Route::get('/searchTest', function(){
-	return view('tail.search');
-});
-
-Route::get('/frank',function(){
-	return "frank~";
-});
-
-Route::get('profile','UserController@profile');
-
-// Tail Project /myinfo
-
-
-
+// 登录注册功能注册路由
 Route::get('/auth/login', 'Auth\AuthController@getLogin');
 Route::post('/auth/login', 'Auth\AuthController@postLogin');
 Route::get('/auth/logout', 'Auth\AuthController@getLogout');
-// 注册路由...
 Route::get('/auth/register', 'Auth\AuthController@getRegister');
 Route::post('/auth/register', 'Auth\AuthController@postRegister');
 
-Route::get('/login', 'LoginController@index');
 Route::get('/logout', 'IndexController@logout');
-Route::get('/article', 'IndexController@article');
-Route::post('/article', 'IndexController@articlePost'); 
 
+// 登录界面
+Route::get('/login', 'LoginController@index');
+
+//文章界面模板
+Route::get('/article/{aid}', 'ArticleController@article');
+Route::post('/article/{aid}', 'ArticleController@articlePost');
+
+// 论坛模板
 Route::get('/forum', 'ForumController@index');
 Route::get('/forum/Detail', 'ForumController@forum');
 
+//搜索界面模板
 Route::get('/search/forum', 'SearchController@searchForum');
 Route::get('/search/article', 'SearchController@searchArticle');
 
+//个人信息页模板
 Route::get('/myinfo', 'MyInfoController@index');
+
+//mysql接口测试
+Route::get('/mongo', 'MongoController@testMongo');
+
+// api接口
+Route::get('/api/test/{id}', function ($id) {
+	return App\Banner_img::findOrFail($id);
+});
+
+Route::get('/myinfo', 'MyInfoController@index');
+Route::get('/new/article', 'NewController@newArticle');

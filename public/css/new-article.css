@@ -1,0 +1,179 @@
+body {
+    padding-top: 100px;
+    background-color: #f5f5f5;
+}
+
+.z_title {
+    padding: 0px 5px 0 12px;
+    font-size: 14px;
+    border: none;
+    background: none;
+    background-image: url(../images/haha.png);
+    background-repeat: no-repeat;
+    background-position: 0px;
+    color: #71777f;
+}
+
+.mainBody {
+    background-color: white;
+    box-shadow: 0 1px 4px #ccc;
+    border-radius: 3px;
+    padding: 10px 25px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 14px;
+}
+
+.mainBody > a {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #eeeeee;
+    text-decoration: none;
+    margin: 20px 0 10px;
+
+}
+
+.postTitleDiv {
+    width: 100%;
+    display: flex;
+    position: relative;
+    font-size: 16px;
+    margin: 10px 0 10px;
+    padding-bottom: 5px;
+    border-bottom: #ddd 1px solid;
+
+}
+
+.postTitleDiv > a > span {
+    top: 2px;
+}
+.postTitleDiv > a {
+    width: 200px;
+    cursor: pointer;
+}
+
+.postTitleDiv > input {
+    flex: 1;
+    text-align: center;
+    border: none;
+
+    color: #71777f;
+    font-size: 20px;
+    font-weight: bold;
+
+    position: relative;
+    top: -2px;
+}
+
+.postTitleDiv > span {
+    width: 200px;
+    text-align: end;
+    cursor: default;
+}
+
+
+.postOptionDiv {
+    display: flex;
+    width: 100%;
+    margin: 10px 0;
+    background-color: #eeeeee;
+    padding: 15px 0;
+    font-size: 16px;
+}
+
+.postOptionDiv > div:first-child {
+    display: flex;
+    flex-direction: column;
+    flex: 5;
+    margin: 0 15px;
+}
+
+.postOptionDiv > div:last-child {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    flex: 1;
+
+    border-left: #71777f 1px dashed;
+    padding: 0 15px;
+}
+
+.postOptionDiv > div:first-child > div:first-child {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.postOptionDiv > div:first-child > div:first-child > span {
+    flex: 1;
+}
+
+.postOptionDiv > div:first-child > div:first-child > a span {
+    top: 3px;
+}
+
+
+.postOptions {
+    margin-top: 10px;
+}
+
+.postOptions > input {
+    outline: none;
+}
+
+.postOptions .input-group-addon {
+    background-color: #fff;
+}
+
+.postOptionDiv > div:first-child button {
+    margin-top: 10px;
+    width: 80%;
+}
+
+#addOptionBtn {
+    cursor: default;
+}
+
+.postOptionDiv > div:last-child > span{
+    display: inline-block;
+    margin-bottom: 5px;
+}
+.postOptionDiv > div:last-child select {
+    width: 40px;
+}
+.postOptionDiv > div:last-child > div{
+    margin-bottom: 5px;
+}
+
+.postEditorDiv {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.postEditorDiv .simditor {
+    width: 100%;
+    position: static;
+    min-height: 600px;
+}
+
+.postBtns {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.postBtns button {
+    border-radius: 20px;
+    background-color: transparent;
+    border: #B0B4B7 solid 1px;
+    padding: 10px 30px;
+    margin-left: 20px;
+}
+
+.postBtns button:hover {
+    background-color: #458ac9;
+    border: #458ac9 solid 1px;
+    color: #ffffff;
+}

@@ -78,11 +78,11 @@
                 <a class="navbar-brand custom_navbar-brand" href="/forum">     &nbsp;&nbsp;&nbsp;  社区</a>
                 <a class="navbar-brand custom_navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  二手广场</a>
                 <a class="navbar-brand custom_navbar-brand" href="/search/article">     &nbsp;&nbsp;&nbsp;  搜索</a>
-                @if (isset($user))
-                    <a class="navbar-brand custom_navbar-brand"  style="margin-left: 250px" href="/myinfo?name={{ $user['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $user['name'] }}</a>
+                @if (isset($params['user']))
+                    <a class="navbar-brand custom_navbar-brand"  style="margin-left: 250px" href="/myinfo?name={{ $params['user']['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $params['user']['name'] }}</a>
                     <a class="navbar-brand custom_navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
                 @endif
-                @if (!isset($user))
+                @if (!isset($params['user']))
                     <a class="navbar-brand custom_navbar-brand" style="margin-left: 250px" href="/login">     &nbsp;&nbsp;&nbsp;  登陆</a>
                     <a class="navbar-brand custom_navbar-brand" href="/login">     &nbsp;&nbsp;&nbsp;  注册</a>
                 @endif
@@ -100,7 +100,7 @@
         <div class="htmleaf-content bgcolor-13">
             <div class='sangar-slideshow-container' id='sangar-example'>
                 <div class='sangar-content-wrapper' style='display:none;'>
-                    @foreach($pics as $pic)
+                    @foreach($params['pics'] as $pic)
                         <div class='sangar-content'><a href="/article"></a><img src={{$pic}} /></div>
                     @endforeach
                 </div>
@@ -130,39 +130,24 @@
                 </h1>
 
                 <!-- First Blog Post -->
-                <div class="well">
-                <div>
-                <img style="float: left" width="50" height="50" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"   class="img-rounded img-circle img-responsive">
-                <p class="tie-head">&nbsp;&nbsp;测试用户</p>
-                <span><a href="#">&nbsp;&nbsp;<span class="glyphicon glyphicon-film" style="color: rgb(108, 118, 127); font-size: 12px;">影音</span></a></span>
+                @foreach($params['articles'] as $article)
+					<div class="well">
+					<div>
+					<img style="float: left" width="50" height="50" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"   class="img-rounded img-circle img-responsive">
+					<p class="tie-head">&nbsp;&nbsp;测试用户</p>
+					<span><a href="#">&nbsp;&nbsp;<span class="glyphicon glyphicon-film" style="color: rgb(108, 118, 127); font-size: 12px;">{{ $article->type  }}</span></a></span>
 
-                </div>
-                <p class="postTime"><span class="glyphicon glyphicon-time"></span> &nbsp;昨天</p>
-                <hr>
-                <img class="img-responsive" src="http://7xq64h.com1.z0.glb.clouddn.com/nano.jpg" alt="">
-                <hr>
-                <div class="postHead"><a href="/article" class="title-phone">深夜俱乐部 | 晒晒你喜欢的那款播放器</a></div>
-                <div class="postContent"><p class="content-phone">音乐可能是每一个人打发闲暇时光的选择之一，好的音乐触动着我们内心那些细微的情感，也牵连着我们那些感性的思绪。体现一首好音乐的最佳表现不仅仅只靠一副不错...</p></div>
-                <a style="margin-left: 550px" href="#"><span class="glyphicon glyphicon-thumbs-up" style="color: #B0B4B7; font-size:20px;">&nbsp;3&nbsp;</span></a>
-                <a href="#"><span class="glyphicon glyphicon-comment" style="color: #B0B4B7; font-size:20px;">&nbsp;3</span></a>
-                </div>
-
-                <!-- Second Blog Post -->
-                <div class="well">
-                <div>
-                <img style="float: left" width="50" height="50" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"   class="img-rounded img-circle img-responsive">
-                <p class="tie-head">&nbsp;&nbsp;测试用户</p>
-                <span><a href="#">&nbsp;&nbsp;<span class="glyphicon glyphicon-phone" style="color: rgb(108, 118, 127); font-size: 12px;">手机</span></a></span>
-                </div>
-                <p class="postTime"><span class="glyphicon glyphicon-time"></span> &nbsp;昨天</p>
-                <hr>
-                <img class="img-responsive" src="http://7xq64h.com1.z0.glb.clouddn.com/phone.jpg" alt="">
-                <hr>
-                    <div class="postHead"><a href="#" class="title-phone">溢于「颜」表，华为 G9 青春版体验</a></div>
-                <div class="postContent"><p class="content-phone">主打中端市场的华为 G 系列在 5 月 4 日迎来了旗下新成员 — 华为 G9 青春版，该款新机虽以 G 字母为开头，但却更为像是华为 P9 的衍生机型（实际上就是华为在国...</p></div>
-                <a style="margin-left: 550px" href="#"><span class="glyphicon glyphicon-thumbs-up" style="color: #B0B4B7; font-size:20px;">&nbsp;9&nbsp;</span></a>
-                <a href="#"><span class="glyphicon glyphicon-comment" style="color: #B0B4B7; font-size:20px;">&nbsp;42</span></a>
-                </div>
+					</div>
+					<p class="postTime"><span class="glyphicon glyphicon-time"></span> &nbsp;昨天</p>
+					<hr>
+					<img class="img-responsive" src="{{ $article->image }}" alt="">
+					<hr>
+					<div class="postHead"><a href="/article/{{ $article->aid }}" class="title-phone">{{ $article->title  }}</a></div>
+					<div class="postContent"><p class="content-phone">{{ $article->content  }}</p></div>
+					<a style="margin-left: 550px" href="#"><span class="glyphicon glyphicon-thumbs-up" style="color: #B0B4B7; font-size:20px;">&nbsp;{{ $article->upNum }}&nbsp;</span></a>
+					<a href="#"><span class="glyphicon glyphicon-comment" style="color: #B0B4B7; font-size:20px;">&nbsp;{{ $article->commentNum }}</span></a>
+					</div>
+                @endforeach
                 <!-- Pager -->
                 <ul class="pager">
                     <li class="previous">
@@ -298,7 +283,7 @@
     <!-- /.container -->
 
     <script type='text/javascript'>
-        var data = <?php echo $picsArr;?>;
+        var data = <?php echo $params['picsArr'];?>;
         jQuery(document).ready(function($) {
             /**
              * identifier variable must be unique ID

@@ -110,11 +110,12 @@
 
             <div class="well">
                 <h4 style="margin-bottom: 10px;">评论:</h4>
-                <form method="POST" role="form" action="/article">
+                <form method="POST" role="form" action="/article/{{ $params['aid'] }}">
                     {!! csrf_field() !!}
                     <div class="form-group">
                         <textarea name="content" class="form-control" rows="3"></textarea>
                     </div>
+                    <input type="hidden" name="id" value="{{ $params['aid'] }}" />
                     <button type="submit" class="btn btn-primary">评论</button>
                 </form>
                 <hr>
