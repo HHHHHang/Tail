@@ -14,6 +14,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{URL::asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{URL::asset('js/search.js')}}"></script>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" >
@@ -74,9 +75,9 @@
             <div class="forumSearch well">
                 <span>站内搜索</span>
                 <div class="input-group">
-                    <input type="text" class="form-control" value="{{$searchTar}}">
+                    <input id="keywordTie" type="text" class="form-control" value="{{$searchTar}}">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
+                            <button id="searchTie" class="btn btn-default" type="button">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
                         </span>
@@ -97,7 +98,7 @@
 
                         <div class="forumItemContent">
                             <div>
-                                <a href="/forum/Detail">{{ $item['title'] }}</a>
+                                <a href="{{ $item['link'] }}">{{ $item['title'] }}</a>
                             </div>
                             <div class="forumItemContentInfo">
                                 <span><a href="#">{{ $item['writer'] }}</a></span>

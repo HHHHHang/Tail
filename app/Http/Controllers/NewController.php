@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers;
 
-use App\modal\PhoneInfo;
 use DB;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -40,7 +39,7 @@ class NewController extends Controller
 
         $kinkTies = DB::select("SELECT * from kinkTies");
         $user = $request->user();
-        $userid = isset($user) ?  $user['id'] : null;
+        $userid = isset($user) ?  $user['id'] : 2;
         $num = count($kinkTies);
         $time = time();
         Db::insert('INSERT INTO kinkTies (kid, title, content, type, createTime, uid, commentNum, upNum, updateTime)  VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?)',

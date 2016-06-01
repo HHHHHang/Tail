@@ -27,7 +27,7 @@ class ForumController extends Controller{
 			'commentNum' => $tail_user->commentNum,
 			'postNum'    => $tail_user->postNum,
 			'followNum'     => $tail_user->followNum,
-			'fans'       => $tail_user->fans
+			'fans'       => $tail_user->fans,
 		];
 		$articles = $type ? DB::table('articles')->where('type', $type)->get() :
 			DB::table('articles')->orderBy('createTime', 'desc')->get();
@@ -40,12 +40,14 @@ class ForumController extends Controller{
 				'publishTime' =>$article->createTime,
 				'type'  => $article->type,
 				'avatar' => $postUser->avatar,
-				'commentNum' => $article->commentNum
+				'commentNum' => $article->commentNum,
+				'link'   => '/article/' . $article->id
 			];
 		}
 		$params = [
 			'user' => $userInfo,
-			'articlesInfo' => $articlesInfo
+			'articlesInfo' => $articlesInfo,
+			'isTie'    => 0
 		];
 
         if ($user) return view('tail.forum')->with('params', $params);
@@ -67,6 +69,45 @@ class ForumController extends Controller{
             return view('tail.forumDetail')->with('comments', $comments)->with('user1', $user1)->with('data', $data);
         }
     }
+
+	public function tie(Request $request, $type='') {
+		$user = $request->user();
+		$tail_user = isset($user) ? DB::table('tail_users')->where('uid', $user->id)->first() : DB::table('tail_users')->where('uid', 2)->first();
+		$userInfo = [
+			'avatar' => $tail_user->avatar,
+			'name'   => $tail_user->name,
+			'level'  => '初级',
+			'commentNum' => $tail_user->commentNum,
+			'postNum'    => $tail_user->postNum,
+			'followNum'     => $tail_user->followNum,
+			'fans'       => $tail_user->fans,
+		];
+		$articles = $type ? DB::table('kinkTies')->where('type', $type)->get() :
+			DB::table('kinkTies')->orderBy('createTime', 'desc')->get();
+		$articlesInfo = [];
+		foreach ($articles as $article) {
+			$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
+			$articlesInfo[] = [
+				'title' => $article->title,
+				'name'  => $postUser->name,
+				'publishTime' => date('y-m-d h:m:s',$article->createTime),
+				'type'  => $article->type,
+				'avatar' => $postUser->avatar,
+				'commentNum' => $article->commentNum,
+				'link'   => '/kinkTie/' . $article->kid
+			];
+		}
+		$params = [
+			'user' => $userInfo,
+			'articlesInfo' => $articlesInfo,
+			'isTie'    => 1
+		];
+
+		if ($user) return view('tail.forum')->with('params', $params);
+		else {
+			return view('tail.forum')->with('params', $params);
+		}
+	}
 
     public function forumN(Request $request) {
         $content = $request->get('content');

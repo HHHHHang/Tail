@@ -35,6 +35,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{URL::asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{URL::asset('js/search.js')}}"></script>
 
 
     <!-- Bootstrap Core CSS -->
@@ -167,14 +168,14 @@
                 <div class="well">
                     <h4>站内搜索</h4>
                     <hr>
-                    <form class="input-group" method="GET" role="form" action="/search/article">
-                        <input type="text" class="form-control" name="searchTar">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </span>
-                    </form>
+					<div class="input-group">
+						<input id='keyword' type="text" class="form-control" value="">
+							<span class="input-group-btn">
+								<button id='search' class="btn btn-default" type="button">
+									<span class="glyphicon glyphicon-search"></span>
+								</button>
+							</span>
+					</div>
                     </div>
                     <!-- /.input-group -->
 
@@ -186,22 +187,22 @@
                         <div class="col-xs-4 col-md-4">
                             <ul class="list-unstyled">
                                 <li>
-                                <a href="#"><span class="glyphicon glyphicon-phone" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 手机</span></a>
+                                <a href="/forum/手机"><span class="glyphicon glyphicon-phone" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 手机</span></a>
                                 </li>
                                 <li>
-                                <a href="#"><span class="glyphicon glyphicon-floppy-open" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 电脑</span></a>
+                                <a href="/forum/电脑"><span class="glyphicon glyphicon-floppy-open" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 电脑</span></a>
                                 </li>
                                 <li>
-                                <a href="#"><span class="glyphicon glyphicon-bullhorn" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 资讯</span></a>
+                                <a href="/forum/咨询"><span class="glyphicon glyphicon-bullhorn" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 资讯</span></a>
                                 </li>
                                 <li>
-                                <a href="#"><span class="glyphicon glyphicon-facetime-video" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 视频</span></a>
+                                <a href="/forum/视频"><span class="glyphicon glyphicon-facetime-video" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 视频</span></a>
                                 </li>
                                 <li>
-                                <a href="#"><span class="glyphicon glyphicon-send" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 周边</span></a>
+                                <a href="/forum/周边"><span class="glyphicon glyphicon-send" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 周边</span></a>
                                 </li>
                                 <li>
-                                <a href="#"><span class="glyphicon glyphicon-phone" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 平板</span></a>
+                                <a href="/forum/平板"><span class="glyphicon glyphicon-phone" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 平板</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -209,44 +210,44 @@
                         <div class="col-xs-4 col-md-4">
                             <ul class="list-unstyled">
                                 <li>
-                                <a href="#"><span class="glyphicon glyphicon-camera" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 摄影</span></a>
+                                <a href="/forum/摄影"><span class="glyphicon glyphicon-camera" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 摄影</span></a>
                                 </li>
                                 <li>
-                                <a href="#"><span class="glyphicon glyphicon-film" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 影音</span></a>
+                                <a href="/forum/影音"><span class="glyphicon glyphicon-film" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 影音</span></a>
                                 </li>
                                 <li>
-                                <a href="#"><span class="glyphicon glyphicon-facetime-video" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 数码</span></a>
+                                <a href="/forum/数码"><span class="glyphicon glyphicon-facetime-video" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 数码</span></a>
                                 </li>
                                 <li>
-                                <a href="#"><span class="glyphicon glyphicon-plane" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 旅行</span></a>
+                                <a href="/forum/旅行"><span class="glyphicon glyphicon-plane" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 旅行</span></a>
                                 </li>
                                 <li>
-                                <a href="#"><span class="glyphicon glyphicon-home" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 生活</span></a>
+                                <a href="/forum/生活"><span class="glyphicon glyphicon-home" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 生活</span></a>
                                 </li>
                                 <li>
-                                <a href="#"><span class="glyphicon glyphicon-pencil" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 文具</span></a>
+                                <a href="/forum/文具"><span class="glyphicon glyphicon-pencil" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 文具</span></a>
                                 </li>
                             </ul>
                         </div>
                         <div class="col-xs-4 col-md-4">
                             <ul class="list-unstyled">
                                 <li>
-                                <a href="#"><span class="glyphicon glyphicon-heart" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 玩物</span></a>
+                                <a href="/forum/周边"><span class="glyphicon glyphicon-heart" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 玩物</span></a>
                                 </li>
                                 <li>
-                                <a href="#"><span class="glyphicon glyphicon-console" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 游戏</span></a>
+                                <a href="/forum/游戏"><span class="glyphicon glyphicon-console" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 游戏</span></a>
                                 </li>
                                 <li>
-                                <a href="#"><span class="glyphicon glyphicon-blackboard" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 应用</span></a>
+                                <a href="/forum/应用"><span class="glyphicon glyphicon-blackboard" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 应用</span></a>
                                 </li>
                                 <li>
-                                <a href="#"><span class="glyphicon glyphicon-education" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 沙龙</span></a>
+                                <a href="/forum/沙龙"><span class="glyphicon glyphicon-education" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 沙龙</span></a>
                                 </li>
                                 <li>
-                                <a href="#"><span class="glyphicon glyphicon-hourglass" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 活动</span></a>
+                                <a href="/forum/活动"><span class="glyphicon glyphicon-hourglass" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 活动</span></a>
                                 </li>
                                 <li>
-                                <a href="#"><span class="glyphicon glyphicon-inbox" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 全部</span></a>
+                                <a href="/forum"><span class="glyphicon glyphicon-inbox" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 全部</span></a>
                                 </li>
                             </ul>
                         </div>

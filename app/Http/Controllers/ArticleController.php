@@ -47,7 +47,7 @@ class ArticleController extends Controller{
 	public function article(Request $request, $id) {
 
 		$user = $request->user();
-		$comments = DB::table('comments')->where('akid', $id)->get();
+		$comments = DB::table('comments')->where('type', 'article')->where('akid', $id)->get();
 		$article = DB::table('articles')->where('id', $id)->first();
 		$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
 		$params = [
@@ -74,7 +74,7 @@ class ArticleController extends Controller{
 		$uid      = isset($user) ?  $user['id'] : '0';
 
 		DB::table('comments')->insertGetId(
-			array('akid'=> $aid, 'uid'=> $uid, 'username' => $username, 'content'=>$content, 'createtime' => time())
+			array('akid'=> $aid, 'type'=> 'article', 'uid'=> $uid, 'username' => $username, 'content'=>$content, 'createtime' => time())
 		);
 		DB::table('articles')->where('id', $aid)->increment('commentNum');
 		$comments = DB::table('comments')->where('akid', $aid)->get();

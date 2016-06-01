@@ -16,16 +16,24 @@ use Illuminate\Http\Request;
 class SearchController extends Controller
 {
 
-	function searchForum(Request $request) {
+	function searchForum(Request $request, $keyword='') {
 		$user = $request->user();
-		$data = array(
-			array('title'=>'深夜俱乐部 | 晒晒你喜欢的那款播放器', 'writer'=>'测试用户', 'publishTime'=>'昨天', 'type'=>'影音', 'icon'=>'http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png', 'commentCount'=>1),
-			array('title'=>'深夜俱乐部 | 晒晒你喜欢的那款播放器晒晒你喜欢的那款播放器', 'writer'=>'测试用户', 'publishTime'=>'昨天', 'type'=>'影音', 'icon'=>'http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png', 'commentCount'=>2),
-			array('title'=>'深夜俱乐部 | 晒晒你喜欢的那款播放器', 'writer'=>'测试用户', 'publishTime'=>'昨天', 'type'=>'影音', 'icon'=>'http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png', 'commentCount'=>3),
-			array('title'=>'深夜俱乐部 | 晒晒你喜欢的那款播放器', 'writer'=>'测试用户', 'publishTime'=>'昨天', 'type'=>'影音', 'icon'=>'http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png', 'commentCount'=>4),
-			array('title'=>'深夜俱乐部 | 晒晒你喜欢的那款播放器晒晒你喜欢的那款播放器晒晒你喜欢的那款播放器', 'writer'=>'测试用户', 'publishTime'=>'昨天', 'type'=>'影音', 'icon'=>'http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png', 'commentCount'=>5),
-			array('title'=>'深夜俱乐部 | 晒晒你喜欢的那款播放器', 'writer'=>'测试用户', 'publishTime'=>'昨天', 'type'=>'影音', 'icon'=>'http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png', 'commentCount'=>6)
-		);
+
+		$kinkTies = $keyword ? $articles = DB::table('kinkTies')->where('title', 'like', '%' . $keyword . '%')->get()
+			: DB::select("SELECT * FROM kinkTies ORDER BY createTime DESC");
+
+		foreach ($kinkTies as $kinkTie) {
+			$tail_user = isset($kinkTie->uid) ? DB::table('tail_users')->where('uid', $kinkTie->uid)->first() : DB::table('tail_users')->where('uid', 2)->first();
+			$data[] = [
+				'title' => $kinkTie->title,
+				'writer' => $tail_user->name,
+				'publishTime' => date('y-m-d', $kinkTie->createTime),
+				'type' => $kinkTie->type,
+				'icon'=>'http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png',
+				'commentCount' => $kinkTie->commentNum,
+				'link'   => '/kinkTie/' . $kinkTie->kid
+			];
+		}
 
 		$user1 = array('icon'=>'http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png', 'name'=>'用户名', 'level'=>'初级', 'forumCount'=>0, 'commentCount'=>0, 'followCount'=>0);
 
