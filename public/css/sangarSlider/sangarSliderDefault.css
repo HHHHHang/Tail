@@ -95,7 +95,7 @@
 .sangar-slideshow-container > .default ul.sangar-pagination-type-image > li.sangar-pagination-active > img {
     border:2px solid white;
     /*opacity: 1;*/
-    margin: -1px;
+    margin: 0px;
 }
 .sangar-slideshow-container > .default ul.sangar-pagination-content-vertical > li:hover {
     background-color: #A64E48;

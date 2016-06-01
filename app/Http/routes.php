@@ -28,8 +28,8 @@ Route::get('/logout', 'IndexController@logout');
 Route::get('/login', 'LoginController@index');
 
 //文章界面模板
-Route::get('/article', 'IndexController@article');
-Route::post('/article', 'IndexController@articlePost'); 
+Route::get('/article/{aid}', 'ArticleController@article');
+Route::post('/article/{aid}', 'ArticleController@articlePost');
 
 // 论坛模板
 Route::get('/forum', 'ForumController@index');
