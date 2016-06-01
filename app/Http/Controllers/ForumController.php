@@ -19,6 +19,29 @@ class ForumController extends Controller{
     public function index(Request $request)
     {
         $user = $request->user();
+		$tail_user = DB::table('tail_users')->where('uid', $user->id)->first();
+		$userInfo = [
+			'avatar' => $tail_user->avatar,
+			'name'   => $tail_user->name,
+			'level'  => '初级',
+			'commentNum' => $tail_user->commentNum,
+			'postNum'    => $tail_user->postNum,
+			'followNum'     => $tail_user->followNum,
+			'fans'       => $tail_user->fans
+		];
+		$articles = DB::select("SELECT * FROM articles ORDER BY createTime DESC");
+		$articlesInfo = [];
+		foreach ($articles as $article) {
+			$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
+			$articlesInfo[] = [
+				'title' => $article->title,
+				'name'  => $postUser->name,
+				'publishTime' =>$article->createTime,
+				'type'  => $article->type,
+				'avatar' => $postUser->avatar,
+				'commentNum' => $article->commentNum
+			];
+		}
         $data = array(
             array('title'=>'深夜俱乐部 | 晒晒你喜欢的那款播放器', 'writer'=>'测试用户', 'publishTime'=>'昨天', 'type'=>'影音', 'icon'=>'http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png', 'commentCount'=>1),
             array('title'=>'深夜俱乐部 | 晒晒你喜欢的那款播放器晒晒你喜欢的那款播放器', 'writer'=>'测试用户', 'publishTime'=>'昨天', 'type'=>'影音', 'icon'=>'http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png', 'commentCount'=>2),
@@ -30,9 +53,14 @@ class ForumController extends Controller{
 
         $user1 = array('icon'=>'http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png', 'name'=>'用户名', 'level'=>'初级', 'forumCount'=>0, 'commentCount'=>0, 'followCount'=>0);
 
-        if ($user) return view('tail.forum')->with('user', $user)->with('data', $data)->with('user1', $user1);
+		$params = [
+			'user' => $userInfo,
+			'articlesInfo' => $articlesInfo
+		];
+
+        if ($user) return view('tail.forum')->with('params', $params)->with('user', $user)->with('data', $data)->with('user1', $user1);
         else {
-            return view('tail.forum')->with('user1', $user1)->with('data', $data);
+            return view('tail.forum')->with('params', $params)->with('user1', $user1)->with('data', $data);
         }
     }
 
