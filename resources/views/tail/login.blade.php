@@ -15,7 +15,7 @@
 
 
 	<!-- Bootstrap Core CSS -->
-	<link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" >
+	<link href="{{ asset('css/bootstrap/bootstrap.css') }}" rel="stylesheet" type="text/css" >
 
 	<link rel="stylesheet" href="{{ asset('assets/font-awesome/4.2.0/css/font-awesome.min.css') }}" />
 

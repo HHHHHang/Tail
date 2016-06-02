@@ -1,0 +1,18 @@
+nav {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+body {
+    padding-top: 80px;
+    /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    /*-webkit-transform: translate3d(0, 0, 0);*/
+    background-color: #f5f5f5;
+    font-family: Helvetica, Arial, "PingFang SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+
+.navbar-default, .well {
+    background-color: #ffffff;
+    /* 保持和原来版面一样的配色 */
+}

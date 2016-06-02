@@ -11,18 +11,20 @@
     <meta name="author" content="">
 
     <!-- jQuery -->
-    <script src="http://115.28.180.158/js/jquery.js"></script>
+    <script src="http://115.28.180.158:84/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="http://115.28.180.158/js/bootstrap.min.js"></script>
-    <script src="http://115.28.180.158/js/search.js"></script>
+    <script src="http://115.28.180.158:84/js/bootstrap.min.js"></script>
+    <script src="http://115.28.180.158:84/js/search.js"></script>
 
     <!-- Bootstrap Core CSS -->
-    <link href="http://115.28.180.158/css/bootstrap.css" rel="stylesheet" type="text/css" >
-    <link href="http://115.28.180.158/css/style.css" rel="stylesheet" type="text/css" >
+    <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" rel="stylesheet" type="text/css" >
+    <link href="{{ asset('css/bootstrap/style.css') }}" rel="stylesheet" type="text/css" >
 
     <!-- Custom CSS -->
-    <link href="http://115.28.180.158/css/forum-home.css" rel="stylesheet" type="text/css" />
+    <link href="{{URL::asset('css/navigation.css')}}" rel="stylesheet" type="text/css" />
+    <link href="http://115.28.180.158:84/css/forum-home.css" rel="stylesheet" type="text/css" />
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -34,31 +36,45 @@
     <title>数字良品-论坛</title>
 </head>
 
-<body style="background-color: #f5f5f5;">
+<body>
 
-<nav style="background-color: #FFFFFF; border: 2px solid #f5f5f5;box-shadow: 0 1px 4px #ccc" class="navbar navbar-fixed-top custom_navbar" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="/"><img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png"></a>
-                <a class="navbar-brand custom_navbar-brand" href="/">     &nbsp;&nbsp;&nbsp;首页</a>
-                <a class="navbar-brand custom_navbar-brand" style="color: #57ADFD" href="/forum">     &nbsp;&nbsp;&nbsp;  社区</a>
-                <a class="navbar-brand custom_navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  二手广场</a>
-                <a class="navbar-brand custom_navbar-brand" href="/search/article">     &nbsp;&nbsp;&nbsp;  搜索</a>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">数字良品</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">首页</a></li>
+                <li class="dropdown active">
+                    <a href="/forum" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">论坛 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/forum">精选文章</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">帖子专区</li>
+                        <li><a href="/forum/tie">纠结帖子</a></li>
+                        <li><a href="#">其它帖子</a></li>
+                    </ul>
+                </li>
+                <li><a href="search/article">搜索</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
                 @if (isset($params['user']))
-                    <a class="navbar-brand custom_navbar-brand"  style="margin-left: 250px" href="/myinfo?name={{ $params['user']['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $params['user']['name'] }}</a>
-                    <a class="navbar-brand custom_navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
+                    <li><a href="/myinfo?name={{ $params['user']['name'] }}">{{  $params['user']['name'] }}</a></li>
+                    <li><a href="/logout">退出</a></li>
+                @else
+                    <li><a href="/login">登录</a></li>
+                    <li><a href="/login">注册</a></li>
                 @endif
-                @if (!isset($params['user']))
-                    <a class="navbar-brand custom_navbar-brand" style="margin-left: 250px" href="/login">     &nbsp;&nbsp;&nbsp;  登陆</a>
-                    <a class="navbar-brand custom_navbar-brand" href="/login">     &nbsp;&nbsp;&nbsp;  注册</a>
-                @endif
-            </div>
+            </ul>
+        </div><!--/.nav-collapse -->
     </div>
 </nav>
 
@@ -119,7 +135,7 @@
                             <div class="forumItemContentInfo">
                                 <span><a href="#">{{ $item['name'] }}</a></span>
                                 <span>类别 <a href="#">{{ $item['type'] }}</a></span>
-                                <span>发表时间 {{ $item['publishTime'] }}</span>
+                                <span>发步时间 {{ $item['publishTime'] }}</span>
                                 <span><span class="glyphicon glyphicon-comment"></span>{{ $item['commentNum'] }}</span>
                             </div>
 

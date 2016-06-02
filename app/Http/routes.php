@@ -37,14 +37,21 @@ Route::get('/forum/tie', 'ForumController@tie');
 Route::get('/forum/tie/{type}', 'ForumController@tie');
 Route::get('/forum/Detail', 'ForumController@forum');
 Route::get('/forum/{type}', 'ForumController@index');
+// 发布帖子界面
+Route::get('/new/forum', 'NewController@newForum');
+Route::post('/new/forum', 'NewController@postForum');
+// 纠结帖子页面
+Route::get('/kinkTie/{kid}', 'KinkTieController@index');
+Route::post('/kinkTie/{kid}', 'KinkTieController@tiePost');
 
-//搜索界面模板
+// 搜索界面模板
 Route::get('/search/forum', 'SearchController@searchForum');
 Route::get('/search/forum/{keyword}', 'SearchController@searchForum');
 Route::get('/search/article', 'SearchController@searchArticle');
 Route::get('/search/article/{keyword}', 'SearchController@searchArticle');
 
-//个人信息页模板
+// 个人信息页模板
+Route::get('/myinfo', 'MyInfoController@index');
 Route::get('/myinfo', 'MyInfoController@index');
 
 //mysql接口测试
@@ -54,11 +61,3 @@ Route::get('/mongo', 'MongoController@testMongo');
 Route::get('/api/test/{id}', function ($id) {
 	return App\Banner_img::findOrFail($id);
 });
-
-Route::get('/myinfo', 'MyInfoController@index');
-Route::get('/new/forum', 'NewController@newForum');
-Route::post('/new/forum', 'NewController@postForum');
-
-//纠结帖子页面
-Route::get('/kinkTie/{kid}', 'KinkTieController@index');
-Route::post('/kinkTie/{kid}', 'KinkTieController@tiePost');
