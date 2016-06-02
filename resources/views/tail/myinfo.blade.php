@@ -19,12 +19,12 @@
 
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" >
-
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" >
+    <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" rel="stylesheet" type="text/css" >
+    <link href="{{ asset('css/bootstrap/style.css') }}" rel="stylesheet" type="text/css" >
 
 
     <!-- Custom CSS -->
+    <link href="{{URL::asset('css/navigation.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('css/blog-home.css')}}" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -36,62 +36,58 @@
 
 </head>
 
-<body style="background-color: #f5f5f5;">
+<body>
 
-    <!-- Navigation -->
-    <nav style="background-color: #FFFFFF; border: 2px solid #f5f5f5;box-shadow: 0 1px 4px #ccc" class="navbar navbar-fixed-top custom_navbar" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="container-fluid">
-                <div class="navbar-header">
-
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <a href="/"><img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png"></a>
-                            <a class="navbar-brand custom_navbar-brand" href="/">     &nbsp;&nbsp;&nbsp;首页</a>
-                            <a class="navbar-brand custom_navbar-brand" href="/forum">     &nbsp;&nbsp;&nbsp;  社区</a>
-                            <a class="navbar-brand custom_navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  二手广场</a>
-                            <a class="navbar-brand custom_navbar-brand" href="/search/article">     &nbsp;&nbsp;&nbsp;  搜索</a>
-                        </div>
-                        <div class="col-md-3">
-                            <div style="padding: 12px 10px">
-                                <form method="post" action="">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="搜索文章、帖子">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                                        </span>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            @if (isset($user))
-                                <a class="navbar-brand custom_navbar-brand"  style="margin-left: 0px;color: #57ADFD" href="/myinfo?name={{ $user['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $user['name'] }}</a>
-                                <a class="navbar-brand custom_navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
-                            @endif
-                            @if (!isset($user))
-                                <a class="navbar-brand custom_navbar-brand" style="margin-left: 0px" href="/login">     &nbsp;&nbsp;&nbsp;  登陆</a>
-                                <a class="navbar-brand custom_navbar-brand" href="/login">     &nbsp;&nbsp;&nbsp;  注册</a>
-                                <ul class="navbar-right">
-                                    <li><a href="#"><span class=""></span> Sign Up</a></li>
-                                    <li><a href="#"><span class=""></span> Login</a></li>
-                                </ul>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">数字良品</a>
             </div>
-                <!-- /.navbar-collapse -->
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">首页</a></li>
+                    <li class="dropdown">
+                        <a href="/forum" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">论坛 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/forum">精选文章</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">帖子专区</li>
+                            <li><a href="/forum/tie">纠结帖子</a></li>
+                            <li><a href="#">其它帖子</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/search/article">搜索</a></li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {{--<li>--}}
+                        {{--<div style="padding: 12px 10px">--}}
+                            {{--<form method="post" action="">--}}
+                                {{--<div class="input-group">--}}
+                                    {{--<input type="text" class="form-control" placeholder="搜索文章、帖子">--}}
+                                        {{--<span class="input-group-btn">--}}
+                                            {{--<button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span></button>--}}
+                                        {{--</span>--}}
+                                {{--</div>--}}
+                            {{--</form>--}}
+                        {{--</div>--}}
+                    {{--</li>--}}
+                    @if (isset($params['user']))
+                        <li><a href="/myinfo?name={{ $user['name'] }}">{{  $user['name'] }}</a></li>
+                        <li><a href="/logout">退出</a></li>
+                    @else
+                        <li><a href="/login">登录</a></li>
+                        <li><a href="/login">注册</a></li>
+                    @endif
+                </ul>
+            </div><!--/.nav-collapse -->
         </div>
-        <!-- /.container -->
     </nav>
 
     <!-- Page Content -->

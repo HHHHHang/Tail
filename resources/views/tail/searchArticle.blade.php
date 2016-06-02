@@ -17,10 +17,12 @@
 	<script src="{{URL::asset('js/search.js')}}"></script>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" >
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" >
+    <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" rel="stylesheet" type="text/css" >
+    <link href="{{ asset('css/bootstrap/style.css') }}" rel="stylesheet" type="text/css" >
 
     <!-- Custom CSS -->
+    <link href="{{URL::asset('css/navigation.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{URL::asset('css/sidebar.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('css/forum-home.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('css/search.css')}}" rel="stylesheet" type="text/css" />
 
@@ -34,38 +36,46 @@
     <title>数字良品-搜索</title>
 </head>
 
-<body style="background-color: #f5f5f5;">
+<body>
 
-<!-- Navigation -->
-<nav style="background-color: #FFFFFF; border: 2px solid #f5f5f5;box-shadow: 0 1px 4px #ccc" class="navbar navbar-fixed-top custom_navbar" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/"><img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png"></a>
-            <a class="navbar-brand custom_navbar-brand" href="/">     &nbsp;&nbsp;&nbsp;首页</a>
-            <a class="navbar-brand custom_navbar-brand" href="/forum">     &nbsp;&nbsp;&nbsp;  社区</a>
-            <a class="navbar-brand custom_navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  二手广场</a>
-            <a class="navbar-brand custom_navbar-brand" style="color: #57ADFD"  href="/search/article">     &nbsp;&nbsp;&nbsp;  搜索</a>
-            @if (isset($user))
-                <a class="navbar-brand custom_navbar-brand"  style="margin-left: 250px" href="/myinfo?name={{ $user['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $user['name'] }}</a>
-                <a class="navbar-brand custom_navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
-            @endif
-            @if (!isset($user))
-                <a class="navbar-brand custom_navbar-brand" style="margin-left: 250px" href="/login">     &nbsp;&nbsp;&nbsp;  登陆</a>
-                <a class="navbar-brand custom_navbar-brand" href="/login">     &nbsp;&nbsp;&nbsp;  注册</a>
-            @endif
+            <a class="navbar-brand" href="/">数字良品</a>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">首页</a></li>
+                <li class="dropdown">
+                    <a href="/forum" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">论坛 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/forum">精选文章</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">帖子专区</li>
+                        <li><a href="/forum/tie">纠结帖子</a></li>
+                        <li><a href="#">其它帖子</a></li>
+                    </ul>
+                </li>
+                <li class="active"><a href="/search/article">搜索</a></li>
 
-        <!-- /.navbar-collapse -->
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @if (isset($params['user']))
+                    <li><a href="/myinfo?name={{ $user['name'] }}">{{  $user['name'] }}</a></li>
+                    <li><a href="/logout">退出</a></li>
+                @else
+                    <li><a href="/login">登录</a></li>
+                    <li><a href="/login">注册</a></li>
+                @endif
+            </ul>
+        </div><!--/.nav-collapse -->
     </div>
-    <!-- /.container -->
 </nav>
 
 <div class="container">
@@ -91,25 +101,26 @@
                 <span></span>
                 <span><a>排序方式</a></span>
             </div>
-            <div class="forumListDiv">
-            @foreach($params['articlesInfo'] as $article)
-                <div class="well">
-                    <div>
-                        <img style="float: left" width="50" height="50" src="{{ $article['avatar'] }}"   class="img-rounded img-circle img-responsive">
-                        <p class="tie-head">&nbsp;&nbsp;{{ $article['name'] }}</p>
-                        <span><a href="#">&nbsp;&nbsp;<span class="glyphicon glyphicon-film" style="color: rgb(108, 118, 127); font-size: 12px;">{{ $article['type'] }}</span></a></span>
 
+            <div class="forumListDiv">
+                @foreach($params['articlesInfo'] as $article)
+                    <div class="forumItemDiv">
+                        <img width="50" height="50" src="{{ $article['avatar'] }}"  class="forumItemPic img-circle img-responsive">
+
+                        <div class="forumItemContent">
+                            <div>
+                                <a href="{{ $article['link'] }}">{{ $article['title'] }}</a>
+                            </div>
+                            <div class="forumItemContentInfo">
+                                <span><a href="#">{{ $article['name'] }}</a></span>
+                                <span>类别 <a href="#">{{ $article['type'] }}</a></span>
+                                <span>发布时间 {{ $article['publishTime'] }}</span>
+                                <span><span class="glyphicon glyphicon-comment"></span>{{ $article['commentNum'] }}</span>
+                            </div>
+
+                        </div>
                     </div>
-                    <p class="postTime"><span class="glyphicon glyphicon-time"></span> &nbsp;昨天</p>
-                    <hr>
-                    <img class="img-responsive" src="{{ $article['image'] }}" alt="">
-                    <hr>
-                    <div class="postHead"><a href="{{ $article['link'] }}" class="title-phone">{{ $article['title'] }}</a></div>
-                    <div class="postContent"><p class="content-phone"> {{ $article['content'] }} </p></div>
-                    <a style="margin-left: 550px" href="#"><span class="glyphicon glyphicon-thumbs-up" style="color: #B0B4B7; font-size:20px;">&nbsp;{{ $article['upNum'] }}&nbsp;</span></a>
-                    <a href="#"><span class="glyphicon glyphicon-comment" style="color: #B0B4B7; font-size:20px;">&nbsp;{{ $article['commentNum'] }}</span></a>
-                </div>
-			@endforeach
+                @endforeach
             </div>
 
             <!-- Blog Sidebar Widgets Column -->

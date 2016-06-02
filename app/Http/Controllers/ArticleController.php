@@ -55,6 +55,7 @@ class ArticleController extends Controller{
 			'title' => $article->title,
 			'content' => $article->all_content,
 			'type' => $article->type,
+			'createTime' => $article->createTime,
 			'commentNum' => $article->commentNum,
 			'upNum'      => $article->upNum,
 			'avatar' => $postUser->avatar,

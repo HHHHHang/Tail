@@ -39,9 +39,8 @@
 
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" >
-
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" >
+    <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" rel="stylesheet" type="text/css" >
+    <link href="{{ asset('css/bootstrap/style.css') }}" rel="stylesheet" type="text/css" >
 
     <!-- sangarSlider Sangar Slider -->
     <link href="{{ asset('css/sangarSlider/normalize.css') }}" rel="stylesheet" type="text/css">
@@ -50,7 +49,10 @@
     <link href="{{ asset('css/sangarSlider/sangarSliderDefault.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/sangarSlider/responsive.css') }}" rel="stylesheet" type="text/css">
     <!-- Custom CSS -->
+    <link href="{{URL::asset('css/navigation.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{URL::asset('css/sidebar.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('css/blog-home.css')}}" rel="stylesheet" type="text/css" />
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -61,38 +63,46 @@
 
 </head>
 
-<body style="background-color: #f5f5f5;">
+<body class="upperBody">
 
-    <!-- Navigation -->
-    <nav style="background-color: #FFFFFF; border: 1px solid #fbfbfb;box-shadow: 0 1px 4px #ccc" class="navbar navbar-fixed-top custom_navbar" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/"><img class="navbar-logo" src="http://7xq64h.com1.z0.glb.clouddn.com/logo.png"></a>
-                <a class="navbar-brand custom_navbar-brand" style="color: #57ADFD" href="/">     &nbsp;&nbsp;&nbsp;首页</a>
-                <a class="navbar-brand custom_navbar-brand" href="/forum">     &nbsp;&nbsp;&nbsp;  社区</a>
-                <a class="navbar-brand custom_navbar-brand" href="#">     &nbsp;&nbsp;&nbsp;  二手广场</a>
-                <a class="navbar-brand custom_navbar-brand" href="/search/article">     &nbsp;&nbsp;&nbsp;  搜索</a>
-                @if (isset($params['user']))
-                    <a class="navbar-brand custom_navbar-brand"  style="margin-left: 250px" href="/myinfo?name={{ $params['user']['name'] }}"> &nbsp;&nbsp;&nbsp;&nbsp;{{  $params['user']['name'] }}</a>
-                    <a class="navbar-brand custom_navbar-brand"  href="/logout"> &nbsp;{{ '退出' }}</a>
-                @endif
-                @if (!isset($params['user']))
-                    <a class="navbar-brand custom_navbar-brand" style="margin-left: 250px" href="/login">     &nbsp;&nbsp;&nbsp;  登陆</a>
-                    <a class="navbar-brand custom_navbar-brand" href="/login">     &nbsp;&nbsp;&nbsp;  注册</a>
-                @endif
+                <a class="navbar-brand" href="/">数字良品</a>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">首页</a></li>
+                    <li class="dropdown">
+                        <a href="/forum" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">论坛 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/forum">精选文章</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">帖子专区</li>
+                            <li><a href="/forum/tie">纠结帖子</a></li>
+                            <li><a href="#">其它帖子</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/search/article">搜索</a></li>
 
-            <!-- /.navbar-collapse -->
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (isset($params['user']))
+                        <li><a href="/myinfo?name={{ $params['user']['name'] }}">{{  $params['user']['name'] }}</a></li>
+                        <li><a href="/logout">退出</a></li>
+                    @else
+                        <li><a href="/login">登录</a></li>
+                        <li><a href="/login">注册</a></li>
+                    @endif
+                </ul>
+            </div><!--/.nav-collapse -->
         </div>
-        <!-- /.container -->
     </nav>
 
     <!-- Slider -->
@@ -110,178 +120,95 @@
 
     </div>
 
-    <div class="container">
-
-                <h1 class="page-header">
-                    尾巴精选
-                </h1>
-
-        </div>
-
     <!-- Page Content -->
     <div class="container">
 
         <div class="row">
 
             <!-- Blog Entries Column -->
-            <div class="col-md-8">
-
-                <h1 class="page-header">
-                    <small>最新文章</small>
-                </h1>
-
-                <!-- First Blog Post -->
+            <div class="col-md-8 articlesDisplayDiv">
                 @foreach($params['articles'] as $article)
-					<div class="well">
-					<div>
-					<img style="float: left" width="50" height="50" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"   class="img-rounded img-circle img-responsive">
-					<p class="tie-head">&nbsp;&nbsp;测试用户</p>
-					<span><a href="#">&nbsp;&nbsp;<span class="glyphicon glyphicon-film" style="color: rgb(108, 118, 127); font-size: 12px;">{{ $article->type  }}</span></a></span>
+					<div class="well articleDisplayDiv">
+                        <div>
+                            <img src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"   class="img-rounded img-circle img-responsive">
+                            <span class="tie-head">测试用户</span>
+                            <span></span>
+                            <div>
+                                <span><span class="glyphicon glyphicon-time"></span>{{ date("Y-m-d",strtotime($article->createTime)) }}</span>
+                                <a href="#"><span class="glyphicon glyphicon-film"></span>{{ $article->type  }}</a>
+                            </div>
 
-					</div>
-					<p class="postTime"><span class="glyphicon glyphicon-time"></span> &nbsp;昨天</p>
-					<hr>
-					<img class="img-responsive" src="{{ $article->image }}" alt="">
-					<hr>
-					<div class="postHead"><a href="/article/{{ $article->id }}" class="title-phone">{{ $article->title  }}</a></div>
-					<div class="postContent"><p class="content-phone">{{ $article->content  }}</p></div>
-					<a style="margin-left: 550px" href="#"><span class="glyphicon glyphicon-thumbs-up" style="color: #B0B4B7; font-size:20px;">&nbsp;{{ $article->upNum }}&nbsp;</span></a>
-					<a href="#"><span class="glyphicon glyphicon-comment" style="color: #B0B4B7; font-size:20px;">&nbsp;{{ $article->commentNum }}</span></a>
-					</div>
+                        </div>
+                        <div>
+                            <img class="img-responsive" src="{{ $article->image }}" alt="">
+                        </div>
+                        <div class="postHead"><a href="/article/{{ $article->id }}" class="title-phone">{{ $article->title  }}</a></div>
+                        <div class="postContent"><p class="content-phone">{{ $article->content  }}</p></div>
+                        <div>
+                            <a href="#"><span class="glyphicon glyphicon-thumbs-up"></span>{{ $article->upNum }}</a>
+                            <a href="#"><span class="glyphicon glyphicon-comment"></span>{{ $article->commentNum }}</a>
+                        </div>
+                    </div>
                 @endforeach
-                <!-- Pager -->
                 <ul class="pager">
-                    <li class="previous">
-                        <a href="#">&larr; Older</a>
+                    <li class="previous disabled">
+                        <a>上一页</a>
                     </li>
-                    <li class="next">
-                        <a href="#">Newer &rarr;</a>
+                    <li class="next disabled">
+                        <a>下一页</a>
                     </li>
                 </ul>
-
             </div>
 
-            <!-- Blog Sidebar Widgets Column -->
-            <div class="col-md-4">
+            <div class="sidebarBlock col-md-4">
 
-                <!-- Blog Search Well -->
-                <div class="well">
-                    <h4>站内搜索</h4>
-                    <hr>
-					<div class="input-group">
-						<input id='keyword' type="text" class="form-control" value="">
-							<span class="input-group-btn">
-								<button id='search' class="btn btn-default" type="button">
-									<span class="glyphicon glyphicon-search"></span>
-								</button>
-							</span>
-					</div>
+                <div class="forumSearch well">
+                    <span>站内搜索</span>
+                    <div class="input-group">
+                        <input id='keyword' type="text" class="form-control" value="">
+						<span class="input-group-btn">
+							<button id='search' class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+						</span>
                     </div>
-                    <!-- /.input-group -->
-
-                <!-- Blog Categories Well -->
-                <div class="well">
-                    <h4 style="color: rgb(108, 118, 127); margin-bottom: 5px;">频道分类</h4>
-                    <hr>
-                    <div class="row">
-                        <div class="col-xs-4 col-md-4">
-                            <ul class="list-unstyled">
-                                <li>
-                                <a href="/forum/手机"><span class="glyphicon glyphicon-phone" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 手机</span></a>
-                                </li>
-                                <li>
-                                <a href="/forum/电脑"><span class="glyphicon glyphicon-floppy-open" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 电脑</span></a>
-                                </li>
-                                <li>
-                                <a href="/forum/咨询"><span class="glyphicon glyphicon-bullhorn" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 资讯</span></a>
-                                </li>
-                                <li>
-                                <a href="/forum/视频"><span class="glyphicon glyphicon-facetime-video" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 视频</span></a>
-                                </li>
-                                <li>
-                                <a href="/forum/周边"><span class="glyphicon glyphicon-send" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 周边</span></a>
-                                </li>
-                                <li>
-                                <a href="/forum/平板"><span class="glyphicon glyphicon-phone" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 平板</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.col-lg-6 -->
-                        <div class="col-xs-4 col-md-4">
-                            <ul class="list-unstyled">
-                                <li>
-                                <a href="/forum/摄影"><span class="glyphicon glyphicon-camera" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 摄影</span></a>
-                                </li>
-                                <li>
-                                <a href="/forum/影音"><span class="glyphicon glyphicon-film" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 影音</span></a>
-                                </li>
-                                <li>
-                                <a href="/forum/数码"><span class="glyphicon glyphicon-facetime-video" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 数码</span></a>
-                                </li>
-                                <li>
-                                <a href="/forum/旅行"><span class="glyphicon glyphicon-plane" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 旅行</span></a>
-                                </li>
-                                <li>
-                                <a href="/forum/生活"><span class="glyphicon glyphicon-home" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 生活</span></a>
-                                </li>
-                                <li>
-                                <a href="/forum/文具"><span class="glyphicon glyphicon-pencil" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 文具</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-xs-4 col-md-4">
-                            <ul class="list-unstyled">
-                                <li>
-                                <a href="/forum/周边"><span class="glyphicon glyphicon-heart" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 玩物</span></a>
-                                </li>
-                                <li>
-                                <a href="/forum/游戏"><span class="glyphicon glyphicon-console" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 游戏</span></a>
-                                </li>
-                                <li>
-                                <a href="/forum/应用"><span class="glyphicon glyphicon-blackboard" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 应用</span></a>
-                                </li>
-                                <li>
-                                <a href="/forum/沙龙"><span class="glyphicon glyphicon-education" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 沙龙</span></a>
-                                </li>
-                                <li>
-                                <a href="/forum/活动"><span class="glyphicon glyphicon-hourglass" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 活动</span></a>
-                                </li>
-                                <li>
-                                <a href="/forum"><span class="glyphicon glyphicon-inbox" style="color: rgb(108, 118, 127); font-size: 17px; margin: 5px;"> 全部</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.col-lg-6 -->
-                    </div>
-                    <!-- /.row -->
                 </div>
 
-                <!-- Side Widget Well -->
-                <img width="360px" height="160px" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-19%20%E4%B8%8A%E5%8D%882.55.36.png" />
-                <br>
-                <br>
-                <br>
+                <div class="well typeSidebarDiv">
 
-                <img width="360px" height="400px" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-19%20%E4%B8%8A%E5%8D%882.55.48.png"/>
+                    <span>频道分类</span>
+                    <div class="typeSidebar">
+                        <div><a href="/forum"><span class="glyphicon glyphicon-inbox"></span><span>全部</span></a></div>
+                        <div><a href="/forum/手机"><span class="glyphicon glyphicon-phone"></span><span>手机</span></a></div>
+                        <div><a href="/forum/摄影"><span class="glyphicon glyphicon-camera"></span><span>摄影</span></a></div>
+                        <div><a href="/forum/电影"><span class="glyphicon glyphicon-floppy-open"></span><span>电脑</span></a></div>
+                        <div><a href="/forum/平板"><span class="glyphicon glyphicon-phone"></span><span>平板</span></a></div>
+                        <div><a href="/forum/咨询"><span class="glyphicon glyphicon-bullhorn"></span><span>资讯</span></a></div>
+                        <div><a href="/forum/视频"><span class="glyphicon glyphicon-facetime-video"></span><span>视频</span></a></div>
+                        <div><a href="/forum/影音"><span class="glyphicon glyphicon-film"></span><span>影音</span></a></div>
+                        <div><a href="/forum/数码"><span class="glyphicon glyphicon-facetime-video"></span><span>数码</span></a></div>
+                        <div><a href="/forum/周边"><span class="glyphicon glyphicon-send"></span><span>周边</span></a></div>
+                        <div><a href="/forum/生活"><span class="glyphicon glyphicon-home"></span><span>生活</span></a></div>
+                        <div><a href="/forum/文具"><span class="glyphicon glyphicon-pencil"></span><span>文具</span></a></div>
+                        <div><a href="/forum/游戏"><span class="glyphicon glyphicon-console"></span><span>游戏</span></a></div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-        </footer>
 
     </div>
     <!-- /.container -->
+
+    <footer>
+        <div>
+            <span>美好生活 从分享开始</span>
+            <span>联系我们: xxx-xxxxxxx</span>
+            <span>专业综合 组7</span>
+            <span>同济大学 软件学院</span>
+        </div>
+    </footer>
 
     <script type='text/javascript'>
         var data = <?php echo $params['picsArr'];?>;
