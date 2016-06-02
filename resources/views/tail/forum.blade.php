@@ -11,11 +11,11 @@
     <meta name="author" content="">
 
     <!-- jQuery -->
-    <script src="http://115.28.180.158:84/js/jquery.js"></script>
+    <script src="{{URL::asset('js/jquery.js')}}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="http://115.28.180.158:84/js/bootstrap.min.js"></script>
-    <script src="http://115.28.180.158:84/js/search.js"></script>
+    <script src="{{URL::asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{URL::asset('js/search.js')}}"></script>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" rel="stylesheet" type="text/css" >
@@ -24,7 +24,7 @@
     <!-- Custom CSS -->
     <link href="{{URL::asset('css/navigation.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('css/sidebar.css')}}" rel="stylesheet" type="text/css" />
-    <link href="http://115.28.180.158:84/css/forum-home.css" rel="stylesheet" type="text/css" />
+    <link href="{{URL::asset('css/forum-home.css')}}" rel="stylesheet" type="text/css" />
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
