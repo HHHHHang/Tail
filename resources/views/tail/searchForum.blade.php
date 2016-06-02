@@ -22,6 +22,7 @@
 
     <!-- Custom CSS -->
     <link href="{{URL::asset('css/navigation.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{URL::asset('css/sidebar.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('css/forum-home.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('css/search.css')}}" rel="stylesheet" type="text/css" />
 
@@ -60,7 +61,7 @@
                         <li><a href="#">其它帖子</a></li>
                     </ul>
                 </li>
-                <li class="active"><a href="search/article">搜索</a></li>
+                <li class="active"><a href="/search/article">搜索</a></li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">

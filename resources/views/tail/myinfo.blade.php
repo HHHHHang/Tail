@@ -62,7 +62,7 @@
                             <li><a href="#">其它帖子</a></li>
                         </ul>
                     </li>
-                    <li><a href="search/article">搜索</a></li>
+                    <li><a href="/search/article">搜索</a></li>
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

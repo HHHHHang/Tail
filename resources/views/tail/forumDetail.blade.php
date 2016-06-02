@@ -21,7 +21,7 @@
 
     <!-- Custom CSS -->
     <link href="{{URL::asset('css/navigation.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{URL::asset('css/forum-home.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{URL::asset('css/sidebar.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('css/forum-detail.css')}}" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -61,7 +61,7 @@
                             <li><a href="#">其它帖子</a></li>
                         </ul>
                     </li>
-                    <li><a href="search/article">搜索</a></li>
+                    <li><a href="/search/article">搜索</a></li>
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -155,11 +155,11 @@
             </div>
 
 
-            <div class="forumRightPart col-md-4">
+            <div class="sidebarBlock col-md-4">
 
                 <div class="well forumUserInfo">
                     <div>
-                        <img width="90" height="90" src="{{ $user1['icon'] }}"  class="img-circle img-responsive">
+                        <img width="90" height="90" src="{{ $user1['icon'] }}"  class="img-responsive">
                         <span>{{ $user1['level'] }}</span>
                     </div>
 

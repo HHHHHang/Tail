@@ -22,6 +22,7 @@
 
     <!-- Custom CSS -->
     <link href="{{URL::asset('css/navigation.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{URL::asset('css/sidebar.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('css/forum-home.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('css/search.css')}}" rel="stylesheet" type="text/css" />
 
@@ -61,7 +62,7 @@
                         <li><a href="#">其它帖子</a></li>
                     </ul>
                 </li>
-                <li class="active"><a href="search/article">搜索</a></li>
+                <li class="active"><a href="/search/article">搜索</a></li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -100,25 +101,26 @@
                 <span></span>
                 <span><a>排序方式</a></span>
             </div>
-            <div class="forumListDiv">
-            @foreach($params['articlesInfo'] as $article)
-                <div class="well">
-                    <div>
-                        <img style="float: left" width="50" height="50" src="{{ $article['avatar'] }}"   class="img-rounded img-circle img-responsive">
-                        <p class="tie-head">&nbsp;&nbsp;{{ $article['name'] }}</p>
-                        <span><a href="#">&nbsp;&nbsp;<span class="glyphicon glyphicon-film" style="color: rgb(108, 118, 127); font-size: 12px;">{{ $article['type'] }}</span></a></span>
 
+            <div class="forumListDiv">
+                @foreach($params['articlesInfo'] as $article)
+                    <div class="forumItemDiv">
+                        <img width="50" height="50" src="{{ $article['avatar'] }}"  class="forumItemPic img-circle img-responsive">
+
+                        <div class="forumItemContent">
+                            <div>
+                                <a href="{{ $article['link'] }}">{{ $article['title'] }}</a>
+                            </div>
+                            <div class="forumItemContentInfo">
+                                <span><a href="#">{{ $article['name'] }}</a></span>
+                                <span>类别 <a href="#">{{ $article['type'] }}</a></span>
+                                <span>发布时间 {{ $article['publishTime'] }}</span>
+                                <span><span class="glyphicon glyphicon-comment"></span>{{ $article['commentNum'] }}</span>
+                            </div>
+
+                        </div>
                     </div>
-                    <p class="postTime"><span class="glyphicon glyphicon-time"></span> &nbsp;昨天</p>
-                    <hr>
-                    <img class="img-responsive" src="{{ $article['image'] }}" alt="">
-                    <hr>
-                    <div class="postHead"><a href="{{ $article['link'] }}" class="title-phone">{{ $article['title'] }}</a></div>
-                    <div class="postContent"><p class="content-phone"> {{ $article['content'] }} </p></div>
-                    <a style="margin-left: 550px" href="#"><span class="glyphicon glyphicon-thumbs-up" style="color: #B0B4B7; font-size:20px;">&nbsp;{{ $article['upNum'] }}&nbsp;</span></a>
-                    <a href="#"><span class="glyphicon glyphicon-comment" style="color: #B0B4B7; font-size:20px;">&nbsp;{{ $article['commentNum'] }}</span></a>
-                </div>
-			@endforeach
+                @endforeach
             </div>
 
             <!-- Blog Sidebar Widgets Column -->
