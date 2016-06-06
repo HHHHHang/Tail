@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <title>Blog Home - Start Bootstrap Template</title>
 
@@ -22,6 +23,9 @@
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ asset('css/bootstrap/style.css') }}" rel="stylesheet" type="text/css" >
+
+
+    <link href="{{ asset('css/forum-detail.css') }}" rel="stylesheet" type="text/css" >
 
     <!-- Custom CSS -->
     <link href="{{URL::asset('css/navigation.css')}}" rel="stylesheet" type="text/css" />
@@ -89,7 +93,7 @@
         <div class="col-md-8">
 
             <div class="well forumDetailDiv">
-                <a href="/forum"><span class="glyphicon glyphicon-chevron-left"></span>纠结帖子</a>
+                <a href="/forum/tie"><span class="glyphicon glyphicon-chevron-left"></span>纠结帖子</a>
                 <span>{{ $params['title'] }}</span>
                 <div class="forumDetailInfo">
                     <span>阅读人数: 10</span>
@@ -115,6 +119,7 @@
                         <textarea name="content" class="form-control" rows="3"></textarea>
                     </div>
                     <input type="hidden" name="id" value="{{ $params['aid'] }}" />
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <button type="submit" class="btn">评论</button>
                 </form>
 

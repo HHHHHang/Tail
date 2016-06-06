@@ -66,8 +66,8 @@
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                @if (isset($params['user']))
-                    <li><a href="/myinfo?name={{ $user['name'] }}">{{  $user['name'] }}</a></li>
+                @if (($params['user']['id'] != 2))
+                    <li><a href="/myinfo?name={{ $params['user']['name'] }}">{{  $params['user']['name'] }}</a></li>
                     <li><a href="/logout">退出</a></li>
                 @else
                     <li><a href="/login">登录</a></li>
@@ -129,16 +129,16 @@
 
             <div class="well forumUserInfo">
                 <div>
-                    <img width="90" height="90" src="{{ $user1['icon'] }}"  class="img-responsive">
-                    <span>{{ $user1['level'] }}</span>
+                    <img width="90" height="90" src="{{ $params['user']['avatar'] }}"  class="img-responsive">
+                    <span>{{ $params['user']['level'] }}</span>
                 </div>
 
                 <div>
-                    <span>{{$user1['name']}}</span>
+                    <span>{{$params['user']['name']}}</span>
                     <div>
-                        <a><span>{{ $user1['forumCount'] }}</span><span>帖子</span></a>
-                        <a><span>{{ $user1['commentCount'] }}</span><span>评论</span></a>
-                        <a><span>{{ $user1['followCount'] }}</span><span>关注</span></a>
+                        <a><span>{{ $params['user']['postNum'] }}</span><span>帖子</span></a>
+                        <a><span>{{ $params['user']['commentNum'] }}</span><span>评论</span></a>
+                        <a><span>{{ $params['user']['followNum'] }}</span><span>关注</span></a>
                     </div>
                 </div>
             </div>

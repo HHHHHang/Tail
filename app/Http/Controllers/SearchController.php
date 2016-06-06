@@ -54,6 +54,7 @@ class SearchController extends Controller
 
 		$tail_user = isset($user) ? DB::table('tail_users')->where('uid', $user->id)->first() : DB::table('tail_users')->where('uid', 2)->first();
 		$userInfo = [
+			'id'     => $tail_user->uid,
 			'avatar' => $tail_user->avatar,
 			'name'   => $tail_user->name,
 			'level'  => '初级',
