@@ -3,28 +3,19 @@
 <html>
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    @include('tail.layout.lib')
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 
     <title>发布帖子</title>
 
     <!-- jQuery -->
-    <script src="{{asset('js/jquery.js')}}"></script>
 
     <script src="{{URL::asset('js/jquery.touchSwipe.min.js')}}"></script>
     <script src="{{URL::asset('js/imagesloaded.min.js')}}" ></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
-
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ asset('css/bootstrap/style.css') }}" rel="stylesheet" type="text/css" >
 
     <!-- Custom CSS -->
@@ -55,46 +46,8 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">数字良品</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="/">首页</a></li>
-                    <li class="dropdown active">
-                        <a href="/forum" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">论坛 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/forum">精选文章</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">帖子专区</li>
-                            <li><a href="/forum/tie">纠结帖子</a></li>
-                            <li><a href="#">其它帖子</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="/search/article">搜索</a></li>
 
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    @if (isset($params['user']))
-                        <li><a href="/myinfo?name={{ $params['user']['name'] }}">{{  $params['user']['name'] }}</a></li>
-                        <li><a href="/logout">退出</a></li>
-                    @else
-                        <li><a href="/login">登录</a></li>
-                        <li><a href="/login">注册</a></li>
-                    @endif
-                </ul>
-            </div><!--/.nav-collapse -->
-        </div>
-    </nav>
-
+	@include('tail.layout.header')
 
     <div class="container">
         <div class="row">
@@ -106,7 +59,7 @@
                 <div class="postTitleDiv">
                     <a id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-menu-hamburger"></span> 选择类别</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        @foreach ( $data->type as $item )
+                        @foreach ( $params['data']->type as $item )
                             <li><a onclick="chooseType(event)" >{{$item}}</a></li>
                         @endforeach
                     </ul>
@@ -134,7 +87,7 @@
                             <span>选项: 最多可以填写20个选项</span>
                             <a id="addOptionBtn"><span class="glyphicon glyphicon-plus-sign"></span> 添加一条选项</a>
                         </div>
-                        @for ($x=0; $x< $data->choiceNum; $x++)
+                        @for ($x=0; $x< $params['data']->choiceNum; $x++)
                             <div class="input-group postOptions">
                                 <input type="text" class="form-control">
                                 <span class="input-group-addon">

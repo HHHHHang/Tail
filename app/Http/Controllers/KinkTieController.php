@@ -21,6 +21,7 @@ class KinkTieController extends Controller{
 		$article = DB::table('kinkTies')->where('kid', $kid)->first();
 		$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
 		$params = [
+			'user' => $user,
 			'aid' => $kid,
 			'title' => $article->title,
 			'content' => $article->content,
@@ -30,7 +31,6 @@ class KinkTieController extends Controller{
 			'avatar' => $postUser->avatar,
 			'postName' => $postUser->name,
 		];
-		if ($user) return view('tail.kinkTie')->with('params', $params)->with('comments', $comments)->with('user', $user);
 		return view('tail.kinkTie')->with('params', $params)->with('comments', $comments);
 	}
 

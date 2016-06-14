@@ -51,6 +51,7 @@ class ArticleController extends Controller{
 		$article = DB::table('articles')->where('id', $id)->first();
 		$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
 		$params = [
+			'user' => $user,
 			'aid' => $id,
 			'title' => $article->title,
 			'content' => $article->all_content,

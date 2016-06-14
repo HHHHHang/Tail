@@ -43,7 +43,6 @@ class IndexController extends Controller{
 			'articles' => $articles
 		];
 
-		if ($user) return view('tail.welcome')->with('params', $params);
 		return view('tail.welcome')->with('params', $params);
 	}
 
