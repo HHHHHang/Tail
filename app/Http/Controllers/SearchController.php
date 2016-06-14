@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\modal\PhoneInfo;
 use DB;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -19,17 +18,7 @@ class SearchController extends Controller
 	function searchForum(Request $request, $keyword='') {
 		$user = $request->user();
 
-		$tail_user = isset($user) ? DB::table('tail_users')->where('uid', $user->id)->first() : DB::table('tail_users')->where('uid', 2)->first();
-		$userInfo = [
-			'id'     => $tail_user->uid,
-			'avatar' => $tail_user->avatar,
-			'name'   => $tail_user->name,
-			'level'  => '初级',
-			'commentNum' => $tail_user->commentNum,
-			'postNum'    => $tail_user->postNum,
-			'followNum'     => $tail_user->followNum,
-			'fans'       => $tail_user->fans
-		];
+		$userInfo = isset($user) ? getUserInfo($user->id) : getUserInfo(2);
 
 		$kinkTies = $keyword ? $articles = DB::table('kinkTies')->where('title', 'like', '%' . $keyword . '%')->get()
 			: DB::select("SELECT * FROM kinkTies ORDER BY createTime DESC");
@@ -67,17 +56,7 @@ class SearchController extends Controller
 		$articles = $keyword ? $articles = DB::table('articles')->where('title', 'like', '%' . $keyword . '%')->get()
 			: DB::select("SELECT * FROM articles ORDER BY createTime DESC");
 
-		$tail_user = isset($user) ? DB::table('tail_users')->where('uid', $user->id)->first() : DB::table('tail_users')->where('uid', 2)->first();
-		$userInfo = [
-			'id'     => $tail_user->uid,
-			'avatar' => $tail_user->avatar,
-			'name'   => $tail_user->name,
-			'level'  => '初级',
-			'commentNum' => $tail_user->commentNum,
-			'postNum'    => $tail_user->postNum,
-			'followNum'     => $tail_user->followNum,
-			'fans'       => $tail_user->fans
-		];
+		$userInfo = isset($user) ? getUserInfo($user->id) : getUserInfo(2);
 
 		$articlesInfo = [];
 
@@ -110,6 +89,10 @@ class SearchController extends Controller
 		$user = $request->user();
 		$articles = DB::table('articles')->where('title', 'like', '%' . $keyword . '%')->get();
 		var_dump($articles);
+	}
+
+	function getSearchTieResult() {
+
 	}
 
  }
