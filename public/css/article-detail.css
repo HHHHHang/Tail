@@ -1,4 +1,4 @@
-.forumDetailDiv {
+.articleDetailDiv {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -9,19 +9,19 @@
     color: #333;
     line-height: 34px;
 }
-.forumDetailDiv > a {
+.articleDetailDiv > a {
     padding: 10px 15px;
     border-radius: 5px;
     background-color: #eeeeee;
     text-decoration: none;
     margin-bottom: 10px;
 }
-.forumDetailDiv > span {
+.articleDetailDiv > span {
     font-size: 30px;
     align-self: center;
     margin: 20px 0;
 }
-.forumDetailContent {
+.articleDetailContent {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -29,28 +29,28 @@
     min-height: 100px;
 }
 
-.forumDetailContent span {
+.articleDetailContent span {
     font-size: 16px;
     display: block;
     margin: 5px 0;
 }
-.forumDetailContent div.btn-group {
+.articleDetailContent div.btn-group {
     width: 100%;
 
 }
-.forumDetailContent div.radio {
+.articleDetailContent div.radio {
     font-size: 18px;
     padding: 10px 0;
     border-bottom: #eeeeee solid 1px;
     width: 100%;
 }
-.forumDetailContent div.checkbox {
+.articleDetailContent div.checkbox {
     font-size: 18px;
     padding: 10px 0;
     border-bottom: #eeeeee solid 1px;
     width: 100%;
 }
-.forumDetailContent button {
+.articleDetailContent button {
     align-self: flex-end;
     font-size: 16px;
     width: 20%;
@@ -58,18 +58,18 @@
     background-color: #57adfd;
     color: #ffffff;
 }
-.forumDetailContent > button:hover {
+.articleDetailContent > button:hover {
     background-color: #458ac9;
     color: #ffffff;
 }
-.forumDetailDiv > div:nth-last-child(1) {
+.articleDetailDiv > div:nth-last-child(1) {
     margin-top: 25px;
     margin-bottom: 40px;
     display: flex;
     justify-content: center;
     width: 100%;
 }
-.forumDetailDiv > div:nth-last-child(1) > button {
+.articleDetailDiv > div:nth-last-child(1) > button {
     width: 70px;
     display: block;
     border-radius: 20px;
@@ -78,17 +78,17 @@
     padding: 10px;
     margin-left: 20px;
 }
-.forumDetailComment > span {
+.articleDetailComment > span {
     font-size: 16px;
 }
-.forumDetailComment > form {
+.articleDetailComment > form {
     padding-bottom: 20px;
     margin: 10px 0;
     border-bottom: #B0B4B7 solid 1px;
     display: flex;
     flex-direction: column;
 }
-.forumDetailComment > form > button {
+.articleDetailComment > form > button {
     font-size: 16px;
     width: 20%;
     padding: 6px;
@@ -96,7 +96,7 @@
     color: #ffffff;
     align-self: flex-end;
 }
-.forumDetailComment > form > button:hover {
+.articleDetailComment > form > button:hover {
     background-color: #458ac9;
     color: #ffffff;
 }

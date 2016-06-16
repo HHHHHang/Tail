@@ -69,8 +69,8 @@
         </div>
     </div>
 </div>
-<div class="forumDetailDiv">
-    <div class="forumDetailContent">
+<div class="articleDetailDiv">
+    <div class="articleDetailContent">
         {!! $params['content'] !!}
     </div>
     <div class="content_end">全文完</div>
@@ -82,7 +82,7 @@
 
 </div>
 <hr>
-<div class="well forumDetailComment article-comments">
+<div class="well articleDetailComment article-comments">
     <span>评论:</span>
     <form method="POST" role="form" action="/kinkTie/{{ $params['aid'] }}">
         <div class="form-group">
