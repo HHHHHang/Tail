@@ -4,8 +4,11 @@
     align-items: flex-start;
     font-size: 14px;
     padding: 20px 25px;
+    margin: 0 150.5px;
+    width: 960px;
+    color: #333;
+    line-height: 34px;
 }
-
 .forumDetailDiv > a {
     padding: 10px 15px;
     border-radius: 5px;
@@ -17,42 +20,6 @@
     font-size: 30px;
     align-self: center;
     margin: 20px 0;
-}
-
-.forumDetailInfo {
-    margin-top: 10px;
-    width: 100%;
-    border-top: #B0B4B7 solid 1px;
-    padding: 15px 0;
-    display: flex;
-}
-.forumDetailInfo > span{
-    font-size: 16px;
-    color: #B0B4B7;
-    margin-right: 20px;
-}
-
-.forumDetailInfo > span:nth-child(3) {
-    flex: 1;
-    text-align: left;
-}
-.forumDetailInfo > span:last-child {
-    margin-right: 0;
-    font-size: 20px;
-    position: relative;
-    top: -8px;
-}
-.forumDetailInfo > span:nth-child(4) {
-    font-size: 20px;
-    position: relative;
-    top: -8px;
-}
-.forumDetailInfo > span:nth-child(4) > span,
-.forumDetailInfo > span:last-child > span {
-    margin-right: 10px;
-    font-size: 20px;
-    position: relative;
-    top: 4px;
 }
 .forumDetailContent {
     display: flex;
@@ -83,7 +50,6 @@
     border-bottom: #eeeeee solid 1px;
     width: 100%;
 }
-
 .forumDetailContent button {
     align-self: flex-end;
     font-size: 16px;
@@ -92,22 +58,19 @@
     background-color: #57adfd;
     color: #ffffff;
 }
-
 .forumDetailContent > button:hover {
     background-color: #458ac9;
     color: #ffffff;
 }
-.forumDetailDiv > div:last-child {
+.forumDetailDiv > div:nth-last-child(1) {
     margin-top: 25px;
     margin-bottom: 40px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     width: 100%;
 }
-
-.forumDetailDiv > div:last-child > button {
+.forumDetailDiv > div:nth-last-child(1) > button {
     width: 70px;
-    height: 40px;
     display: block;
     border-radius: 20px;
     background-color: transparent;
@@ -115,11 +78,6 @@
     padding: 10px;
     margin-left: 20px;
 }
-.forumWriterInfo > span:first-child {
-    display: block;
-    font-size: 16px;
-}
-
 .forumDetailComment > span {
     font-size: 16px;
 }
@@ -138,27 +96,94 @@
     color: #ffffff;
     align-self: flex-end;
 }
-
 .forumDetailComment > form > button:hover {
     background-color: #458ac9;
     color: #ffffff;
 }
-
 .article-picture{
-    height: 600px;
+    height: 690px;
+    width: 1265px;
     background-size: 100% 100%;
-    margin-top: -32px;
+    margin-top: -33px;
 }
-
 .article-picture h1{
-    position: relative;
+    font-family: 'Helvetica','Tahoma','Arial','PingFang SC','Microsoft JhengHei','SimSun','sans-serif';
+    font-size: 68px;
+    font-weight: 300;
+    position: absolute;
     color: white;
-    font-size: 50px;
     text-align: center;
-    padding-top: 14%;
+    padding-top: 10%;
     padding-left: 20%;
     padding-right: 20%;
     line-height: 2;
 }
+.article-writer{
+    font-family: 'Helvetica','Tahoma','Arial','PingFang SC','Microsoft JhengHei','SimSun','sans-serif';
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 26px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: 152px;
+    width: 960px;
+    height: 30px;
+    color: #fff;
+    margin-top: 630px;
+}
+.article-writer img{
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+}
+.article-writer span{
+    padding-left: 10px;
+    font-size: 20px;
+    position: relative;
+    vertical-align: super;
+}
+.article-view{
+    float: right;
+    height: 30px;
+    margin-left: -15px;
+    padding: 12px 10px 0 30px;
+    color: #969a9e;
+    opacity: 0.8;
 
-
+}
+.article-comments{
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    padding: 20px 25px;
+    margin: 0 332.5px;
+    width: 600px;
+    color: #333;
+    line-height: 34px;
+}
+.content_end {
+    font-size: 20px;
+    width: 110px;
+    margin: 20px auto;
+    padding: 10px 20px;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    background: #2d2b2b;
+}
+.media img{
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+}
+.article-background-color{
+    background: rgba(0,0,0,0.4);
+    height: 100%;
+}
+#goToTop {
+    position: fixed;
+    bottom: 10%;
+    right: 20px;
+    font-size: 30px;
+}
