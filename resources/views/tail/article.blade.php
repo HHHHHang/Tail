@@ -17,6 +17,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{{URL::asset('js/bootstrap.min.js')}}"></script>
     <script src="{{URL::asset('js/search.js')}}"></script>
+    <script src="{{URL::asset('js/goToTop.js')}}"></script>
 
 
     <!-- Bootstrap Core CSS -->
@@ -43,66 +44,131 @@
 @include('tail.layout.header', ['active' => 'bbs'])
 
 <!-- Page Content -->
-<div class="container">
+{{--<div class="container">--}}
 
-    <div class="row">
+<div class="article-picture">
 
-        <!-- Blog Entries Column -->
-        <div class="col-md-8">
-
-            <div class="well forumDetailDiv">
-                <a href="/forum"><span class="glyphicon glyphicon-chevron-left"></span>精选文章</a>
-                <span>{{ $params['title'] }}</span>
-                <div class="forumDetailInfo">
-                    <span>阅读人数: 10</span>
-                    <span>分类: {{ $params['type'] }}</span>
-                    <span>发布时间: {{ date("Y-m-d",strtotime($params['createTime'])) }}</span>
-                    <span><span class="glyphicon glyphicon-thumbs-up"></span>{{ $params['upNum'] }}</span>
-                    <span><span class="glyphicon glyphicon-comment"></span>{{ $params['commentNum'] }}</span>
+    <div class="article-background" style="background: url({{ $params['image'] }}) no-repeat; height: 100%;width: 100%;
+            background-size: 100% 100%;">
+        <div class="article-background-color">
+            <h1>{{ $params['title'] }}</h1>
+            <div class="article-writer">
+                <a href="#">
+                    <img src="{{ $params['avatar'] }}"/>
+                </a>
+                <span>{{ $params['postName'] }}</span>
+                <span style="font-size: 18px;font-weight: 700;padding:5px;font-family:Georgia">·</span>
+                <span>{{ date(" Y 年 m 月 d 日", strtotime($params['createTime'])) }}</span>
+                <div class="article-view">
+                    <span class="glyphicon glyphicon-eye-open">123123</span>
                 </div>
-                <div class="forumDetailContent">
-                    {!! $params['content'] !!}
+                <div class="article-view">
+                    <span class="glyphicon glyphicon-comment">123123</span>
                 </div>
-                <div>
-                    <button>赞</button>
-                    <button>收藏</button>
                 </div>
-
-            </div>
-
-            <div class="well forumDetailComment">
-                <span>评论:</span>
-                <form method="POST" role="form" action="/kinkTie/{{ $params['aid'] }}">
-                    <div class="form-group">
-                        <textarea name="content" class="form-control" rows="3"></textarea>
-                    </div>
-                    <input type="hidden" name="id" value="{{ $params['aid'] }}" />
-                    <button type="submit" class="btn">评论</button>
-                </form>
-
-                @foreach ($comments as $comment)
-                    <div class="media">
-                        <a class="pull-left" href="#">
-                            <img class="media-object" width="64" height="64" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png" alt="">
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading">{{ $comment->username }}
-                                <small>{{ date('Y-m-d H:i:s', $comment->createtime)   }}</small>
-                            </h4>
-                            {{ $comment->content  }}
-                        </div>
-                    </div>
-                @endforeach
             </div>
         </div>
-
-
-        @include('tail.layout.poster')
-
+    </div>
+</div>
+<div class="forumDetailDiv">
+    <div class="forumDetailContent">
+        {!! $params['content'] !!}
+    </div>
+    <div class="content_end">全文完</div>
+    <div>
+        <div id="goToTop"><a href="#"><span class="glyphicon glyphicon-chevron-up"></span></a></div>
+        <button>赞</button>
+        <button>收藏</button>
     </div>
 
 </div>
-<!-- /.container -->
+<hr>
+<div class="well forumDetailComment article-comments">
+    <span>评论:</span>
+    <form method="POST" role="form" action="/kinkTie/{{ $params['aid'] }}">
+        <div class="form-group">
+            <textarea name="content" class="form-control" rows="3"></textarea>
+        </div>
+        <input type="hidden" name="id" value="{{ $params['aid'] }}" />
+        <button type="submit" class="btn">评论</button>
+    </form>
+    <span class="glyphicon glyphicon-comment" style="color: #969a9e;"><span>&nbsp;全部评论<span style="font-size: 13px;color: #559FEB;">  {{ sizeof($comments) }}条</span></span></span>
+    <hr>
+    @foreach ($comments as $comment)
+        <div class="media">
+            <a class="pull-left" href="#">
+                <img class="media-object" width="64" height="64" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png" alt="">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">{{ $comment->username }}
+                    <small>{{ date('Y-m-d H:i:s', $comment->createtime)   }}</small>
+                </h4>
+                {{ $comment->content  }}
+            </div>
+        </div>
+        <hr>
+    @endforeach
+    <span style="text-align: center; padding: 15px 0">评论已全部加载完毕</span>
+</div>
+
+    {{--<div class="row">--}}
+
+        {{--<!-- Blog Entries Column -->--}}
+        {{--<div class="col-md-8">--}}
+
+            {{--<div class="well forumDetailDiv">--}}
+                {{--<a href="/forum"><span class="glyphicon glyphicon-chevron-left"></span>精选文章</a>--}}
+                {{--<span>{{ $params['title'] }}</span>--}}
+                {{--<div class="forumDetailInfo">--}}
+                    {{--<span>阅读人数: 10</span>--}}
+                    {{--<span>分类: {{ $params['type'] }}</span>--}}
+                    {{--<span>发布时间: {{ date("Y-m-d",strtotime($params['createTime'])) }}</span>--}}
+                    {{--<span><span class="glyphicon glyphicon-thumbs-up"></span>{{ $params['upNum'] }}</span>--}}
+                    {{--<span><span class="glyphicon glyphicon-comment"></span>{{ $params['commentNum'] }}</span>--}}
+                {{--</div>--}}
+                {{--<div class="forumDetailContent">--}}
+                    {{--{!! $params['content'] !!}--}}
+                {{--</div>--}}
+                {{--<div>--}}
+                    {{--<button>赞</button>--}}
+                    {{--<button>收藏</button>--}}
+                {{--</div>--}}
+
+            {{--</div>--}}
+
+            {{--<div class="well forumDetailComment">--}}
+                {{--<span>评论:</span>--}}
+                {{--<form method="POST" role="form" action="/kinkTie/{{ $params['aid'] }}">--}}
+                    {{--<div class="form-group">--}}
+                        {{--<textarea name="content" class="form-control" rows="3"></textarea>--}}
+                    {{--</div>--}}
+                    {{--<input type="hidden" name="id" value="{{ $params['aid'] }}" />--}}
+                    {{--<button type="submit" class="btn">评论</button>--}}
+                {{--</form>--}}
+
+                {{--@foreach ($comments as $comment)--}}
+                    {{--<div class="media">--}}
+                        {{--<a class="pull-left" href="#">--}}
+                            {{--<img class="media-object" width="64" height="64" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png" alt="">--}}
+                        {{--</a>--}}
+                        {{--<div class="media-body">--}}
+                            {{--<h4 class="media-heading">{{ $comment->username }}--}}
+                                {{--<small>{{ date('Y-m-d H:i:s', $comment->createtime)   }}</small>--}}
+                            {{--</h4>--}}
+                            {{--{{ $comment->content  }}--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--@endforeach--}}
+            {{--</div>--}}
+        {{--</div>--}}
+
+
+        {{--@include('tail.layout.poster')--}}
+
+    {{--</div>--}}
+
+{{--</div>--}}
+{{--<!-- /.container -->--}}
 
 @include('tail.layout.footer')
 
