@@ -57,7 +57,10 @@ Route::get('/myinfo', 'MyInfoController@index');
 //mysql接口测试
 Route::get('/mongo', 'MongoController@testMongo');
 
-// api接口
+//话题广场
+Route::get('/topic', 'TopicsController@index');
+
+// test接口
 Route::get('/api/test/{id}', function ($id) {
-	return App\Banner_img::findOrFail($id);
+	var_dump(getUserInfo($id));
 });

@@ -15,3 +15,6 @@ function getUserInfo($uid) {
 	return $userInfo;
 }
 
+function getACommentById($id) {
+	$comments = DB::table('comments')->where('type', 'article')->where('akid', $id)->get();
+}
