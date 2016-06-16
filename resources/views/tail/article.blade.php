@@ -40,7 +40,7 @@
 
 <body>
 
-@include('tail.layout.header')
+@include('tail.layout.header', ['active' => 'bbs'])
 
 <!-- Page Content -->
 <div class="container">

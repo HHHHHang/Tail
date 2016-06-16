@@ -6,7 +6,7 @@
 </head>
 <body class="upperBody">
 
-    @include('tail.layout.header')
+    @include('tail.layout.header', ['active' => 'index'])
 
     <!-- Slider -->
     <div class="htmleaf-container">
