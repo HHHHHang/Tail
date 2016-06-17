@@ -87,188 +87,24 @@
 		<p class="subline">share <span class="fancy">&amp;</span> more</p>
 	</div>
 	<div class="container topic-container" id="container">
-			<div class="item block" data-bgimage="{{ asset('topics/images/thumbs/1.jpg') }}">
+			@foreach($params['topics'] as $topic)
+			<div class="item block" data-bgimage="{{ $topic->image }}">
 				<div class="thumbs-wrapper">
 					<div class="thumbs">
-						<img src="{{ asset('topics/images/thumbs/1.jpg') }}"/>
-						<img src="{{ asset('topics/images/thumbs/2.jpg') }}"/>
+						<img src="{{ $topic->image }}"/>
 					</div>
 				</div>
-				<a href="/topic/detail"><h2 class="title">话题名称</h2></a>
+				<a href="/topic/detail"><h2 class="title">{{ $topic->name }}</h2></a>
 				<p class="subline">描述 <span class="fancy">&amp;</span> 具体信息</p>
 				<div class="intro">
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. <a href="#" class="more_link">查看话题描述</a></p>
+					<p> {{ $topic->description }} <a href="#" class="more_link">查看话题描述</a></p>
 				</div>
 				<div class="project-descr">
-					<p>O my friend - but it is too much for my strength - I sink under the weight of the splendour of these visions!</p>
-					<p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.</p>
+					<p> {{ $topic->content }} </p>
 				</div>
 			</div>
-			<div class="item block" data-bgimage="{{ asset('topics/images/thumbs/1.jpg') }}">
-				<div class="thumbs-wrapper">
-					<div class="thumbs">
-						<img src="{{ asset('topics/images/thumbs/1.jpg') }}"/>
-						<img src="{{ asset('topics/images/thumbs/2.jpg') }}"/>
-					</div>
-				</div>
-				<a href="/topic/detail"><h2 class="title">话题名称</h2></a>
-				<p class="subline">描述 <span class="fancy">&amp;</span> 具体信息</p>
-				<div class="intro">
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. <a href="#" class="more_link">查看话题描述</a></p>
-				</div>
-				<div class="project-descr">
-					<p>O my friend - but it is too much for my strength - I sink under the weight of the splendour of these visions!</p>
-					<p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.</p>
-				</div>
-			</div>
-			<div class="item block" data-bgimage="{{ asset('topics/images/thumbs/1.jpg') }}">
-				<div class="thumbs-wrapper">
-					<div class="thumbs">
-						<img src="{{ asset('topics/images/thumbs/1.jpg') }}"/>
-						<img src="{{ asset('topics/images/thumbs/2.jpg') }}"/>
-					</div>
-				</div>
-				<a href="/topic/detail"><h2 class="title">话题名称</h2></a>
-				<p class="subline">描述 <span class="fancy">&amp;</span> 具体信息</p>
-				<div class="intro">
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. <a href="#" class="more_link">查看话题描述</a></p>
-				</div>
-				<div class="project-descr">
-					<p>O my friend - but it is too much for my strength - I sink under the weight of the splendour of these visions!</p>
-					<p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.</p>
-				</div>
-			</div>
-			<div class="item block" data-bgimage="{{ asset('topics/images/thumbs/1.jpg') }}">
-				<div class="thumbs-wrapper">
-					<div class="thumbs">
-						<img src="{{ asset('topics/images/thumbs/1.jpg') }}"/>
-						<img src="{{ asset('topics/images/thumbs/2.jpg') }}"/>
-					</div>
-				</div>
-				<a href="/topic/detail"><h2 class="title">话题名称</h2></a>
-				<p class="subline">描述 <span class="fancy">&amp;</span> 具体信息</p>
-				<div class="intro">
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. <a href="#" class="more_link">查看话题描述</a></p>
-				</div>
-				<div class="project-descr">
-					<p>O my friend - but it is too much for my strength - I sink under the weight of the splendour of these visions!</p>
-					<p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.</p>
-				</div>
-			</div>
-			<div class="item block" data-bgimage="{{ asset('topics/images/thumbs/1.jpg') }}">
-				<div class="thumbs-wrapper">
-					<div class="thumbs">
-						<img src="{{ asset('topics/images/thumbs/1.jpg') }}"/>
-						<img src="{{ asset('topics/images/thumbs/2.jpg') }}"/>
-					</div>
-				</div>
-				<a href="/topic/detail"><h2 class="title">话题名称</h2></a>
-				<p class="subline">描述 <span class="fancy">&amp;</span> 具体信息</p>
-				<div class="intro">
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. <a href="#" class="more_link">查看话题描述</a></p>
-				</div>
-				<div class="project-descr">
-					<p>O my friend - but it is too much for my strength - I sink under the weight of the splendour of these visions!</p>
-					<p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.</p>
-				</div>
-			</div>
-			<div class="item block" data-bgimage="{{ asset('topics/images/thumbs/1.jpg') }}">
-				<div class="thumbs-wrapper">
-					<div class="thumbs">
-						<img src="{{ asset('topics/images/thumbs/1.jpg') }}"/>
-						<img src="{{ asset('topics/images/thumbs/2.jpg') }}"/>
-					</div>
-				</div>
-				<a href="/topic/detail"><h2 class="title">话题名称</h2></a>
-				<p class="subline">描述 <span class="fancy">&amp;</span> 具体信息</p>
-				<div class="intro">
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. <a href="#" class="more_link">查看话题描述</a></p>
-				</div>
-				<div class="project-descr">
-					<p>O my friend - but it is too much for my strength - I sink under the weight of the splendour of these visions!</p>
-					<p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.</p>
-				</div>
-			</div>
-			<div class="item block" data-bgimage="{{ asset('topics/images/thumbs/1.jpg') }}">
-				<div class="thumbs-wrapper">
-					<div class="thumbs">
-						<img src="{{ asset('topics/images/thumbs/1.jpg') }}"/>
-						<img src="{{ asset('topics/images/thumbs/2.jpg') }}"/>
-					</div>
-				</div>
-				<a href="/topic/detail"><h2 class="title">话题名称</h2></a>
-				<p class="subline">描述 <span class="fancy">&amp;</span> 具体信息</p>
-				<div class="intro">
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. <a href="#" class="more_link">查看话题描述</a></p>
-				</div>
-				<div class="project-descr">
-					<p>O my friend - but it is too much for my strength - I sink under the weight of the splendour of these visions!</p>
-					<p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.</p>
-				</div>
-			</div>
-			<div class="item block" data-bgimage="{{ asset('topics/images/thumbs/1.jpg') }}">
-				<div class="thumbs-wrapper">
-					<div class="thumbs">
-						<img src="{{ asset('topics/images/thumbs/1.jpg') }}"/>
-						<img src="{{ asset('topics/images/thumbs/2.jpg') }}"/>
-					</div>
-				</div>
-				<a href="/topic/detail"><h2 class="title">话题名称</h2></a>
-				<p class="subline">描述 <span class="fancy">&amp;</span> 具体信息</p>
-				<div class="intro">
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. <a href="#" class="more_link">查看话题描述</a></p>
-				</div>
-				<div class="project-descr">
-					<p>O my friend - but it is too much for my strength - I sink under the weight of the splendour of these visions!</p>
-					<p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.</p>
-				</div>
-			</div>
-			<div class="item block" data-bgimage="{{ asset('topics/images/thumbs/1.jpg') }}">
-				<div class="thumbs-wrapper">
-					<div class="thumbs">
-						<img src="{{ asset('topics/images/thumbs/1.jpg') }}"/>
-						<img src="{{ asset('topics/images/thumbs/2.jpg') }}"/>
-					</div>
-				</div>
-				<a href="/topic/detail"><h2 class="title">话题名称</h2></a>
-				<p class="subline">描述 <span class="fancy">&amp;</span> 具体信息</p>
-				<div class="intro">
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. <a href="#" class="more_link">查看话题描述</a></p>
-				</div>
-				<div class="project-descr">
-					<p>O my friend - but it is too much for my strength - I sink under the weight of the splendour of these visions!</p>
-					<p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.</p>
-				</div>
-			</div>
-			<div class="item block" data-bgimage="{{ asset('topics/images/thumbs/1.jpg') }}">
-				<div class="thumbs-wrapper">
-					<div class="thumbs">
-						<img src="{{ asset('topics/images/thumbs/1.jpg') }}"/>
-						<img src="{{ asset('topics/images/thumbs/2.jpg') }}"/>
-					</div>
-				</div>
-				<a href="/topic/detail"><h2 class="title">话题名称</h2></a>
-				<p class="subline">描述 <span class="fancy">&amp;</span> 具体信息</p>
-				<div class="intro">
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. <a href="#" class="more_link">查看话题描述</a></p>
-				</div>
-				<div class="project-descr">
-					<p>O my friend - but it is too much for my strength - I sink under the weight of the splendour of these visions!</p>
-					<p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-					<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.</p>
-				</div>
-			</div>
+			@endforeach
 			<div class="clr"></div>
-
 
 	</div>
 

@@ -23,8 +23,11 @@ class TopicsController extends Controller{
 	{
 		$user = $request->user();
 
+		$topics = DB::table('topics')->get();
+
 		$params = [
 			'user' => $user,
+			'topics' => $topics
 		];
 
 		return view('tail.topics')->with('params', $params);
