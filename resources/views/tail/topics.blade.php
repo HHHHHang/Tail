@@ -105,7 +105,6 @@
 			</div>
 			@endforeach
 			<div class="clr"></div>
-
 	</div>
 
 	<!-- container -->

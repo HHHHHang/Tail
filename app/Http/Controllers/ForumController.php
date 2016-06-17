@@ -20,15 +20,7 @@ class ForumController extends Controller{
     {
         $user = $request->user();
 		$tail_user = isset($user) ? DB::table('tail_users')->where('uid', $user->id)->first() : DB::table('tail_users')->where('uid', 2)->first();
-		$userInfo = [
-			'avatar' => $tail_user->avatar,
-			'name'   => $tail_user->name,
-			'level'  => '初级',
-			'commentNum' => $tail_user->commentNum,
-			'postNum'    => $tail_user->postNum,
-			'followNum'     => $tail_user->followNum,
-			'fans'       => $tail_user->fans,
-		];
+		$userInfo  = getUserInfo($tail_user->uid);
 		$articles = $type ? DB::table('articles')->where('type', $type)->get() :
 			DB::table('articles')->orderBy('createTime', 'desc')->get();
 

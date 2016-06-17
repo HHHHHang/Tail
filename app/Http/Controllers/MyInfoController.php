@@ -21,7 +21,14 @@ class MyInfoController extends Controller{
 //		$username = $request->get('name');
 //		var_dump($username);
 		$user = $request->user();
-		if ($user) return view('tail.myinfo')->with('user', $user);
+
+		$userInfo = getUserInfo($user['id']);
+
+		$params = [
+			'user' => $userInfo
+		];
+
+		if ($user) return view('tail.myinfo')->with('user', $user)->with('params', $params);
 		return view('tail.login');
 	}
 
