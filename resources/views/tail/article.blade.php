@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Blog Home - Start Bootstrap Template</title>
 
     <!-- jQuery -->
@@ -29,6 +29,127 @@
     <link href="{{URL::asset('css/navigation.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('css/sidebar.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('css/article-detail.css')}}" rel="stylesheet" type="text/css" />
+
+    <script>
+        $( document ).ready(function() {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            console.log({{ $params['hasUp'] }})
+            if ({{ $params['hasUp'] }} == 0) {
+                canUp()
+            } else if ({{ $params['hasUp'] }} == 1) {
+                cantUp()
+            }
+
+            console.log({{ $params['hasCollect'] }})
+            if ({{ $params['hasCollect'] }} == 0) {
+                canCollect()
+            } else if ({{ $params['hasCollect'] }} == 1) {
+                cantCollect()
+            }
+
+
+            if ({{ $params['userInfo']['id'] }} == 2) {
+                $('#up').unbind()
+                $('#collect').unbind()
+                $('#up').click(function(){
+                    alert('请先登录!')
+                })
+                $('#collect').click(function(){
+                    alert('请先登录!')
+                })
+            }
+
+            function canUp() {
+                $('#up').click(function(){
+                    $.ajax({
+                        url: "/article/up",
+                        type: "post",
+                        data: {
+                            type: 'article',
+                            id : {{ $params['aid'] }},
+                            uid: {{ $params['userInfo']['id'] }}
+                        },
+                        success: function(data) {
+                            $('#up').html('已赞')
+                            $('#up').unbind()
+                            cantUp()
+                            console.log(data)
+                        }
+                    })
+                })
+            }
+
+            function cantUp() {
+                $('#up').html('已赞')
+                console.log($('#up'))
+                $('#up').click(function(){
+                    $.ajax({
+                        url: "/article/cancelUp",
+                        type: "post",
+                        data: {
+                            type: 'article',
+                            id : {{ $params['aid'] }},
+                            uid: {{ $params['userInfo']['id'] }}
+                        },
+                        success: function(data) {
+                            $('#up').html('赞')
+                            $('#up').unbind()
+                            canUp()
+                            console.log(data)
+                        }
+                    })
+                })
+            }
+
+            function canCollect() {
+                $('#collect').click(function(){
+                    $.ajax({
+                        url: "/article/collect",
+                        type: "post",
+                        data: {
+                            type: 'article',
+                            id : {{ $params['aid'] }},
+                            uid: {{ $params['userInfo']['id'] }}
+                        },
+                        success: function(data) {
+                            $('#collect').html('已收藏')
+                            $('#up').unbind()
+                            cantCollect()
+                            console.log(data)
+                        }
+                    })
+                })
+            }
+
+            function cantCollect() {
+                $('#collect').html('已收藏')
+                $('#collect').click(function(){
+                    $.ajax({
+                        url: "/article/cancelCollect",
+                        type: "post",
+                        data: {
+                            type: 'article',
+                            id : {{ $params['aid'] }},
+                            uid: {{ $params['userInfo']['id'] }}
+                        },
+                        success: function(data) {
+                            $('#collect').html('收藏')
+                            $('#collect').unbind()
+                            canCollect()
+                            console.log(data)
+                        }
+                    })
+                })
+            }
+
+        })
+    </script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -59,11 +180,13 @@
                 <span style="font-size: 18px;font-weight: 700;padding:5px;font-family:Georgia">·</span>
                 <span>{{ date(" Y 年 m 月 d 日", strtotime($params['createTime'])) }}</span>
                 <div class="article-view">
-                    <span class="glyphicon glyphicon-eye-open">123123</span>
+                    <span class="glyphicon glyphicon-eye-open">&nbsp;{{ $params['viewNum'] }}</span>
                 </div>
                 <div class="article-view">
-                    <span class="glyphicon glyphicon-comment">123123</span>
+                    <span class="glyphicon glyphicon-comment">&nbsp;{{ $params['commentNum'] }}</span>
                 </div>
+                <div class="article-view">
+                    <span class="glyphicon glyphicon-thumbs-up">&nbsp;{{ $params['upNum'] }}</span>
                 </div>
             </div>
         </div>
@@ -76,15 +199,15 @@
     <div class="content_end">全文完</div>
     <div>
         <div id="goToTop"><a href="#"><span class="glyphicon glyphicon-chevron-up"></span></a></div>
-        <button>赞</button>
-        <button>收藏</button>
+        <button id="up">赞</button>
+        <button id="collect">收藏</button>
     </div>
 
 </div>
 <hr>
 <div class="well articleDetailComment article-comments">
     <span>评论:</span>
-    <form method="POST" role="form" action="/kinkTie/{{ $params['aid'] }}">
+        <form method="POST" role="form" action="/kinkTie/{{ $params['aid'] }}">
         <div class="form-group">
             <textarea name="content" class="form-control" rows="3"></textarea>
         </div>

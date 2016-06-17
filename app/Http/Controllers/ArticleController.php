@@ -47,11 +47,18 @@ class ArticleController extends Controller{
 	public function article(Request $request, $id) {
 
 		$user = $request->user();
+		$userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
 		$comments = DB::table('comments')->where('type', 'article')->where('akid', $id)->get();
+		DB::table('articles')->where('id', $id)->increment('viewNum');
 		$article = DB::table('articles')->where('id', $id)->first();
 		$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
+		//判断是否赞过
+		$hasUp = count(DB::table('ups')->where('type', 'article')->where('upId', $id)->where('uid', $userInfo['id'])->first());
+		//判断是否收藏
+		$hasCollect = count(DB::table('collects')->where('type', 'article')->where('collectId', $id)->where('uid', $userInfo['id'])->first());
 		$params = [
 			'user' => $user,
+			'userInfo' => $userInfo,
 			'aid' => $id,
 			'title' => $article->title,
 			'content' => $article->all_content,
@@ -62,6 +69,9 @@ class ArticleController extends Controller{
 			'avatar' => $postUser->avatar,
 			'postName' => $postUser->name,
 			'image' => $article->image,
+			'hasUp' => $hasUp,
+			'hasCollect' => $hasCollect,
+			'viewNum'  => $article->viewNum
 		];
 		if ($user) return view('tail.article')->with('params', $params)->with('comments', $comments)->with('user', $user);
 		return view('tail.article')->with('params', $params)->with('comments', $comments);
@@ -99,6 +109,9 @@ class ArticleController extends Controller{
 			);
 		} else {
 			DB::table('articles')->where('id', $id)->increment('upNum');
+			DB::table('ups')->insertGetId(
+				['uid' => $uid, 'upId' => $id, 'type' => $type]
+			);
 		}
 		return "!";
 	}
@@ -112,6 +125,8 @@ class ArticleController extends Controller{
 			DB::table('ups')->where('type', 'tie')->where('upId', $id)->where('uid', $uid)->delete();
 		} else {
 			DB::table('articles')->where('id', $id)->decrement('upNum');
+			DB::table('ups')->where('type', 'article')->where('upId', $id)->where('uid', $uid)->delete();
+			
 		}
 		return "!";
 	}
@@ -127,6 +142,9 @@ class ArticleController extends Controller{
 			);
 		} else {
 			DB::table('articles')->where('id', $id)->increment('collectNum');
+			DB::table('collects')->insertGetId(
+				['uid' => $uid, 'collectId' => $id, 'type' => $type]
+			);
 		}
 		return "!";
 	}
@@ -136,9 +154,10 @@ class ArticleController extends Controller{
 		$type = $request->get('type');
 		$uid  = $request->get('uid');
 		if ($type == 'tie') {
-			DB::table('kinkTies')->where('kid', $id)->decrement('collectNum');
 			DB::table('collects')->where('type', 'tie')->where('collectId', $id)->where('uid', $uid)->delete();
+			DB::table('kinkTies')->where('kid', $id)->decrement('collectNum');
 		} else {
+			DB::table('collects')->where('type', 'article')->where('collectId', $id)->where('uid', $uid)->delete();
 			DB::table('articles')->where('id', $id)->decrement('collectNum');
 		}
 		return "!";

@@ -61,6 +61,7 @@
 						},
 						success: function(data) {
 							$('#up').html('已赞')
+							$('#up').unbind()
 							cantUp()
 							console.log(data)
 						}
@@ -102,6 +103,7 @@
 						},
 						success: function(data) {
 							$('#collect').html('已收藏')
+							$('#up').unbind()
 							cantCollect()
 							console.log(data)
 						}

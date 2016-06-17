@@ -26,7 +26,7 @@ class KinkTieController extends Controller{
 		$hasUp = count(DB::table('ups')->where('type', 'tie')->where('upId', $kid)->where('uid', $userInfo['id'])->first());
 		//判断是否收藏
 		$hasCollect = count(DB::table('collects')->where('type', 'tie')->where('collectId', $kid)->where('uid', $userInfo['id'])->first());
-			$params = [
+		$params = [
 			'user' => $userInfo,
 			'aid' => $kid,
 			'title' => $article->title,
