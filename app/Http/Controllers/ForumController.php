@@ -31,6 +31,7 @@ class ForumController extends Controller{
 		];
 		$articles = $type ? DB::table('articles')->where('type', $type)->get() :
 			DB::table('articles')->orderBy('createTime', 'desc')->get();
+
 		$articlesInfo = [];
 		foreach ($articles as $article) {
 			$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
@@ -47,6 +48,7 @@ class ForumController extends Controller{
 		$params = [
 			'user' => $userInfo,
 			'articlesInfo' => $articlesInfo,
+			'articles' => $articles,
 			'isTie'    => 0
 		];
 
