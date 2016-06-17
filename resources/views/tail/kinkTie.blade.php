@@ -14,6 +14,129 @@
 
     <link href="{{ asset('css/forum-detail.css') }}" rel="stylesheet" type="text/css" >
 
+    <script>
+    	$( document ).ready(function() {
+
+    		$.ajaxSetup({
+			  headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			  }
+			});
+
+			console.log({{ $params['hasUp'] }})
+			if ({{ $params['hasUp'] }} == 0) {
+				canUp()
+			} else if ({{ $params['hasUp'] }} == 1) {
+				cantUp()
+			}
+
+			console.log({{ $params['hasCollect'] }})
+			if ({{ $params['hasCollect'] }} == 0) {
+				canCollect()
+			} else if ({{ $params['hasCollect'] }} == 1) {
+				cantCollect()
+			}
+
+
+			if ({{ $params['user']['id'] }} == 2) {
+				$('#up').unbind()
+				$('#collect').unbind()
+				$('#up').click(function(){
+					alert('请先登录!')
+				})
+				$('#collect').click(function(){
+					alert('请先登录!')
+				})
+			}
+
+			function canUp() {
+				$('#up').click(function(){
+					$.ajax({
+						url: "/article/up",
+						type: "post",
+						data: {
+							type: 'tie',
+							id : {{ $params['aid'] }},
+							uid: {{ $params['user']['id'] }}
+						},
+						success: function(data) {
+							$('#up').html('已赞')
+							cantUp()
+							console.log(data)
+						}
+					})
+				})
+    		}
+
+    		function cantUp() {
+    			$('#up').html('已赞')
+    			console.log($('#up'))
+				$('#up').click(function(){
+					$.ajax({
+						url: "/article/cancelUp",
+						type: "post",
+						data: {
+							type: 'tie',
+							id : {{ $params['aid'] }},
+							uid: {{ $params['user']['id'] }}
+						},
+						success: function(data) {
+							$('#up').html('赞')
+							$('#up').unbind()
+							canUp()
+							console.log(data)
+						}
+					})
+				})
+    		}
+
+			function canCollect() {
+				$('#collect').click(function(){
+					$.ajax({
+						url: "/article/collect",
+						type: "post",
+						data: {
+							type: 'tie',
+							id : {{ $params['aid'] }},
+							uid: {{ $params['user']['id'] }}
+						},
+						success: function(data) {
+							$('#collect').html('已收藏')
+							cantCollect()
+							console.log(data)
+						}
+					})
+				})
+    		}
+
+    		function cantCollect() {
+    			$('#collect').html('已收藏')
+				$('#collect').click(function(){
+					$.ajax({
+						url: "/article/cancelCollect",
+						type: "post",
+						data: {
+							type: 'tie',
+							id : {{ $params['aid'] }},
+							uid: {{ $params['user']['id'] }}
+						},
+						success: function(data) {
+							$('#collect').html('收藏')
+							$('#collect').unbind()
+							canCollect()
+							console.log(data)
+						}
+					})
+				})
+    		}
+
+
+    		
+
+
+		})
+    </script>
+
     <!-- Custom CSS -->
     <link href="{{URL::asset('css/navigation.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('css/sidebar.css')}}" rel="stylesheet" type="text/css" />
@@ -45,18 +168,18 @@
                 <a href="/forum/tie"><span class="glyphicon glyphicon-chevron-left"></span>纠结帖子</a>
                 <span>{{ $params['title'] }}</span>
                 <div class="forumDetailInfo">
-                    <span>阅读人数: 10</span>
+                    <span>阅读人数: {{ $params['viewNum'] }}</span>
                     <span>分类: {{ $params['type'] }}</span>
                     <span>发布时间: 昨天</span>
-                    <span><span class="glyphicon glyphicon-thumbs-up"></span>{{ $params['upNum'] }}</span>
+                    <span><span id="upNum" class="glyphicon glyphicon-thumbs-up"></span>{{ $params['upNum'] }}</span>
                     <span><span class="glyphicon glyphicon-comment"></span>{{ $params['commentNum'] }}</span>
                 </div>
                 <div class="forumDetailContent">
                     {!! $params['content'] !!}
                 </div>
                 <div>
-                    <button>赞</button>
-                    <button>收藏</button>
+                    <button id="up">赞</button>
+                    <button id="collect">收藏</button>
                 </div>
 
             </div>

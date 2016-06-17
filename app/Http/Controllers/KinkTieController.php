@@ -17,11 +17,17 @@ class KinkTieController extends Controller{
 	public function index(Request $request, $kid) {
 
 		$user = $request->user();
+		$userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
 		$comments = DB::table('comments')->where('akid', $kid)->where('type', 'kinkTie')->get();
+		DB::table('kinkTies')->where('kid', $kid)->increment('viewNum');
 		$article = DB::table('kinkTies')->where('kid', $kid)->first();
 		$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
-		$params = [
-			'user' => $user,
+		//判断是否赞过
+		$hasUp = count(DB::table('ups')->where('type', 'tie')->where('upId', $kid)->where('uid', $userInfo['id'])->first());
+		//判断是否收藏
+		$hasCollect = count(DB::table('collects')->where('type', 'tie')->where('collectId', $kid)->where('uid', $userInfo['id'])->first());
+			$params = [
+			'user' => $userInfo,
 			'aid' => $kid,
 			'title' => $article->title,
 			'content' => $article->content,
@@ -30,6 +36,9 @@ class KinkTieController extends Controller{
 			'upNum'      => $article->upNum,
 			'avatar' => $postUser->avatar,
 			'postName' => $postUser->name,
+			'hasUp' => $hasUp,
+			'hasCollect' => $hasCollect,
+			'viewNum'  => $article->viewNum
 		];
 		return view('tail.kinkTie')->with('params', $params)->with('comments', $comments);
 	}

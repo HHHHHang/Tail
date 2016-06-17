@@ -27,6 +27,15 @@ Route::get('/logout', 'IndexController@logout');
 // 登录界面
 Route::get('/login', 'LoginController@index');
 
+//给某文章收藏接口
+
+Route::post('/article/collect', 'ArticleController@collect');
+Route::post('/article/cancelCollect', 'ArticleController@cancelCollect');
+
+//给某文章点赞接口
+Route::post('/article/up', 'ArticleController@up');
+Route::post('/article/cancelUp', 'ArticleController@cancelUp');
+
 //文章界面模板
 Route::get('/article/{aid}', 'ArticleController@article');
 Route::post('/article/{aid}', 'ArticleController@articlePost');
