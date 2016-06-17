@@ -7,8 +7,8 @@ function getUserInfo($uid) {
 		'avatar' => $tail_user->avatar,
 		'name'   => $tail_user->name,
 		'level'  => '初级',
-		'commentNum' => $tail_user->commentNum,
-		'postNum'    => $tail_user->postNum,
+		'commentNum' => count(getCommentByUid($uid)),
+		'postNum'    => count(getArticleByUid($uid)) + count(getTieByUid($uid)),
 		'followNum'     => $tail_user->followNum,
 		'fans'       => $tail_user->fans
 	];

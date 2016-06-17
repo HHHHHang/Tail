@@ -6,11 +6,21 @@
 }
 
 body{
-	background:#f7f7f7 url(../images/pattern.png) repeat top left;
+	padding-top: 50px;
+	/*background:#f7f7f7 url(../images/pattern.png) repeat top left;*/
 	color:#000;
-	font-family:'Georgia', 'Trebuchet MS', serif;
+	/*font-family:'Georgia', 'Trebuchet MS', serif;*/
 	font-size:12px;
 }
+
+.topic-container{
+
+	margin-left: 330px;
+	margin-right: 0px;
+	padding: 2px 0px 0px 0px;
+	width: 960px;
+}
+
 .clr{
 	clear:both;
 }
@@ -32,17 +42,21 @@ a.more_link:hover{
 .clr{
 	clear:both;
 }
-.container {
-	position:relative;
-	margin:10px;
-}
+/*.container {*/
+	/*position:relative;*/
+	/*margin:10px;*/
+/*}*/
 h1, h2{
 	font-family:'Oswald', Arial, sans-serif;
 }
 h1{
-	font-size:80px;
+	font-size:40px;
+	font-weight: bolder;
 	text-transform:uppercase;
 	text-shadow:0px 0px 1px rgba(0,0,0,0.8);
+	padding-top: 500px;
+	padding-left: 20px;
+
 }
 .overlay{
 	background-color:#000;
@@ -73,7 +87,23 @@ h1{
 	height:100%;
 	z-index:1000;
 }
+
+.left-side{
+	left:1%;
+	bottom: 1%;
+	position: fixed;
+	/*position:relative;*/
+	background-image:url(http://upload.jianshu.io/daily_images/images/YJw2d6uG1i95qERpnEzw.jpg) ;
+	height: 680px;
+	width: 320px;
+	background-size: cover;
+	float:left;
+	color:#fff;
+	margin:0px 2px 0px 0px;
+
+}
 .header{
+	width: 400px;
 	position:relative;
 	padding:20px 30px;
 	background:#222;
@@ -96,12 +126,32 @@ h1{
 .header h1 span{
 	line-height:60px;
 	float: left;
-	color:#ef1010;
+	/*color:#ef1010;*/
+}
+.left-side h2{
+	font-size:20px;
+	font-weight: bold;
+	text-shadow:0px 0px 1px rgba(0,0,0,0.8);
+
+	padding-left: 20px;
 }
 .header h2{
 	font-size:30px;
-	text-transform:uppercase;
-	width:400px;
+	font-weight: bold;
+
+	padding-left: 20px;
+	/*text-transform:uppercase;*/
+	/*width:400px;*/
+}
+
+.create-topic{
+
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+a span{
+	margin-right: 4px;
 }
 p.subline{
 	font-family:'Droid Sans', Arial, sans-serif;
@@ -110,6 +160,8 @@ p.subline{
 	text-transform: uppercase;
 	letter-spacing: 4px;
 	font-style:normal;
+	padding-top: 20px;
+	text-align: center;
 }
 .block{
 	float:left;
@@ -136,10 +188,8 @@ p.subline{
 	line-height:20px;
 	padding-bottom:5px;
 }
-.block p.subline{
-	margin:10px 0px;
-	font-style:normal;
-}
+
+
 .block img{
 	border:none;
 	display:block;

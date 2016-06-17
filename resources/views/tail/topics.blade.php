@@ -37,9 +37,9 @@
 	</script>
 
 </head>
-<body class="upperBody">
+<body >
 
-	<nav class="navbar navbar-default navbar-fixed-top" style="height: 70px" role="navigation">
+	<nav class="navbar navbar-default navbar-fixed-top" style="height: 50px" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -79,30 +79,32 @@
 		</div>
 	</nav>
 
-	<div class="container" id="container">
-		<div class="item header">
-			<h1><a href="/"><span>&hearts;</span> Print</a></h1>
-			<p class="subline">Business cards <span class="fancy">&amp;</span> more</p>
-		</div>
-		<div class="item block" data-bgimage="{{ asset('topics/images/thumbs/1.jpg') }}">
-			<div class="thumbs-wrapper">
-				<div class="thumbs">
-					<img src="{{ asset('topics/images/thumbs/1.jpg') }}"/>
-					<img src="{{ asset('topics/images/thumbs/2.jpg') }}"/>
+	<div class="left-side">
+		{{--<h1><span>&hearts;</span> 话题广场</h1>--}}
+		<h1>话题广场</h1>
+		<h2>让思想汇聚、流传</h2>
+		<a class="btn btn-large btn-success create-topic"><span class="glyphicon glyphicon-pencil"></span>新建话题</a>
+		<p class="subline">share <span class="fancy">&amp;</span> more</p>
+	</div>
+	<div class="container topic-container" id="container">
+			@foreach($params['topics'] as $topic)
+			<div class="item block" data-bgimage="{{ $topic->image }}">
+				<div class="thumbs-wrapper">
+					<div class="thumbs">
+						<img src="{{ $topic->image }}"/>
+					</div>
+				</div>
+				<a href="/topic/detail"><h2 class="title">{{ $topic->name }}</h2></a>
+				<p class="subline">描述 <span class="fancy">&amp;</span> 具体信息</p>
+				<div class="intro">
+					<p> {{ $topic->description }} <a href="#" class="more_link">查看话题描述</a></p>
+				</div>
+				<div class="project-descr">
+					<p> {{ $topic->content }} </p>
 				</div>
 			</div>
-			<h2 class="title">Personal Works</h2>
-			<p class="subline">Concept <span class="fancy">&amp;</span> Design</p>
-			<div class="intro">
-				<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. <a href="#" class="more_link">View project</a></p>
-			</div>
-			<div class="project-descr">
-				<p>O my friend - but it is too much for my strength - I sink under the weight of the splendour of these visions!</p>
-				<p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-				<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.</p>
-			</div>
-		</div>
-		<div class="clr"></div>
+			@endforeach
+			<div class="clr"></div>
 
 	</div>
 

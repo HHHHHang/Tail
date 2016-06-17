@@ -74,16 +74,7 @@ class ForumController extends Controller{
 
 	public function tie(Request $request, $type='') {
 		$user = $request->user();
-		$tail_user = isset($user) ? DB::table('tail_users')->where('uid', $user->id)->first() : DB::table('tail_users')->where('uid', 2)->first();
-		$userInfo = [
-			'avatar' => $tail_user->avatar,
-			'name'   => $tail_user->name,
-			'level'  => '初级',
-			'commentNum' => $tail_user->commentNum,
-			'postNum'    => $tail_user->postNum,
-			'followNum'     => $tail_user->followNum,
-			'fans'       => $tail_user->fans,
-		];
+		$userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
 		$articles = $type ? DB::table('kinkTies')->where('type', $type)->get() :
 			DB::table('kinkTies')->orderBy('createTime', 'desc')->get();
 		$articlesInfo = [];

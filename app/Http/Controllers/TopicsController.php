@@ -23,11 +23,48 @@ class TopicsController extends Controller{
 	{
 		$user = $request->user();
 
+		$topics = DB::table('topics')->get();
+
+		$params = [
+			'user' => $user,
+			'topics' => $topics
+		];
+
+		return view('tail.topics')->with('params', $params);
+	}
+
+	public function detail(Request $request)
+	{
+		$user = $request->user();
+
 		$params = [
 			'user' => $user,
 		];
 
-		return view('tail.topics')->with('params', $params);
+		return view('tail.topicDetail')->with('params', $params); 
+	}
+
+	public function newArticle(Request $request)
+	{
+		$user = $request->user();
+
+		$params = [
+			'user' => $user,
+		]; 
+
+		return view('tail.newTopicArticle')->with('params', $params);
+	}
+
+	public function postArticle(Request $request)
+	{
+		$title = $request->get('title');
+		$content = $request->get('contentHtml');
+		$topic = $request->get('topic');
+
+  
+		$array = array('data'=>'success');
+		echo json_encode($array);
+
 	}
 
 }

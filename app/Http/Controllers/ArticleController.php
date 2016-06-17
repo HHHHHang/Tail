@@ -87,4 +87,61 @@ class ArticleController extends Controller{
 
 		return redirect('/article/' . $aid);
 	}
+
+	public function up(Request $request) {
+		$id = $request->get('id');
+		$type = $request->get('type');
+		$uid  = $request->get('uid');
+		if ($type == 'tie') {
+			DB::table('kinkTies')->where('kid', $id)->increment('upNum');
+			DB::table('ups')->insertGetId(
+				['uid' => $uid, 'upId' => $id, 'type' => $type]
+			);
+		} else {
+			DB::table('articles')->where('id', $id)->increment('upNum');
+		}
+		return "!";
+	}
+
+	public function cancelUp(Request $request) {
+		$id = $request->get('id');
+		$type = $request->get('type');
+		$uid  = $request->get('uid');
+		if ($type == 'tie') {
+			DB::table('kinkTies')->where('kid', $id)->decrement('upNum');
+			DB::table('ups')->where('type', 'tie')->where('upId', $id)->where('uid', $uid)->delete();
+		} else {
+			DB::table('articles')->where('id', $id)->decrement('upNum');
+		}
+		return "!";
+	}
+
+	public function collect(Request $request) {
+		$id = $request->get('id');
+		$type = $request->get('type');
+		$uid  = $request->get('uid');
+		if ($type == 'tie') {
+			DB::table('kinkTies')->where('kid', $id)->increment('collectNum');
+			DB::table('collects')->insertGetId(
+				['uid' => $uid, 'collectId' => $id, 'type' => $type]
+			);
+		} else {
+			DB::table('articles')->where('id', $id)->increment('collectNum');
+		}
+		return "!";
+	}
+
+	public function cancelCollect(Request $request) {
+		$id = $request->get('id');
+		$type = $request->get('type');
+		$uid  = $request->get('uid');
+		if ($type == 'tie') {
+			DB::table('kinkTies')->where('kid', $id)->decrement('collectNum');
+			DB::table('collects')->where('type', 'tie')->where('collectId', $id)->where('uid', $uid)->delete();
+		} else {
+			DB::table('articles')->where('id', $id)->decrement('collectNum');
+		}
+		return "!";
+	}
+
 } 
