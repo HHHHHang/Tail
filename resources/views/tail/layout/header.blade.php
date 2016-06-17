@@ -23,7 +23,7 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    @if (isset($params['user']) && $params['user']['id'] != 2)
+                    @if (isset($params['user']))
                         <li><a href="/myinfo?name={{ $params['user']['name'] }}">{{  $params['user']['name'] }}</a></li>
                         <li><a href="/logout">退出</a></li>
                     @else
