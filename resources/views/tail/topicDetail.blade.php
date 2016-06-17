@@ -6,7 +6,7 @@
 </head>
 <body style="background-color: white ">
 
-    @include('tail.layout.header')
+    @include('tail.layout.header', ['active' => ''])
 
     <!-- Page Content -->
     <div >
