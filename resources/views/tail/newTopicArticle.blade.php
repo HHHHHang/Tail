@@ -55,7 +55,7 @@
             </div>
 
             <div class="col-md-10 mainBody">
-                <a href="/topic/detail"><span class="glyphicon glyphicon-chevron-left"></span> 回到话题</a>
+                <a href="/topic/detail/{{$params['topic']->id}}"><span class="glyphicon glyphicon-chevron-left"></span> 回到话题</a>
                 <div class="postTitleDiv">
 
                     <input id="postTitle" type="text" placeholder="标题" maxlength="30"/>
@@ -69,7 +69,7 @@
                     </div>
                     <div>
                         <div class="chip">
-                            <span>话题名称</span>
+                            <span>{{$params['topic']->name}}</span>
                         </div>
                     </div>
                 </div>
@@ -148,7 +148,7 @@
 
            $.ajax({
                type: 'POST',
-               url: '/new/topicArticle',
+               url: '/new/topicArticle/{{$params['topic']->id}}',
                data: {
                    title: title,
                    topic: topic,
@@ -158,7 +158,7 @@
                success: function (data) {
                    console.log(data);
                    console.log('success');
-                   location.href = '/topic/detail';
+                   location.href = '/topic/detail/{{$params['topic']->id}}';
                },
                error: function (error) {
                    console.log(error);

@@ -33,23 +33,40 @@ class TopicsController extends Controller{
 		return view('tail.topics')->with('params', $params);
 	}
 
-	public function detail(Request $request)
+	public function detail(Request $request,$id)
 	{
 		$user = $request->user();
 
+		$topic = DB::table('topics')->where('id', $id)->first();
+
 		$params = [
 			'user' => $user,
+			'topic' => $topic
 		];
 
 		return view('tail.topicDetail')->with('params', $params); 
 	}
 
-	public function newArticle(Request $request)
+	public function newTopic(Request $request)
 	{
 		$user = $request->user();
 
+
 		$params = [
 			'user' => $user,
+		];
+
+		return view('tail.newTopic')->with('params', $params);
+	}
+
+	public function newArticle(Request $request,$id)
+	{
+		$user = $request->user();
+		$topic = DB::table('topics')->where('id', $id)->first();
+
+		$params = [
+			'user' => $user,
+			'topic' => $topic
 		]; 
 
 		return view('tail.newTopicArticle')->with('params', $params);

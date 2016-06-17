@@ -68,9 +68,10 @@ Route::get('/mongo', 'MongoController@testMongo');
 
 //话题广场
 Route::get('/topic', 'TopicsController@index');
-Route::get('/topic/detail','TopicsController@detail');
-Route::get('/new/topicArticle','TopicsController@newArticle');
-Route::post('/new/topicArticle','TopicsController@postArticle'); 
+Route::get('/topic/detail/{id}','TopicsController@detail');
+Route::get('/new/topicArticle/{id}','TopicsController@newArticle');
+Route::post('/new/topicArticle/{id}','TopicsController@postArticle');
+Route::get('/new/topic','TopicsController@newTopic');
  
 // test接口
 Route::get('/api/test/{id}', function ($id) {

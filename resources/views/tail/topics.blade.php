@@ -94,7 +94,7 @@
 						<img src="{{ $topic->image }}"/>
 					</div>
 				</div>
-				<a href="/topic/detail"><h2 class="title">{{ $topic->name }}</h2></a>
+				<a href="/topic/detail/{{$topic -> id}}"><h2 class="title">{{ $topic->name }}</h2></a>
 				<p class="subline">描述 <span class="fancy">&amp;</span> 具体信息</p>
 				<div class="intro">
 					<p> {{ $topic->description }} <a href="#" class="more_link">查看话题描述</a></p>
