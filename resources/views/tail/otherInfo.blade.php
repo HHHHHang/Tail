@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="">
                                         <span>类别 <a href="#">{{ $tie->type }}</a></span>
-                                        <span>发布时间 {{ date("Y年m月d日",strtotime($tie->createTime)) }}</span>
+                                        <span>发布时间 {{ date("Y年m月d日",($tie->createTime)) }}</span>
                                         <span class="glyphicon glyphicon-thumbs-up">{{ $tie->upNum }}</span>
                                         <span><span class="glyphicon glyphicon-comment"></span>{{ $tie->commentNum }}</span>
                                     </div>
@@ -93,7 +93,7 @@
                                     <a href="/article/{{ $articleComment->akid }}">{{ $articleComment->content }}</a>
                                 </div>
                                 <div class="">
-                                    <span>发布时间 {{ date("Y年m月d日",strtotime($articleComment->createtime)) }}</span>
+                                    <span>发布时间 {{ date("Y年m月d日",($articleComment->createtime)) }}</span>
                                 </div>
                                 <hr>
                             @endforeach
@@ -102,7 +102,7 @@
                                         <a href="/kinkTie/{{ $tieComment->akid }}">{{ $tieComment->content }}</a>
                                     </div>
                                     <div class="">
-                                        <span>发布时间 {{ date("Y年m月d日",strtotime($tieComment->createtime)) }}</span>
+                                        <span>发布时间 {{ date("Y年m月d日",($tieComment->createtime)) }}</span>
                                     </div>
                                     <hr>
                                 @endforeach
@@ -125,13 +125,13 @@
                     <div class="row">
                         <img width="250" height="130" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-19%20%E4%B8%8A%E5%8D%881.14.18.png"></img>
                         <!-- /.col-lg-6 -->
-                        <h1 style="text-align: center; font-size: 16px"> {{ $user['name'] }}</h1>
+                        <h1 style="text-align: center; font-size: 16px"> {{ $params['user']['name'] }}</h1>
                         <br/>
                         <p style="text-align: center">
                         <button type="button" class="btn btn-success" style="font-size: large;"><span>+加关注</span></button>
                         </p>
                         <hr>
-                        <div style="font-size: 16px; text-align: center">0 关注 &nbsp;&nbsp; 0 粉丝 &nbsp;&nbsp;  0 帖子</div>
+                        <div style="font-size: 16px; text-align: center">{{ $params['user']['followNum'] }} 关注 &nbsp;&nbsp; {{ $params['user']['fans'] }} 粉丝 &nbsp;&nbsp;  {{ $params['user']['postNum'] }} 帖子</div>
                     </div>
                     <!-- /.row -->
                 </div>
@@ -139,7 +139,6 @@
 
         </div>
         <!-- /.row -->
-        <hr>
     </div>
     <!-- /.container -->
 
