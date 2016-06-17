@@ -52,4 +52,16 @@ class TopicsController extends Controller{
 		return view('tail.newTopicArticle')->with('params', $params);
 	}
 
+	public function postArticle(Request $request)
+	{
+		$title = $request->get('title');
+		$content = $request->get('contentHtml');
+		$topic = $request->get('topic');
+
+  
+		$array = array('data'=>'success');
+		echo json_encode($array);
+
+	}
+
 }

@@ -80,7 +80,7 @@
                 </div>
 
                 <div class="postBtns">
-                    <button onclick="submit()">发表帖子</button>
+                    <button onclick="submit()">发表文章</button>
                     <button onclick="save()">保存草稿</button>
                 </div>
 
@@ -126,12 +126,6 @@
            }
        });
 
-       var chooseType = function (event) {
-           var type = event.target.text;
-           var html = '<span class="glyphicon glyphicon-menu-hamburger"></span> ';
-           $('#dropdownMenu1').html(html + type);
-       };
-
 
 
 
@@ -142,48 +136,29 @@
 
 
        var submit = function () {
-           var length = $('.postOptions').size();
-           var options = [];
-           for (var i = 0; i < length; i++) {
-               var str = $($('.postOptions input')[i]).val();
-               if (str != null && str != '') {
-                   options.push(str);
-               }
-           }
-           var keyWords = [];
-           length = $('.chip > span').size();
-           for (var i = 0; i < length; i++) {
-               var str = $($('.chip > span')[i]).text();
-               keyWords.push(str);
-           }
+
+           var topic = $('.chip > span').text();
+
 
            var title = $('#postTitle').val();
-           var optionNum = $('#optionNumSelect').val();
            var contentHtml = editor.getValue();
-           var type = $('#dropdownMenu1').text().slice(1);
            console.log('标题: ' + title);
-           console.log('关键词: ' + keyWords);
-           console.log('选项: ' + options);
-           console.log('最多选项个数: ' + optionNum);
+           console.log('话题: ' + topic);
            console.log('正文: ' + contentHtml);
-           console.log('分类: ' + type);
 
            $.ajax({
                type: 'POST',
-               url: '/new/forum',
+               url: '/new/topicArticle',
                data: {
                    title: title,
-                   keywords: keyWords,
-                   options: options,
-                   optionMaxNum: optionNum,
+                   topic: topic,
                    contentHtml: contentHtml,
-                   type: type
                },
                dataType: 'json',
                success: function (data) {
                    console.log(data);
                    console.log('success');
-                   location.href = '/forum';
+                   location.href = '/topic/detail';
                },
                error: function (error) {
                    console.log(error);
