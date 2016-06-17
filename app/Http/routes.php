@@ -60,7 +60,8 @@ Route::get('/mongo', 'MongoController@testMongo');
 //话题广场
 Route::get('/topic', 'TopicsController@index');
 Route::get('/topic/detail','TopicsController@detail');
-
+Route::get('/new/topicArticle','TopicsController@newArticle');
+ 
 // test接口
 Route::get('/api/test/{id}', function ($id) {
 	var_dump( (getTieByUid($id)) );

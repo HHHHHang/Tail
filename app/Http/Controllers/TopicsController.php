@@ -41,4 +41,15 @@ class TopicsController extends Controller{
 		return view('tail.topicDetail')->with('params', $params); 
 	}
 
+	public function newArticle(Request $request)
+	{
+		$user = $request->user();
+
+		$params = [
+			'user' => $user,
+		]; 
+
+		return view('tail.newTopicArticle')->with('params', $params);
+	}
+
 }

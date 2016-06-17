@@ -115,7 +115,7 @@
         </div>
 
         <div class="fixed-button">
-            <a href="/"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a href="/new/topicArticle"><span class="glyphicon glyphicon-pencil"></span></a>
 
         </div>
 
