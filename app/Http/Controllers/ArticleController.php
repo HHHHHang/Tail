@@ -61,6 +61,7 @@ class ArticleController extends Controller{
 			'upNum'      => $article->upNum,
 			'avatar' => $postUser->avatar,
 			'postName' => $postUser->name,
+			'image' => $article->image,
 		];
 		if ($user) return view('tail.article')->with('params', $params)->with('comments', $comments)->with('user', $user);
 		return view('tail.article')->with('params', $params)->with('comments', $comments);

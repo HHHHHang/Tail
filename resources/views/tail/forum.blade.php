@@ -18,7 +18,7 @@
 
 <body>
 
-	@include('tail.layout.header')
+	@include('tail.layout.header', ['active' => 'bbs'])
 
 <div class="container">
     <div class="row">

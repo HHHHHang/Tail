@@ -15,7 +15,7 @@
 
 <body>
 
-@include('tail.layout.header')
+@include('tail.layout.header', ['active' => ''])
 
 <div class="container">
     <div class="row">

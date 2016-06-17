@@ -63,5 +63,6 @@ Route::get('/topic/detail','TopicsController@detail');
 
 // test接口
 Route::get('/api/test/{id}', function ($id) {
-	var_dump(getUserInfo($id));
+	var_dump( (getTieByUid($id)) );
 });
+

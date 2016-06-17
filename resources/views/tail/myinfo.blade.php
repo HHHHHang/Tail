@@ -38,7 +38,7 @@
 
 <body>
 
-    @include('tail.layout.header')
+    @include('tail.layout.header', ['active' => ''])
 
     <!-- Page Content -->
     <div class="container">
