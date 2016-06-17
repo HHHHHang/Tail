@@ -88,9 +88,9 @@ class ForumController extends Controller{
 			'isTie'    => 1
 		];
 
-		if ($user) return view('tail.forum')->with('params', $params);
+		if ($user) return view('tail.ties')->with('params', $params);
 		else {
-			return view('tail.forum')->with('params', $params);
+			return view('tail.ties')->with('params', $params);
 		}
 	}
 
