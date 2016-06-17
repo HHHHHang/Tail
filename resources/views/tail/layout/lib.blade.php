@@ -37,8 +37,9 @@
 
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" rel="stylesheet" type="text/css" >
     <link href="{{ asset('css/bootstrap/style.css') }}" rel="stylesheet" type="text/css" >
+    <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" rel="stylesheet" type="text/css" >
+
 
     <!-- sangarSlider Sangar Slider -->
     <link href="{{ asset('css/sangarSlider/normalize.css') }}" rel="stylesheet" type="text/css">

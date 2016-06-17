@@ -17,10 +17,30 @@ body {
     /* 保持和原来版面一样的配色 */
 }
 
+.navbar-form button {
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+}
 
+.navbar-form input:focus,
+.navbar-form button:focus {
+    outline: none;
+    box-shadow: none;
+}
 
 footer {
-    margin: 25px 0;
+    margin-top: 80px;
+    background-color: #222;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+footer address {
+    margin: 0 20px;
+    color: #888;
 }
 
 footer > div{

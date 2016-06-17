@@ -11,6 +11,86 @@
     margin-top: 20px;
 
 }
+
+.row > div:first-child > h1 {
+    color: #888888;
+}
+
+.topicDisplayDiv {
+    background: #ffffff;
+}
+
+.topicDisplayMain {
+    padding: 10px 0 0;
+    margin-bottom: -240px;
+}
+
+.topicDisplayMain > div {
+    padding: 0 15px;
+    width: 100%;
+    display: flex;
+}
+
+.topicDisplayMain > div:first-child {
+    align-items: center;
+}
+
+.topicDisplayMain > div:first-child > span {
+    flex: 1;
+}
+
+.topicDisplayMain > div:first-child > a {
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+    color: #74777b;
+
+}
+.topicDisplayMain > div:first-child > a:hover {
+    color: #2fa0ec;
+    text-decoration: none;
+    cursor: default;
+}
+
+.topicDisplayMain > div:last-child > div:not(.thumbnailCustom) {
+    width: 5px;
+}
+
+.topicDisplayMain > div:last-child > div.thumbnailCustom {
+    flex: 1;
+    border: none;
+    padding: 0;
+    display: block;
+    margin-bottom: 20px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.topicDisplayMain > div:last-child > div.thumbnailCustom > img {
+    display: inline;
+    height: 250px;
+}
+
+.topicDisplayMain > div:last-child > div.thumbnailCustom > div {
+    height: 250px;
+    width: 100%;
+    padding: 20px;
+    position: relative;
+    top: -250px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+
+    color: #ffffff;
+}
+.topicDisplayMain > div:last-child > div.thumbnailCustom:hover > div {
+    background-image:-webkit-linear-gradient(to bottom, transparent, #222);
+    background-image:linear-gradient(to bottom, transparent, #222);
+}
+
 .articlesDisplayDiv {
     display: flex;
     flex-direction: column;
@@ -108,3 +188,4 @@
 .pager a {
     padding: 8px 16px;
 }
+

@@ -1,7 +1,85 @@
+.recommendationDiv {
+    background: #ffffff;
+}
+
+.recommendationMain {
+    padding: 0 0 15px;
+}
+
+body > .recommendationDiv:nth-child(2) {
+    position: relative;
+    top: -10px;
+}
+
+.recommendationMain > div {
+    padding: 0 15px;
+    width: 100%;
+    display: flex;
+}
+.recommendationMain >div:first-child > h4 {
+    color: #888888;
+}
+
+.recommendationMain > div:last-child > div:not(.recommendationItem) {
+    width: 5px;
+}
+
+.recommendationItem {
+    flex: 1;
+    overflow: hidden;
+
+    height: 200px;
+    background-position: center;
+    background-size: cover;
+}
+
+.recommendationItem > div {
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+
+    color: #ffffff;
+}
+
+.recommendationItem:hover > div {
+    background-image:-webkit-linear-gradient(to bottom, transparent, #222);
+    background-image:linear-gradient(to bottom, transparent, #222);
+}
+
+body > .container {
+    margin-top: 15px;
+}
+
 .forumLeftPart {
     background-color: white;
     box-shadow: 0 1px 4px #ccc;
     border-radius: 3px;
+}
+
+.subNavigationLeftPart {
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.subNavigation > div {
+    background-color: white;
+    box-shadow: 0 1px 4px #ccc;
+    border-radius: 3px;
+    padding: 10px 5px;
+    margin-bottom: 15px;
+}
+
+.subNavigation > div > h5 {
+    margin-left: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    color: #888888;
 }
 
 .forumTypeDiv {
@@ -31,6 +109,42 @@
     color: #5a5a5a;
     font-size: 15px;
 }
+
+.smalleForumTypeDiv > div {
+    margin: 5px 5px;
+    padding: 5px 5px;
+}
+.smalleForumTypeDiv > div > a > span:first-child {
+    font-size: 35px;
+}
+
+.subNavigation > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.tagChoosingDiv {
+    padding: 0 5px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tagChoosingDiv .checkbox {
+    width: 20%;
+    margin-top: 5px;
+}
+
+.tagChoosingDiv + button {
+    margin-right: 20px;
+    padding: 5px 30px;
+    align-self: flex-end;
+}
+.tagChoosingDiv + button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
 
 .forumTabDiv {
     color: #5a5a5a;

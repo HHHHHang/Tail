@@ -22,12 +22,56 @@
         </div>
 
     </div>
+    <div class="htmleaf-container topicDisplayDiv">
+        <div class="container">
+            <div class="row topicDisplayMain">
+                <div>
+                    <h1>推荐话题</h1><span></span><a>进入话题广场</a>
+                </div>
+                <div>
+                    <div class="thumbnailCustom">
+                        <img src="http://s.dgtle.com/forum/201606/16/161917pyuda21rr342504r.jpg?szhdl=imageview/2/w/960"/>
+                        <div>
+                            <h4>一加手机</h4>
+                            <h5>不泯然的国产手机 Android旗舰</h5>
+                        </div>
+                    </div>
+                    <div></div>
+                    <div class="thumbnailCustom">
+                        <img src="http://s.dgtle.com/forum/201606/16/161920yb1buv4cc2ib1c6c.jpg?szhdl=imageview/2/w/960"/>
+                        <div>
+                            <h4>一加手机</h4>
+                            <h5>不泯然的国产手机 Android旗舰</h5>
+                        </div>
+                    </div>
+                    <div></div>
+                    <div class="thumbnailCustom">
+                        <img src="http://s.dgtle.com/forum/201606/15/164616ghs9gcyoyssvcu9s.jpg?szhdl=imageview/2/w/680"/>
+                        <div>
+                            <h4>一加手机</h4>
+                            <h5>不泯然的国产手机 Android旗舰</h5>
+                        </div>
+                    </div>
+                    <div></div>
+                    <div class="thumbnailCustom">
+                        <img src="http://s.dgtle.com/forum/201606/15/164821l4zm4q5qv85jzs56.jpg?szhdl=imageview/2/w/680"/>
+                        <div>
+                            <h4>一加手机</h4>
+                            <h5>不泯然的国产手机 Android旗舰</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Page Content -->
     <div class="container">
 
         <div class="row">
-
+            <div class="col-md-12">
+                <h1>热门文章</h1>
+            </div>
             <!-- Blog Entries Column -->
             <div class="col-md-8 articlesDisplayDiv">
                 @foreach($params['articles'] as $article)
@@ -84,6 +128,43 @@
                         <div><a href="/forum/生活"><span class="glyphicon glyphicon-home"></span><span>生活</span></a></div>
                         <div><a href="/forum/文具"><span class="glyphicon glyphicon-pencil"></span><span>文具</span></a></div>
                         <div><a href="/forum/游戏"><span class="glyphicon glyphicon-console"></span><span>游戏</span></a></div>
+                    </div>
+                </div>
+
+                <div class="popularTopicSidebar well">
+                    <span>热门话题</span>
+                    <div style="background-image:url(http://s.dgtle.com/forum/201606/16/161917pyuda21rr342504r.jpg?szhdl=imageview/2/w/960)">
+                        <div>
+                            <span><b>一加手机</b></span>
+                            <span>不泯然的国产手机 Android旗舰</span>
+                        </div>
+                    </div>
+                    <div style="background-image:url(http://s.dgtle.com/forum/201606/16/161920yb1buv4cc2ib1c6c.jpg?szhdl=imageview/2/w/960)">
+                        <div>
+                            <span><b>一加手机</b></span>
+                            <span>不泯然的国产手机 Android旗舰</span>
+                        </div>
+                    </div>
+                    <div style="background-image:url(http://s.dgtle.com/forum/201606/15/164616ghs9gcyoyssvcu9s.jpg?szhdl=imageview/2/w/680)">
+                        <div>
+                            <span><b>一加手机</b></span>
+                            <span>不泯然的国产手机 Android旗舰</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="popularForumSidebar well">
+                    <span>热门帖子</span>
+                    <div>
+                        <h5>英语写作小技巧3英语写作小技巧3</h5>
+                        <p>2016-06-16 英语</p>
+                    </div>
+                    <div>
+                        <h5>英语写作小技巧2英语写作小技巧3</h5>
+                        <p>2016-06-16 英语</p>
+                    </div>
+                    <div>
+                        <h5>英语写作小技巧1</h5>
+                        <p>2016-06-16 英语</p>
                     </div>
                 </div>
 
