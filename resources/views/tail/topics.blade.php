@@ -81,8 +81,8 @@
 
 	<div class="container" id="container">
 		<div class="item header">
-			<h1><a href="/"><span>&hearts;</span> Print</a></h1>
-			<p class="subline">Business cards <span class="fancy">&amp;</span> more</p>
+			<h1><span>&hearts;</span> 话题广场</h1>
+			<p class="subline">share <span class="fancy">&amp;</span> more</p>
 		</div>
 		<div class="item block" data-bgimage="{{ asset('topics/images/thumbs/1.jpg') }}">
 			<div class="thumbs-wrapper">
@@ -91,10 +91,10 @@
 					<img src="{{ asset('topics/images/thumbs/2.jpg') }}"/>
 				</div>
 			</div>
-			<h2 class="title">Personal Works</h2>
-			<p class="subline">Concept <span class="fancy">&amp;</span> Design</p>
+			<a href="/topic/detail"><h2 class="title">话题名称</h2></a>
+			<p class="subline">描述 <span class="fancy">&amp;</span> 具体信息</p>
 			<div class="intro">
-				<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. <a href="#" class="more_link">View project</a></p>
+				<p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. <a href="#" class="more_link">查看话题描述</a></p>
 			</div>
 			<div class="project-descr">
 				<p>O my friend - but it is too much for my strength - I sink under the weight of the splendour of these visions!</p>

@@ -49,7 +49,7 @@ Route::get('/search/forum', 'SearchController@searchForum');
 Route::get('/search/forum/{keyword}', 'SearchController@searchForum');
 Route::get('/search/article', 'SearchController@searchArticle');
 Route::get('/search/article/{keyword}', 'SearchController@searchArticle');
-
+ 
 // 个人信息页模板
 Route::get('/myinfo', 'MyInfoController@index');
 Route::get('/myinfo', 'MyInfoController@index');
@@ -59,6 +59,7 @@ Route::get('/mongo', 'MongoController@testMongo');
 
 //话题广场
 Route::get('/topic', 'TopicsController@index');
+Route::get('/topic/detail','TopicsController@detail');
 
 // test接口
 Route::get('/api/test/{id}', function ($id) {

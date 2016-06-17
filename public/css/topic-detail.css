@@ -1,0 +1,97 @@
+body{
+    padding-top: 50px;
+}
+.top-pic{
+    height:200px;
+    background-image: url("http://s.dgtle.com/portal/201605/25/165021wrxnxcrjke3kx5dd.jpg?szhdl=imageview/2/w/1900") ;
+    background-size: cover ;
+
+}
+
+.topic-name{
+    font-size: 60px;
+    margin: auto;
+    color: white;
+    font-weight: 300;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 75px;
+}
+.article-list{
+    background-color: white;
+    margin: 0 auto;
+    max-width: 740px;
+}
+.article-item{
+    float: none;
+    margin: 0 auto;
+    padding-top: 10px;
+
+}
+
+.article-item > li{
+    position: relative;
+    margin: 0 0 17px 0;
+    border-bottom: 1px dashed #D9D9D9;
+    padding-bottom: 17px;
+}
+
+.wrap-img {
+    float: right;
+    margin-right: 2px;
+}
+
+.info-top{
+    font-size: 12px;
+    margin: 8px 0;
+}
+
+.info-footer{
+    font-size: 12px;
+    line-height: 20px;
+}
+
+.blue-link{
+    color: #4094c7;
+    font-weight: 500;
+}
+
+.blue-link:hover{
+    color: rgb(7, 91, 141);
+    font-weight: 500;
+
+}
+
+
+.title{
+    font-size: 18px;
+    font-weight:bold;
+    font-height:1.5;
+    margin-bottom: 10px;
+}
+
+h4 > a{
+    color: #555555;
+}
+
+h4 > a:hover{
+    color: #000;
+}
+
+.fixed-button{
+    right: 2%;
+    bottom: 4%;
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    background-color: #49be38;
+    text-align: center;
+
+}
+
+
+.fixed-button span{
+    font-size: 20px;
+    color: white;
+    padding-top: 20%;
+}
