@@ -206,12 +206,13 @@
 <hr>
 <div class="well articleDetailComment article-comments">
     <span>评论:</span>
-        <form method="POST" role="form" action="/kinkTie/{{ $params['aid'] }}">
+        <form method="POST" role="form" action="/article/{{ $params['aid'] }}">
         <div class="form-group">
             <textarea name="content" class="form-control" rows="3"></textarea>
         </div>
         <input type="hidden" name="id" value="{{ $params['aid'] }}" />
-        <button type="submit" class="btn">评论</button>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <button type="submit" class="btn">评论</button>
     </form>
     <span class="glyphicon glyphicon-comment" style="color: #969a9e;"><span>&nbsp;全部评论<span style="font-size: 13px;color: #559FEB;">  {{ sizeof($comments) }}条</span></span></span>
     <hr>

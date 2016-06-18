@@ -54,18 +54,17 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="/">首页</a></li>
+					<li><a href="/">首页</a></li>
+					<li><a href="/forum">文章</a></li>
 					<li class="dropdown">
 						<a href="/forum" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">论坛 <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="/forum">精选文章</a></li>
-							<li role="separator" class="divider"></li>
 							<li class="dropdown-header">帖子专区</li>
 							<li><a href="/forum/tie">纠结帖子</a></li>
 							<li><a href="#">其它帖子</a></li>
 						</ul>
 					</li>
-					<li><a href="/search/article">搜索</a></li>
+					<li class="active"><a href="/topic">话题广场</a></li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -85,8 +84,12 @@
 		{{--<h1><span>&hearts;</span> 话题广场</h1>--}}
 		<h1>话题广场</h1>
 		<h2>让思想汇聚、流传</h2>
-		<a class="btn btn-large btn-success create-topic " data-toggle="modal"
+		@if(isset($params['user']))
+			<a class="btn btn-large btn-success create-topic " data-toggle="modal"
 		   data-target="#createTopicModal"><span class="glyphicon glyphicon-pencil"></span>创建话题</a>
+		@else
+			<a href="/login" class="btn btn-large btn-success login-topic "><span class="glyphicon glyphicon-pencil"></span>登录以创建话题</a>
+		@endif
 		<p class="subline">share <span class="fancy">&amp;</span> more</p>
 	</div>
 	<div class="container topic-container" id="container">
@@ -190,7 +193,7 @@
 				success: function (data) {
 					console.log(data);
 					console.log('success');
-					location.href = '/topic/detail';
+					location.href = '/topic';
 				},
 				error: function (error) {
 					console.log(error);
