@@ -35,6 +35,8 @@ Route::post('/article/cancelCollect', 'ArticleController@cancelCollect');
 //给某文章点赞接口
 Route::post('/article/up', 'ArticleController@up');
 Route::post('/article/cancelUp', 'ArticleController@cancelUp');
+Route::post('/topicArticle/up','TopicArticlesController@up');
+Route::post('/topicArticle/cancelUp','TopicArticlesController@cancelUp');
 
 //关注接口
 Route::post('/personInfo/follow', 'MyInfoController@follow');

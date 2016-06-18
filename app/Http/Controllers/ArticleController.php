@@ -107,8 +107,13 @@ class ArticleController extends Controller{
 			DB::table('ups')->insertGetId(
 				['uid' => $uid, 'upId' => $id, 'type' => $type]
 			);
-		} else {
+		} elseif($type == 'article'){
 			DB::table('articles')->where('id', $id)->increment('upNum');
+			DB::table('ups')->insertGetId(
+				['uid' => $uid, 'upId' => $id, 'type' => $type]
+			);
+		}else{
+			DB::table('topic_articles')->where('id', $id)->increment('upNum');
 			DB::table('ups')->insertGetId(
 				['uid' => $uid, 'upId' => $id, 'type' => $type]
 			);
@@ -123,10 +128,13 @@ class ArticleController extends Controller{
 		if ($type == 'tie') {
 			DB::table('kinkTies')->where('kid', $id)->decrement('upNum');
 			DB::table('ups')->where('type', 'tie')->where('upId', $id)->where('uid', $uid)->delete();
-		} else {
+		} elseif($type=='article') {
 			DB::table('articles')->where('id', $id)->decrement('upNum');
-			DB::table('ups')->where('type', 'article')->where('upId', $id)->where('uid', $uid)->delete();
+			DB::table('ups')->where('type', 'topicArticle')->where('upId', $id)->where('uid', $uid)->delete();
 			
+		}else{
+			DB::table('topic_articles')->where('id', $id)->decrement('upNum');
+			DB::table('ups')->where('type', 'topicArticle')->where('upId', $id)->where('uid', $uid)->delete();
 		}
 		return "!";
 	}
@@ -140,8 +148,13 @@ class ArticleController extends Controller{
 			DB::table('collects')->insertGetId(
 				['uid' => $uid, 'collectId' => $id, 'type' => $type]
 			);
-		} else {
+		} elseif($type == 'article') {
 			DB::table('articles')->where('id', $id)->increment('collectNum');
+			DB::table('collects')->insertGetId(
+				['uid' => $uid, 'collectId' => $id, 'type' => $type]
+			);
+		}else{
+			DB::table('topic_articles')->where('id', $id)->increment('collectNum');
 			DB::table('collects')->insertGetId(
 				['uid' => $uid, 'collectId' => $id, 'type' => $type]
 			);
@@ -156,9 +169,12 @@ class ArticleController extends Controller{
 		if ($type == 'tie') {
 			DB::table('collects')->where('type', 'tie')->where('collectId', $id)->where('uid', $uid)->delete();
 			DB::table('kinkTies')->where('kid', $id)->decrement('collectNum');
-		} else {
+		} elseif($type == 'article') {
 			DB::table('collects')->where('type', 'article')->where('collectId', $id)->where('uid', $uid)->delete();
 			DB::table('articles')->where('id', $id)->decrement('collectNum');
+		}else{
+			DB::table('collects')->where('type', 'topicArticle')->where('collectId', $id)->where('uid', $uid)->delete();
+			DB::table('topic_articles')->where('id', $id)->decrement('collectNum');
 		}
 		return "!";
 	}

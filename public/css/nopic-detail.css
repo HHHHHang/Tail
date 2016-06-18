@@ -118,6 +118,14 @@
     padding: 10px;
     margin-left: 20px;
 }
+
+.forumDetailDiv > div:last-child > button:hover {
+
+    border-radius: 20px;
+    background-color: #458ac9;
+    color: white;
+
+}
 .forumWriterInfo > span:first-child {
     display: block;
     font-size: 16px;

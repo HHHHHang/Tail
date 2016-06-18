@@ -37,12 +37,143 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+        $( document ).ready(function() {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            console.log({{ $params['hasUp'] }})
+            if ({{ $params['hasUp'] }} == 0) {
+                canUp()
+            } else if ({{ $params['hasUp'] }} == 1) {
+                cantUp()
+            }
+
+            console.log({{ $params['hasCollect'] }})
+            if ({{ $params['hasCollect'] }} == 0) {
+                canCollect()
+            } else if ({{ $params['hasCollect'] }} == 1) {
+                cantCollect()
+            }
+
+
+            if ({{ $params['user']['id'] }} == 2) {
+                $('#up').unbind()
+                $('#collect').unbind()
+                $('#up').click(function(){
+                    alert('请先登录!')
+                })
+                $('#collect').click(function(){
+                    alert('请先登录!')
+                })
+            }
+
+            function canUp() {
+                $('#up').click(function(){
+                    $.ajax({
+                        url: "/article/up",
+                        type: "post",
+                        data: {
+                            type: 'topicArticle',
+                            id : {{ $params['article']->id }},
+                            uid: {{ $params['user']['id'] }}
+                        },
+                        success: function(data) {
+                            $('#up').html('已赞')
+                            $('#up').unbind()
+                            cantUp()
+                            console.log(data)
+                        }
+                    })
+                })
+            }
+
+            function cantUp() {
+                $('#up').html('已赞')
+                $('#up').css('background-color','#458ac9');
+                $('#up').css('color','white');
+                $('#up').css('border','none');
+                console.log($('#up'))
+                $('#up').click(function(){
+                    $.ajax({
+                        url: "/article/cancelUp",
+                        type: "post",
+                        data: {
+                            type: 'topicArticle',
+                            id : {{ $params['article']->id }},
+                            uid: {{ $params['user']['id']}}
+                        },
+                        success: function(data) {
+                            $('#up').html('赞')
+                            $('#up').css('background-color','transparent');
+                            $('#up').css('color','black');
+                            $('#up').css('border','#B0B4B7 solid 1px');
+                            $('#up').unbind()
+                            canUp()
+                            console.log(data)
+                        }
+                    })
+                })
+            }
+
+            function canCollect() {
+                $('#collect').click(function(){
+                    $.ajax({
+                        url: "/article/collect",
+                        type: "post",
+                        data: {
+                            type: 'topicArticle',
+                            id : {{ $params['article']->id }},
+                            uid: {{ $params['user']['id'] }}
+                        },
+                        success: function(data) {
+                            $('#collect').html('已收藏')
+                            $('#collect').unbind()
+                            cantCollect()
+                            console.log(data)
+                        }
+                    })
+                })
+            }
+
+            function cantCollect() {
+                $('#collect').html('已收藏')
+                $('#collect').css('background-color','#458ac9');
+                $('#collect').css('color','white');
+                $('#collect').css('border','none');
+                $('#collect').click(function(){
+                    $.ajax({
+                        url: "/article/cancelCollect",
+                        type: "post",
+                        data: {
+                            type: 'topicArticle',
+                            id : {{ $params['article']->id }},
+                            uid: {{ $params['user']['id'] }}
+                        },
+                        success: function(data) {
+                            $('#collect').html('收藏')
+                            $('#collect').css('background-color','transparent');
+                            $('#collect').css('color','black');
+                            $('#collect').css('border','#B0B4B7 solid 1px');
+                            $('#collect').unbind()
+                            canCollect()
+                            console.log(data)
+                        }
+                    })
+                })
+            }
+
+        })
+    </script>
 
 </head>
 
 <body>
 
-@include('tail.layout.header', ['active' => 'bbs'])
+@include('tail.layout.header', ['active' => ''])
 
 <!-- Page Content -->
 
@@ -58,7 +189,7 @@
                 </a>
                 <span>{{ $params['author']['name'] }}</span>
                 <span style="font-size: 18px;font-weight: 700;padding:5px;font-family:Georgia">·</span>
-                <span>{{ date(" Y 年 m 月 d 日", strtotime($params['article']->createTime)) }}</span>
+                <span>{{ $params['article']->createTime }}</span>
                 <div class="article-view">
                     <span class="glyphicon glyphicon-eye-open">&nbsp;{{ $params['article']->viewNum }}</span>
                 </div>
