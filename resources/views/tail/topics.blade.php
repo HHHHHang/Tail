@@ -4,6 +4,7 @@
 	@include('tail.layout.lib')
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="csrf-token" content="{{ csrf_token() }}" />
 
 	<link href="{{ asset('topics/css/style.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('topics/css/topic.css') }}" rel="stylesheet" type="text/css">
@@ -170,6 +171,12 @@
 			console.log('话题: ' + topicName);
 			console.log('简介: ' + topicIntro);
 			console.log('描述: ' + topicDes);
+
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
 
 			$.ajax({
 				type: 'POST',
