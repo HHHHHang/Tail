@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <title>Blog Home - Start Bootstrap Template</title>
 
@@ -26,6 +27,76 @@
     <!-- Custom CSS -->
     <link href="{{URL::asset('css/navigation.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('css/blog-home.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{URL::asset('css/person-info.css')}}" rel="stylesheet" type="text/css" />
+
+    <script>
+        $( document ).ready(function() {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            console.log({{ $params['hasFollow'] }})
+            if ({{ $params['hasFollow'] }} == 0) {
+                canFollow()
+            } else if ({{ $params['hasFollow'] }} == 1) {
+                cantFollow()
+            }
+
+            if ({{ $params['user']['id'] }} == 2) {
+                $('#follow').unbind()
+                $('#follow').click(function(){
+                    alert('请先登录!')
+                })
+            }
+
+            function canFollow() {
+                $('#follow').click(function(){
+                    $.ajax({
+                        url: "/personInfo/follow",
+                        type: "post",
+                        data: {
+                            id : {{ $params['userInfo']['id'] }},
+                            uid: {{ $params['user']['id'] }}
+                        },
+                        success: function(data) {
+                            $('#follow').html('已关注')
+                            $('#follow').unbind()
+                            cantFollow()
+                            window.location.reload()
+                            console.log(data)
+                        }
+                    })
+                })
+            }
+
+            function cantFollow() {
+                $('#follow').html('已关注')
+                console.log($('#follow'))
+                $('#follow').click(function(){
+                    $.ajax({
+                        url: "/personInfo/cancelFollow",
+                        type: "post",
+                        data: {
+                            id : {{ $params['userInfo']['id'] }},
+                            uid: {{ $params['user']['id'] }}
+                        },
+                        success: function(data) {
+                            $('#follow').html('+加关注')
+                            $('#follow').unbind()
+                            canFollow()
+                            window.location.reload()
+                            console.log(data)
+                        }
+                    })
+                })
+            }
+
+        })
+    </script>
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -62,22 +133,22 @@
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="post">
                             @foreach($params['articles'] as $article)
-                                <div>
-                                    <a href="/article/{{ $article->id }}">{{ $article->title }}</a>
+                                <div class="info-box">
+                                    <h1><a href="/article/{{ $article->id }}">{{ $article->title }}</a></h1>
                                 </div>
-                                <div class="forumItemContentInfo">
+                                <div class="detail-info">
                                     <span>类别 <a href="#">{{ $article->type }}</a></span>
-                                    <span>发布时间 {{ date("Y年m月d日",strtotime($article->createTime)) }}</span>
-                                    <span class="glyphicon glyphicon-thumbs-up">{{ $article->upNum }}</span>
-                                    <span><span class="glyphicon glyphicon-comment"></span>{{ $article->commentNum }}</span>
+                                    <span>&nbsp;发布时间 {{ date("Y年m月d日",strtotime($article->createTime)) }}</span>
+                                    <span>&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>{{ $article->upNum }}</span>
+                                    <span>&nbsp;<span class="glyphicon glyphicon-comment"></span>{{ $article->commentNum }}</span>
                                 </div>
                                 <hr>
                                 @endforeach
                             @foreach($params['ties'] as $tie)
-                                    <div>
-                                        <a href="/kinkTie/{{ $tie->kid }}">{{ $tie->title }}</a>
+                                    <div class="info-box">
+                                        <h1><a href="/kinkTie/{{ $tie->kid }}">{{ $tie->title }}</a></h1>
                                     </div>
-                                    <div class="">
+                                    <div class="detail-info">
                                         <span>类别 <a href="#">{{ $tie->type }}</a></span>
                                         <span>发布时间 {{ date("Y年m月d日",($tie->createTime)) }}</span>
                                         <span class="glyphicon glyphicon-thumbs-up">{{ $tie->upNum }}</span>
@@ -89,29 +160,75 @@
                         </div>
                         <div class="tab-pane fade" id="reply">
                             @foreach($params['articleComments'] as $articleComment)
-                                <div>
-                                    <a href="/article/{{ $articleComment->akid }}">{{ $articleComment->content }}</a>
-                                </div>
                                 <div class="">
+                                    <h1><a href="/article/{{ $articleComment->akid }}">{{ $articleComment->content }}</a></h1>
+                                </div>
+                                <div class="detail-info">
                                     <span>发布时间 {{ date("Y年m月d日",($articleComment->createtime)) }}</span>
                                 </div>
                                 <hr>
                             @endforeach
-                                @foreach($params['tieComments'] as $tieComment)
-                                    <div>
-                                        <a href="/kinkTie/{{ $tieComment->akid }}">{{ $tieComment->content }}</a>
+                            @foreach($params['tieComments'] as $tieComment)
+                                <div class="info-box">
+                                    <h1><a href="/kinkTie/{{ $tieComment->akid }}">{{ $tieComment->content }}</a></h1>
+                                </div>
+                                <div class="detail-info">
+                                    <span>发布时间 {{ date("Y年m月d日",($tieComment->createtime)) }}</span>
+                                </div>
+                                <hr>
+                            @endforeach
+                        </div>
+                        <div class="tab-pane fade" id="collect">
+                            @foreach($params['collectArticles'] as $collectArticle)
+                                <div class="info-box">
+                                    <h1><a href="/article/{{ $collectArticle->id }}">{{ $collectArticle->title }}</a></h1>
+                                </div>
+                                <div class="detail-info">
+                                    <span>类别 <a href="#">{{ $collectArticle->type }}</a></span>
+                                    <span>发布时间 {{ date("Y年m月d日",strtotime($collectArticle->createTime)) }}</span>
+                                    <span class="glyphicon glyphicon-thumbs-up">{{ $collectArticle->upNum }}</span>
+                                    <span><span class="glyphicon glyphicon-comment"></span>{{ $collectArticle->commentNum }}</span>
+                                </div>
+                                <hr>
+                                @endforeach
+                            @foreach($params['collectTies'] as $collectTie)
+                                    <div class="info-box">
+                                        <h1><a href="/kinkTie/{{ $collectTie->kid }}">{{ $collectTie->title }}</a></h1>
                                     </div>
-                                    <div class="">
-                                        <span>发布时间 {{ date("Y年m月d日",($tieComment->createtime)) }}</span>
+                                    <div class="detail-info">
+                                        <span>类别 <a href="#">{{ $collectTie->type }}</a></span>
+                                        <span>发布时间 {{ date("Y年m月d日",($collectTie->createTime)) }}</span>
+                                        <span class="glyphicon glyphicon-thumbs-up">{{ $collectTie->upNum }}</span>
+                                        <span><span class="glyphicon glyphicon-comment"></span>{{ $collectTie   ->commentNum }}</span>
                                     </div>
                                     <hr>
                                 @endforeach
                         </div>
-                        <div class="tab-pane fade" id="collect">
-                            <p></p>
-                        </div>
                         <div class="tab-pane fade" id="zan">
-                            <p></p>
+                            @foreach($params['upArticles'] as $upArticle)
+                                <div class="info-box">
+                                    <h1><a href="/article/{{ $upArticle->id }}">{{ $upArticle->title }}</a></h1>
+                                </div>
+                                <div class="detail-info">
+                                    <span>类别 <a href="#">{{ $upArticle->type }}</a></span>
+                                    <span>发布时间 {{ date("Y年m月d日",strtotime($upArticle->createTime)) }}</span>
+                                    <span class="glyphicon glyphicon-thumbs-up">{{ $upArticle->upNum }}</span>
+                                    <span><span class="glyphicon glyphicon-comment"></span>{{ $upArticle->commentNum }}</span>
+                                </div>
+                                <hr>
+                            @endforeach
+                            @foreach($params['upTies'] as $upTie)
+                                <div class="info-box">
+                                    <h1><a href="/kinkTie/{{ $upTie->kid }}">{{ $upTie->title }}</a></h1>
+                                </div>
+                                <div class="detail-info">
+                                    <span>类别 <a href="#">{{ $upTie->type }}</a></span>
+                                    <span>发布时间 {{ date("Y年m月d日",($upTie->createTime)) }}</span>
+                                    <span class="glyphicon glyphicon-thumbs-up">{{ $upTie->upNum }}</span>
+                                    <span><span class="glyphicon glyphicon-comment"></span>{{ $upTie->commentNum }}</span>
+                                </div>
+                                <hr>
+                            @endforeach
                         </div>
                     </div>
 
@@ -125,13 +242,13 @@
                     <div class="row">
                         <img width="250" height="130" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-19%20%E4%B8%8A%E5%8D%881.14.18.png"></img>
                         <!-- /.col-lg-6 -->
-                        <h1 style="text-align: center; font-size: 16px"> {{ $params['user']['name'] }}</h1>
+                        <h1 style="text-align: center; font-size: 16px"> {{ $params['userInfo']['name'] }}</h1>
                         <br/>
                         <p style="text-align: center">
-                        <button type="button" class="btn btn-success" style="font-size: large;"><span>+加关注</span></button>
+                        <button id="follow" type="button" class="btn btn-success" style="font-size: large;"><span>+加关注</span></button>
                         </p>
                         <hr>
-                        <div style="font-size: 16px; text-align: center">{{ $params['user']['followNum'] }} 关注 &nbsp;&nbsp; {{ $params['user']['fans'] }} 粉丝 &nbsp;&nbsp;  {{ $params['user']['postNum'] }} 帖子</div>
+                        <div style="font-size: 16px; text-align: center">{{ $params['userInfo']['followNum'] }} 关注 &nbsp;&nbsp; {{ $params['userInfo']['fans'] }} 粉丝 &nbsp;&nbsp;  {{ $params['userInfo']['postNum'] }} 帖子</div>
                     </div>
                     <!-- /.row -->
                 </div>

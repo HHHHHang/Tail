@@ -36,6 +36,10 @@ Route::post('/article/cancelCollect', 'ArticleController@cancelCollect');
 Route::post('/article/up', 'ArticleController@up');
 Route::post('/article/cancelUp', 'ArticleController@cancelUp');
 
+//关注接口
+Route::post('/personInfo/follow', 'MyInfoController@follow');
+Route::post('/personInfo/cancelFollow', 'MyInfoController@cancelFollow');
+
 //文章界面模板
 Route::get('/article/{aid}', 'ArticleController@article');
 Route::post('/article/{aid}', 'ArticleController@articlePost');
@@ -61,7 +65,7 @@ Route::get('/search/article/{keyword}', 'SearchController@searchArticle');
  
 // 个人信息页模板
 Route::get('/myinfo', 'MyInfoController@index');
-Route::get('/myinfo', 'MyInfoController@index');
+Route::get('/otherInfo/{uid}', 'MyInfoController@otherInfo');
 
 //mysql接口测试
 Route::get('/mongo', 'MongoController@testMongo');

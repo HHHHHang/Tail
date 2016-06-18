@@ -1,0 +1,14 @@
+.info-box{
+    font-size: 18px;
+    padding-left: 20px;
+}
+.info-box h1{
+    font-size: 18px;
+}
+.detail-info{
+    margin-top: 20px;
+    float: right;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    font-size: 15px;
+}

@@ -167,13 +167,12 @@
 <!-- Page Content -->
 
 <div class="article-picture">
-
     <div class="article-background" style="background: url({{ $params['image'] }}) no-repeat; height: 100%;width: 100%;
             background-size: 100% 100%;">
         <div class="article-background-color">
-            <h1>{{ $params['title'] }}</h1>
+            <h1 style="width: 1265px">{{ $params['title'] }}</h1>
             <div class="article-writer">
-                <a href="#">
+                <a href="/otherInfo/{{ $params['posterId'] }}">
                     <img src="{{ $params['avatar'] }}"/>
                 </a>
                 <span>{{ $params['postName'] }}</span>
