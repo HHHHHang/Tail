@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <title>Blog Home - Start Bootstrap Template</title>
 
@@ -26,163 +27,170 @@
     <!-- Custom CSS -->
     <link href="{{URL::asset('css/navigation.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('css/blog-home.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{URL::asset('css/person-info.css')}}" rel="stylesheet" type="text/css" />
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
 </head>
 
 <body>
 
-    @include('tail.layout.header', ['active' => ''])
+@include('tail.layout.header', ['active' => ''])
 
-    <!-- Page Content -->
-    <div class="container">
+        <!-- Page Content -->
+<div class="container">
 
-        <div class="row">
+    <div class="row">
 
-            <!-- Blog Entries Column -->
-            <div class="col-md-8">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
 
-                <!-- My Info -->
-                <div class="well">
-                    <ul class="nav nav-pills" style="font-size: x-large;">
-                        <li role="presentation" class="active"><a href="#info" data-toggle="pill">基本信息</a></li>
-                        <li role="presentation"><a href="#post" data-toggle="pill">帖子</a></li>
-                        <li><a href="#comment" data-toggle="pill">评论</a></li>
-                    </ul>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <div class="tab-content">
-                        <div class="tab-pane fade in active" id="info">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <ul style="font-size: 16px; padding:0px 20%;">
-                                        <li>用户名:   {{ $user['name'] }}</li>
-                                        <br/><br/>
-                                        <li>个人网页:   </li>
-                                        <br/><br/>
-                                        <li>微博:   </li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-5">
-                                    <br/>
-                                    <br/>
-                                    <br/>
-                                    <br/>
-                                    <div class="col-md-6">
-                                        <ul style="font-size: 16px; text-align: center">
-                                            <li>积分:4   </li>
-                                            <br/><br/>
-                                            <li>威望:0   </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <ul style="font-size: 16px; text-align: center">
-                                            <li>金钱:3   </li>
-                                            <br/><br/>
-                                            <li>创作积分:0   </li>
-                                        </ul>
-                                    </div>
-                                </div>
+            <!-- My Info -->
+            <div class="well">
+                <ul class="nav nav-pills" style="font-size: x-large;">
+                    <li role="presentation" class="active"><a href="#post" data-toggle="pill">我的帖子</a></li>
+                    <li role="presentation"><a href="#reply" data-toggle="pill">我的回复</a></li>
+                    <li><a href="#collect" data-toggle="pill">我的收藏</a></li>
+                    <li><a href="#zan" data-toggle="pill">我的点赞</a></li>
+                </ul>
+                <br/>
+                <hr/>
+                <br/>
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="post">
+                        @foreach($params['articles'] as $article)
+                            <div class="info-box">
+                                <h1><a href="/article/{{ $article->id }}">{{ $article->title }}</a></h1>
                             </div>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <button type="button" class="btn btn-default btn-lg btn-block">查看更多信息</button>
-                        </div>
-                        <div class="tab-pane fade" id="post">
-                            <p></p>
-                        </div>
-                        <div class="tab-pane fade" id="comment">
-                            <p></p>
-                        </div>
+                            <div class="detail-info">
+                                <span>类别 <a href="#">{{ $article->type }}</a></span>
+                                <span>&nbsp;发布时间 {{ date("Y年m月d日",strtotime($article->createTime)) }}</span>
+                                <span>&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>{{ $article->upNum }}</span>
+                                <span>&nbsp;<span class="glyphicon glyphicon-comment"></span>{{ $article->commentNum }}</span>
+                            </div>
+                            <hr>
+                        @endforeach
+                        @foreach($params['ties'] as $tie)
+                            <div class="info-box">
+                                <h1><a href="/kinkTie/{{ $tie->kid }}">{{ $tie->title }}</a></h1>
+                            </div>
+                            <div class="detail-info">
+                                <span>类别 <a href="#">{{ $tie->type }}</a></span>
+                                <span>发布时间 {{ date("Y年m月d日",($tie->createTime)) }}</span>
+                                <span class="glyphicon glyphicon-thumbs-up">{{ $tie->upNum }}</span>
+                                <span><span class="glyphicon glyphicon-comment"></span>{{ $tie->commentNum }}</span>
+                            </div>
+                            <hr>
+                        @endforeach
+                        {{--<button type="button" class="btn btn-default btn-lg btn-block">查看更多信息</button>--}}
                     </div>
-
-                    {{--<form>--}}
-                        {{--<div class="input-group">--}}
-                          {{--<span class="input-group-addon" id="basic-addon1">个人主页</span>--}}
-                          {{--<input type="text" class="form-control" placeholder="example: github.com/xxx/" aria-describedby="basic-addon1">--}}
-                        {{--</div>--}}
-                        {{--<br>--}}
-                        {{--<div class="input-group">--}}
-                          {{--<span class="input-group-addon" id="basic-addon1">个性签名</span>--}}
-                          {{--<input type="text" class="form-control" placeholder="个性签名" aria-describedby="basic-addon1">--}}
-                        {{--</div>--}}
-                    {{--</form>--}}
-
-                </div>
-            </div>
-
-            <!-- Blog Sidebar Widgets Column -->
-            <div class="col-md-3">
-
-                <!-- Blog Search Well -->
-                {{--<div class="well">--}}
-                    {{--<h4>站内搜索</h4>--}}
-                    {{--<div class="input-group">--}}
-                        {{--<input type="text" class="form-control">--}}
-                        {{--<span class="input-group-btn">--}}
-                            {{--<button class="btn btn-default" type="button">--}}
-                                {{--<span class="glyphicon glyphicon-search"></span>--}}
-                        {{--</button>--}}
-                        {{--</span>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-
-                <!-- Blog Categories Well -->
-                <div class="well">
-                    <div class="row">
-                        <img width="250" height="130" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-19%20%E4%B8%8A%E5%8D%881.14.18.png"></img>
-                        <!-- /.col-lg-6 -->
-                        <h1 style="text-align: center; font-size: 16px"> {{ $user['name'] }}</h1>
-                        <br/>
-                        <p style="text-align: center">
-                        <button type="button" class="btn btn-success" style="font-size: large;"><span>+加关注</span></button>
-                        </p>
-                        <hr>
-                        <div style="font-size: 16px; text-align: center">0 关注 &nbsp;&nbsp; 0 粉丝 &nbsp;&nbsp;  0 帖子</div>
+                    <div class="tab-pane fade" id="reply">
+                        @foreach($params['articleComments'] as $articleComment)
+                            <div class="">
+                                <h1><a href="/article/{{ $articleComment->akid }}">{{ $articleComment->content }}</a></h1>
+                            </div>
+                            <div class="detail-info">
+                                <span>发布时间 {{ date("Y年m月d日",($articleComment->createtime)) }}</span>
+                            </div>
+                            <hr>
+                        @endforeach
+                        @foreach($params['tieComments'] as $tieComment)
+                            <div class="info-box">
+                                <h1><a href="/kinkTie/{{ $tieComment->akid }}">{{ $tieComment->content }}</a></h1>
+                            </div>
+                            <div class="detail-info">
+                                <span>发布时间 {{ date("Y年m月d日",($tieComment->createtime)) }}</span>
+                            </div>
+                            <hr>
+                        @endforeach
                     </div>
-                    <!-- /.row -->
+                    <div class="tab-pane fade" id="collect">
+                        @foreach($params['collectArticles'] as $collectArticle)
+                            <div class="info-box">
+                                <h1><a href="/article/{{ $collectArticle->id }}">{{ $collectArticle->title }}</a></h1>
+                            </div>
+                            <div class="detail-info">
+                                <span>类别 <a href="#">{{ $collectArticle->type }}</a></span>
+                                <span>发布时间 {{ date("Y年m月d日",strtotime($collectArticle->createTime)) }}</span>
+                                <span class="glyphicon glyphicon-thumbs-up">{{ $collectArticle->upNum }}</span>
+                                <span><span class="glyphicon glyphicon-comment"></span>{{ $collectArticle->commentNum }}</span>
+                            </div>
+                            <hr>
+                        @endforeach
+                        @foreach($params['collectTies'] as $collectTie)
+                            <div class="info-box">
+                                <h1><a href="/kinkTie/{{ $collectTie->kid }}">{{ $collectTie->title }}</a></h1>
+                            </div>
+                            <div class="detail-info">
+                                <span>类别 <a href="#">{{ $collectTie->type }}</a></span>
+                                <span>发布时间 {{ date("Y年m月d日",($collectTie->createTime)) }}</span>
+                                <span class="glyphicon glyphicon-thumbs-up">{{ $collectTie->upNum }}</span>
+                                <span><span class="glyphicon glyphicon-comment"></span>{{ $collectTie   ->commentNum }}</span>
+                            </div>
+                            <hr>
+                        @endforeach
+                    </div>
+                    <div class="tab-pane fade" id="zan">
+                        @foreach($params['upArticles'] as $upArticle)
+                            <div class="info-box">
+                                <h1><a href="/article/{{ $upArticle->id }}">{{ $upArticle->title }}</a></h1>
+                            </div>
+                            <div class="detail-info">
+                                <span>类别 <a href="#">{{ $upArticle->type }}</a></span>
+                                <span>发布时间 {{ date("Y年m月d日",strtotime($upArticle->createTime)) }}</span>
+                                <span class="glyphicon glyphicon-thumbs-up">{{ $upArticle->upNum }}</span>
+                                <span><span class="glyphicon glyphicon-comment"></span>{{ $upArticle->commentNum }}</span>
+                            </div>
+                            <hr>
+                        @endforeach
+                        @foreach($params['upTies'] as $upTie)
+                            <div class="info-box">
+                                <h1><a href="/kinkTie/{{ $upTie->kid }}">{{ $upTie->title }}</a></h1>
+                            </div>
+                            <div class="detail-info">
+                                <span>类别 <a href="#">{{ $upTie->type }}</a></span>
+                                <span>发布时间 {{ date("Y年m月d日",($upTie->createTime)) }}</span>
+                                <span class="glyphicon glyphicon-thumbs-up">{{ $upTie->upNum }}</span>
+                                <span><span class="glyphicon glyphicon-comment"></span>{{ $upTie->commentNum }}</span>
+                            </div>
+                            <hr>
+                        @endforeach
+                    </div>
                 </div>
 
-                <!-- Side Widget Well -->
-                <div class="list-group">
-                  <a href="#" class="list-group-item active">
-                    基本信息修改
-                  </a>
-                  <a href="#" class="list-group-item">修改头像</a>
-                  <a href="#" class="list-group-item">个人资料</a>
-                  <a href="#" class="list-group-item">积分</a>
-                  <a href="#" class="list-group-item">密码安全</a>
-                </div>
             </div>
-
         </div>
-        <!-- /.row -->
 
+        <!-- Blog Sidebar Widgets Column -->
+        <div class="col-md-3">
 
-
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
+            <div class="well">
+                <div class="row">
+                    <img width="250" height="130" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-19%20%E4%B8%8A%E5%8D%881.14.18.png"></img>
+                    <!-- /.col-lg-6 -->
+                    <h1 style="text-align: center; font-size: 16px"> {{ $params['userInfo']['name'] }}</h1>
+                    <br/>
+                    <p style="text-align: center">
+                    </p>
+                    <hr>
+                    <div style="font-size: 16px; text-align: center">{{ $params['userInfo']['followNum'] }} 关注 &nbsp;&nbsp; {{ $params['userInfo']['fans'] }} 粉丝 &nbsp;&nbsp;  {{ $params['userInfo']['postNum'] }} 帖子</div>
                 </div>
-                <!-- /.col-lg-12 -->
+                <!-- /.row -->
             </div>
-            <!-- /.row -->
-        </footer>
+        </div>
 
     </div>
-    <!-- /.container -->
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+
+@include('tail.layout.footer')
 
 
 </body>

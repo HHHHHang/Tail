@@ -45,7 +45,6 @@ class ArticleController extends Controller{
 	}
 
 	public function article(Request $request, $id) {
-
 		$user = $request->user();
 		$userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
 		$comments = DB::table('comments')->where('type', 'article')->where('akid', $id)->get();
@@ -68,6 +67,7 @@ class ArticleController extends Controller{
 			'upNum'      => $article->upNum,
 			'avatar' => $postUser->avatar,
 			'postName' => $postUser->name,
+			'posterId' => $postUser->uid,
 			'image' => $article->image,
 			'hasUp' => $hasUp,
 			'hasCollect' => $hasCollect,

@@ -102,7 +102,7 @@
 }
 .article-picture{
     height: 580px;
-    width: 100%;
+    width: 1265px;
     background-size: 100% 100%;
     margin-top: -33px;
 }
@@ -181,6 +181,9 @@
 .article-background-color{
     background: rgba(0,0,0,0.4);
     height: 100%;
+}
+.article-background-color h1{
+    width: 100%;
 }
 #goToTop {
     position: fixed;
