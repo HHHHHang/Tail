@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link href="{{ asset('topics/css/style.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('topics/css/topic.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('topics/css/jquery.jscrollpane.css') }}" rel="stylesheet" type="text/css">
 	<link href='http://fonts.useso.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
 	<link href='http://fonts.useso.com/css?family=Oswald' rel='stylesheet' type='text/css' />
@@ -83,7 +84,8 @@
 		{{--<h1><span>&hearts;</span> 话题广场</h1>--}}
 		<h1>话题广场</h1>
 		<h2>让思想汇聚、流传</h2>
-		<a class="btn btn-large btn-success create-topic"><span class="glyphicon glyphicon-pencil"></span>新建话题</a>
+		<a class="btn btn-large btn-success create-topic " data-toggle="modal"
+		   data-target="#createTopicModal"><span class="glyphicon glyphicon-pencil"></span>创建话题</a>
 		<p class="subline">share <span class="fancy">&amp;</span> more</p>
 	</div>
 	<div class="container topic-container" id="container">
@@ -107,6 +109,45 @@
 			<div class="clr"></div>
 	</div>
 
+	<div class="modal fade" id="createTopicModal" tabindex="-1" role="dialog"
+		 aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close"
+							data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h2 class="modal-title" id="myModalLabel">
+						创建话题
+					</h2>
+				</div>
+				<div class="modal-body ">
+					<a class="pic">
+						<div id="img-preview"></div>
+						<span class="upload-img" style="background-image: url({{asset('topics/images/f196.jpg')}})"><input id="fileUpload" accept="image/*" type="file" multiple="multiple"></span>
+
+					</a>
+
+					<div class="topic-info">
+
+						<input placeholder="话题名称" type="text" id="topic-title">
+
+						<input placeholder="话题简介" type="text" id="topic-intro">
+						<textarea rows="8" cols="30" placeholder="为话题增加适当的描述..." id="topic-description"></textarea>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default"
+							data-dismiss="modal">关闭
+					</button>
+					<button class="btn btn-success" onclick="submit()">创建话题</button>
+
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+	</div>
+
 	<!-- container -->
 
 
@@ -117,7 +158,69 @@
 	<script src="{{asset('topics/js/jquery.jscrollpane.min.js')}}"></script>
 	<script src="{{asset('topics/js/jquery.masonry.min.js')}}"></script>
 	<script src="{{asset('topics/js/jquery.gpCarousel.js')}}"></script>
-	<script type="text/javascript">
+
+    <script>
+		var submit = function () {
+
+			var topicName = $('#topic-title').val();
+			var topicIntro = $('#topic-intro').val();
+			var topicDes = $('#topic-description').val();
+			var imgNum = $('#img-preview > img').length;
+
+			console.log('话题: ' + topicName);
+			console.log('简介: ' + topicIntro);
+			console.log('描述: ' + topicDes);
+
+			$.ajax({
+				type: 'POST',
+				url: '/new/topic',
+				data: {
+					'topicName': topicName,
+					'topicIntro':topicIntro,
+					'topicDes':topicDes
+				},
+				dataType: 'json',
+				success: function (data) {
+					console.log(data);
+					console.log('success');
+					location.href = '/topic/detail';
+				},
+				error: function (error) {
+					console.log(error);
+					console.log('error');
+				}
+			});
+		};
+//		上传图片
+		$(function () {
+			$("#fileUpload").change(function () {
+				if (typeof (FileReader) != "undefined") {
+					var dvPreview = $("#img-preview");
+					dvPreview.html("");
+					var regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
+					$($(this)[0].files).each(function () {
+						var file = $(this);
+						if (regex.test(file[0].name.toLowerCase())) {
+							var reader = new FileReader();
+							reader.onload = function (e) {
+								var img = $("<img />");
+								img.attr("src", e.target.result);
+								dvPreview.append(img);
+							}
+							var src = reader.readAsDataURL(file[0]);
+
+						} else {
+							alert(file[0].name + " is not a valid image file.");
+							dvPreview.html("");
+							return false;
+						}
+					});
+				} else {
+					alert("This browser does not support HTML5 FileReader.");
+				}
+			});
+		});
+
 		$(window).load(function(){
 
 				// the main container

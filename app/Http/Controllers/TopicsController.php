@@ -38,25 +38,71 @@ class TopicsController extends Controller{
 		$user = $request->user();
 
 		$topic = DB::table('topics')->where('id', $id)->first();
-
+		$articles = DB::table('topic_articles')->where('tid',$id)->get();
+		$articleInfo = [];
+		foreach ($articles as $article) {
+			$author = DB::table('tail_users')->where('uid', $article->uid)->first();
+			$articleInfo[]=[
+				'author' => $author,
+				'article' => $article
+			];
+		}
 		$params = [
 			'user' => $user,
-			'topic' => $topic
+			'topic' => $topic,
+			'articlesInfo' => $articleInfo
 		];
 
 		return view('tail.topicDetail')->with('params', $params); 
 	}
 
-	public function newTopic(Request $request)
+	public function article(Request $request,$aid)
 	{
 		$user = $request->user();
 
+		$article = DB::table('topic_articles')->where('id',$aid)->first();
+//		$currentUser = DB::table('tail_users')->where('uid',$user->id)->first();
+		$currentUser = getUserInfo(isset($user) ? $user['id'] : 2);
+		$author =getUserInfo($article->uid);
 
 		$params = [
 			'user' => $user,
+			'currentUserInfo' => $currentUser,
+			'article' => $article,
+			'author' => $author
 		];
 
-		return view('tail.newTopic')->with('params', $params);
+		return view('tail.topicArticle')->with('params', $params);
+	}
+
+	public function noPicTopicArticle(Request $request,$aid)
+	{
+		$user = $request->user();
+
+		$article = DB::table('topic_articles')->where('id',$aid)->first();
+//		$currentUser = DB::table('tail_users')->where('uid',$user->id)->first();
+		$currentUser = getUserInfo(isset($user) ? $user['id'] : 2);
+		$author =getUserInfo($article->uid);
+
+		$params = [
+			'user' => $user,
+			'currentUserInfo' => $currentUser,
+			'article' => $article,
+			'author' => $author
+		];
+
+		return view('tail.noPicTopicArticle')->with('params', $params);
+	}
+
+	public function postTopic(Request $request)
+	{
+		$user = $request->user();
+		$topicName = $request->get('topicName');
+		$topicIntro = $request->get('topicIntro');
+		$topicDes = $request->get('topicDes');
+
+		$array = array('data'=>'success');
+		echo json_encode($array);
 	}
 
 	public function newArticle(Request $request,$id)
@@ -74,9 +120,11 @@ class TopicsController extends Controller{
 
 	public function postArticle(Request $request)
 	{
+		$user = $request->user();
 		$title = $request->get('title');
 		$content = $request->get('contentHtml');
 		$topic = $request->get('topic');
+		DB::insert('insert into topic_articles value(0,?,?,?,?,?,?,?,?,?)',[$title,$content,null,$user->id,$topic->id,time(),0,0,0]);
 
   
 		$array = array('data'=>'success');

@@ -23,95 +23,57 @@
         <div class="article-list">
 
             <ul class="article-item">
-                <li class = "have-img">
-                    <a class="wrap-img">
-                        <img src="/">
-                    </a>
-                    <div class=" article-info">
-                        <div class="info-top">
-                            <a class = "blue-link"> 测试用户 </a>
-                            <em>·</em>
-                            <span>7分钟前</span>
-                        </div>
-                        <h4 class="title">
-                            <a href="/">
-                                随波逐流hhh
+                @foreach($params['articlesInfo'] as $articleInfo)
+                    @if($articleInfo['article']->image!=null)
+
+                        <li class = "have-img">
+                            <a class="wrap-img">
+                                <img src={{$articleInfo['article']->image}}>
                             </a>
-                        </h4>
-                        <div class="info-footer">
-                            <span>阅读</span>
-                            <span>评论</span>
-                        </div>
+                            <div class=" article-info">
+                                <div class="info-top">
+                                    <a class = "blue-link"> {{$articleInfo['author']->name}} </a>
+                                    <em>·</em>
+                                    <span>{{$articleInfo['article']->createTime}}</span>
+                                </div>
+                                <h4 class="title">
+                                    <a href="/topic/article/{{$articleInfo['article']->id}}">
+                                        {{$articleInfo['article']->title}}
+                                    </a>
+                                </h4>
+                                <div class="info-footer">
+                                    <span class="glyphicon glyphicon-eye-open"><span>{{$articleInfo['article']->viewNum}}</span></span>
+                                    <span class="glyphicon glyphicon-comment"><span>{{$articleInfo['article']->commentNum}}</span></span>
+                                    <span class="glyphicon glyphicon-thumbs-up"><span>{{$articleInfo['article']->upNum}}</span></span>
+                                </div>
 
-                    </div>
-                </li>
+                            </div>
+                        </li>
+                    @else
+                        <li >
+                            <div class=" article-info">
+                                <div class="info-top">
+                                    <a class = "blue-link"> {{$articleInfo['author']->name}} </a>
+                                    <em>·</em>
+                                    <span>{{$articleInfo['article']->createTime}}</span>
+                                </div>
+                                <h4 class="title">
+                                    <a href="/topic/noPicTopicArticle/{{$articleInfo['article']->id}}">
+                                        {{$articleInfo['article']->title}}
+                                    </a>
+                                </h4>
+                                <div class="info-footer">
+                                    <span class="glyphicon glyphicon-eye-open"><span>{{$articleInfo['article']->viewNum}}</span></span>
+                                    <span class="glyphicon glyphicon-comment"><span>{{$articleInfo['article']->commentNum}}</span></span>
+                                    <span class="glyphicon glyphicon-thumbs-up"><span>{{$articleInfo['article']->upNum}}</span></span>
+                                </div>
 
-                <li class = "have-img">
-                    <a class="wrap-img">
-                        <img src="/">
-                    </a>
-                    <div class=" article-info">
-                        <div class="info-top">
-                            <a class = "blue-link"> 测试用户 </a>
-                            <em>·</em>
-                            <span>7分钟前</span>
-                        </div>
-                        <h4 class="title">
-                            <a href="/">
-                                随波逐流hhh
-                            </a>
-                        </h4>
-                        <div class="info-footer">
-                            <span>阅读</span><span>1</span>
-                            <span>评论</span>
-                        </div>
+                            </div>
+                        </li>
+                    @endif
 
-                    </div>
-                </li>
 
-                <li class = "have-img">
-                    <a class="wrap-img">
-                        <img src="/">
-                    </a>
-                    <div class=" article-info">
-                        <div class="info-top">
-                            <a class = "blue-link"> 测试用户 </a>
-                            <em>·</em>
-                            <span>7分钟前</span>
-                        </div>
-                        <h4 class="title">
-                            <a href="/">
-                                随波逐流hhh
-                            </a>
-                        </h4>
-                        <div class="info-footer">
-                            <span>阅读</span>
-                            <span>评论</span>
-                        </div>
-
-                    </div>
-                </li>
-
-                <li>
-
-                    <div class=" article-info">
-                        <div class="info-top">
-                            <a class = "blue-link"> 测试用户 </a>
-                            <em>·</em>
-                            <span>7分钟前</span>
-                        </div>
-                        <h4 class="title">
-                            <a href="/">
-                                随波逐流hhh
-                            </a>
-                        </h4>
-                        <div class="info-footer">
-                            <span>阅读</span>
-                            <span>评论</span>
-                        </div>
-
-                    </div>
-                </li>
+                @endforeach
 
             </ul>
 

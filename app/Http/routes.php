@@ -71,8 +71,10 @@ Route::get('/topic', 'TopicsController@index');
 Route::get('/topic/detail/{id}','TopicsController@detail');
 Route::get('/new/topicArticle/{id}','TopicsController@newArticle');
 Route::post('/new/topicArticle/{id}','TopicsController@postArticle');
-Route::get('/new/topic','TopicsController@newTopic');
- 
+Route::post('/new/topic','TopicsController@postTopic');
+Route::get('/topic/article/{id}','TopicsController@article');
+Route::get('/topic/noPicTopicArticle/{id}','TopicsController@noPicTopicArticle');
+
 // test接口
 Route::get('/api/test/{id}', function ($id) {
 	var_dump( (getTieByUid($id)) );

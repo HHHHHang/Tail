@@ -22,7 +22,7 @@ body{
     background-color: #eeeeee;
     text-align: center;
     left: 2%;
-    top: 8%;
+    top: 10%;
     position: fixed;
 }
 
@@ -31,7 +31,8 @@ body{
 }
 
 .back > a:hover{
-    color: #000;
+    /*color: #000;*/
+    color: #49be38;
 }
 
 .topic-name{
@@ -72,17 +73,30 @@ body{
 .wrap-img {
     float: right;
     margin-right: 2px;
-}
 
+}
+.wrap-img > img{
+    height: 80px;
+    width: 150px;
+}
 .info-top{
-    font-size: 12px;
+    font-size: 14px;
     margin: 8px 0;
 }
 
 .info-footer{
-    font-size: 12px;
+    font-size: 13px;
     line-height: 20px;
 }
+
+.info-footer > span {
+    margin: 0 5px 0 12px;
+}
+
+.info-footer > span > span{
+    margin-left: 4px;
+}
+
 
 .blue-link{
     color: #4094c7;
@@ -97,7 +111,7 @@ body{
 
 
 .title{
-    font-size: 18px;
+    font-size: 19px;
     font-weight:bold;
     font-height:1.5;
     margin-bottom: 10px;
