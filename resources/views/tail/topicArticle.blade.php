@@ -60,7 +60,7 @@
             }
 
 
-            if ({{ $params['user']['id'] }} == 2) {
+            if ({{ $params['userInfo']['id'] }} == 2) {
                 $('#up').unbind()
                 $('#collect').unbind()
                 $('#up').click(function(){
@@ -79,7 +79,7 @@
                         data: {
                             type: 'topicArticle',
                             id : {{ $params['article']->id }},
-                            uid: {{ $params['user']['id'] }}
+                            uid: {{ $params['userInfo']['id'] }}
                         },
                         success: function(data) {
                             $('#up').html('已赞')
@@ -104,7 +104,7 @@
                         data: {
                             type: 'topicArticle',
                             id : {{ $params['article']->id }},
-                            uid: {{ $params['user']['id']}}
+                            uid: {{ $params['userInfo']['id']}}
                         },
                         success: function(data) {
                             $('#up').html('赞')
@@ -127,7 +127,7 @@
                         data: {
                             type: 'topicArticle',
                             id : {{ $params['article']->id }},
-                            uid: {{ $params['user']['id'] }}
+                            uid: {{ $params['userInfo']['id'] }}
                         },
                         success: function(data) {
                             $('#collect').html('已收藏')
@@ -151,7 +151,7 @@
                         data: {
                             type: 'topicArticle',
                             id : {{ $params['article']->id }},
-                            uid: {{ $params['user']['id'] }}
+                            uid: {{ $params['userInfo']['id'] }}
                         },
                         success: function(data) {
                             $('#collect').html('收藏')

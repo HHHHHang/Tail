@@ -21,7 +21,7 @@ class TopicArticlesController extends Controller{
     public function article(Request $request,$aid)
     {
         $user = $request->user();
-//        $userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
+        $userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
         $comments = DB::table('comments')->where('akid', $aid)->where('type', 'topicArticle')->get();
 
         DB::table('topic_articles')->where('id', $aid)->increment('viewNum');
@@ -37,7 +37,7 @@ class TopicArticlesController extends Controller{
 
         $params = [
             'user' => $user,
-//            'userInfo' => $userInfo,
+            'userInfo' => $userInfo,
             'currentUserInfo' => $currentUser,
             'article' => $article,
             'author' => $author,
@@ -52,7 +52,7 @@ class TopicArticlesController extends Controller{
     public function noPicTopicArticle(Request $request,$aid)
     {
         $user = $request->user();
-
+        $userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
         $comments = DB::table('comments')->where('akid', $aid)->where('type', 'topicArticle')->get();
 
         DB::table('topic_articles')->where('id', $aid)->increment('viewNum');
@@ -67,6 +67,7 @@ class TopicArticlesController extends Controller{
 
         $params = [
             'user' => $user,
+            'userInfo' => $userInfo,
             'currentUserInfo' => $currentUser,
             'article' => $article,
             'author' => $author,
