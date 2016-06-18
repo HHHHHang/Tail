@@ -80,3 +80,17 @@ Route::get('/api/test/{id}', function ($id) {
 	var_dump( (getTieByUid($id)) );
 });
 
+
+//CMS 后台内容管理系统
+
+Route::get('/cms/index', 'CMSController@index');
+Route::get('/cms/article', 'CMSController@article');
+Route::get('/cms/tie', 'CMSController@tie');
+Route::get('/cms/topic', 'CMSController@topic');
+Route::post('/deleteArticle', 'CMSController@deleteArticle');
+Route::post('/publishArticle', 'CMSController@publishArticle');
+Route::post('/deleteTie', 'CMSController@deleteTie');
+Route::post('/publishTie', 'CMSController@publishTie');
+Route::post('/deleteTopic', 'CMSController@deleteTopic');
+Route::post('/publishTopic', 'CMSController@publishTopic');
+
