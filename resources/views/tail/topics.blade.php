@@ -97,7 +97,7 @@
 			<div class="item block" data-bgimage="{{ $topic->image }}">
 				<div class="thumbs-wrapper">
 					<div class="thumbs">
-						<img src="{{ $topic->image }}"/>
+						<img width="260px" height="173px" src="{{ $topic->image }}"/>
 					</div>
 				</div>
 				<a href="/topic/detail/{{$topic -> id}}"><h2 class="title">{{ $topic->name }}</h2></a>
@@ -126,28 +126,32 @@
 						创建话题
 					</h2>
 				</div>
+				<form action="/new/topic" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<div class="modal-body ">
 					<a class="pic">
 						<div id="img-preview"></div>
-						<span class="upload-img" style="background-image: url({{asset('topics/images/f196.jpg')}})"><input id="fileUpload" accept="image/*" type="file" multiple="multiple"></span>
+						<span class="upload-img" style="background-image: url({{asset('topics/images/f196.jpg')}})">
+								<input name="file" id="fileUpload" accept="image/*" type="file" multiple="multiple">
+						</span>
 
 					</a>
 
 					<div class="topic-info">
 
-						<input placeholder="话题名称" type="text" id="topic-title">
+						<input name="topicName" placeholder="话题名称" type="text" id="topic-title">
 
-						<input placeholder="话题简介" type="text" id="topic-intro">
-						<textarea rows="8" cols="30" placeholder="为话题增加适当的描述..." id="topic-description"></textarea>
+						<input name="topicIntro" placeholder="话题简介" type="text" id="topic-intro">
+						<textarea name="topicDes" rows="8" cols="30" placeholder="为话题增加适当的描述..." id="topic-description"></textarea>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default"
 							data-dismiss="modal">关闭
 					</button>
-					<button class="btn btn-success" onclick="submit()">创建话题</button>
-
+					<button type="submit" id="create" class="btn btn-success">创建话题</button>
 				</div>
+				</form>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal -->
 	</div>
@@ -156,6 +160,7 @@
 
 
 	<script type="text/javascript" src="http://libs.useso.com/js/jquery/1.6.2/jquery.min.js"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script>
 	<script src="{{asset('topics/js/jquery.tmpl.min.js')}}"></script>
 	<script src="{{asset('topics/js/jquery.easing.1.3.js')}}"></script>
 	<script src="{{asset('topics/js/jquery.mousewheel.js')}}"></script>
@@ -174,32 +179,39 @@
 			console.log('话题: ' + topicName);
 			console.log('简介: ' + topicIntro);
 			console.log('描述: ' + topicDes);
-
-			$.ajaxSetup({
-				headers: {
-					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-				}
-			});
-
-			$.ajax({
-				type: 'POST',
-				url: '/new/topic',
-				data: {
-					'topicName': topicName,
-					'topicIntro':topicIntro,
-					'topicDes':topicDes
-				},
-				dataType: 'json',
-				success: function (data) {
-					console.log(data);
-					console.log('success');
-					location.href = '/topic';
-				},
-				error: function (error) {
-					console.log(error);
-					console.log('error');
-				}
-			});
+			var options = {
+				success:       showResponse,
+				dataType: 'json'
+			};
+			function showResponse() {
+				console.log('sucess')
+			}
+			$('#upload').ajaxForm(options).submit();
+//			$.ajaxSetup({
+//				headers: {
+//					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//				}
+//			});
+//
+//			$.ajax({
+//				type: 'POST',
+//				url: '/new/topic',
+//				data: {
+//					'topicName': topicName,
+//					'topicIntro':topicIntro,
+//					'topicDes':topicDes
+//				},
+//				dataType: 'json',
+//				success: function (data) {
+//					console.log(data);
+//					console.log('success');
+//					location.href = '/topic';
+//				},
+//				error: function (error) {
+//					console.log(error);
+//					console.log('error');
+//				}
+//			});
 		};
 //		上传图片
 		$(function () {

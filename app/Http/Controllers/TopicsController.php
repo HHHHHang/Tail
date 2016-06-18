@@ -11,9 +11,11 @@ namespace App\Http\Controllers;
 use DB;
 use App\Banner_img;
 
+use Storage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Request as Req;
 use App\Http\Controllers\Controller;
 use League\Flysystem\AdapterInterface;
 
@@ -64,13 +66,28 @@ class TopicsController extends Controller{
 		$topicName = $request->get('topicName');
 		$topicIntro = $request->get('topicIntro');
 		$topicDes = $request->get('topicDes');
+		$file = $request->get('file');
+		if(!$request->hasFile('file')){
+			$imageUrl = 'http://115.28.180.158/topics/images/thumbs/1.jpg';
+		} else {
+			$file = $request->file( 'file' );
+			//判断文件上传过程中是否出错
+			if ( ! $file->isValid() ) {
+				exit( '文件上传出错！' );
+			}
+			$destPath = realpath( public_path( 'images' ) );
+			$filename = $file->getClientOriginalName();
+		}
+		$imageUrl = asset('images/' . time() . $filename);
 		DB::table('topics')->insertGetId(
 			['name' => $topicName, 'description' => $topicIntro, 'content' => $topicDes,
-			 'image' => 'http://115.28.180.158/topics/images/thumbs/1.jpg', 'uid' => $user['id'], 'isPublished' => 0]
+			 'image' => $imageUrl, 'uid' => $user['id'], 'isPublished' => 0]
 		);
-
-		$array = array('data'=>'success');
-		echo json_encode($array);
+		if(!$file->move($destPath, $imageUrl)){
+//			exit('保存文件失败！');
+		}
+//		exit('文件上传成功！');
+		return redirect('/topic');
 	}
 
 	public function newArticle(Request $request,$id)
@@ -113,6 +130,10 @@ class TopicsController extends Controller{
   
 		$array = array('data'=>'success');
 		echo json_encode($array);
+
+	}
+
+	public function avatarUpload(Request $request) {
 
 	}
 
