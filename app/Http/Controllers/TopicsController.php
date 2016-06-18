@@ -23,7 +23,7 @@ class TopicsController extends Controller{
 	{
 		$user = $request->user();
 
-		$topics = DB::table('topics')->get();
+		$topics = DB::table('topics')->where('isPublished', 1)->get();
 
 		$params = [
 			'user' => $user,

@@ -26,7 +26,7 @@
         <div class="container">
             <div class="row topicDisplayMain">
                 <div>
-                    <h1>推荐话题</h1><span></span><a>进入话题广场</a>
+                    <h1>推荐话题</h1><span></span><a href="/topic">进入话题广场</a>
                 </div>
                 <div>
                     <div class="thumbnailCustom">
