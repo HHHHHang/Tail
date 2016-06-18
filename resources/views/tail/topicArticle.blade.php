@@ -28,7 +28,7 @@
     <!-- Custom CSS -->
     <link href="{{URL::asset('css/navigation.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('css/sidebar.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{URL::asset('css/article-detail.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{URL::asset('css/topicarticle-detail.css')}}" rel="stylesheet" type="text/css" />
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -87,31 +87,62 @@
 <hr>
 <div class="well articleDetailComment article-comments">
     <span>评论:</span>
-        {{--<form method="POST" role="form" action="/kinkTie/{{ $params['aid'] }}">--}}
         <div class="form-group">
-            <textarea name="content" class="form-control" rows="3"></textarea>
+            <textarea id="content" class="form-control" rows="3"></textarea>
         </div>
         {{--<input type="hidden" name="id" value="{{ $params['aid'] }}" />--}}
-        <button type="submit" class="btn">评论</button>
+        <button class="btn" onclick="comment()">评论</button>
     </form>
-    {{--<span class="glyphicon glyphicon-comment" style="color: #969a9e;"><span>&nbsp;全部评论<span style="font-size: 13px;color: #559FEB;">  {{ sizeof($comments) }}条</span></span></span>--}}
+    <span class="glyphicon glyphicon-comment" style="color: #969a9e;"><span>&nbsp;全部评论<span style="font-size: 13px;color: #559FEB;">  {{ sizeof($params['comments']) }}条</span></span></span>
     <hr>
-    {{--@foreach ($comments as $comment)--}}
-        {{--<div class="media">--}}
-            {{--<a class="pull-left" href="#">--}}
-                {{--<img class="media-object" width="64" height="64" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png" alt="">--}}
-            {{--</a>--}}
-            {{--<div class="media-body">--}}
-                {{--<h4 class="media-heading">{{ $comment->username }}--}}
-                    {{--<small>{{ date('Y-m-d H:i:s', $comment->createtime)   }}</small>--}}
-                {{--</h4>--}}
-                {{--{{ $comment->content  }}--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<hr>--}}
-    {{--@endforeach--}}
+    @foreach ($params['comments'] as $comment)
+        <div class="media">
+            <a class="pull-left" href="#">
+                <img class="media-object" width="64" height="64" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png" alt="">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">{{ $comment->username }}
+                    <small>{{ $comment->createtime   }}</small>
+                </h4>
+                {{ $comment->content  }}
+            </div>
+        </div>
+        <hr>
+    @endforeach
     <span style="text-align: center; padding: 15px 0">评论已全部加载完毕</span>
 </div>
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    var comment = function () {
+        var content = $('#content').val();
+        console.log(content);
+
+        $.ajax({
+            type: 'POST',
+            url: '/topicArticle/comment/{{$params['article']->id}}',
+            data: {
+//                   topic: topic,
+                content:content
+            },
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                console.log('success');
+                location.href = '/topic/article/{{$params['article']->id}}';
+            },
+            error: function (error) {
+                console.log(error);
+                console.log('error');
+            }
+        })
+    }
+</script>
 
 
 @include('tail.layout.footer')

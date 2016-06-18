@@ -137,13 +137,13 @@
 
        var submit = function () {
 
-           var topic = $('.chip > span').text();
+//           var topic = $('.chip > span').text();
 
 
            var title = $('#postTitle').val();
            var contentHtml = editor.getValue();
            console.log('标题: ' + title);
-           console.log('话题: ' + topic);
+//           console.log('话题: ' + topic);
            console.log('正文: ' + contentHtml);
 
            $.ajax({
@@ -151,13 +151,14 @@
                url: '/new/topicArticle/{{$params['topic']->id}}',
                data: {
                    title: title,
-                   topic: topic,
-                   contentHtml: contentHtml,
+//                   topic: topic,
+                   contentHtml: contentHtml
                },
                dataType: 'json',
                success: function (data) {
                    console.log(data);
                    console.log('success');
+                   alert('文章发布成功');
                    location.href = '/topic/detail/{{$params['topic']->id}}';
                },
                error: function (error) {

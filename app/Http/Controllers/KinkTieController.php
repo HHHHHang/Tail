@@ -53,7 +53,7 @@ class KinkTieController extends Controller{
 		$uid      = isset($user) ?  $user['id'] : '0';
 
 		DB::table('comments')->insertGetId(
-			array('akid'=> $kid, 'type'=>'kinkTie', 'uid'=> $uid, 'username' => $username, 'content'=>$content, 'createtime' => time())
+			array('akid'=> $kid, 'type'=>'kinkTie', 'uid'=> $uid, 'username' => $username, 'content'=>$content)
 		);
 		DB::table('kinkTies')->where('kid', $kid)->increment('commentNum');
 

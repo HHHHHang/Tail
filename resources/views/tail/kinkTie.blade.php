@@ -204,7 +204,7 @@
                         </a>
                         <div class="media-body">
                             <h4 class="media-heading">{{ $comment->username }}
-                                <small>{{ date('Y-m-d H:i:s', $comment->createtime)   }}</small>
+                                <small>{{  $comment->createtime   }}</small>
                             </h4>
                             {{ $comment->content  }}
                         </div>

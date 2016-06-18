@@ -64,26 +64,26 @@
                 <span>评论:</span>
                 {{--<form method="POST" role="form" action="/kinkTie/{{ $params['aid'] }}">--}}
                     <div class="form-group">
-                        <textarea name="content" class="form-control" rows="3"></textarea>
+                        <textarea id="content" class="form-control" rows="3"></textarea>
                     </div>
 {{--                    <input type="hidden" name="id" value="{{ $params['aid'] }}" />--}}
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <button type="submit" class="btn">评论</button>
+{{--                    <input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
+                    <button onclick="comment()" class="btn">评论</button>
                 </form>
 
-                {{--@foreach ($comments as $comment)--}}
-                    {{--<div class="media">--}}
-                        {{--<a class="pull-left" href="#">--}}
-                            {{--<img class="media-object" width="64" height="64" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png" alt="">--}}
-                        {{--</a>--}}
-                        {{--<div class="media-body">--}}
-                            {{--<h4 class="media-heading">{{ $comment->username }}--}}
-                                {{--<small>{{ date('Y-m-d H:i:s', $comment->createtime)   }}</small>--}}
-                            {{--</h4>--}}
-                            {{--{{ $comment->content  }}--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--@endforeach--}}
+                @foreach ($params['comments'] as $comment)
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" width="64" height="64" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png" alt="">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{ $comment->username }}
+                                <small>{{ $comment->createtime   }}</small>
+                            </h4>
+                            {{ $comment->content  }}
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
 
@@ -94,5 +94,37 @@
 @include('tail.layout.footer')
 
 </body>
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    var comment = function () {
+        var content = $('#content').val();
+        console.log(content);
+
+        $.ajax({
+            type: 'POST',
+            url: '/topicArticle/comment/{{$params['article']->id}}',
+            data: {
+//                   topic: topic,
+                content:content
+            },
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                console.log('success');
+                location.href = '/topic/noPicTopicArticle/{{$params['article']->id}}';
+            },
+            error: function (error) {
+                console.log(error);
+                console.log('error');
+            }
+        })
+    }
+</script>
 
 </html>

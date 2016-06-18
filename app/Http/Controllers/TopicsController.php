@@ -56,43 +56,7 @@ class TopicsController extends Controller{
 		return view('tail.topicDetail')->with('params', $params); 
 	}
 
-	public function article(Request $request,$aid)
-	{
-		$user = $request->user();
-
-		$article = DB::table('topic_articles')->where('id',$aid)->first();
-//		$currentUser = DB::table('tail_users')->where('uid',$user->id)->first();
-		$currentUser = getUserInfo(isset($user) ? $user['id'] : 2);
-		$author =getUserInfo($article->uid);
-
-		$params = [
-			'user' => $user,
-			'currentUserInfo' => $currentUser,
-			'article' => $article,
-			'author' => $author
-		];
-
-		return view('tail.topicArticle')->with('params', $params);
-	}
-
-	public function noPicTopicArticle(Request $request,$aid)
-	{
-		$user = $request->user();
-
-		$article = DB::table('topic_articles')->where('id',$aid)->first();
-//		$currentUser = DB::table('tail_users')->where('uid',$user->id)->first();
-		$currentUser = getUserInfo(isset($user) ? $user['id'] : 2);
-		$author =getUserInfo($article->uid);
-
-		$params = [
-			'user' => $user,
-			'currentUserInfo' => $currentUser,
-			'article' => $article,
-			'author' => $author
-		];
-
-		return view('tail.noPicTopicArticle')->with('params', $params);
-	}
+	
 
 	public function postTopic(Request $request)
 	{
@@ -122,18 +86,36 @@ class TopicsController extends Controller{
 		return view('tail.newTopicArticle')->with('params', $params);
 	}
 
-	public function postArticle(Request $request)
+	public function postArticle(Request $request,$id)
 	{
 		$user = $request->user();
+		$image = null;
 		$title = $request->get('title');
 		$content = $request->get('contentHtml');
-		$topic = $request->get('topic');
-		DB::insert('insert into topic_articles value(0,?,?,?,?,?,?,?,?,?)',[$title,$content,null,$user->id,$topic->id,time(),0,0,0]);
+		$time = time();
+//		$topic = $request->get('topic');
+
+		DB::table('topic_articles')->insertGetId(
+			[
+				'title' => $title,
+				'content' => $content,
+				'image' => $image,
+				'uid' => $user['id'],
+				'tid' => $id,
+//				'createTime' => $time,
+				'viewNum' => 0,
+				'commentNum' => 0,
+				'upNum' => 0
+
+			]
+		);
 
   
 		$array = array('data'=>'success');
 		echo json_encode($array);
 
 	}
+
+
 
 }

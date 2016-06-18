@@ -87,7 +87,7 @@ class ArticleController extends Controller{
 		$uid      = isset($user) ?  $user['id'] : '0';
 
 		DB::table('comments')->insertGetId(
-			array('akid'=> $aid, 'type'=> 'article', 'uid'=> $uid, 'username' => $username, 'content'=>$content, 'createtime' => time())
+			array('akid'=> $aid, 'type'=> 'article', 'uid'=> $uid, 'username' => $username, 'content'=>$content)
 		);
 		DB::table('articles')->where('id', $aid)->increment('commentNum');
 		$comments = DB::table('comments')->where('akid', $aid)->get();
