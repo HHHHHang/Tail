@@ -20,6 +20,7 @@
                             <li><a href="#">其它帖子</a></li>
                         </ul>
                     </li>
+                    <li class="{{$active=='topic' ? 'active' : ''}}"><a href="/topic">话题广场</a></li>
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
