@@ -97,12 +97,12 @@
     align-self: flex-end;
 }
 .articleDetailComment > form > button:hover {
-    background-color: #458ac9;
+    background-color: #458ac9; 
     color: #ffffff;
 }
 .article-picture{
     height: 580px;
-    width: 1265px;
+    width: 100%;
     background-size: 100% 100%;
     margin-top: -33px;
 }
