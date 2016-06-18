@@ -100,6 +100,10 @@ class TopicsController extends Controller{
 		$topicName = $request->get('topicName');
 		$topicIntro = $request->get('topicIntro');
 		$topicDes = $request->get('topicDes');
+		DB::table('topics')->insertGetId(
+			['name' => $topicName, 'description' => $topicIntro, 'content' => $topicDes,
+			 'image' => 'http://115.28.180.158/topics/images/thumbs/1.jpg', 'uid' => $user['id'], 'isPublished' => 0]
+		);
 
 		$array = array('data'=>'success');
 		echo json_encode($array);
