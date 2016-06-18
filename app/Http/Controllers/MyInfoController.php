@@ -47,7 +47,7 @@ class MyInfoController extends Controller{
 			'collectArticles' => $collectArticles,
 			'collectTies' => $collectTies,
 		];
-		if ($user) return view('tail.myInfo')->with('user', $user)->with('params', $params);
+		if ($user) return view('tail.myinfo')->with('user', $user)->with('params', $params);
 		return view('tail.login');
 	}
 
