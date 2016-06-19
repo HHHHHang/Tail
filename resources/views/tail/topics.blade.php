@@ -131,10 +131,9 @@
 				<div class="modal-body ">
 					<a class="pic">
 						<div id="img-preview"></div>
-						<span class="upload-img" style="background-image: url({{asset('topics/images/f196.jpg')}})">
-								<input name="file" id="fileUpload" accept="image/*" type="file" multiple="multiple">
-						</span>
-
+						<img class="upload-img" onclick="pressUploadFileBtn()" src={{asset('topics/images/f196.jpg')}} />
+						<input name="uploadFileInput" id="fileUpload" accept="image/*" type="file" multiple="multiple" style="display: none">
+						<input name="file" value="" id="imgSrc" type="hidden"/>
 					</a>
 
 					<div class="topic-info">
@@ -214,11 +213,13 @@
 //			});
 		};
 //		上传图片
+		var pressUploadFileBtn = function () {
+			$("#fileUpload").click();
+		};
 		$(function () {
 			$("#fileUpload").change(function () {
 				if (typeof (FileReader) != "undefined") {
 					var dvPreview = $("#img-preview");
-					dvPreview.html("");
 					var regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
 					$($(this)[0].files).each(function () {
 						var file = $(this);
@@ -227,8 +228,10 @@
 							reader.onload = function (e) {
 								var img = $("<img />");
 								img.attr("src", e.target.result);
+								dvPreview.html("");
+								$('#imgSrc').val($("#fileUpload").val());
 								dvPreview.append(img);
-							}
+							};
 							var src = reader.readAsDataURL(file[0]);
 
 						} else {

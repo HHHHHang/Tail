@@ -53,9 +53,37 @@ class NewController extends Controller
         echo json_encode($array);
 
     }
+
+    public function newArticle(Request $request)
+    {
+        $user = $request->user();
+        $data = new data();
+        $params = [
+            'user' =>  $user,
+            'data' =>  $data
+        ];
+
+        return view('tail.newArticle')->with('params', $params);
+    }
+
+    public function postArticle(Request $request)
+    {
+        $title = $request->get('title');
+        $content = $request->get('contentHtml');
+        $keywords = $request->get('keywords');
+        $type = $request->get('coverSrc');
+
+        // todo
+        
+        
+
+        $array = array('data'=>'success');
+        echo json_encode($array);
+
+    }
 }
 
 class data {
-    public $type = array('选择分类', '手机', '摄影', '电脑', '平板', '资讯', '视频', '影音', '数码', '周边', '生活', '文具', '游戏', '其它');
+    public $type = array('选择分类', '手机', '电脑', '平板', '资讯', '周边', '其它');
     public $choiceNum = 3;
 }
