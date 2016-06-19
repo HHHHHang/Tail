@@ -52,9 +52,11 @@ Route::get('/forum/tie', 'ForumController@tie');
 Route::get('/forum/tie/{type}', 'ForumController@tie');
 Route::get('/forum/Detail', 'ForumController@forum');
 Route::get('/forum/{type}', 'ForumController@index');
-// 发布帖子界面
+// 发布界面
 Route::get('/new/forum', 'NewController@newForum');
 Route::post('/new/forum', 'NewController@postForum');
+Route::get('/new/article', 'NewController@newArticle');
+Route::post('/new/article', 'NewController@postArticle');
 // 纠结帖子页面
 Route::get('/kinkTie/{kid}', 'KinkTieController@index');
 Route::post('/kinkTie/{kid}', 'KinkTieController@tiePost');
