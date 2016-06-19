@@ -1,3 +1,6 @@
+body {
+    padding-top: 60px;
+}
 .recommendationDiv {
     background: #ffffff;
 }
@@ -111,8 +114,8 @@ body > .container {
 }
 
 .smalleForumTypeDiv > div {
-    margin: 5px 5px;
-    padding: 5px 5px;
+    margin: 0 0 10px 0;
+    padding: 8px 12px;
 }
 .smalleForumTypeDiv > div > a > span:first-child {
     font-size: 35px;
@@ -135,12 +138,18 @@ body > .container {
     margin-top: 5px;
 }
 
-.tagChoosingDiv + button {
+.tagChoosingDiv + div > button {
     margin-right: 20px;
     padding: 5px 30px;
-    align-self: flex-end;
+    -webkit-transition: .5s;
+    transition: .5s;
 }
-.tagChoosingDiv + button:focus {
+.tagChoosingDiv + div  {
+    display: flex;
+    justify-content: flex-end;
+
+}
+.tagChoosingDiv + div > button:focus {
     outline: none;
     box-shadow: none;
 }
@@ -159,7 +168,14 @@ body > .container {
     justify-content: flex-start;
 }
 .forumTabDiv > span {
-    padding: 5px 10px 3px;
+    padding: 5px 10px 0;
+}
+.forumTabDiv > span > a {
+    cursor: default;
+    text-decoration: none;
+}
+.forumTabDiv > span:last-child {
+    position: relative;
 }
 .forumTabDiv > span.checked {
     background-color: #f2f2f2;

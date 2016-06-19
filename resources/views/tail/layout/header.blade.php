@@ -16,8 +16,8 @@
                     <li class="{{$active=='bbs' ? 'active' : ''}} dropdown">
                         <a href="/forum/tie" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">论坛 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/forum/tie">纠结帖子</a></li>
-                            <li><a href="#">其它帖子</a></li>
+                            <li><a href="/forum/kinkTie">纠结帖子</a></li>
+                            <li><a href="/forum/tie">普通帖子</a></li>
                         </ul>
                     </li>
                     <li class="{{$active=='topic' ? 'active' : ''}}"><a href="/topic">话题广场</a></li>

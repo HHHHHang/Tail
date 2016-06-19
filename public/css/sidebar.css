@@ -187,3 +187,21 @@
 .popularForumSidebar > div:hover > h5 {
   color: #458ac9;
 }
+.sidebarBlock > div.affix {
+  top: 75px;
+  width: 360px;
+  position: fixed !important;
+}
+
+a {
+  cursor: default;
+  transition: .2s;
+  -webkit-transition: .2s;
+}
+button{
+  transition: .4s;
+  -webkit-transition: .4s;
+}
+a:hover {
+  text-decoration: none;
+}

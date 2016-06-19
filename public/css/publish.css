@@ -102,8 +102,10 @@
     margin-top: 10px;
 }
 
-.postOptions > input {
+
+.postOptions > input.form-control {
     outline: none;
+    box-shadow: none;
 }
 
 .postOptions .input-group-addon {
@@ -166,9 +168,8 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin: 10px 0;
     background-color: #eeeeee;
-    padding: 15px 15px;
+    padding: 10px 15px;
     font-size: 16px;
 }
 
@@ -190,8 +191,10 @@
     background-color: transparent;
     border: 1px solid #888;
     margin: 5px;
-}
 
+    transition: .2s;
+    -webkit-transition: .2s;
+}
 .postKeyWordsDiv .deleteKeyWordBtn {
     padding-left: 10px;
     color: #888;
@@ -199,11 +202,33 @@
     float: right;
     font-size: 20px;
     cursor: pointer;
+
+    line-height: 31px;
+}
+
+.postKeyWordsDiv .chip span {
+    transition: .2s;
+    -webkit-transition: .2s;
+    min-width: 15px;
+    display: inline-block;
+}
+
+.postKeyWordsDiv .chip:hover {
+    background-color: #458ac9;
+    border: 1px solid #458ac9;
+}
+
+.postKeyWordsDiv .chip:hover span {
+    color: #ffffff;
 }
 
 .postKeyWordsDiv .deleteKeyWordBtn:hover span {
-    color: #000;
+    font-size: larger;
 }
+
+
+
+
 
 .postKeyWordsDiv input {
     background: transparent;
@@ -253,4 +278,16 @@
 
 #img-preview > img {
     width: 100%;
+}
+
+a {
+    transition: .2s;
+    -webkit-transition: .2s;
+}
+button{
+    transition: .4s;
+    -webkit-transition: .4s;
+}
+a:hover {
+    color: #458ac9;
 }

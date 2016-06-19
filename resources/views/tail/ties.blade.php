@@ -18,7 +18,7 @@
 
 <body>
 
-	@include('tail.layout.header', ['active' => ''])
+	@include('tail.layout.header', ['active' => 'bbs'])
 
 <div class="container">
     <div class="row">
@@ -45,6 +45,14 @@
                         </div>
                     </div>
                 @endforeach
+                    <ul class="pager">
+                        <li class="previous disabled">
+                            <a>上一页</a>
+                        </li>
+                        <li class="next disabled">
+                            <a>下一页</a>
+                        </li>
+                    </ul>
             </div>
 
             <!-- Blog Sidebar Widgets Column -->
@@ -56,7 +64,6 @@
                     <img width="90" height="90" src="{{ $params['user']['avatar'] }}"  class="img-responsive">
                     <span>{{ $params['user']['level'] }}</span>
                 </div>
-
                 <div>
                     <span>{{ $params['user']['name'] }}</span>
                     <div>
@@ -66,21 +73,27 @@
                     </div>
                 </div>
             </div>
+            <div  data-spy="affix" data-offset-top="184" data-offset-bottom="340">
+                <div class="forumNewBtn">
+                    @if ($params['isKinkTie'] == 1)
+                        <button type="button" class="btn" onclick="{location.href = '/new/tie'}">发布普通帖子</button>
+                    @else
+                        <button type="button" class="btn" onclick="{location.href = '/new/kinkTie'}">发布纠结帖子</button>
+                    @endif
 
-            <div class="forumNewBtn">
-                <button type="button" class="btn" onclick="{location.href = '/new/forum'}">发布帖子</button>
-            </div>
+                </div>
 
-            <div class="forumSearch well">
-                <span>站内搜索</span>
-                <div class="input-group">
-					<input id='keyword' type="text" class="form-control" value="">
-						<span class="input-group-btn">
-							<button id='search' class="btn btn-default" type="button">
-								<span class="glyphicon glyphicon-search"></span>
-							</button>
-						</span>
-				</div>
+                <div class="popularForumSidebar well">
+                    <span>热门帖子</span>
+                    @foreach($params['hot'] as $tie)
+                        <div>
+                            <a href="/kinkTie/{{$tie->kid}}">
+                                <h5>{{ $tie->title }}</h5>
+                            </a>
+                            <p>{{ date('Y-m-d', $tie->createTime)  }} 英语</p>
+                        </div>
+                    @endforeach
+                </div>
             </div>
 
         </div>

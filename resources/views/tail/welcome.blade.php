@@ -88,8 +88,6 @@
 
             <div class="sidebarBlock col-md-4">
 
-                @include('tail.layout.searchBar')
-
                 <div class="well typeSidebarDiv">
 
                     <span>频道分类</span>
@@ -104,30 +102,33 @@
                     </div>
                 </div>
 
-                <div class="popularTopicSidebar well">
-                    <span>热门话题</span>
-                    @foreach($params['side_banner']  as $banner)
-                    <div style="background-image:url({{ $banner->file }})">
-                        <div>
-                        	<a style="color:white" href="{{$banner->href}}">
-                            <span><b>{{ $banner->title }}</b></span>
-                            </a>
-                            <span>{{ $banner->content }}</span>
-                        </div>
+                <div  data-spy="affix" data-offset-top="1261" data-offset-bottom="340">
+                    <div class="popularTopicSidebar well">
+                        <span>热门话题</span>
+                        @foreach($params['side_banner']  as $banner)
+                            <div style="background-image:url({{ $banner->file }})">
+                                <div>
+                                    <a style="color:white" href="{{$banner->href}}">
+                                        <span><b>{{ $banner->title }}</b></span>
+                                    </a>
+                                    <span>{{ $banner->content }}</span>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
-                    @endforeach
-                </div>
-                <div class="popularForumSidebar well">
-                    <span>热门帖子</span>
-                    @foreach($params['hot'] as $tie)
-                    <div>
-                    	<a href="/kinkTie/{{$tie->kid}}">
-                        <h5>{{ $tie->title }}</h5>
-                        </a>
-                        <p>{{ date('Y-m-d', $tie->createTime)  }} 英语</p>
+                    <div class="popularForumSidebar well">
+                        <span>热门帖子</span>
+                        @foreach($params['hot'] as $tie)
+                            <div>
+                                <a href="/kinkTie/{{$tie->kid}}">
+                                    <h5>{{ $tie->title }}</h5>
+                                </a>
+                                <p>{{ date('Y-m-d', $tie->createTime)  }} 英语</p>
+                            </div>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
+
 
             </div>
 
