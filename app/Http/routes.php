@@ -74,6 +74,7 @@ Route::get('/search/article/{keyword}', 'SearchController@searchArticle');
 // 个人信息页模板
 Route::get('/myinfo', 'MyInfoController@index');
 Route::get('/otherInfo/{uid}', 'MyInfoController@otherInfo');
+Route::post('/myinfo/avatar', 'MyInfoController@postAvatar');
 
 //mysql接口测试
 Route::get('/mongo', 'MongoController@testMongo');
