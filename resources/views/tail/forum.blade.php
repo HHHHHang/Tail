@@ -109,10 +109,9 @@
                                     <input type="checkbox" value=""> 标签4 asdfaw
                                 </label>
                             </div>
-                            
                         </form>
                         <div>
-                            <button class="btn btn-default" class="addKeyWord()">添加关键字</button>
+                            <button class="btn btn-default addKW" onclick="addKeyWord()">添加关键字</button>
                             <button type="submit" class="btn btn-default">筛选</button>
                         </div>
 
@@ -141,8 +140,8 @@
                         <div class="postHead"><a href="/article/{{ $article->id }}" class="title-phone">{{ $article->title  }}</a></div>
                         <div class="postContent"><p class="content-phone">{{ $article->content  }}</p></div>
                         <div>
-                            <a href="#"><span class="glyphicon glyphicon-thumbs-up"></span>{{ $article->upNum }}</a>
-                            <a href="#"><span class="glyphicon glyphicon-comment"></span>{{ $article->commentNum }}</a>
+                            <a href="javascript:void(0)"><span class="glyphicon glyphicon-thumbs-up"></span>{{ $article->upNum }}</a>
+                            <a href="javascript:void(0)"><span class="glyphicon glyphicon-comment"></span>{{ $article->commentNum }}</a>
                         </div>
                     </div>
                 @endforeach
@@ -210,10 +209,28 @@
 
 <script>
     var addKeyWord = function(){
+        console.log('add keyword');
         $('.tagChoosingDiv').append('<div class="checkbox">' +
                 '<label>' +
-                '<input type="checkbox" checked value=""> ' +
+                '<input type="checkbox" checked value=""> <input type="text" autofocus value="" maxlength="10" id="newKeyword"> ' +
                 '</label> ' +
                 '</div>');
-    }
+
+        $('.addKW').attr('disabled', 'true');
+
+        $('#newKeyword').on('keydown', function (e) {
+            var curKey = e.which;
+            if (curKey == 13) {
+                var newKeyWord = $('#newKeyword').val();
+                $('#newKeyword').prev().val(newKeyWord);
+                $('#newKeyword').parent().append(newKeyWord);
+                $('#newKeyword').remove();
+
+                $('.addKW')[0].removeAttribute('disabled');
+            }
+        });
+
+    };
+
+
 </script>

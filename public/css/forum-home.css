@@ -136,6 +136,7 @@ body > .container {
 .tagChoosingDiv .checkbox {
     width: 20%;
     margin-top: 5px;
+    overflow: hidden;
 }
 
 .tagChoosingDiv + div > button {
@@ -251,4 +252,12 @@ body > .container {
 }
 .forumItemContentInfo a:hover {
     color: #57adfd;
+}
+
+.tagChoosingDiv input[type='text'] {
+    border: none;
+    border-bottom: 1px solid #888888;
+    padding: 0 5px 5px;
+    width: 100%;
+
 }
