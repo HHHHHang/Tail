@@ -106,6 +106,7 @@ Route::get('/cms/topic', 'CMSController@topic');
 Route::get('/cms/banner/{type}', 'CMSController@banner');
 Route::post('/deleteArticle', 'CMSController@deleteArticle');
 Route::post('/editBanner', 'CMSController@editBanner');
+Route::post('/editSlider', 'CMSController@editSlider');
 Route::post('/publishArticle', 'CMSController@publishArticle');
 Route::post('/deleteTie', 'CMSController@deleteTie');
 Route::post('/publishTie', 'CMSController@publishTie');

@@ -15,7 +15,7 @@
             <div class='sangar-slideshow-container' id='sangar-example'>
                 <div class='sangar-content-wrapper' style='display:none;'>
                     @foreach($params['pics'] as $pic)
-                        <div class='sangar-content'><a href="/article"></a><img src={{$pic}} /></div>
+                        <div class='sangar-content'><a href="{{$pic->href}}"></a><img src={{$pic->file}} /></div>
                     @endforeach
                 </div>
             </div>
