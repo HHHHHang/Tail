@@ -120,12 +120,13 @@
 
             <!-- My Info -->
             <div class="well">
-                <ul class="nav nav-pills" style="font-size: x-large;">
+                <ul class="nav nav-pills" style="font-size: large;">
                     <li role="presentation" class="active"><a href="#post" data-toggle="pill">我的帖子</a></li>
                     <li role="presentation"><a href="#reply" data-toggle="pill">我的回复</a></li>
                     <li><a href="#collect" data-toggle="pill">我的收藏</a></li>
                     <li><a href="#zan" data-toggle="pill">我的点赞</a></li>
                     <li><a href="#myFollow" data-toggle="pill">我的关注</a></li>
+                    <li><a href="#myMessage" data-toggle="pill">我的消息</a></li>
                 </ul>
                 <br/>
                 <hr/>
@@ -242,6 +243,9 @@
                             </div>
 
                         @endforeach
+                    </div>
+                    <div class="tab-pane fade" id="myMessage">
+
                     </div>
                 </div>
 
