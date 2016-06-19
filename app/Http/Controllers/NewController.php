@@ -10,12 +10,13 @@ namespace App\Http\Controllers;
 
 use DB;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use App\Http\Requests;
+use Storage;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Request as Req;
+use App\Http\Controllers\Controller;
+use League\Flysystem\AdapterInterface;
 
 class NewController extends Controller
 {
@@ -102,17 +103,35 @@ class NewController extends Controller
 
     public function postArticle(Request $request)
     {
-        $title = $request->get('title');
-        $content = $request->get('contentHtml');
-        $keywords = $request->get('keywords');
-        $type = $request->get('coverSrc');
 
-        // todo
-        
-        
+		$user = $request->user();
 
-        $array = array('data'=>'success');
-        echo json_encode($array);
+		if(!$request->hasFile('file')){
+			$filename = 'http://115.28.180.158/topics/images/thumbs/1.jpg';
+			echo "No!";
+		} else {
+			$file = $request->file('file');
+			echo $file;
+			//判断文件上传过程中是否出错
+			$destPath = realpath( public_path( 'images' ) );
+			$filename = $file->getClientOriginalName();
+		}
+
+		$title = $request->get('title');
+		$content = $request->get('contentHtml');
+		$keywords = $request->get('keywords');
+		$type = $request->get('type');
+
+		$imageUrl = asset('images/' . time() . $filename);
+		DB::table('articles')->insertGetId(
+			['title' => $title, 'content' => $content, 'type' => $type,
+			 'image' => $imageUrl, 'uid' => $user['id']]
+		);
+		if(!$file->move($destPath, $imageUrl)){
+//			exit('保存文件失败！');
+		}
+
+		return redirect('/forum');
 
     }
 }

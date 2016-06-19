@@ -63,7 +63,7 @@
                         <li><a onclick="chooseType(event)" >{{$item}}</a></li>
                     @endforeach
                 </ul>
-                <input id="postTitle" type="text" placeholder="标题" maxlength="30"/>
+                <input id="postTitle" name="title" type="text" placeholder="标题" maxlength="30"/>
                 <span id="postTitleLengthMinder">还可输入30个字符</span>
 
             </div>
@@ -91,8 +91,11 @@
                     <a class="chip showChip" onclick="chooseImg()">
                         <span>选择图片</span>
                     </a>
-                    <input type="hidden" name="imgSrc" val="" id="imgSrc" data-toggle="modal" data-target="#createTopicModal">
-                    <input name="file" id="fileUpload" accept="image/*" type="file" multiple="multiple">
+                    <form id="form" action="/new/article" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="imgSrc" val="" id="imgSrc" data-toggle="modal" data-target="#createTopicModal">
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+                   		<input id="fileUpload" name="file" accept="image/*" type="file" multiple="multiple">
+                   	</form>
 
                 </div>
                 <div class="modal fade" id="createTopicModal" tabindex="-1" role="dialog"
@@ -261,27 +264,55 @@
         console.log('正文: ' + contentHtml);
         console.log('分类: ' + type);
 
-        $.ajax({
-            type: 'POST',
-            url: '/new/article',
-            data: {
-                title: title,
-                keywords: keyWords,
-                contentHtml: contentHtml,
-                type: type,
-                coverSrc: coverSrc
-            },
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-                console.log('success');
-                location.href = '/forum';
-            },
-            error: function (error) {
-                console.log(error);
-                console.log('error');
-            }
-        });
+		var form = document.getElementById("form")
+	    var titleInput = document.createElement("input");
+		// 设置相应参数
+		titleInput.type = "text";
+		titleInput.name = "title";
+		titleInput.value = title;
+	    var contentInput = document.createElement("input");
+        // 设置相应参数
+        contentInput.type = "text";
+        contentInput.name = "contentHtml";
+        contentInput.value = contentHtml;
+        var typeInput = document.createElement("input");
+		// 设置相应参数
+		typeInput.type = "text";
+		typeInput.name = "type";
+		typeInput.value = type;
+		var kwInput = document.createElement("input");
+		// 设置相应参数
+		kwInput.type = "text";
+		kwInput.name = "keywords";
+		kwInput.value = JSON.stringify(keyWords);
+		form.appendChild(titleInput);
+		form.appendChild(typeInput);
+		form.appendChild(contentInput);
+		form.appendChild(kwInput);
+		console.log(form)
+        form.submit();
+
+//        $.ajax({
+//            type: 'POST',
+//            url: '/new/article',
+//            data: {
+//                title: title,
+//                keywords: keyWords,
+//                contentHtml: contentHtml,
+//                type: type,
+//                coverSrc: coverSrc
+//            },
+//            dataType: 'json',
+//            success: function (data) {
+//                console.log(data);
+//                console.log('success');
+//                location.href = '/forum';
+//            },
+//            error: function (error) {
+//                console.log(error);
+//                console.log('error');
+//            }
+//        });
     }
 
 </script>

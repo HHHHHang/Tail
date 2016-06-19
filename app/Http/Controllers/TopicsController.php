@@ -68,9 +68,9 @@ class TopicsController extends Controller{
 		$topicDes = $request->get('topicDes');
 		$file = $request->get('file');
 		if(!$request->hasFile('file')){
-			$imageUrl = 'http://115.28.180.158/topics/images/thumbs/1.jpg';
+			$filename = 'http://115.28.180.158/topics/images/thumbs/1.jpg';
 		} else {
-			$file = $request->file( 'file' );
+			$file = $request->file('file');
 			//判断文件上传过程中是否出错
 			if ( ! $file->isValid() ) {
 				exit( '文件上传出错！' );

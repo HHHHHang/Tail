@@ -56,14 +56,7 @@ textarea{
     border-radius: 50%;
 }
 
-.upload-img {
-    display: block;
-    float: left;
-    width: 50px;
-    height: 50px;
-    overflow: hidden;
-    position: relative;
-}
+
 
 #img-preview {
 
@@ -72,18 +65,30 @@ textarea{
 }
 #img-preview > img {
     margin-right: 10px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    width: 83px;
+    height: 60px;
+    /*width: 50px;*/
+    /*height: 50px;*/
+    border-radius: 5%;
     display: inline-block;
+}
+
+.upload-img {
+    display: block;
+    float: left;
+    width: 50px!important;
+    height: 50px!important;
+    overflow: hidden;
+    position: relative;
 }
 
 
 .pic input{
 
-    width: 86px;
-    height: 69px;
-    display: inline-block;
+    /*width: 86px;*/
+    /*height: 69px;*/
+    /*display: inline-block;*/
+    display: none;
     padding: 0;
     z-index: 1;
     opacity: 0;

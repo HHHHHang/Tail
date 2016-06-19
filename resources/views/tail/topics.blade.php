@@ -130,10 +130,11 @@
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<div class="modal-body ">
 					<a class="pic">
-						<div id="img-preview"></div>
-						<img class="upload-img" onclick="pressUploadFileBtn()" src={{asset('topics/images/f196.jpg')}} />
-						<input name="uploadFileInput" id="fileUpload" accept="image/*" type="file" multiple="multiple" style="display: none">
-						<input name="file" value="" id="imgSrc" type="hidden"/>
+						<div id="img-preview" onclick="pressUploadFileBtn()">
+							<img class="upload-img"  src={{asset('topics/images/addpic2.png')}} />
+						</div>
+						<input name="file" id="fileUpload" accept="image/*" type="file" multiple="multiple" style="display: none">
+						{{--<input name="file" value="" id="imgSrc" type="hidden"/>--}}
 					</a>
 
 					<div class="topic-info">
@@ -221,6 +222,7 @@
 				if (typeof (FileReader) != "undefined") {
 					var dvPreview = $("#img-preview");
 					var regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
+					dvPreview.html('<img class="upload-img"  src={{asset('topics/images/addpic2.png')}} />');
 					$($(this)[0].files).each(function () {
 						var file = $(this);
 						if (regex.test(file[0].name.toLowerCase())) {

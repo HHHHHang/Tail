@@ -99,7 +99,9 @@ Route::get('/api/test/{id}', function ($id) {
 
 Route::get('/cms/index', 'CMSController@index');
 Route::get('/cms/article', 'CMSController@article');
+Route::get('/cms/article/{type}', 'CMSController@article');
 Route::get('/cms/tie', 'CMSController@tie');
+Route::get('/cms/tie/{type}', 'CMSController@tie');
 Route::get('/cms/topic', 'CMSController@topic');
 Route::get('/cms/banner/{type}', 'CMSController@banner');
 Route::post('/deleteArticle', 'CMSController@deleteArticle');

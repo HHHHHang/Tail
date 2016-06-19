@@ -43,14 +43,11 @@
         </div>
         <div class="am-u-sm-12 am-u-md-3">
           <div class="am-form-group">
-            <select data-am-selected="{btnSize: 'sm'}">
-              <option value="option1">所有类别</option>
-              <option value="option2">IT业界</option>
-              <option value="option3">数码产品</option>
-              <option value="option3">笔记本电脑</option>
-              <option value="option3">平板电脑</option>
-              <option value="option3">只能手机</option>
-              <option value="option3">超极本</option>
+            <select id='type' onchange="changeType()" data-am-selected="{btnSize: 'sm'}">
+              <option value="all">所有类别</option>
+              <option {{$params['type'] == "影音" ? "selected" : ''}} value="影音">影音</option>
+              <option {{$params['type'] == "周边" ? "selected" : ''}} value="周边">周边</option>
+              <option {{$params['type'] == "电脑" ? "selected" : ''}} value="电脑">电脑</option>
             </select>
           </div>
         </div>
