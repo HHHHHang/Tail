@@ -73,20 +73,6 @@
 
                 </div>
 
-                <div class="postKeyWordsDiv">
-                    <div>
-                        <span>关键词: 可添加多个关键词</span>
-                    </div>
-                    <div>
-                        <div class="chip">
-                            <span>2016</span>
-                            <a class="deleteKeyWordBtn" onclick="deleteKeyWord(event)"><span>&times;</span></a>
-                        </div>
-                        <input type="text" placeholder="添加关键词" id="keyWordsInput"/>
-                    </div>
-                </div>
-
-
                     @if ($params['isKinkTie'])
                         <div class="postOptionDiv">
                             <div>
@@ -178,23 +164,6 @@
            $('#dropdownMenu1').html(html + type);
        };
 
-       $("#keyWordsInput").keyup(function(event){
-           if(event.keyCode == 13){
-               var newKeyWord = $("#keyWordsInput").val();
-               if (newKeyWord != null && newKeyWord != '') {
-                   $("#keyWordsInput").before('<div class="chip"> ' +
-                           '<span>' + newKeyWord + '</span> ' +
-                           '<a class="deleteKeyWordBtn" onclick="deleteKeyWord(event)"><span>&times;</span></a>' +
-                           '</div>');
-                   $("#keyWordsInput").val('');
-               }
-           }
-       });
-
-       var deleteKeyWord =  function(event) {
-           event.target.parentNode.parentNode.remove();
-       };
-
        $("#addOptionBtn").on("click", function(event) {
            $(".postOptionDiv > div:first-child").append('<div class="input-group postOptions"> ' +
                    '<input type="text" class="form-control"> ' +
@@ -248,19 +217,12 @@
                    options.push(str);
                }
            }
-           var keyWords = [];
-           length = $('.chip > span').size();
-           for (var i = 0; i < length; i++) {
-               var str = $($('.chip > span')[i]).text();
-               keyWords.push(str);
-           }
 
            var title = $('#postTitle').val();
            var optionNum = $('#optionNumSelect').val();
            var contentHtml = editor.getValue();
            var type = $('#dropdownMenu1').text().slice(5);
            console.log('标题: ' + title);
-           console.log('关键词: ' + keyWords);
            console.log('选项: ' + options);
            console.log('最多选项个数: ' + optionNum);
            console.log('正文: ' + contentHtml);
@@ -271,7 +233,6 @@
                url: url,
                data: {
                    title: title,
-                   keywords: keyWords,
                    options: options,
                    optionMaxNum: optionNum,
                    contentHtml: contentHtml,

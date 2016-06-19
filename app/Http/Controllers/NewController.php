@@ -34,11 +34,11 @@ class NewController extends Controller
         return view('tail.newForum')->with('params', $params);
     }
 
+    // 发布普通帖子
     public function postForum(Request $request)
     {
         $title = $request->get('title');
         $content = $request->get('contentHtml');
-        $keywords = $request->get('keywords');
         $type = $request->get('type');
 
         $kinkTies = DB::select("SELECT * from kinkTies");
@@ -46,6 +46,7 @@ class NewController extends Controller
         $userid = isset($user) ?  $user['id'] : 2;
         $num = count($kinkTies);
         $time = time();
+        
         Db::insert('INSERT INTO kinkTies (kid, title, content, type, createTime, uid, commentNum, upNum, updateTime)  VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?)',
             [$num+1, $title, $content, $type, $time, $userid, 0, 0, $time]);
 
@@ -67,11 +68,11 @@ class NewController extends Controller
         return view('tail.newForum')->with('params', $params);
     }
 
+    // 发布纠结帖子
     public function postKinkTie(Request $request)
     {
         $title = $request->get('title');
         $content = $request->get('contentHtml');
-        $keywords = $request->get('keywords');
         $options = $request->get('options');
         $optionMaxNum = $request->get('optionMaxNum');
         $type = $request->get('type');
