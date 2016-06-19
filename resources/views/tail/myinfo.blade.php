@@ -245,7 +245,21 @@
                         @endforeach
                     </div>
                     <div class="tab-pane fade" id="myMessage">
-
+                        <div class="message-detail">
+                            <br/>
+                            <span>你收到了来自<a href="#" class="tie-head">@测试用户</a>的一条评论。</span>
+                            <hr/>
+                        </div>
+                        <div class="message-detail">
+                            <br/>
+                            <span style="padding-left: 10px">你收到了来自<a href="#" class="tie-head">@测试用户</a>的一个点赞。</span>
+                            <hr/>
+                        </div>
+                        <div class="message-detail">
+                            <br/>
+                            <span style="padding-left: 10px">你收到了来自<a href="#" class="tie-head">@测试用户</a>的一次收藏。</span>
+                            <hr/>
+                        </div>
                     </div>
                 </div>
 
