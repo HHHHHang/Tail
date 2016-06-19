@@ -222,7 +222,7 @@
 				if (typeof (FileReader) != "undefined") {
 					var dvPreview = $("#img-preview");
 					var regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
-					dvPreview.html("");
+					dvPreview.html('<img class="upload-img"  src={{asset('topics/images/addpic2.png')}} />');
 					$($(this)[0].files).each(function () {
 						var file = $(this);
 						if (regex.test(file[0].name.toLowerCase())) {
@@ -230,6 +230,7 @@
 							reader.onload = function (e) {
 								var img = $("<img />");
 								img.attr("src", e.target.result);
+								dvPreview.html("");
 								$('#imgSrc').val($("#fileUpload").val());
 								dvPreview.append(img);
 							};
