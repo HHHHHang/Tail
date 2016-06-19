@@ -28,7 +28,6 @@ Route::get('/logout', 'IndexController@logout');
 Route::get('/login', 'LoginController@index');
 
 //给某文章收藏接口
-
 Route::post('/article/collect', 'ArticleController@collect');
 Route::post('/article/cancelCollect', 'ArticleController@cancelCollect');
 
@@ -47,14 +46,19 @@ Route::get('/article/{aid}', 'ArticleController@article');
 Route::post('/article/{aid}', 'ArticleController@articlePost');
 
 // 论坛模板
-Route::get('/forum', 'ForumController@index');
 Route::get('/forum/tie', 'ForumController@tie');
 Route::get('/forum/tie/{type}', 'ForumController@tie');
-Route::get('/forum/Detail', 'ForumController@forum');
+Route::get('/forum/kinkTie', 'ForumController@kinkTie');
+Route::get('/forum/kinkTie/{type}', 'ForumController@kinkTie');
+Route::get('/forum', 'ForumController@index');
 Route::get('/forum/{type}', 'ForumController@index');
+
+Route::get('/forum/Detail', 'ForumController@forum');
 // 发布界面
-Route::get('/new/forum', 'NewController@newForum');
-Route::post('/new/forum', 'NewController@postForum');
+Route::get('/new/tie', 'NewController@newForum');
+Route::post('/new/tie', 'NewController@postForum');
+Route::get('/new/kinkTie', 'NewController@newKinkTie');
+Route::post('/new/kinkTie', 'NewController@postKinkTie');
 Route::get('/new/article', 'NewController@newArticle');
 Route::post('/new/article', 'NewController@postArticle');
 // 纠结帖子页面

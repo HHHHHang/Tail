@@ -16,6 +16,7 @@ use League\Flysystem\AdapterInterface;
 
 class ForumController extends Controller{
 
+	// 文章界面
     public function index(Request $request, $type='')
     {
         $user = $request->user();
@@ -47,7 +48,6 @@ class ForumController extends Controller{
 			'user' => $userInfo,
 			'articlesInfo' => $articlesInfo,
 			'articles' => $articles,
-			'isTie'    => 0,
 			'banner'   => $banners,
 			'side_banner' => $side_banners,
 			'test'     => $testBanner
@@ -73,6 +73,7 @@ class ForumController extends Controller{
         }
     }
 
+	// 普通帖子界面
 	public function tie(Request $request, $type='') {
 		$user = $request->user();
 		$userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
@@ -91,10 +92,13 @@ class ForumController extends Controller{
 				'link'   => '/kinkTie/' . $article->kid
 			];
 		}
+
+		$hot_ties  = DB::table("kinkTies")->where('viewNum', '>', 100)->get();
 		$params = [
 			'user' => $userInfo,
 			'articlesInfo' => $articlesInfo,
-			'isTie'    => 1
+			'isKinkTie'    => 1,
+			'hot'	=> $hot_ties
 		];
 
 		if ($user) return view('tail.ties')->with('params', $params);
@@ -102,6 +106,40 @@ class ForumController extends Controller{
 			return view('tail.ties')->with('params', $params);
 		}
 	}
+
+	// 纠结帖子界面
+	public function kinkTie(Request $request, $type='') {
+		$user = $request->user();
+		$userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
+		$articles = $type ? DB::table('kinkTies')->where('type', $type)->get() :
+			DB::table('kinkTies')->orderBy('createTime', 'desc')->get();
+		$articlesInfo = [];
+		foreach ($articles as $article) {
+			$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
+			$articlesInfo[] = [
+				'title' => $article->title,
+				'name'  => $postUser->name,
+				'publishTime' => date('y-m-d h:m:s',$article->createTime),
+				'type'  => $article->type,
+				'avatar' => $postUser->avatar,
+				'commentNum' => $article->commentNum,
+				'link'   => '/kinkTie/' . $article->kid
+			];
+		}
+		$hot_ties  = DB::table("kinkTies")->where('viewNum', '>', 100)->get();
+		$params = [
+			'user' => $userInfo,
+			'articlesInfo' => $articlesInfo,
+			'isKinkTie'    => 0,
+			'hot'	=> $hot_ties
+		];
+
+		if ($user) return view('tail.ties')->with('params', $params);
+		else {
+			return view('tail.ties')->with('params', $params);
+		}
+	}
+
 
     public function forumN(Request $request) {
         $content = $request->get('content');

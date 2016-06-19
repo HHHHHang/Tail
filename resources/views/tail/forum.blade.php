@@ -8,7 +8,6 @@
     <script src="{{URL::asset('js/search.js')}}"></script>
 
     <link href="{{URL::asset('css/navigation.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{URL::asset('css/sidebar.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{URL::asset('css/forum-home.css')}}" rel="stylesheet" type="text/css" />
 
 
@@ -72,60 +71,51 @@
             <div class="forumLeftPart subNavigationLeftPart col-md-8">
 
                 <div class="subNavigation">
+
                     <div>
                         <h5>选择频道</h5>
                         <div class="forumTypeDiv smalleForumTypeDiv">
                             <div class="checked"><a href="/forum"><span class="glyphicon glyphicon-inbox"></span><span>全部</span></a></div>
-                            @if ($params['isTie'])
-                                <div><a href="/forum/手机"><span class="glyphicon glyphicon-phone"></span><span>手机</span></a></div>
-                                <div><a href="/forum/摄影"><span class="glyphicon glyphicon-camera"></span><span>摄影</span></a></div>
-                                <div><a href="/forum/电影"><span class="glyphicon glyphicon-floppy-open"></span><span>电脑</span></a></div>
-                                <div><a href="/forum/平板"><span class="glyphicon glyphicon-phone"></span><span>平板</span></a></div>
-                                <div><a href="/forum/资讯"><span class="glyphicon glyphicon-bullhorn"></span><span>资讯</span></a></div>
-                                <div><a href="/forum/周边"><span class="glyphicon glyphicon-send"></span><span>周边</span></a></div>
-                                <div><a href="/forum/其它"><span class="glyphicon glyphicon glyphicon-tags"></span><span>其它</span></a></div>
-                            @else
-                                <div><a href="/forum/手机"><span class="glyphicon glyphicon-phone"></span><span>手机</span></a></div>
-                                <div><a href="/forum/摄影"><span class="glyphicon glyphicon-camera"></span><span>摄影</span></a></div>
-                                <div><a href="/forum/电影"><span class="glyphicon glyphicon-floppy-open"></span><span>电脑</span></a></div>
-                                <div><a href="/forum/平板"><span class="glyphicon glyphicon-phone"></span><span>平板</span></a></div>
-                                <div><a href="/forum/资讯"><span class="glyphicon glyphicon-bullhorn"></span><span>资讯</span></a></div>
-                                <div><a href="/forum/周边"><span class="glyphicon glyphicon-send"></span><span>周边</span></a></div>
-                                <div><a href="/forum/其它"><span class="glyphicon glyphicon glyphicon-tags"></span><span>其它</span></a></div>
-                            @endif
+                            <div><a href="/forum/手机"><span class="glyphicon glyphicon-phone"></span><span>手机</span></a></div>
+                            <div><a href="/forum/摄影"><span class="glyphicon glyphicon-camera"></span><span>摄影</span></a></div>
+                            <div><a href="/forum/电影"><span class="glyphicon glyphicon-floppy-open"></span><span>电脑</span></a></div>
+                            <div><a href="/forum/平板"><span class="glyphicon glyphicon-phone"></span><span>平板</span></a></div>
+                            <div><a href="/forum/资讯"><span class="glyphicon glyphicon-bullhorn"></span><span>资讯</span></a></div>
+                            <div><a href="/forum/周边"><span class="glyphicon glyphicon-send"></span><span>周边</span></a></div>
+                            <div><a href="/forum/其它"><span class="glyphicon glyphicon glyphicon-tags"></span><span>其它</span></a></div>
                         </div>
                     </div>
 
                     <div>
-                        <h5>添加筛选标签</h5>
+                        <h5>添加筛选关键字</h5>
                         <form class="tagChoosingDiv">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox"> 标签1
+                                    <input type="checkbox" value=""> 标签1
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox"> 标签2 adfa
+                                    <input type="checkbox" value=""> 标签2 adfa
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox"> 标签3 adfa
+                                    <input type="checkbox" value=""> 标签3 adfa
                                 </label>
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox"> 标签4 asdfaw
+                                    <input type="checkbox" value=""> 标签4 asdfaw
                                 </label>
                             </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> 标签5 asdfawoefi
-                                </label>
-                            </div>
+                            
                         </form>
-                        <button type="submit" class="btn btn-default">筛选</button>
+                        <div>
+                            <button class="btn btn-default" class="addKeyWord()">添加关键字</button>
+                            <button type="submit" class="btn btn-default">筛选</button>
+                        </div>
+
                     </div>
                 </div>
 
@@ -155,7 +145,16 @@
                             <a href="#"><span class="glyphicon glyphicon-comment"></span>{{ $article->commentNum }}</a>
                         </div>
                     </div>
-                    @endforeach
+                @endforeach
+
+                <ul class="pager">
+                    <li class="previous disabled">
+                        <a>上一页</a>
+                    </li>
+                    <li class="next disabled">
+                        <a>下一页</a>
+                    </li>
+                </ul>
 
                 <!-- Blog Sidebar Widgets Column -->
             </div>
@@ -177,36 +176,27 @@
                     </div>
                 </div>
 
-                <div class="forumNewBtn">
-                    <button type="button" class="btn" onclick="{location.href = '/new/article'}">发布文章</button>
-                </div>
+                <div  data-spy="affix" data-offset-top="696" data-offset-bottom="340">
 
-                <div class="forumSearch well">
-                    <span>站内搜索</span>
-                    <div class="input-group">
-                        <input id='keyword' type="text" class="form-control" value="">
-                            <span class="input-group-btn">
-                                <button id='search' class="btn btn-default" type="button">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
-                            </span>
+                    <div class="forumNewBtn">
+                        <button type="button" class="btn" onclick="{location.href = '/new/article'}">发布文章</button>
                     </div>
-                </div>
 
-                <div class="popularTopicSidebar well">
-                    <span>热门文章</span>
-                    @foreach($params['side_banner'] as $banner)
-                    <div style="background-image:url({{$banner->file}})">
-                        <div>
-                            <a style="color: white" href="{{$banner->href}}">
-                            <span><b>{{$banner->title}}</b></span>
-                            </a>
-                            <span>{{$banner->content}}</span>
+                    <div class="popularTopicSidebar well">
+                        <span>热门文章</span>
+                        @foreach($params['side_banner'] as $banner)
+                        <div style="background-image:url({{$banner->file}})">
+                            <div>
+                                <a style="color: white" href="{{$banner->href}}">
+                                <span><b>{{$banner->title}}</b></span>
+                                </a>
+                                <span>{{$banner->content}}</span>
+                            </div>
                         </div>
+                        @endforeach
                     </div>
-                    @endforeach
-                </div>
 
+                </div>
 
 
             </div>
@@ -217,3 +207,13 @@
 </body>
 
 </html>
+
+<script>
+    var addKeyWord = function(){
+        $('.tagChoosingDiv').append('<div class="checkbox">' +
+                '<label>' +
+                '<input type="checkbox" checked value=""> ' +
+                '</label> ' +
+                '</div>');
+    }
+</script>

@@ -18,11 +18,6 @@
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('css/bootstrap/style.css') }}" rel="stylesheet" type="text/css" >
 
-    <!-- Custom CSS -->
-    <link href="{{URL::asset('css/navigation.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('css/blog-home.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/publish.css') }}" rel="stylesheet" type="text/css">
-
     <!-- simditor CSS -->
     <link href="{{ asset('css/simditor/simditor.css') }}" rel="stylesheet" type="text/css">
 
@@ -34,6 +29,11 @@
     <script src="{{asset('js/simditor/simditor.js')}}"></script>
     <script src="{{asset('js/simditor/simditor-dropzone.js')}}"></script>
 
+
+    <!-- Custom CSS -->
+    <link href="{{URL::asset('css/navigation.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('css/blog-home.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/publish.css') }}" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -55,9 +55,14 @@
             </div>
 
             <div class="col-md-10 mainBody">
-                <a href="/forum"><span class="glyphicon glyphicon-chevron-left"></span> 纠结帖子</a>
+                @if ($params['isKinkTie'])
+                    <a href="/forum/kinkTie"><span class="glyphicon glyphicon-chevron-left"></span> 纠结帖子</a>
+                @else
+                    <a href="/forum/tie"><span class="glyphicon glyphicon-chevron-left"></span> 普通帖子</a>
+                @endif
+
                 <div class="postTitleDiv">
-                    <a id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-menu-hamburger"></span> 选择类别</a>
+                    <a id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-menu-hamburger"></span>选择类别 全部</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         @foreach ( $params['data']->type as $item )
                             <li><a onclick="chooseType(event)" >{{$item}}</a></li>
@@ -81,43 +86,51 @@
                     </div>
                 </div>
 
-                <div class="postOptionDiv">
-                    <div>
-                        <div>
-                            <span>选项: 最多可以填写20个选项</span>
-                            <a id="addOptionBtn"><span class="glyphicon glyphicon-plus-sign"></span> 添加一条选项</a>
-                        </div>
-                        @for ($x=0; $x< $params['data']->choiceNum; $x++)
-                            <div class="input-group postOptions">
-                                <input type="text" class="form-control">
+
+                    @if ($params['isKinkTie'])
+                        <div class="postOptionDiv">
+                            <div>
+                                <div>
+                                    <span>选项: 最多可以填写20个选项</span>
+                                    <a id="addOptionBtn"><span class="glyphicon glyphicon-plus-sign"></span> 添加一条选项</a>
+                                </div>
+                                @for ($x=0; $x< $params['data']->choiceNum; $x++)
+                                    <div class="input-group postOptions">
+                                        <input type="text" class="form-control">
                                 <span class="input-group-addon">
                                     <a class="removeOptionBtn"><span class="glyphicon glyphicon-remove"></span></a>
                                 </span>
+                                    </div>
+                                @endfor
                             </div>
-                        @endfor
-                    </div>
-                    <div>
-                        <span>最多可选: <select id="optionNumSelect"></select>项</span>
-                        <div>
-                            <input type="checkbox" value="投票后结果可见"/>
-                            <span>投票后结果可见</span>
+                            <div>
+                                <span>最多可选: <select id="optionNumSelect"></select>项</span>
+                                <div>
+                                    <input type="checkbox" value="投票后结果可见"/>
+                                    <span>投票后结果可见</span>
+                                </div>
+                                <div>
+                                    <input type="checkbox" value="公开投票参与人"/>
+                                    <span>公开投票参与人</span>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <input type="checkbox" value="公开投票参与人"/>
-                            <span>公开投票参与人</span>
-                        </div>
-                    </div>
-                </div>
+                    @endif
+
+
                 <div class="postEditorDiv">
                     <textarea name="content" id="editor" placeholder="正文" autofocus></textarea>
                 </div>
 
                 <div class="postBtns">
-                    <button onclick="submit()">发表帖子</button>
-                    <button onclick="save()">保存草稿</button>
-                </div>
+                    @if ($params['isKinkTie'])
+                        <button onclick="submitKinkTie()">发表帖子</button>
+                        <button onclick="save()">保存草稿</button>
+                    @else
+                        <button onclick="submitTie()">发表帖子</button>
+                        <button onclick="save()">保存草稿</button>
+                    @endif
 
-                <div class="testDiv">
 
                 </div>
 
@@ -161,9 +174,10 @@
 
        var chooseType = function (event) {
            var type = event.target.text;
-           var html = '<span class="glyphicon glyphicon-menu-hamburger"></span> ';
+           var html = '<span class="glyphicon glyphicon-menu-hamburger"></span>选择类别 ';
            $('#dropdownMenu1').html(html + type);
        };
+
        $("#keyWordsInput").keyup(function(event){
            if(event.keyCode == 13){
                var newKeyWord = $("#keyWordsInput").val();
@@ -215,8 +229,17 @@
            $('#postTitleLengthMinder').text('还可输入'+ length +'个字符');
        });
 
+       var submitKinkTie = function () {
+           submit('kinkTie');
+       };
 
-       var submit = function () {
+       var submitTie = function () {
+           submit('tie');
+       };
+
+       var submit = function (to) {
+           url = '/new/' + to;
+
            var length = $('.postOptions').size();
            var options = [];
            for (var i = 0; i < length; i++) {
@@ -235,7 +258,7 @@
            var title = $('#postTitle').val();
            var optionNum = $('#optionNumSelect').val();
            var contentHtml = editor.getValue();
-           var type = $('#dropdownMenu1').text().slice(1);
+           var type = $('#dropdownMenu1').text().slice(5);
            console.log('标题: ' + title);
            console.log('关键词: ' + keyWords);
            console.log('选项: ' + options);
@@ -245,7 +268,7 @@
 
            $.ajax({
                type: 'POST',
-               url: '/new/forum',
+               url: url,
                data: {
                    title: title,
                    keywords: keyWords,

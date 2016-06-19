@@ -26,13 +26,47 @@ class NewController extends Controller
         $data = new data();
 		$params = [
 			'user' =>  $user,
-			'data' =>  $data
+			'data' =>  $data,
+            'isKinkTie' => false
 		];
 
         return view('tail.newForum')->with('params', $params);
     }
 
     public function postForum(Request $request)
+    {
+        $title = $request->get('title');
+        $content = $request->get('contentHtml');
+        $keywords = $request->get('keywords');
+        $type = $request->get('type');
+
+        $kinkTies = DB::select("SELECT * from kinkTies");
+        $user = $request->user();
+        $userid = isset($user) ?  $user['id'] : 2;
+        $num = count($kinkTies);
+        $time = time();
+        Db::insert('INSERT INTO kinkTies (kid, title, content, type, createTime, uid, commentNum, upNum, updateTime)  VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [$num+1, $title, $content, $type, $time, $userid, 0, 0, $time]);
+
+        $array = array('data'=>'success');
+        echo json_encode($array);
+
+    }
+
+    public function newKinkTie(Request $request)
+    {
+        $user = $request->user();
+        $data = new data();
+        $params = [
+            'user' =>  $user,
+            'data' =>  $data,
+            'isKinkTie' => true
+        ];
+
+        return view('tail.newForum')->with('params', $params);
+    }
+
+    public function postKinkTie(Request $request)
     {
         $title = $request->get('title');
         $content = $request->get('contentHtml');
@@ -84,6 +118,6 @@ class NewController extends Controller
 }
 
 class data {
-    public $type = array('选择分类', '手机', '电脑', '平板', '资讯', '周边', '其它');
+    public $type = array('全部', '手机', '电脑', '平板', '资讯', '周边', '其它');
     public $choiceNum = 3;
 }
