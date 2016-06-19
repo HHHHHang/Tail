@@ -12,7 +12,7 @@
     <div >
 
 
-        <div class="top-pic " style="background-image: url('http://s.dgtle.com/portal/201606/16/103437jl5lsrsisfcfswal.jpg?szhdl=imageview/2/w/1900')">
+        <div class="top-pic " style="background-image: url({{$params['topic']->image}})">
             <div class="back" >
                 <a href="/topic"><span class="glyphicon glyphicon-chevron-left"></span> 话题广场</a>
             </div>

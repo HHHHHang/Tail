@@ -74,6 +74,39 @@
                     </div>
                 </div>
 
+                <div class="setCoverDiv">
+                    <div>
+                        <span>设置封面图</span>
+                        <span></span>
+                        <a class="chip" onclick="showCoverImg()" >
+                            <span>进行预览</span>
+                        </a>
+                        <a class="chip showChip" onclick="chooseImg()">
+                            <span>选择图片</span>
+                        </a>
+                        <input type="hidden" name="imgSrc" val="" id="imgSrc" data-toggle="modal" data-target="#createTopicModal">
+                        <input name="file" id="fileUpload" accept="image/*" type="file" multiple="multiple">
+
+                    </div>
+                    <div class="modal fade" id="createTopicModal" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h2 class="modal-title" id="myModalLabel">封面预览</h2>
+                                </div>
+                                <div class="modal-body ">
+                                    <div id="img-preview"></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" id="create" class="btn btn-primary" onclick="changeImg()">更换图片</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal -->
+                    </div>
+                </div>
+
 
                 <div class="postEditorDiv">
                     <textarea name="content" id="editor" placeholder="正文" autofocus></textarea>
@@ -134,6 +167,53 @@
            $('#postTitleLengthMinder').text('还可输入'+ length +'个字符');
        });
 
+       var showCoverImg = function () {
+           var width = document.documentElement.clientWidth * 0.8;
+           $('.modal-dialog').css('width', width);
+           if (!$('#createTopicModal').hasClass('in')) {
+               $('#imgSrc').click();
+           }
+       };
+       var changeImg = function () {
+           $('#fileUpload').click();
+       };
+       var chooseImg = function () {
+           $('.setCoverDiv .chip').addClass('showChip');
+           $($('.setCoverDiv .chip')[1]).removeClass('showChip');
+           $('#fileUpload').click();
+
+       };
+       $("#fileUpload").change(function() {
+           if (typeof (FileReader) != "undefined") {
+               var dvPreview = $("#img-preview");
+               var regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
+               $($(this)[0].files).each(function () {
+                   var file = $(this);
+                   if (regex.test(file[0].name.toLowerCase())) {
+                       var reader = new FileReader();
+                       reader.onload = function (e) {
+                           var img = $("<img style='display: none'/>");
+                           img.attr("src", e.target.result);
+
+                           dvPreview.html("");
+                           dvPreview.append(img);
+                           img.slideDown(300);
+                           $('#imgSrc').val($("#fileUpload").val());
+                           showCoverImg();
+                       };
+                       var src = reader.readAsDataURL(file[0]);
+                   } else {
+                       alert(file[0].name + " is not a valid image file.");
+                       dvPreview.html("");
+                       return false;
+                   }
+               });
+           } else {
+               alert("This browser does not support HTML5 FileReader.");
+           }
+       });
+
+
 
        var submit = function () {
 
@@ -142,6 +222,8 @@
 
            var title = $('#postTitle').val();
            var contentHtml = editor.getValue();
+           var coverSrc = $('#imgSrc').val();
+
            console.log('标题: ' + title);
 //           console.log('话题: ' + topic);
            console.log('正文: ' + contentHtml);
@@ -152,7 +234,8 @@
                data: {
                    title: title,
 //                   topic: topic,
-                   contentHtml: contentHtml
+                   contentHtml: contentHtml,
+                   coverSrc: coverSrc
                },
                dataType: 'json',
                success: function (data) {
