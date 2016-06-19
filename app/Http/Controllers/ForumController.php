@@ -37,11 +37,20 @@ class ForumController extends Controller{
 				'link'   => '/article/' . $article->id
 			];
 		}
+
+		//forum推广位置
+		$banners = DB::table('banners')->where('type', 'forum_new')->get();
+		$testBanner = DB::table('banners')->where('type', 'forum_test')->get();
+		$side_banners = DB::table('banners')->where('type', 'index_side')->get();
+
 		$params = [
 			'user' => $userInfo,
 			'articlesInfo' => $articlesInfo,
 			'articles' => $articles,
-			'isTie'    => 0
+			'isTie'    => 0,
+			'banner'   => $banners,
+			'side_banner' => $side_banners,
+			'test'     => $testBanner
 		];
 
         if ($user) return view('tail.forum')->with('params', $params);

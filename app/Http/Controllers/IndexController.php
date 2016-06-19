@@ -35,12 +35,20 @@ class IndexController extends Controller{
 
 		$picsArr = json_encode($pics);
 
+		//首页推广位置
+		$banners = DB::table('banners')->where('type', 'index')->get();
+		$side_banners = DB::table('banners')->where('type', 'index_side')->get();
+		$hot_ties  = DB::table("kinkTies")->where('viewNum', '>', 100)->get();
+
 		$articles = DB::select("SELECT * FROM articles ORDER BY createTime DESC");
 		$params = [
 			'user' => $user,
 			'picsArr' => $picsArr,
 			'pics'    => $pics,
-			'articles' => $articles
+			'articles' => $articles,
+			'banner'   => $banners,
+			'side_banner' => $side_banners,
+			'hot'      => $hot_ties
 		];
 
 		return view('tail.welcome')->with('params', $params);

@@ -95,6 +95,7 @@ Route::get('/cms/index', 'CMSController@index');
 Route::get('/cms/article', 'CMSController@article');
 Route::get('/cms/tie', 'CMSController@tie');
 Route::get('/cms/topic', 'CMSController@topic');
+Route::get('/cms/banner', 'CMSController@banner');
 Route::post('/deleteArticle', 'CMSController@deleteArticle');
 Route::post('/publishArticle', 'CMSController@publishArticle');
 Route::post('/deleteTie', 'CMSController@deleteTie');

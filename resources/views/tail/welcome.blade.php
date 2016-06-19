@@ -29,37 +29,16 @@
                     <h1>推荐话题</h1><span></span><a href="/topic">进入话题广场</a>
                 </div>
                 <div>
+                	@foreach($params['banner'] as $banner)
                     <div class="thumbnailCustom">
-                        <img src="http://s.dgtle.com/forum/201606/16/161917pyuda21rr342504r.jpg?szhdl=imageview/2/w/960"/>
+                        <img src="{{ $banner->file }}"/>
                         <div>
-                            <h4>一加手机</h4>
-                            <h5>不泯然的国产手机 Android旗舰</h5>
+                            <a style="color:white" href="{{$banner->href}}"><h4>{{ $banner->title }}</h4></a>
+                            <h5>{{ $banner->content }}</h5>
                         </div>
                     </div>
                     <div></div>
-                    <div class="thumbnailCustom">
-                        <img src="http://s.dgtle.com/forum/201606/16/161920yb1buv4cc2ib1c6c.jpg?szhdl=imageview/2/w/960"/>
-                        <div>
-                            <h4>一加手机</h4>
-                            <h5>不泯然的国产手机 Android旗舰</h5>
-                        </div>
-                    </div>
-                    <div></div>
-                    <div class="thumbnailCustom">
-                        <img src="http://s.dgtle.com/forum/201606/15/164616ghs9gcyoyssvcu9s.jpg?szhdl=imageview/2/w/680"/>
-                        <div>
-                            <h4>一加手机</h4>
-                            <h5>不泯然的国产手机 Android旗舰</h5>
-                        </div>
-                    </div>
-                    <div></div>
-                    <div class="thumbnailCustom">
-                        <img src="http://s.dgtle.com/forum/201606/15/164821l4zm4q5qv85jzs56.jpg?szhdl=imageview/2/w/680"/>
-                        <div>
-                            <h4>一加手机</h4>
-                            <h5>不泯然的国产手机 Android旗舰</h5>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -133,39 +112,27 @@
 
                 <div class="popularTopicSidebar well">
                     <span>热门话题</span>
-                    <div style="background-image:url(http://s.dgtle.com/forum/201606/16/161917pyuda21rr342504r.jpg?szhdl=imageview/2/w/960)">
+                    @foreach($params['side_banner']  as $banner)
+                    <div style="background-image:url({{ $banner->file }})">
                         <div>
-                            <span><b>一加手机</b></span>
-                            <span>不泯然的国产手机 Android旗舰</span>
+                        	<a style="color:white" href="{{$banner->href}}">
+                            <span><b>{{ $banner->title }}</b></span>
+                            </a>
+                            <span>{{ $banner->content }}</span>
                         </div>
                     </div>
-                    <div style="background-image:url(http://s.dgtle.com/forum/201606/16/161920yb1buv4cc2ib1c6c.jpg?szhdl=imageview/2/w/960)">
-                        <div>
-                            <span><b>一加手机</b></span>
-                            <span>不泯然的国产手机 Android旗舰</span>
-                        </div>
-                    </div>
-                    <div style="background-image:url(http://s.dgtle.com/forum/201606/15/164616ghs9gcyoyssvcu9s.jpg?szhdl=imageview/2/w/680)">
-                        <div>
-                            <span><b>一加手机</b></span>
-                            <span>不泯然的国产手机 Android旗舰</span>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="popularForumSidebar well">
                     <span>热门帖子</span>
+                    @foreach($params['hot'] as $tie)
                     <div>
-                        <h5>英语写作小技巧3英语写作小技巧3</h5>
-                        <p>2016-06-16 英语</p>
+                    	<a href="/kinkTie/{{$tie->kid}}">
+                        <h5>{{ $tie->title }}</h5>
+                        </a>
+                        <p>{{ date('Y-m-d', $tie->createTime)  }} 英语</p>
                     </div>
-                    <div>
-                        <h5>英语写作小技巧2英语写作小技巧3</h5>
-                        <p>2016-06-16 英语</p>
-                    </div>
-                    <div>
-                        <h5>英语写作小技巧1</h5>
-                        <p>2016-06-16 英语</p>
-                    </div>
+                    @endforeach
                 </div>
 
             </div>
