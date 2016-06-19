@@ -39,7 +39,13 @@
         </li>
         <li><a href="/cms/topic"><span class="am-icon-table"></span> 话题管理</a></li>
         <li><a href="/cms/tie"><span class="am-icon-pencil-square-o"></span> 贴子管理</a></li>
-        <li><a href="#"><span class="am-icon-sign-out"></span> 用户信息管理</a></li>
+        <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 推广Banner管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+            <li><a href="/cms/banner/index"><span class="am-icon-puzzle-piece"></span> 首页Banner</a></li>
+            <li><a href="/cms/banner/forum"><span class="am-icon-th"></span> 文章页Banner</a></li>
+          </ul>
+        </li>
       </ul>
 
     </div>

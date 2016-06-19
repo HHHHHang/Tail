@@ -16,6 +16,21 @@ class CMSController extends Controller{
 		return view('cms.index');
 	}
 
+	public function banner(Request $request, $type='') {
+
+		if ($type == 'index') {
+			$banner = DB::table( 'banners' )->where( 'type', 'index' )->orWhere( 'type', 'index_side' )->get();
+		} elseif ($type == 'forum') {
+			$banner = DB::table( 'banners' )->where( 'type', 'forum_new' )->orWhere( 'type', 'forum_test' )->get();
+		}
+
+		$params = [
+			'length' => count($banner),
+			'banner'  => $banner
+		];
+		return view('cms.banner')->with('params', $params);
+	}
+
 	public function article(Request $request) {
 
 		$articles = DB::table('articles')->get();
@@ -118,6 +133,17 @@ class CMSController extends Controller{
 		$id = $request->get('id');
 		DB::table('topics')->where('id', $id)->update(['isPublished' => 1]);
 		return "publish topic succeed!";
+	}
+
+	public function editBanner(Request $request) {
+		$id      = $request->get('id');
+		$title   = $request->get('title');
+		$content = $request->get('content');
+		$file   = $request->get('file');
+		$href    = $request->get('href');
+		DB::table('banners')->where('id', $id)
+			->update(['title' => $title, 'content' => $content, 'file' => $file, 'href' => $href]);
+		return [$id, $title, $content, $file, $href];
 	}
 
 } 
