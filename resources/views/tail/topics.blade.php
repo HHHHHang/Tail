@@ -132,8 +132,8 @@
 					<a class="pic">
 						<div id="img-preview"></div>
 						<img class="upload-img" onclick="pressUploadFileBtn()" src={{asset('topics/images/f196.jpg')}} />
-						<input name="uploadFileInput" id="fileUpload" accept="image/*" type="file" multiple="multiple" style="display: none">
-						<input name="file" value="" id="imgSrc" type="hidden"/>
+						<input name="file" id="fileUpload" accept="image/*" type="file" multiple="multiple" style="display: none">
+						{{--<input name="file" value="" id="imgSrc" type="hidden"/>--}}
 					</a>
 
 					<div class="topic-info">
