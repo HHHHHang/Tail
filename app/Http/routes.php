@@ -94,6 +94,9 @@ Route::get('/api/test/{id}', function ($id) {
 	var_dump( (getTieByUid($id)) );
 });
 
+//editor文件上传接口
+Route::get('/api/file','FileController@index');
+Route::post('/api/file','FileController@index');
 
 //CMS 后台内容管理系统
 

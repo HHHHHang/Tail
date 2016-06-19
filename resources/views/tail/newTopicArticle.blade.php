@@ -139,10 +139,11 @@
        var editor = new Simditor({
            textarea: $('#editor'),
            //optional options
-           upload: {  url: '',
+           upload: {
+           	   url: '/api/file',
                params: null,
                fileKey: 'upload_file',
-               connectionCount: 3,
+               connectionCount: 10,
                leaveConfirm: 'Uploading is in progress, are you sure to leave this page?'
 
            },

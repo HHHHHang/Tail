@@ -4226,11 +4226,10 @@ ImageButton = (function(superClass) {
     } else {
       if (this.editor.uploader != null) {
         this.menu = [
-          //{
-          //  name: 'upload-image',
-          //  text: this._t('uploadImage')
-          //},
-			{
+          {
+            name: 'upload-image',
+            text: this._t('uploadImage')
+          }, {
             name: 'external-image',
             text: this._t('externalImage')
           }
