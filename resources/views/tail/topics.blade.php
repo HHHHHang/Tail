@@ -133,8 +133,8 @@
 						<div id="img-preview" onclick="pressUploadFileBtn()">
 							<img class="upload-img"  src={{asset('topics/images/addpic2.png')}} />
 						</div>
-						<input name="uploadFileInput" id="fileUpload" accept="image/*" type="file" multiple="multiple" style="display: none">
-						<input name="file" value="" id="imgSrc" type="hidden"/>
+						<input name="file" id="fileUpload" accept="image/*" type="file" multiple="multiple" style="display: none">
+						{{--<input name="file" value="" id="imgSrc" type="hidden"/>--}}
 					</a>
 
 					<div class="topic-info">
@@ -222,9 +222,7 @@
 				if (typeof (FileReader) != "undefined") {
 					var dvPreview = $("#img-preview");
 					var regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
-					if($($(this)[0].files).length!=0){
-						dvPreview.html("");
-					}
+					dvPreview.html("");
 					$($(this)[0].files).each(function () {
 						var file = $(this);
 						if (regex.test(file[0].name.toLowerCase())) {
