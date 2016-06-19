@@ -51,3 +51,7 @@ function publishTie(id) {
         }
     })
 }
+
+function changeType() {
+    location.href = "/cms/tie/" + $('#type').val()
+}

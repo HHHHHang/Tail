@@ -51,3 +51,7 @@ function publishArticle(id) {
         }
     })
 }
+
+function changeType() {
+    location.href = "/cms/article/" + $('#type').val()
+}

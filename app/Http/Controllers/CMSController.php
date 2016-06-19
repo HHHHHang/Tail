@@ -31,9 +31,14 @@ class CMSController extends Controller{
 		return view('cms.banner')->with('params', $params);
 	}
 
-	public function article(Request $request) {
+	public function article(Request $request, $type = '') {
 
-		$articles = DB::table('articles')->get();
+		if ($type != '' && $type != 'all') {
+			$articles = DB::table('articles')->where('type', $type)->get();
+		} else {
+			$articles = DB::table( 'articles' )->get();
+		}
+		$articleInfos = [];
 		foreach ($articles as $article) {
 			$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
 			$articleInfos[] = [
@@ -50,14 +55,20 @@ class CMSController extends Controller{
 
 		$params = [
 			'articles' => $articleInfos,
-			'length'   => count($articleInfos)
+			'length'   => count($articleInfos),
+			'type'     => $type
 		];
 
 		return view('cms.article')->with('params', $params);
 	}
 
-	public function tie(Request $request) {
-		$ties = DB::table('kinkTies')->get();
+	public function tie(Request $request, $type = '') {
+		if ($type != '' && $type != 'all') {
+			$ties = DB::table('kinkTies')->where('type', $type)->get();
+		} else {
+			$ties = DB::table('kinkTies')->get();
+		}
+		$articleInfos = [];
 		foreach ($ties as $tie) {
 			$postUser = DB::table('tail_users')->where('uid', $tie->uid)->first();
 			$articleInfos[] = [
@@ -73,7 +84,8 @@ class CMSController extends Controller{
 		}
 		$params = [
 			'articles' => $articleInfos,
-			'length'   => count($articleInfos)
+			'length'   => count($articleInfos),
+			'type'     => $type
 		];
 		return view('cms.tie')->with('params', $params);
 	}
