@@ -77,11 +77,10 @@
                         <div class="forumTypeDiv smalleForumTypeDiv">
                             <div {{$params['type']=="all"?"class=checked":''}}><a href="/forum/all"><span class="glyphicon glyphicon-inbox"></span><span>全部</span></a></div>
                             <div {{$params['type']=="手机"?"class=checked":''}}><a href="/forum/手机"><span class="glyphicon glyphicon-phone"></span><span>手机</span></a></div>
-                            <div {{$params['type']=="摄影"?"class=checked":''}}><a href="/forum/摄影"><span class="glyphicon glyphicon-camera"></span><span>摄影</span></a></div>
                             <div {{$params['type']=="电脑"?"class=checked":''}}><a href="/forum/电脑"><span class="glyphicon glyphicon-floppy-open"></span><span>电脑</span></a></div>
                             <div {{$params['type']=="平板"?"class=checked":''}}><a href="/forum/平板"><span class="glyphicon glyphicon-phone"></span><span>平板</span></a></div>
                             <div {{$params['type']=="资讯"?"class=checked":''}}><a href="/forum/资讯"><span class="glyphicon glyphicon-bullhorn"></span><span>资讯</span></a></div>
-                            <div {{$params['type']=="周边"?"class=checked":''}}><a href="/forum/周边"><span class="glyphicon glyphicon-send"></span><span>周边</span></a></div>
+                            <div {{$params['type']=="摄影"?"class=checked":''}}><a href="/forum/摄影"><span class="glyphicon glyphicon-camera"></span><span>摄影</span></a></div>
                             <div {{$params['type']=="其它"?"class=checked":''}}><a href="/forum/其它"><span class="glyphicon glyphicon glyphicon-tags"></span><span>其它</span></a></div>
                         </div>
                     </div>
