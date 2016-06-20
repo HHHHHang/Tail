@@ -44,7 +44,7 @@ class IndexController extends Controller{
 		$params = [
 			'user' => $user,
 			'picsArr' => $picsArr,
-			'pics'    => $pics,
+			'pics'    => $banner_imgs,
 			'articles' => $articles,
 			'banner'   => $banners,
 			'side_banner' => $side_banners,

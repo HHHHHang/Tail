@@ -103,23 +103,34 @@ class TopicsController extends Controller{
 		return view('tail.newTopicArticle')->with('params', $params);
 	}
 
-	public function postArticle(Request $request,$id)
+	public function postArticle(Request $request, $id)
 	{
 		$user = $request->user();
-		$image = null;
+
+		if(!$request->hasFile('file')){
+			$filename = '/thumbs/1.jpg';
+		} else {
+			$file = $request->file('file');
+			//判断文件上传过程中是否出错
+			$destPath = realpath( public_path( 'images' ) );
+			$filename = $file->getClientOriginalName();
+		}
+
 		$title = $request->get('title');
 		$content = $request->get('contentHtml');
-		$time = time();
-//		$topic = $request->get('topic');
+		$imageUrl = asset('images/' . time() . $filename);
+
+		if(!$file->move($destPath, $imageUrl)){
+//			exit('保存文件失败！');
+		}
 
 		DB::table('topic_articles')->insertGetId(
 			[
 				'title' => $title,
 				'content' => $content,
-				'image' => $image,
+				'image' => $imageUrl,
 				'uid' => $user['id'],
 				'tid' => $id,
-//				'createTime' => $time,
 				'viewNum' => 0,
 				'commentNum' => 0,
 				'upNum' => 0
@@ -127,10 +138,7 @@ class TopicsController extends Controller{
 			]
 		);
 
-  
-		$array = array('data'=>'success');
-		echo json_encode($array);
-
+		return redirect('/topic/detail/' . $id);
 	}
 
 	public function avatarUpload(Request $request) {

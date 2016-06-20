@@ -30,6 +30,73 @@
     <link href="{{URL::asset('css/person-info.css')}}" rel="stylesheet" type="text/css" />
 
 
+    <script>
+
+        console.log('123123');
+        function cancelFollow(id){
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            cantFollow()
+
+            function cantFollow() {
+                console.log($('#follow'))
+                    $.ajax({
+                        url: "/personInfo/cancelFollow",
+                        type: "post",
+                        data: {
+                            id : id,
+                            uid: {{ $params['user']['id'] }}
+                        },
+                        success: function(data) {
+                            $('#' + id).hide()
+                        }
+                    })
+            }
+
+        }
+
+        var pressUploadFileBtn = function () {
+            $("#fileUpload").click();
+        };
+        $(function () {
+            $("#fileUpload").change(function () {
+                if (typeof (FileReader) != "undefined") {
+                    var dvPreview = $("#img-preview");
+                    var regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                    dvPreview.html('<img class="img-rounded img-circle img-responsive" style="width: 100px;height: 100px;display: inline-block;vertical-align: middle"  src="{{ $params['userInfo']['avatar'] }}" />');
+                    $($(this)[0].files).each(function () {
+                        var file = $(this);
+                        if (regex.test(file[0].name.toLowerCase())) {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                var img = $("<img />");
+                                img.attr("src", e.target.result);
+                                img.attr("class", "img-rounded img-circle img-responsive");
+                                img.attr("style", "width: 100px;height: 100px;display: inline-block;vertical-align: middle");
+                                dvPreview.html("");
+                                $('#imgSrc').val($("#fileUpload").val());
+                                dvPreview.append(img);
+                            };
+                            var src = reader.readAsDataURL(file[0]);
+
+                        } else {
+                            alert(file[0].name + " is not a valid image file.");
+                            dvPreview.html("");
+                            return false;
+                        }
+                    });
+                } else {
+                    alert("This browser does not support HTML5 FileReader.");
+                }
+            });
+        });
+    </script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -53,11 +120,13 @@
 
             <!-- My Info -->
             <div class="well">
-                <ul class="nav nav-pills" style="font-size: x-large;">
+                <ul class="nav nav-pills" style="font-size: large;">
                     <li role="presentation" class="active"><a href="#post" data-toggle="pill">我的帖子</a></li>
                     <li role="presentation"><a href="#reply" data-toggle="pill">我的回复</a></li>
                     <li><a href="#collect" data-toggle="pill">我的收藏</a></li>
                     <li><a href="#zan" data-toggle="pill">我的点赞</a></li>
+                    <li><a href="#myFollow" data-toggle="pill">我的关注</a></li>
+                    <li><a href="#myMessage" data-toggle="pill">我的消息</a></li>
                 </ul>
                 <br/>
                 <hr/>
@@ -162,6 +231,36 @@
                             <hr>
                         @endforeach
                     </div>
+                    <div class="tab-pane fade" id="myFollow">
+                        @foreach($params['myFollowsInfos'] as $myFollowsInfo)
+                            <div id="{{$myFollowsInfo->uid}}" style="margin-left: 20px">
+                                <a href="/otherInfo/{{ $myFollowsInfo->uid }}">
+                                    <img src="{{ $myFollowsInfo->avatar }}" style="width: 50px;height: 50px;display: inline-block;vertical-align: middle" class="img-rounded img-circle img-responsive">
+                                    <span class="tie-head" style="margin-left: 20px">&nbsp;{{ $myFollowsInfo->name }}</span>
+                                </a>
+                                <button type="button" onclick="cancelFollow({{ $myFollowsInfo->uid }})" class="btn btn-success" style="font-size: large;float: right;margin-right: 20px"><span>取消关注</span></button>
+                                <hr>
+                            </div>
+
+                        @endforeach
+                    </div>
+                    <div class="tab-pane fade" id="myMessage">
+                        <div class="message-detail">
+                            <br/>
+                            <span>你收到了来自<a href="#" class="tie-head">@测试用户</a>的一条评论。</span>
+                            <hr/>
+                        </div>
+                        <div class="message-detail">
+                            <br/>
+                            <span>你收到了来自<a href="#" class="tie-head">@测试用户</a>的一个点赞。</span>
+                            <hr/>
+                        </div>
+                        <div class="message-detail">
+                            <br/>
+                            <span>你收到了来自<a href="#" class="tie-head">@测试用户</a>的一次收藏。</span>
+                            <hr/>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -172,7 +271,20 @@
 
             <div class="well">
                 <div class="row">
-                    <img width="250" height="130" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-19%20%E4%B8%8A%E5%8D%881.14.18.png"></img>
+
+                    <form action="/myinfo/avatar" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <div class="pic" style="text-align: center">
+                                <div id="img-preview" style="text-align: center" onclick="pressUploadFileBtn()">
+                                    <img class="img-rounded img-circle img-responsive" style="width: 100px;height: 100px;display: inline-block;vertical-align: middle"  src="{{ $params['userInfo']['avatar'] }}" />
+                                </div>
+                                <input name="file" id="fileUpload" accept="image/*" type="file" multiple="multiple" style="display: none">
+                                {{--<input name="file" value="" id="imgSrc" type="hidden"/>--}}
+                                <br/>
+                                <button type="submit" id="create" class="">修改头像</button>
+                            </div>
+                    </form>
+                    <br/>
                     <!-- /.col-lg-6 -->
                     <h1 style="text-align: center; font-size: 16px"> {{ $params['userInfo']['name'] }}</h1>
                     <br/>

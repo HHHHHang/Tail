@@ -84,8 +84,12 @@
                         <a class="chip showChip" onclick="chooseImg()">
                             <span>选择图片</span>
                         </a>
-                        <input type="hidden" name="imgSrc" val="" id="imgSrc" data-toggle="modal" data-target="#createTopicModal">
-                        <input name="file" id="fileUpload" accept="image/*" type="file" multiple="multiple">
+
+						<form id="form" action="/new/topicArticle/{{$params['topic']->id}}" method="post" enctype="multipart/form-data">
+							<input type="hidden" name="imgSrc" val="" id="imgSrc" data-toggle="modal" data-target="#createTopicModal">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							<input id="fileUpload" name="file" accept="image/*" type="file" multiple="multiple">
+						</form>
 
                     </div>
                     <div class="modal fade" id="createTopicModal" tabindex="-1" role="dialog"
@@ -135,10 +139,11 @@
        var editor = new Simditor({
            textarea: $('#editor'),
            //optional options
-           upload: {  url: '',
+           upload: {
+           	   url: '/api/file',
                params: null,
                fileKey: 'upload_file',
-               connectionCount: 3,
+               connectionCount: 10,
                leaveConfirm: 'Uploading is in progress, are you sure to leave this page?'
 
            },
@@ -228,27 +233,43 @@
 //           console.log('话题: ' + topic);
            console.log('正文: ' + contentHtml);
 
-           $.ajax({
-               type: 'POST',
-               url: '/new/topicArticle/{{$params['topic']->id}}',
-               data: {
-                   title: title,
-//                   topic: topic,
-                   contentHtml: contentHtml,
-                   coverSrc: coverSrc
-               },
-               dataType: 'json',
-               success: function (data) {
-                   console.log(data);
-                   console.log('success');
-                   alert('文章发布成功');
-                   location.href = '/topic/detail/{{$params['topic']->id}}';
-               },
-               error: function (error) {
-                   console.log(error);
-                   console.log('error');
-               }
-           });
+			var form = document.getElementById("form")
+			var titleInput = document.createElement("input");
+			// 设置相应参数
+			titleInput.type = "text";
+			titleInput.name = "title";
+			titleInput.value = title;
+			var contentInput = document.createElement("input");
+			// 设置相应参数
+			contentInput.type = "text";
+			contentInput.name = "contentHtml";
+			contentInput.value = contentHtml;
+			form.appendChild(titleInput);
+			form.appendChild(contentInput);
+			console.log(form)
+			form.submit();
+
+           {{--$.ajax({--}}
+               {{--type: 'POST',--}}
+               {{--url: '/new/topicArticle/{{$params['topic']->id}}',--}}
+               {{--data: {--}}
+                   {{--title: title,--}}
+{{--//                   topic: topic,--}}
+                   {{--contentHtml: contentHtml,--}}
+                   {{--coverSrc: coverSrc--}}
+               {{--},--}}
+               {{--dataType: 'json',--}}
+               {{--success: function (data) {--}}
+                   {{--console.log(data);--}}
+                   {{--console.log('success');--}}
+                   {{--alert('文章发布成功');--}}
+                   {{--location.href = '/topic/detail/{{$params['topic']->id}}';--}}
+               {{--},--}}
+               {{--error: function (error) {--}}
+                   {{--console.log(error);--}}
+                   {{--console.log('error');--}}
+               {{--}--}}
+           {{--});--}}
        }
    </script>
 </body>

@@ -12,3 +12,9 @@
     letter-spacing: 1px;
     font-size: 15px;
 }
+.message-detail{
+    font-size: 15px;
+}
+.message-detail > span{
+    padding-left: 10px;
+}

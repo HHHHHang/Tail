@@ -93,9 +93,9 @@
                     </a>
                     <form id="form" action="/new/article" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="imgSrc" val="" id="imgSrc" data-toggle="modal" data-target="#createTopicModal">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-                   		<input id="fileUpload" name="file" accept="image/*" type="file" multiple="multiple">
-                   	</form>
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input id="fileUpload" name="file" accept="image/*" type="file" multiple="multiple">
+                    </form>
 
                 </div>
                 <div class="modal fade" id="createTopicModal" tabindex="-1" role="dialog"
@@ -144,10 +144,11 @@
     var editor = new Simditor({
         textarea: $('#editor'),
         //optional options
-        upload: {  url: '',
+        upload: {
+            url: '/api/file',
             params: null,
             fileKey: 'upload_file',
-            connectionCount: 3,
+            connectionCount: 10,
             leaveConfirm: 'Uploading is in progress, are you sure to leave this page?'
 
         },
@@ -264,32 +265,32 @@
         console.log('正文: ' + contentHtml);
         console.log('分类: ' + type);
 
-		var form = document.getElementById("form")
-	    var titleInput = document.createElement("input");
-		// 设置相应参数
-		titleInput.type = "text";
-		titleInput.name = "title";
-		titleInput.value = title;
-	    var contentInput = document.createElement("input");
+        var form = document.getElementById("form")
+        var titleInput = document.createElement("input");
+        // 设置相应参数
+        titleInput.type = "text";
+        titleInput.name = "title";
+        titleInput.value = title;
+        var contentInput = document.createElement("input");
         // 设置相应参数
         contentInput.type = "text";
         contentInput.name = "contentHtml";
         contentInput.value = contentHtml;
         var typeInput = document.createElement("input");
-		// 设置相应参数
-		typeInput.type = "text";
-		typeInput.name = "type";
-		typeInput.value = type;
-		var kwInput = document.createElement("input");
-		// 设置相应参数
-		kwInput.type = "text";
-		kwInput.name = "keywords";
-		kwInput.value = JSON.stringify(keyWords);
-		form.appendChild(titleInput);
-		form.appendChild(typeInput);
-		form.appendChild(contentInput);
-		form.appendChild(kwInput);
-		console.log(form)
+        // 设置相应参数
+        typeInput.type = "text";
+        typeInput.name = "type";
+        typeInput.value = type;
+        var kwInput = document.createElement("input");
+        // 设置相应参数
+        kwInput.type = "text";
+        kwInput.name = "keywords";
+        kwInput.value = JSON.stringify(keyWords);
+        form.appendChild(titleInput);
+        form.appendChild(typeInput);
+        form.appendChild(contentInput);
+        form.appendChild(kwInput);
+        console.log(form)
         form.submit();
 
 //        $.ajax({

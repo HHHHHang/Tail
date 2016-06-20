@@ -150,6 +150,7 @@
             </div>
             <div class="sidebarBlock col-md-4">
 
+				@if (isset($params['user']) && $params['user']['id'] != 2)
                 <div class="well forumUserInfo">
                     <div>
                         <img width="90" height="90" src="{{ $params['user']['avatar'] }}"  class="img-responsive">
@@ -165,11 +166,16 @@
                         </div>
                     </div>
                 </div>
+                @endif
 
                 <div  data-spy="affix" data-offset-top="696" data-offset-bottom="340">
 
                     <div class="forumNewBtn">
+                    @if (isset($params['user']) && $params['user']['id'] != 2)
                         <button type="button" class="btn" onclick="{location.href = '/new/article'}">发布文章</button>
+                    @else
+                    	<button type="button" class="btn" onclick="{location.href = '/login'}">发布请先登录</button>
+                    @endif
                     </div>
 
                     <div class="popularTopicSidebar well">

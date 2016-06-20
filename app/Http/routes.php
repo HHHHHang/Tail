@@ -74,6 +74,7 @@ Route::get('/search/article/{keyword}', 'SearchController@searchArticle');
 // 个人信息页模板
 Route::get('/myinfo', 'MyInfoController@index');
 Route::get('/otherInfo/{uid}', 'MyInfoController@otherInfo');
+Route::post('/myinfo/avatar', 'MyInfoController@postAvatar');
 
 //mysql接口测试
 Route::get('/mongo', 'MongoController@testMongo');
@@ -94,6 +95,9 @@ Route::get('/api/test/{id}', function ($id) {
 	var_dump( (getTieByUid($id)) );
 });
 
+//editor文件上传接口
+Route::get('/api/file','FileController@index');
+Route::post('/api/file','FileController@index');
 
 //CMS 后台内容管理系统
 
@@ -106,6 +110,7 @@ Route::get('/cms/topic', 'CMSController@topic');
 Route::get('/cms/banner/{type}', 'CMSController@banner');
 Route::post('/deleteArticle', 'CMSController@deleteArticle');
 Route::post('/editBanner', 'CMSController@editBanner');
+Route::post('/editSlider', 'CMSController@editSlider');
 Route::post('/publishArticle', 'CMSController@publishArticle');
 Route::post('/deleteTie', 'CMSController@deleteTie');
 Route::post('/publishTie', 'CMSController@publishTie');

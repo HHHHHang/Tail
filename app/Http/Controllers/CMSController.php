@@ -22,13 +22,15 @@ class CMSController extends Controller{
 			$banner = DB::table( 'banners' )->where( 'type', 'index' )->orWhere( 'type', 'index_side' )->get();
 		} elseif ($type == 'forum') {
 			$banner = DB::table( 'banners' )->where( 'type', 'forum_new' )->orWhere( 'type', 'forum_test' )->get();
+		} elseif ($type == 'slide') {
+			$banner = DB::table('banner_imgs')->get();
 		}
 
 		$params = [
 			'length' => count($banner),
 			'banner'  => $banner
 		];
-		return view('cms.banner')->with('params', $params);
+		return view('cms.slide')->with('params', $params);
 	}
 
 	public function article(Request $request, $type = '') {
@@ -156,6 +158,15 @@ class CMSController extends Controller{
 		DB::table('banners')->where('id', $id)
 			->update(['title' => $title, 'content' => $content, 'file' => $file, 'href' => $href]);
 		return [$id, $title, $content, $file, $href];
+	}
+
+	public function editSlider(Request $request) {
+		$id      = $request->get('id');
+		$file   = $request->get('file');
+		$href    = $request->get('href');
+		DB::table("banner_imgs")->where('id', $id)
+			->update(['file' => $file, 'href' => $href]);
+		return "succeed";
 	}
 
 } 

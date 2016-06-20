@@ -18,7 +18,7 @@
 
 <body>
 
-	@include('tail.layout.header', ['active' => 'bbs'])
+    @include('tail.layout.header', ['active' => 'bbs'])
 
 <div class="container">
     <div class="row">
@@ -51,11 +51,13 @@
         </div>
         <div class="sidebarBlock col-md-4">
 
+            @if (isset($params['user']) && $params['user']['id'] != 2)
             <div class="well forumUserInfo">
                 <div>
                     <img width="90" height="90" src="{{ $params['user']['avatar'] }}"  class="img-responsive">
                     <span>{{ $params['user']['level'] }}</span>
                 </div>
+
                 <div>
                     <span>{{ $params['user']['name'] }}</span>
                     <div>
@@ -65,9 +67,12 @@
                     </div>
                 </div>
             </div>
+            @endif
             <div  data-spy="affix" data-offset-top="184" data-offset-bottom="340">
                 <div class="forumNewBtn">
-                    @if ($params['isKinkTie'] == 1)
+                    @if ((!isset($params['user']) || $params['user']['id'] == 2))
+                        <button type="button" class="btn" onclick="{location.href = '/login'}">发布请先登录</button>
+                    @elseif ($params['isKinkTie'] == 1)
                         <button type="button" class="btn" onclick="{location.href = '/new/tie'}">发布普通帖子</button>
                     @else
                         <button type="button" class="btn" onclick="{location.href = '/new/kinkTie'}">发布纠结帖子</button>

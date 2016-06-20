@@ -33,6 +33,12 @@ class MyInfoController extends Controller{
 		$upTies = DB::table('ups')->join('kinkTies', function($join){$join->on('kinkTies.kid', '=', 'ups.upId');})->where('ups.type','tie')->where('ups.uid', $user['id'])->orderBy('createTime', 'desc')->get();
 		$collectArticles = DB::table('collects')->join('articles', function($join){$join->on('articles.id', '=', 'collects.collectId');})->where('collects.type','article')->where('collects.uid', $user['id'])->orderBy('createTime', 'desc')->get();
 		$collectTies = DB::table('collects')->join('kinkTies', function($join){$join->on('kinkTies.kid', '=', 'collects.collectId');})->where('collects.type','tie')->where('collects.uid', $user['id'])->orderBy('createTime', 'desc')->get();
+		$myFollows = DB::table('follows')->where('uid', $user['id'])->get();
+		$myFollowsInfos = [];
+		foreach ($myFollows as $myFollow)
+		{
+			$myFollowsInfos = DB::table('tail_users')->where('uid', $myFollow->followUid)->get();
+		}
 		$params = [
 			'user' => $user,
 			'userInfo' => $userInfo,
@@ -46,6 +52,7 @@ class MyInfoController extends Controller{
 			'upTies' => $upTies,
 			'collectArticles' => $collectArticles,
 			'collectTies' => $collectTies,
+			'myFollowsInfos' => $myFollowsInfos,
 		];
 		if ($user) return view('tail.myinfo')->with('user', $user)->with('params', $params);
 		return view('tail.login');
@@ -55,6 +62,7 @@ class MyInfoController extends Controller{
 	{
 		$user = $request->user();
 		$userInfo = getUserInfo($uid);
+
 		$articleComments = DB::table('comments')->where('type', 'article')->where('uid', $uid)->orderBy('createtime', 'desc')->get();
 		$tieComments = DB::table('comments')->where('type','tie')->where('uid', $uid)->orderBy('createtime', 'desc')->get();
 		$ties = DB::table('kinkTies')->where('uid', $uid)->orderBy('createTime', 'desc')->get();
@@ -106,6 +114,33 @@ class MyInfoController extends Controller{
 		DB::table('tail_users')->where('uid', $uid)->decrement('followNum');
 		DB::table('tail_users')->where('uid', $id)->decrement('fans');
 		return "!";
+	}
+
+	public function postAvatar(Request $request)
+	{
+		$user = $request->user();
+		$userInfo = getUserInfo($user['id']);
+		$file = $request->get('file');
+		if(!$request->hasFile('file')){
+			$filename = $userInfo['avatar'];
+			DB::table('tail_users')->where('uid', $user['id'])->update(['avatar' => $filename]);
+			return redirect('/myinfo');
+		} else {
+			$file = $request->file('file');
+			//判断文件上传过程中是否出错
+			if ( ! $file->isValid() ) {
+				exit( '文件上传出错！' );
+			}
+			$destPath = realpath( public_path( 'images' ) );
+			$filename = $file->getClientOriginalName();
+		}
+		$imageUrl = asset('images/' . time() . $filename);
+		DB::table('tail_users')->where('uid', $user['id'])->update(['avatar' => $imageUrl]);
+		if(!$file->move($destPath, $imageUrl)){
+//			exit('保存文件失败！');
+		}
+//		exit('文件上传成功！');
+		return redirect('/myinfo');
 	}
 
 
