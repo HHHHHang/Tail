@@ -140,7 +140,7 @@
             }
 
             function cantCollect() {
-                $('#collect').html('已收藏')
+                $('#collect').html('已收藏');
                 $('#collect').css('background-color','#458ac9');
                 $('#collect').css('color','white');
                 $('#collect').css('border','none');

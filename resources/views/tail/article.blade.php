@@ -87,6 +87,9 @@
 
             function cantUp() {
                 $('#up').html('已赞')
+                $('#up').css('background-color','#458ac9');
+                $('#up').css('color','white');
+                $('#up').css('border','none');
                 console.log($('#up'))
                 $('#up').click(function(){
                     $.ajax({
@@ -99,6 +102,9 @@
                         },
                         success: function(data) {
                             $('#up').html('赞')
+                            $('#up').css('background-color','transparent');
+                            $('#up').css('color','black');
+                            $('#up').css('border','#B0B4B7 solid 1px');
                             $('#up').unbind()
                             canUp()
                             console.log(data)
@@ -128,7 +134,10 @@
             }
 
             function cantCollect() {
-                $('#collect').html('已收藏')
+                $('#collect').html('已收藏');
+                $('#collect').css('background-color','#458ac9');
+                $('#collect').css('color','white');
+                $('#collect').css('border','none');
                 $('#collect').click(function(){
                     $.ajax({
                         url: "/article/cancelCollect",
@@ -140,6 +149,9 @@
                         },
                         success: function(data) {
                             $('#collect').html('收藏')
+                            $('#collect').css('background-color','transparent');
+                            $('#collect').css('color','black');
+                            $('#collect').css('border','#B0B4B7 solid 1px');
                             $('#collect').unbind()
                             canCollect()
                             console.log(data)
