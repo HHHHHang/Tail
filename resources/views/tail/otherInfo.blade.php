@@ -143,6 +143,7 @@
                                     <span>&nbsp;<span class="glyphicon glyphicon-comment"></span>{{ $article->commentNum }}</span>
                                 </div>
                                 <hr>
+<<<<<<< Updated upstream
                                 @endforeach
                             @foreach($params['ties'] as $tie)
                                     <div class="info-box">
@@ -165,15 +166,47 @@
                                 </div>
                                 <div class="detail-info">
                                     <span>发布时间 {{ date("Y年m月d日", strtotime($articleComment->createtime)) }}</span>
+=======
+                            @endforeach
+                            @foreach($params['topicArticles'] as $topicArticle)
+                                <div class="info-box">
+                                    <h1><a href="/topic/detail/{{ $topicArticle->id }}">{{ $topicArticle->title }}</a></h1>
+                                </div>
+                                <div class="detail-info">
+                                    <span>&nbsp;发布时间 {{ date("Y年m月d日",strtotime($topicArticle->createTime)) }}</span>
+                                    <span>&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>{{ $topicArticle->upNum }}</span>
+                                    <span>&nbsp;<span class="glyphicon glyphicon-comment"></span>{{ $topicArticle->commentNum }}</span>
+>>>>>>> Stashed changes
                                 </div>
                                 <hr>
                             @endforeach
-                            @foreach($params['tieComments'] as $tieComment)
+                            @foreach($params['ties'] as $tie)
                                 <div class="info-box">
-                                    <h1><a href="/kinkTie/{{ $tieComment->akid }}">{{ $tieComment->content }}</a></h1>
+                                    <h1><a href="/kinkTie/{{ $tie->kid }}">{{ $tie->title }}</a></h1>
                                 </div>
                                 <div class="detail-info">
-                                    <span>发布时间 {{ date("Y年m月d日",($tieComment->createtime)) }}</span>
+                                    <span>&nbsp;类别 <a href="#">{{ $tie->type }}</a></span>
+                                    <span>&nbsp;发布时间 {{ date("Y年m月d日",($tie->createTime)) }}</span>
+                                    <span>&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>{{ $tie->upNum }}</span>
+                                    <span>&nbsp;<span class="glyphicon glyphicon-comment"></span>{{ $tie->commentNum }}</span>
+                                </div>
+                                <hr>
+                            @endforeach
+                            {{--<button type="button" class="btn btn-default btn-lg btn-block">查看更多信息</button>--}}
+                        </div>
+                        <div class="tab-pane fade" id="reply">
+                            @foreach($params['comments'] as $comment)
+                                <div class="">
+                                    @if($comment->type == 'article')
+                                        <h1><a href="/article/{{ $comment->akid }}">{{ $comment->content }}</a></h1>
+                                    @elseif($comment->type == 'tie')
+                                        <h1><a href="/kinkTie/{{ $tieComment->akid }}">{{ $tieComment->content }}</a></h1>
+                                    @elseif($comment->type == 'topicArticle')
+                                        <h1><a href="/topic/detail/{{ $tieComment->akid }}">{{ $tieComment->content }}</a></h1>
+                                    @endif
+                                </div>
+                                <div class="detail-info">
+                                    <span>发布时间 {{ date("Y年m月d日", strtotime($comment->createtime)) }}</span>
                                 </div>
                                 <hr>
                             @endforeach

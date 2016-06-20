@@ -113,35 +113,6 @@ class KinkTieController extends Controller{
 			'aid' => $kid,
 			'multi' => $multi
 		];
-//		die;
-
-//		$kinkTie = array(
-			//'title'=>'手机使用什么输入法?',
-			//'type'=>'手机',
-			//'publishTime'=>'2016-4-10 18:13',
-			//'viewCount'=>1060,
-			//'likeCount'=>2,
-			//'commentCount'=>20,
-			//'multi'=>1,
-			//'maxChoiceNum'=>3,
-			//'attendCount'=>131,
-			//'options'=>array(
-//				array('id'=> 1, 'content' => '搜狗输入法', 'voteCount' => 0, 'voteProportion' => 0),
-//				array('id'=> 2, 'content' => '百度输入法', 'voteCount' => 0, 'voteProportion' => 0),
-//				array('id'=> 3, 'content' => 'QQ输入法', 'voteCount' => 0, 'voteProportion' => 0),
-//				array('id'=> 4, 'content' => '谷歌输入法', 'voteCount' => 1, 'voteProportion' => 50),
-//				array('id'=> 5, 'content' => '手机自带输入法', 'voteCount' => 1, 'voteProportion' => 50),
-//				array('id'=> 6, 'content' => '其他', 'voteCount' => 0, 'voteProportion' => 0)),
-			//'introduction'=>'你们都用哪个手机打字输入法呢？');
-//		$params = [
-//			'user' => $userInfo,
-//			'aid' => $kid,
-//			'kinkTie' => $kinkTie,
-//			'postUser' => $postUser,
-//			'hasUp' => $hasUp,
-//			'hasCollect' => $hasCollect,
-//			'hasVote' => $hasVote,
-//		];
 
 		return view('tail.forumDetail')->with('params', $params)->with('comments', $comments);
 	}
