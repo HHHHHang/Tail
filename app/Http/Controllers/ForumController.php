@@ -146,8 +146,16 @@ class ForumController extends Controller{
 	public function tie(Request $request, $type='all') {
 		$user = $request->user();
 		$userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
-		$articles = $type!="all" ? DB::table('kinkTies')->where('type', $type)->get() :
+		$articles_type = $type!="all" ? DB::table('kinkTies')->where('type', $type)->get() :
 			DB::table('kinkTies')->orderBy('createTime', 'desc')->get();
+
+		$articles = [];
+		foreach($articles_type as $article) {
+			if (!DB::table('voteOptions')->where('kid', $article->kid)->first())
+				$articles[] = $article;
+		}
+
+
 		$articlesInfo = [];
 		foreach ($articles as $article) {
 			$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
@@ -181,8 +189,15 @@ class ForumController extends Controller{
 	public function kinkTie(Request $request, $type='all') {
 		$user = $request->user();
 		$userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
-		$articles = $type!="all" ? DB::table('kinkTies')->where('type', $type)->get() :
+		$articles_type = $type!="all" ? DB::table('kinkTies')->where('type', $type)->get() :
 			DB::table('kinkTies')->orderBy('createTime', 'desc')->get();
+
+		$articles = [];
+		foreach($articles_type as $article) {
+			if (DB::table('voteOptions')->where('kid', $article->kid)->first())
+				$articles[] = $article;
+		}
+
 		$articlesInfo = [];
 		foreach ($articles as $article) {
 			$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
@@ -193,7 +208,7 @@ class ForumController extends Controller{
 				'type'  => $article->type,
 				'avatar' => $postUser->avatar,
 				'commentNum' => $article->commentNum,
-				'link'   => '/kinkTie/' . $article->kid
+				'link'   => '/forum/Detail/' . $article->kid
 			];
 		}
 		$hot_ties  = DB::table("kinkTies")->where('viewNum', '>', 100)->get();
