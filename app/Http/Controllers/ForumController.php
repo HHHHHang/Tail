@@ -103,6 +103,7 @@ class ForumController extends Controller{
 		foreach ($result as $article) {
 			$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
 			$articlesInfo[] = [
+				'article' => $article,
 				'title' => $article->title,
 				'name'  => $postUser->name,
 				'publishTime' =>$article->createTime,
@@ -129,6 +130,7 @@ class ForumController extends Controller{
 			'hotTags'=>$hotTags,
 			'keywords'=>$keywords
 		];
+
 
 		if ($user) return view('tail.forum')->with('params', $params);
 		else {
