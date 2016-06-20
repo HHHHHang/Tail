@@ -27,7 +27,7 @@
                     @if($articleInfo['article']->image!=null)
 
                         <li class = "have-img">
-                            <a class="wrap-img">
+                            <a href="/topic/article/{{$articleInfo['article']->id}}" class="wrap-img">
                                 <img src={{$articleInfo['article']->image}}>
                             </a>
                             <div class=" article-info">
