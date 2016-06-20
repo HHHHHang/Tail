@@ -69,46 +69,73 @@ class KinkTieController extends Controller{
 		$kid = $kid == null ? 0 : $kid;
 		$user = $request->user();
 		$userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
+
 		$comments = DB::table('comments')->where('akid', $kid)->where('type', 'kinkTie')->get();
-		// DB::table('kinkTies')->where('kid', $kid)->increment('viewNum');
-		// $article = DB::table('kinkTies')->where('kid', $kid)->first();
-		// $postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
-		$kinkTie = array(
-			'title'=>'手机使用什么输入法?',
-			'type'=>'手机',
-			'publishTime'=>'2016-4-10 18:13',
-			'viewCount'=>1060,
-			'likeCount'=>2,
-			'commentCount'=>20,
-			'multi'=>1,
-			'maxChoiceNum'=>3,
-			'attendCount'=>131,
-			'options'=>array(
-				array('id'=> 1, 'content' => '搜狗输入法', 'voteCount' => 0, 'voteProportion' => 0),
-				array('id'=> 2, 'content' => '百度输入法', 'voteCount' => 0, 'voteProportion' => 0),
-				array('id'=> 3, 'content' => 'QQ输入法', 'voteCount' => 0, 'voteProportion' => 0),
-				array('id'=> 4, 'content' => '谷歌输入法', 'voteCount' => 1, 'voteProportion' => 50),
-				array('id'=> 5, 'content' => '手机自带输入法', 'voteCount' => 1, 'voteProportion' => 50),
-				array('id'=> 6, 'content' => '其他', 'voteCount' => 0, 'voteProportion' => 0)),
-			'introduction'=>'你们都用哪个手机打字输入法呢？');
-		$postUser = DB::table('tail_users')->where('uid', 1)->first();
+		DB::table('kinkTies')->where('kid', $kid)->increment('viewNum');
+		$article = DB::table('kinkTies')->where('kid', $kid)->first();
+		$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
+		//判断是否投票
+		$hasVote = count(DB::table('votes')->where('kid', $kid)->where('uid', $user['id'])->first());
 		//判断是否赞过
-		//$hasUp = count(DB::table('ups')->where('type', 'tie')->where('upId', $kid)->where('uid', $userInfo['id'])->first());
+		$hasUp = count(DB::table('ups')->where('type', 'article')->where('upId', $kid)->where('uid', $user['id'])->first());
 		//判断是否收藏
-		//$hasCollect = count(DB::table('collects')->where('type', 'tie')->where('collectId', $kid)->where('uid', $userInfo['id'])->first());
-		$hasUp = 0;
-		$hasCollect = 0;
-		$hasVote = 1;
+		$hasCollect = count(DB::table('collects')->where('type', 'article')->where('collectId', $kid)->where('uid', $user['id'])->first());
+		$voteInfo = DB::table('voteOptions')->where('kid', $kid)->first();
+
+		$multi = $voteInfo->multi;
+		$maxChoiceNum = $voteInfo->maxChoiceNum;
+		$options = DB::table('voteOptions')->where('kid', $kid)->get();
+		$voteCountSum = array_sum(DB::table('voteOptions')->where('kid', $kid)->pluck('voteCount'));
+//		var_dump($voteCountSum);
+//		die;
+		$introduction = $voteInfo->introduction;
+		$attendCount = count(DB::table('votes')->where('kid', $kid)->where('uid', $user['id'])->get());
 
 		$params = [
-			'user' => $userInfo,
-			'aid' => $kid,
-			'kinkTie' => $kinkTie,
+			'user' => $user,
+			'userInfo' => $userInfo,
+			'kinkTie' => $article,
 			'postUser' => $postUser,
 			'hasUp' => $hasUp,
 			'hasCollect' => $hasCollect,
 			'hasVote' => $hasVote,
+			'options' => $options,
+			'introduction' => $introduction,
+			'attendCount' => $attendCount,
+			'maxChoiceNum' => $maxChoiceNum,
+			'voteCountSum' => $voteCountSum,
+			'aid' => $kid,
+			'multi' => $multi
 		];
+//		die;
+
+//		$kinkTie = array(
+			//'title'=>'手机使用什么输入法?',
+			//'type'=>'手机',
+			//'publishTime'=>'2016-4-10 18:13',
+			//'viewCount'=>1060,
+			//'likeCount'=>2,
+			//'commentCount'=>20,
+			//'multi'=>1,
+			//'maxChoiceNum'=>3,
+			//'attendCount'=>131,
+			//'options'=>array(
+//				array('id'=> 1, 'content' => '搜狗输入法', 'voteCount' => 0, 'voteProportion' => 0),
+//				array('id'=> 2, 'content' => '百度输入法', 'voteCount' => 0, 'voteProportion' => 0),
+//				array('id'=> 3, 'content' => 'QQ输入法', 'voteCount' => 0, 'voteProportion' => 0),
+//				array('id'=> 4, 'content' => '谷歌输入法', 'voteCount' => 1, 'voteProportion' => 50),
+//				array('id'=> 5, 'content' => '手机自带输入法', 'voteCount' => 1, 'voteProportion' => 50),
+//				array('id'=> 6, 'content' => '其他', 'voteCount' => 0, 'voteProportion' => 0)),
+			//'introduction'=>'你们都用哪个手机打字输入法呢？');
+//		$params = [
+//			'user' => $userInfo,
+//			'aid' => $kid,
+//			'kinkTie' => $kinkTie,
+//			'postUser' => $postUser,
+//			'hasUp' => $hasUp,
+//			'hasCollect' => $hasCollect,
+//			'hasVote' => $hasVote,
+//		];
 
 		return view('tail.forumDetail')->with('params', $params)->with('comments', $comments);
 	}
