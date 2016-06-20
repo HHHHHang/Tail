@@ -165,7 +165,7 @@
                                 <h1><a href="/article/{{ $articleComment->akid }}">{{ $articleComment->content }}</a></h1>
                             </div>
                             <div class="detail-info">
-                                <span>发布时间 {{ date("Y年m月d日",($articleComment->createtime)) }}</span>
+                                <span>发布时间 {{ date("Y年m月d日", strtotime($articleComment->createtime)) }}</span>
                             </div>
                             <hr>
                         @endforeach
