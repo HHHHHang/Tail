@@ -185,7 +185,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="well forumDetailDiv">
-                    <a href="/forum"><span class="glyphicon glyphicon-chevron-left"></span>纠结帖子</a>
+                    <a href="/forum/kinkTie"><span class="glyphicon glyphicon-chevron-left"></span>纠结帖子</a>
                     <span>{{ $params['kinkTie']->title }}</span>
                     <div class="forumDetailInfo">
                         <span>阅读人数: {{ $params['kinkTie']->viewNum  }}</span>

@@ -44,11 +44,11 @@ class NewController extends Controller
         $kinkTies = DB::select("SELECT * from kinkTies");
         $user = $request->user();
         $userid = isset($user) ?  $user['id'] : 2;
-        $num = count($kinkTies);
+        $num = DB::table('kinkTies')->max('kid') + 1;
         $time = time();
         
         Db::insert('INSERT INTO kinkTies (kid, title, content, type, createTime, uid, commentNum, upNum, updateTime)  VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [$num+1, $title, $content, $type, $time, $userid, 0, 0, $time]);
+            [$num, $title, $content, $type, $time, $userid, 0, 0, $time]);
 
         $array = array('data'=>'success');
         echo json_encode($array);
@@ -87,14 +87,14 @@ class NewController extends Controller
         $kinkTies = DB::select("SELECT * from kinkTies");
         $user = $request->user();
         $userid = isset($user) ?  $user['id'] : 2;
-        $num = count($kinkTies);
+        $num = DB::table('kinkTies')->max('kid') + 1;
         $time = time();
-        $vidNum = count(DB::table('voteOptions')->get());
+        $vidNum = DB::table('voteOptions')->max('vid') + 1;
         Db::insert('INSERT INTO kinkTies (kid, title, content, type, createTime, uid, commentNum, upNum, updateTime)  VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [$num+1, $title, $content, $type, $time, $userid, 0, 0, $time]);
+            [$num, $title, $content, $type, $time, $userid, 0, 0, $time]);
         foreach ($options as $option) {
             DB::table('voteOptions')->insert(
-                ['vid' => $vidNum+1,'kid' => $num+1, 'content' => $option, 'voteCount' => 0, 'multi' => $multi, 'maxChoiceNum' => $optionMaxNum, 'introduction' => $content]
+                ['vid' => $vidNum,'kid' => $num+1, 'content' => $option, 'voteCount' => 0, 'multi' => $multi, 'maxChoiceNum' => $optionMaxNum, 'introduction' => $content]
             );
             $vidNum++;
         }
