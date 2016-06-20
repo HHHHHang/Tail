@@ -82,7 +82,7 @@
         </div>
 
         <div class="fixed-button">
-            <a href="/new/topicArticle/{{$params['topic']->id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a style="background-color: transparent" href="/new/topicArticle/{{$params['topic']->id}}"><span class="glyphicon glyphicon-pencil"></span></a>
 
         </div>
 

@@ -182,6 +182,7 @@
     <div class="article-background" style="background: url({{ $params['article']->image }}) no-repeat; height: 100%;width: 100%;
             background-size: 100% 100%;">
         <div class="article-background-color">
+            <a style="position: fixed; margin-top: 2%;margin-left: 2%;padding: 10px;border-radius: 5px;z-index:20;background: #eeeeee;" href="/topic/detail/{{$params['article']->tid}}"><span class="glyphicon glyphicon-chevron-left"></span>回到话题</a>
             <h1>{{ $params['article']->title }}</h1>
             <div class="article-writer">
                 <a href="#">
