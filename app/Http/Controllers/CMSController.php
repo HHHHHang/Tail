@@ -31,7 +31,8 @@ class CMSController extends Controller{
 			'banner'  => $banner,
 			'type'   => $type
 		];
-		return view('cms.slide')->with('params', $params);
+		if ($type == 'slide') return view('cms.slide')->with('params', $params);
+		else return view('cms.banner')->with('params', $params);
 	}
 
 	public function article(Request $request, $type = '') {

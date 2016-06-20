@@ -31,29 +31,14 @@
       <hr>
 
       <div class="am-g">
-        <div class="am-u-sm-12 am-u-md-6">
-          <div class="am-btn-toolbar">
-            <div class="am-btn-group am-btn-group-xs">
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 审核</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除</button>
-            </div>
-          </div>
-        </div>
-        <div class="am-u-sm-12 am-u-md-3">
-        </div>
-      </div>
-
-      <div class="am-g">
         <div class="am-u-sm-12">
           <form class="am-form">
             <table class="am-table am-table-striped am-table-hover table-main">
               <thead>
               <tr>
                 <th class="table-check"><input type="checkbox" /></th>
-                <th class="table-id">ID</th>
-                <th class="table-title">标题</th><th class="table-type">类别</th>
+                <th class="table-title">标题</th>
+                <th class="table-title">内容</th>
                 <th class="table-author am-hide-sm-only">展示图片</th>
                 <th class="table-date am-hide-sm-only">指向链接</th>
                 <th class="table-set">操作</th>
@@ -63,9 +48,8 @@
               @foreach($params['banner'] as $banner)
                   <tr>
                     <td><input type="checkbox" /></td>
-                    <td>{{ $banner->id }}</td>
                     <td><a href="{{ $banner->href }}">{{ $banner->title }}</a></td>
-                    <td>{{ $banner->type }}</td>
+                    <td>{{ $banner->content }}</td>
                     <td class="am-hide-sm-only">{{ $banner->file }}</td>
                     <td class="am-hide-sm-only">{{ $banner->href }}</td>
                     <td>
