@@ -175,9 +175,9 @@
                                     @if($comment->type == 'article')
                                         <h1><a href="/article/{{ $comment->akid }}">{{ $comment->content }}</a></h1>
                                     @elseif($comment->type == 'tie')
-                                        <h1><a href="/kinkTie/{{ $tieComment->akid }}">{{ $tieComment->content }}</a></h1>
+                                        <h1><a href="/kinkTie/{{ $comment->akid }}">{{ $comment->content }}</a></h1>
                                     @elseif($comment->type == 'topicArticle')
-                                        <h1><a href="/topic/detail/{{ $tieComment->akid }}">{{ $tieComment->content }}</a></h1>
+                                        <h1><a href="/topic/detail/{{ $comment->akid }}">{{ $comment->content }}</a></h1>
                                     @endif
                                 </div>
                                 <div class="detail-info">

@@ -98,6 +98,7 @@ class MyInfoController extends Controller{
 		$user = $request->user();
 		$userInfo = getUserInfo($uid);
 
+
 		$comments = DB::table('comments')->where('uid', $uid)->orderBy('createtime', 'desc')->get();
 		$ties = DB::table('kinkTies')->where('uid', $uid)->orderBy('createTime', 'desc')->get();
 		$articles = DB::table('articles')->where('uid', $uid)->orderBy('createTime', 'desc')->get();
