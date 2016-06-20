@@ -28,8 +28,8 @@
                 <div>
                     @foreach($params['banner'] as $banner)
                     <div class="recommendationItem" style="background-image:url({{$banner->file}})">
-                        <div>
-                            <a  style="color:white" href="{{$banner->href}}">
+                        <div onclick="window.location.href='{{$banner->href}}'">
+                            <a  style="color:white"">
                             <h4>{{$banner->title}}</h4>
                             </a>
                             <h5>{{$banner->content}}</h5>
@@ -51,8 +51,8 @@
                 <div>
                 @foreach($params['test'] as $testBanner)
                     <div class="recommendationItem" style="background-image:url({{$testBanner->file}})">
-                        <div>
-                            <a style="color:white" href="{{$testBanner->href}}">
+                        <div onclick="window.location.href='{{$banner->href}}'">
+                            <a style="color:white">
                             <h4>{{$testBanner->title}}</h4>
                             </a>
                             <h5>{{$testBanner->content}}</h5>
@@ -182,10 +182,8 @@
                         <span>热门文章</span>
                         @foreach($params['side_banner'] as $banner)
                         <div style="background-image:url({{$banner->file}})">
-                            <div>
-                                <a style="color: white" href="{{$banner->href}}">
+                            <div onclick="window.location.href='{{$banner->href}}'">
                                 <span><b>{{$banner->title}}</b></span>
-                                </a>
                                 <span>{{$banner->content}}</span>
                             </div>
                         </div>

@@ -22,22 +22,22 @@
         </div>
 
     </div>
-    <div class="htmleaf-container topicDisplayDiv">
+
+    <div class="htmleaf-container recommendationDiv">
         <div class="container">
-            <div class="row topicDisplayMain">
+            <div class="row recommendationMain">
                 <div>
                     <h1>推荐话题</h1><span></span><a href="/topic">进入话题广场</a>
                 </div>
                 <div>
-                	@foreach($params['banner'] as $banner)
-                    <div class="thumbnailCustom">
-                        <img src="{{ $banner->file }}"/>
-                        <div>
-                            <a style="color:white" href="{{$banner->href}}"><h4>{{ $banner->title }}</h4></a>
-                            <h5>{{ $banner->content }}</h5>
+                    @foreach($params['banner'] as $banner)
+                        <div class="recommendationItem" style="background-image:url({{$banner->file}})">
+                            <div onclick="window.location.href='{{$banner->href}}'">
+                                <h4>{{$banner->title}}</h4>
+                                <h5>{{$banner->content}}</h5>
+                            </div>
                         </div>
-                    </div>
-                    <div></div>
+                        <div></div>
                     @endforeach
                 </div>
             </div>
@@ -96,20 +96,22 @@
 
                 <div  data-spy="affix" data-offset-top="1261" data-offset-bottom="340">
                     <div class="popularTopicSidebar well">
-                        <span>热门话题</span>
+                        <div>
+                            <span>推荐话题</span><span></span><a href="/topic">进入话题广场</a>
+                        </div>
                         @foreach($params['side_banner']  as $banner)
                             <div style="background-image:url({{ $banner->file }})">
-                                <div>
-                                    <a style="color:white" href="{{$banner->href}}">
-                                        <span><b>{{ $banner->title }}</b></span>
-                                    </a>
+                                <div onclick="window.location.href='{{$banner->href}}'">
+                                    <span><b>{{ $banner->title }}</b></span>
                                     <span>{{ $banner->content }}</span>
                                 </div>
                             </div>
                         @endforeach
                     </div>
                     <div class="popularForumSidebar well">
-                        <span>热门帖子</span>
+                        <div>
+                            <span>推荐帖子</span><span></span><a href="/forum/kinkTie">进入论坛</a>
+                        </div>
                         @foreach($params['hot'] as $tie)
                             <div>
                                 <a href="/kinkTie/{{$tie->kid}}">
