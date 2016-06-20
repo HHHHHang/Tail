@@ -53,26 +53,25 @@
             </div>
             <!-- Blog Entries Column -->
             <div class="col-md-8 articlesDisplayDiv">
-                @foreach($params['articles'] as $article)
-					<div class="well articleDisplayDiv" onclick="window.location.href='/article/{{ $article->id }}'">
+                @foreach($params['articleInfo'] as $articleInfo)
+					<div class="well articleDisplayDiv">
                         <div>
-                            <img  onclick="window.location.href='/article/{{ $article->id }}'" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"   class="img-rounded img-circle img-responsive">
-                            <span class="tie-head">测试用户</span>
+                            <img  onclick="window.location.href='/otherInfo/{{ $articleInfo['article']->uid }}'" src="{{$articleInfo['avatar']}}"   class="img-rounded img-circle img-responsive">
+                            <span class="tie-head">{{ $articleInfo['name'] }}</span>
                             <span></span>
                             <div>
-                                <span><span class="glyphicon glyphicon-time"></span>{{ date("Y-m-d",strtotime($article->createTime)) }}</span>
-                                <a href="#"><span class="glyphicon glyphicon-film"></span>{{ $article->type  }}</a>
+                                <span><span class="glyphicon glyphicon-time"></span>{{ date("Y-m-d",strtotime($articleInfo['article']->createTime)) }}</span>
+                                <a href="#"><span class="glyphicon glyphicon-film"></span>{{ $articleInfo['article']->type  }}</a>
                             </div>
 
                         </div>
                         <div>
-                            <img class="img-responsive" src="{{ $article->image }}" alt="">
+                            <img class="img-responsive" src="{{ $articleInfo['article']->image }}" alt="">
                         </div>
-                        <div class="postHead"><a href="/article/{{ $article->id }}" class="title-phone">{{ $article->title  }}</a></div>
-                        <div class="postContent"><p class="content-phone">{{ $article->content  }}</p></div>
+                        <div class="postHead"><a href="/article/{{ $articleInfo['article']->id }}" class="title-phone">{{ $articleInfo['article']->title  }}</a></div>
                         <div>
-                            <a href="javascript:void(0)"><span class="glyphicon glyphicon-thumbs-up"></span>{{ $article->upNum }}</a>
-                            <a href="javascript:void(0)"><span class="glyphicon glyphicon-comment"></span>{{ $article->commentNum }}</a>
+                            <a href="javascript:void(0)"><span class="glyphicon glyphicon-thumbs-up"></span>{{ $articleInfo['article']->upNum }}</a>
+                            <a href="javascript:void(0)"><span class="glyphicon glyphicon-comment"></span>{{ $articleInfo['article']->commentNum }}</a>
                         </div>
                     </div>
                 @endforeach

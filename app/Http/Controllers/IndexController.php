@@ -41,6 +41,21 @@ class IndexController extends Controller{
 		$hot_ties  = DB::table("kinkTies")->where('viewNum', '>', 100)->get();
 
 		$articles = DB::select("SELECT * FROM articles ORDER BY createTime DESC");
+
+		foreach ($articles as $article) {
+			$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
+			$articlesInfo[] = [
+				'article' => $article,
+				'title' => $article->title,
+				'name'  => $postUser->name,
+				'publishTime' =>$article->createTime,
+				'type'  => $article->type,
+				'avatar' => $postUser->avatar,
+				'commentNum' => $article->commentNum,
+				'link'   => '/article/' . $article->id
+			];
+		}
+
 		$params = [
 			'user' => $user,
 			'picsArr' => $picsArr,
@@ -48,7 +63,8 @@ class IndexController extends Controller{
 			'articles' => $articles,
 			'banner'   => $banners,
 			'side_banner' => $side_banners,
-			'hot'      => $hot_ties
+			'hot'      => $hot_ties,
+			'articleInfo' => $articlesInfo
 		];
 
 		return view('tail.welcome')->with('params', $params);

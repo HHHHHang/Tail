@@ -29,6 +29,7 @@ class ForumController extends Controller{
 		foreach ($articles as $article) {
 			$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
 			$articlesInfo[] = [
+				'article' => $article,
 				'title' => $article->title,
 				'name'  => $postUser->name,
 				'publishTime' =>$article->createTime,
