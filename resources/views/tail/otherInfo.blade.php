@@ -143,30 +143,6 @@
                                     <span>&nbsp;<span class="glyphicon glyphicon-comment"></span>{{ $article->commentNum }}</span>
                                 </div>
                                 <hr>
-<<<<<<< Updated upstream
-                                @endforeach
-                            @foreach($params['ties'] as $tie)
-                                    <div class="info-box">
-                                        <h1><a href="/kinkTie/{{ $tie->kid }}">{{ $tie->title }}</a></h1>
-                                    </div>
-                                    <div class="detail-info">
-                                        <span>类别 <a href="#">{{ $tie->type }}</a></span>
-                                        <span>发布时间 {{ date("Y年m月d日", strtotime($tie->createTime)) }}</span>
-                                        <span class="glyphicon glyphicon-thumbs-up">{{ $tie->upNum }}</span>
-                                        <span><span class="glyphicon glyphicon-comment"></span>{{ $tie->commentNum }}</span>
-                                    </div>
-                                    <hr>
-                                @endforeach
-                            {{--<button type="button" class="btn btn-default btn-lg btn-block">查看更多信息</button>--}}
-                        </div>
-                        <div class="tab-pane fade" id="reply">
-                            @foreach($params['articleComments'] as $articleComment)
-                                <div class="">
-                                    <h1><a href="/article/{{ $articleComment->akid }}">{{ $articleComment->content }}</a></h1>
-                                </div>
-                                <div class="detail-info">
-                                    <span>发布时间 {{ date("Y年m月d日", strtotime($articleComment->createtime)) }}</span>
-=======
                             @endforeach
                             @foreach($params['topicArticles'] as $topicArticle)
                                 <div class="info-box">
@@ -176,7 +152,6 @@
                                     <span>&nbsp;发布时间 {{ date("Y年m月d日",strtotime($topicArticle->createTime)) }}</span>
                                     <span>&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span>{{ $topicArticle->upNum }}</span>
                                     <span>&nbsp;<span class="glyphicon glyphicon-comment"></span>{{ $topicArticle->commentNum }}</span>
->>>>>>> Stashed changes
                                 </div>
                                 <hr>
                             @endforeach
