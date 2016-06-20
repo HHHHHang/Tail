@@ -158,12 +158,16 @@
                 </div>
                 @endif
 
-                <div  data-spy="affix" data-offset-top="696" data-offset-bottom="340">
 
-                    <div class="forumNewBtn">
-                    @if (isset($params['user']) && $params['user']['id'] != 2)
+                 @if (isset($params['user']) && $params['user']['id'] != 2)
+                        <div  data-spy="affix" data-offset-top="696" data-offset-bottom="340">
+
+                            <div class="forumNewBtn">
                         <button type="button" class="btn" onclick="{location.href = '/new/article'}">发布文章</button>
                     @else
+                        <div  data-spy="affix" data-offset-top="518" data-offset-bottom="340">
+
+                              <div class="forumNewBtn">
                     	<button type="button" class="btn" onclick="{location.href = '/login'}">发布请先登录</button>
                     @endif
                     </div>

@@ -93,7 +93,7 @@
                     </div>
                 </div>
 
-                <div  data-spy="affix" data-offset-top="1261" data-offset-bottom="340">
+                <div  data-spy="affix" data-offset-top="1114" data-offset-bottom="340">
                     <div class="popularTopicSidebar well">
                         <div>
                             <span>推荐话题</span><span></span><a href="/topic">进入话题广场</a>
