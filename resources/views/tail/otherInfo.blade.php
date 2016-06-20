@@ -146,7 +146,7 @@
                             @endforeach
                             @foreach($params['topicArticles'] as $topicArticle)
                                 <div class="info-box">
-                                    <h1><a href="/topic/detail/{{ $topicArticle->id }}">{{ $topicArticle->title }}</a></h1>
+                                    <h1><a href="/topic/{{$topicArticle->image ? "article" : "noPicTopicArticle"}}/{{ $topicArticle->id }}">{{ $topicArticle->title }}</a></h1>
                                 </div>
                                 <div class="detail-info">
                                     <span>&nbsp;发布时间 {{ date("Y年m月d日",strtotime($topicArticle->createTime)) }}</span>
@@ -177,7 +177,7 @@
                                     @elseif($comment->type == 'tie')
                                         <h1><a href="/kinkTie/{{ $comment->akid }}">{{ $comment->content }}</a></h1>
                                     @elseif($comment->type == 'topicArticle')
-                                        <h1><a href="/topic/detail/{{ $comment->akid }}">{{ $comment->content }}</a></h1>
+                                        <h1><a href="/topic/article/{{ $comment->akid }}">{{ $comment->content }}</a></h1>
                                     @endif
                                 </div>
                                 <div class="detail-info">
