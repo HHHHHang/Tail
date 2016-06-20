@@ -53,7 +53,7 @@
                         <li >
                             <div class=" article-info">
                                 <div class="info-top">
-                                    <a class = "blue-link"> {{$articleInfo['author']->name}} </a>
+                                    <a  href="/otherInfo/{{$articleInfo['author']->uid}}" class = "blue-link"> {{$articleInfo['author']->name}} </a>
                                     <em>·</em>
                                     <span>{{$articleInfo['article']->createTime}}</span>
                                 </div>
