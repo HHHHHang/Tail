@@ -143,7 +143,7 @@
            	   url: '/api/file',
                params: null,
                fileKey: 'upload_file',
-               connectionCount: 10,
+               connectionCount: 20,
                leaveConfirm: 'Uploading is in progress, are you sure to leave this page?'
 
            },
