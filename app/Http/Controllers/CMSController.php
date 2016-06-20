@@ -28,7 +28,8 @@ class CMSController extends Controller{
 
 		$params = [
 			'length' => count($banner),
-			'banner'  => $banner
+			'banner'  => $banner,
+			'type'   => $type
 		];
 		return view('cms.slide')->with('params', $params);
 	}
@@ -164,8 +165,14 @@ class CMSController extends Controller{
 		$id      = $request->get('id');
 		$file   = $request->get('file');
 		$href    = $request->get('href');
-		DB::table("banner_imgs")->where('id', $id)
-			->update(['file' => $file, 'href' => $href]);
+		$type    = $request->get('type');
+		if ($type == 'slide') {
+			DB::table( "banner_imgs" )->where( 'id', $id )
+			  ->update( [ 'file' => $file, 'href' => $href ] );
+		} else {
+			DB::table( "banners" )->where( 'id', $id )
+			  ->update( [ 'file' => $file, 'href' => $href ] );
+		}
 		return "succeed";
 	}
 
