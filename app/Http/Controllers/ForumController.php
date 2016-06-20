@@ -94,6 +94,7 @@ class ForumController extends Controller{
 						if ($temp_result) $result[] = $temp_result;
 					} elseif (!isset($have[$aid->aid])) {
 						$have[$aid->aid] = 1;
+						if (DB::table('articles')->where('id', $aid->aid)->first())
 						$result[] = DB::table('articles')->where('id', $aid->aid)->first();
 					}
 				}
