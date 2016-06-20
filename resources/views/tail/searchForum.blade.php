@@ -24,7 +24,7 @@
             <div class="forumSearch well">
                 <span>站内搜索</span>
                 <div class="input-group">
-                    <input id="keywordTie" type="text" class="form-control" value="{{$searchTar}}">
+                    <input id="keywordTie" type="text" class="form-control" value="{{$params['keyword']}}">
                         <span class="input-group-btn">
                             <button id="searchTie" class="btn btn-default" type="button">
                                 <span class="glyphicon glyphicon-search"></span>
@@ -34,9 +34,9 @@
             </div>
 
             <div class="forumTabDiv">
-                <span><a href="/search/article">精选文章</a></span>
-                <span class="checked"><a href="/search/forum">帖子</a></span>
-                <span><a href="/search/topic">话题</a></span>
+                <span><a onclick="gotoSearchArticle()">精选文章</a></span>
+                <span class="checked"><a>帖子</a></span>
+                <span><a onclick="gotoSearchTopic()">话题</a></span>
                 <span></span>
                 <span><a>排序方式</a></span>
             </div>
@@ -71,3 +71,13 @@
 </body>
 
 </html>
+<script>
+    var gotoSearchArticle = function() {
+        var kw = $('#keywordTie').val();
+        window.location.href = '/search/article/' + kw;
+    };
+    var gotoSearchTopic = function() {
+        var kw = $('#keywordTie').val();
+        window.location.href = '/search/topic/' + kw;
+    };
+</script>

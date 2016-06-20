@@ -31,9 +31,9 @@
             </div>
 
             <div class="forumTabDiv">
-                <span><a href="/search/article">精选文章</a></span>
-                <span><a href="/search/forum">帖子</a></span>
-                <span class="checked"><a href="/search/topic">话题</a></span>
+                <span><a onclick="gotoSearchArticle()">精选文章</a></span>
+                <span><a onclick="gotoSearchTie()">帖子</a></span>
+                <span class="checked"><a>话题</a></span>
                 <span></span>
                 <span><a>排序方式</a></span>
             </div>
@@ -66,3 +66,14 @@
 </body>
 
 </html>
+
+<script>
+    var gotoSearchArticle = function() {
+        var kw = $('#keywordTopic').val();
+        window.location.href = '/search/article/' + kw;
+    };
+    var gotoSearchTie = function() {
+        var kw = $('#keywordTopic').val();
+        window.location.href = '/search/forum/' + kw;
+    };
+</script>

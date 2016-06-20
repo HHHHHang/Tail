@@ -34,7 +34,7 @@
                     @endif
                 </ul>
 
-                <form class="navbar-form navbar-right" role="search">
+                <div class="navbar-form navbar-right" role="search">
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-btn">
@@ -51,7 +51,7 @@
                             </span>
                         </div>
                     </div>
-                </form>
+                </>
             </div><!--/.nav-collapse -->
         </div>
     </nav>
@@ -62,7 +62,7 @@
             $(e).parent().parent().prev().html(text + ' <span class="caret"></span>');
         };
 
-        $('.header-keyword').on('keydown', function (e) {
+        $('#header-keyword').keydown(function (e) {
             if (e.keyCode == 13) {
                 gotoSearch();
             }

@@ -41,6 +41,7 @@ class SearchController extends Controller
 
 		$params = [
 			'user' => $userInfo,
+			'keyword'      => $keyword 
 		];
 
 		if ($user) return view('tail.searchForum')->with('params', $params)->with('data', $data)->with('searchTar', $searchTar);
