@@ -106,23 +106,25 @@ class TopicsController extends Controller{
 	public function postArticle(Request $request, $id)
 	{
 		$user = $request->user();
+		$imageUrl = null;
 
 		if(!$request->hasFile('file')){
-			$filename = '/thumbs/1.jpg';
+//			$filename = '/thumbs/1.jpg';
 		} else {
 			$file = $request->file('file');
 			//判断文件上传过程中是否出错
 			$destPath = realpath( public_path( 'images' ) );
 			$filename = $file->getClientOriginalName();
+			$imageUrl = asset('images/' . time() . $filename);
+
+			if(!$file->move($destPath, $imageUrl)){
+//			exit('保存文件失败！');
+			}
 		}
 
 		$title = $request->get('title');
 		$content = $request->get('contentHtml');
-		$imageUrl = asset('images/' . time() . $filename);
 
-		if(!$file->move($destPath, $imageUrl)){
-//			exit('保存文件失败！');
-		}
 
 		DB::table('topic_articles')->insertGetId(
 			[

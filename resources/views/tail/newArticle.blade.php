@@ -55,7 +55,7 @@
         </div>
 
         <div class="col-md-10 mainBody">
-            <a href="/forum"><span class="glyphicon glyphicon-chevron-left"></span>文章</a>
+            <a href="/forum/all"><span class="glyphicon glyphicon-chevron-left"></span>文章</a>
             <div class="postTitleDiv">
                 <a id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-menu-hamburger"></span>选择类别 全部</a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
