@@ -229,7 +229,7 @@
                 <input type="hidden" class="rcid" value="{{ $comment->receiverCommentId }}">
                 <h4 class="media-heading"><span>{{ $comment->senderName }} </span><small>{{ date('Y-m-d H:i:s', strtotime($comment->createtime))   }}</small></h4>
                 <p class="commentContent">{{ $comment->content  }}</p>
-                <a onclick="makeComment2Comment(this)">回复</a>
+                <p class="commentBtn"><a onclick="makeComment2Comment(this)">回复</a></p>
             </div>
         </div>
         <hr>
@@ -260,9 +260,9 @@
     makeHighlight();
 
     var makeComment2Comment = function (a) {
-        var senderId = $(a).parent().attr('id');
-        var senderName = $(a).prev().prev().children('span').text();
-        var senderCommentId = $(a).parent().parent().attr('id');
+        var senderId = $(a).parent().parent().attr('id');
+        var senderName = $(a).parent().prev().prev().children('span').text();
+        var senderCommentId = $(a).parent().parent().parent().attr('id');
 
         if ($('input[name=receiverCommentId]').val() != 0) {
             alert('只能针对一条评论进行回复');

@@ -45,16 +45,20 @@ class KinkTieController extends Controller{
 
 	public function tiePost(Request $request) {
 		$content = $request->get('content');
-		$kid      = $request->get('id');
-//		$comments = DB::table('comments')->;
+		$kid      = $request->get('aid');
+		$receiverId = $request->get('receiverId');
+		$receiverName      = $request->get('receiverName');
+		$receiverCommentId = $request->get('receiverCommentId');
 
 		$user = $request->user();
 		$username = isset($user) ?  $user['name'] : "游客";
 		$uid      = isset($user) ?  $user['id'] : '0';
 
 		DB::table('comments')->insertGetId(
-			array('akid'=> $kid, 'type'=>'kinkTie', 'uid'=> $uid, 'username' => $username, 'content'=>$content)
+			array('akid'=> $kid, 'type'=> 'kinkTie', 'content'=>$content,'uid'=> $uid, 'senderName' => $username,
+				'receiverId' => $receiverId, 'receiverName' => $receiverName, 'receiverCommentId' => $receiverCommentId)
 		);
+
 		DB::table('kinkTies')->where('kid', $kid)->increment('commentNum');
 
 		return redirect('/kinkTie/' . $kid);

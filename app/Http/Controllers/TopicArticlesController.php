@@ -79,6 +79,30 @@ class TopicArticlesController extends Controller{
         return view('tail.noPicTopicArticle')->with('params', $params);
     }
 
+    public function commentPost(Request $request) {
+        $content = $request->get('content');
+        $taid      = $request->get('aid');
+        $receiverId = $request->get('receiverId');
+        $receiverName      = $request->get('receiverName');
+        $receiverCommentId = $request->get('receiverCommentId');
+
+        $user = $request->user();
+        $username = isset($user) ?  $user['name'] : "游客";
+        $uid      = isset($user) ?  $user['id'] : '0';
+
+        DB::table('comments')->insertGetId(
+            array('akid'=> $taid, 'type'=> 'topicArticle', 'content'=>$content,'uid'=> $uid, 'senderName' => $username,
+                'receiverId' => $receiverId, 'receiverName' => $receiverName, 'receiverCommentId' => $receiverCommentId)
+        );
+
+        DB::table('topic_articles')->where('id', $taid)->increment('commentNum');
+
+        // 谁谁谁收到消息 todo
+
+        return redirect('/topic/article/' . $taid);
+        
+    }
+
     public function comment(Request $request,$id) {
 
         $user = $request->user();
@@ -92,7 +116,8 @@ class TopicArticlesController extends Controller{
         DB::table('topic_articles')->where('id', $id)->increment('commentNum');
 
         $array = array('data'=>'success');
-        echo json_encode($array);	}
+        echo json_encode($array);	
+    }
 
 
 }

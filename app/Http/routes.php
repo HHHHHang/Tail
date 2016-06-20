@@ -86,6 +86,7 @@ Route::get('/new/topicArticle/{id}','TopicsController@newArticle');
 Route::post('/new/topicArticle/{id}','TopicsController@postArticle');
 Route::post('/new/topic','TopicsController@postTopic');
 Route::get('/topic/article/{id}','TopicArticlesController@article');
+Route::post('/topic/article/{id}','TopicArticlesController@commentPost');
 Route::get('/topic/noPicTopicArticle/{id}','TopicArticlesController@noPicTopicArticle');
 Route::post('/topicArticle/comment/{id}','TopicArticlesController@comment');
 

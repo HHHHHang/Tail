@@ -218,30 +218,37 @@
 <hr>
 <div class="well articleDetailComment article-comments">
     <span>评论:</span>
+    <form method="POST" role="form" action="/topic/article/{{ $params['article']->id }}">
         <div class="form-group">
-            <textarea id="content" class="form-control" rows="3"></textarea>
+            <textarea name="content" class="form-control" rows="3"></textarea>
         </div>
-        {{--<input type="hidden" name="id" value="{{ $params['aid'] }}" />--}}
-        <button class="btn" onclick="comment()">评论</button>
+        <input type="hidden" name="aid" value="{{ $params['article']->id }}" />
+        <input type="hidden" name="receiverId" value="0" />
+        <input type="hidden" name="receiverName" value="" />
+        <input type="hidden" name="receiverCommentId" value="0" />
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <button type="submit" class="btn">评论</button>
     </form>
     <span class="glyphicon glyphicon-comment" style="color: #969a9e;"><span>&nbsp;全部评论<span style="font-size: 13px;color: #559FEB;">  {{ sizeof($params['comments']) }}条</span></span></span>
     <hr>
     @foreach ($params['comments'] as $comment)
-        <div class="media">
+        <div class="media" id="{{ $comment->id }}">
             <a class="pull-left" href="#">
                 <img class="media-object" width="64" height="64" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png" alt="">
             </a>
-            <div class="media-body">
-                <h4 class="media-heading">{{ $comment->username }}
-                    <small>{{ $comment->createtime   }}</small>
-                </h4>
-                {{ $comment->content  }}
+            <div class="media-body" id="{{ $comment->uid }}">
+                <input type="hidden" class="rname" value="{{ $comment->receiverName }}">
+                <input type="hidden" class="rcid" value="{{ $comment->receiverCommentId }}">
+                <h4 class="media-heading"><span>{{ $comment->senderName }} </span><small>{{ date('Y-m-d H:i:s', strtotime($comment->createtime))   }}</small></h4>
+                <p class="commentContent">{{ $comment->content  }}</p>
+                <p class="commentBtn"><a onclick="makeComment2Comment(this)">回复</a></p>
             </div>
         </div>
         <hr>
     @endforeach
     <span style="text-align: center; padding: 15px 0">评论已全部加载完毕</span>
 </div>
+
 
 <script>
     $.ajaxSetup({
@@ -258,7 +265,6 @@
             type: 'POST',
             url: '/topicArticle/comment/{{$params['article']->id}}',
             data: {
-//                   topic: topic,
                 content:content
             },
             dataType: 'json',
@@ -272,7 +278,68 @@
                 console.log('error');
             }
         })
-    }
+    };
+
+
+    var makeHighlight = function () {
+        var textareas = $('.articleDetailComment .commentContent');
+        for (var i = 0; i < textareas.length; i ++) {
+            if($(textareas[i]).parent().children('input.rcid').val() != 0 ){
+                var highlightPart = ' @' + $(textareas[i]).parent().children('input.rname').val() + ' ';
+                var content = $(textareas[i]).text();
+                content = content.replace(highlightPart, '<span class="highlightPart">' + highlightPart + '</span>');
+                $(textareas[i]).html(content);
+            }
+        }
+    };
+    makeHighlight();
+
+    var makeComment2Comment = function (a) {
+        var senderId = $(a).parent().parent().attr('id');
+        var senderName = $(a).parent().prev().prev().children('span').text();
+        var senderCommentId = $(a).parent().parent().parent().attr('id');
+
+        if ($('input[name=receiverCommentId]').val() != 0) {
+            alert('只能针对一条评论进行回复');
+        } else {
+            console.log('add comment 2 comment');
+
+            $('input[name=receiverId]').val(senderId);
+            $('input[name=receiverName]').val(senderName);
+            $('input[name=receiverCommentId]').val(senderCommentId);
+            $('.articleDetailComment > span:first-child').text('评论 @' + senderName + ':');
+
+            var content = $('textarea[name=content]').val() + " @" + senderName + " ";
+            $('textarea[name=content]').val(content);
+            $('textarea[name=content]').focus();
+
+            var top = $('textarea[name=content]')[0].offsetTop - document.body.scrollTop;
+            if (top < 0) {
+                $('html, body').animate({
+                    scrollTop: $('textarea[name=content]')[0].offsetTop
+                }, 750);
+            }
+            addListener2Textarea();
+        }
+    };
+
+    var addListener2Textarea = function() {
+        $('textarea[name=content]').on('keydown',function () {
+            var b = $('textarea[name=content]').val().match(' @' + $('input[name=receiverName]').val() + ' ');
+            if (b == null) {
+                cancleComment2Comment();
+            }
+        });
+    };
+
+    var cancleComment2Comment = function() {
+        console.log('no comment 2 comment');
+        $('textarea[name=content]').on('keydown',null);
+        $('input[name=receiverId]').val(0);
+        $('input[name=receiverName]').val('');
+        $('input[name=receiverCommentId]').val(0);
+        $('.articleDetailComment > span:first-child').text('评论:');
+    };
 </script>
 
 

@@ -191,6 +191,14 @@
     right: 20px;
     font-size: 30px;
 }
+.commentBtn {
+    text-align: end;
+}
+
+.commentBtn a {
+    margin-right: 10px;
+}
+
 
 .commentContent > .highlightPart {
     color: #57adfd;
