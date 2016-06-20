@@ -94,7 +94,7 @@ h1{
 	position: fixed;
 	/*position:relative;*/
 	background-image:url(http://upload.jianshu.io/daily_images/images/YJw2d6uG1i95qERpnEzw.jpg) ;
-	height: 680px;
+	height: 100%;
 	width: 320px;
 	background-size: cover;
 	float:left;
