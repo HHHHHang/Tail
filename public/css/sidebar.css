@@ -202,6 +202,13 @@ button{
   transition: .4s;
   -webkit-transition: .4s;
 }
+button:hover {
+  background-color: #458ac9;
+  color: #ffffff;
+}
 a:hover {
   text-decoration: none;
+}
+.visitor > span {
+  text-align: center;
 }

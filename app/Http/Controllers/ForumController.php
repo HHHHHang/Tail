@@ -59,20 +59,6 @@ class ForumController extends Controller{
         }
     }
 
-    public function forum(Request $request) {
-
-        $user = $request->user();
-        $comments = DB::select("SELECT * from comments");
-        $data = array('title'=>'手机使用什么输入法?', 'type'=>'手机', 'publishTime'=>'2016-4-10 18:13','viewerCount'=>1060, 'zanCount'=>2, 'commentCount'=>20, 'multi'=>false, 'attendCount'=>131, 'options'=>array('搜狗输入法', '百度输入法', 'QQ输入法', '谷歌输入法', '手机自带输入法', '其他'),'introduction'=>'你们都用哪个手机打字输入法呢？');
-
-        $user1 = array('icon'=>'http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png', 'name'=>'用户名', 'level'=>'初级', 'forumCount'=>0, 'commentCount'=>0, 'followCount'=>0);
-
-        if ($user) return view('tail.forumDetail')->with('comments', $comments)->with('user', $user)->with('data', $data)->with('user1', $user1);
-        else {
-            return view('tail.forumDetail')->with('comments', $comments)->with('user1', $user1)->with('data', $data);
-        }
-    }
-
 	// 普通帖子界面
 	public function tie(Request $request, $type='') {
 		$user = $request->user();

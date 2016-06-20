@@ -50,10 +50,11 @@ Route::get('/forum/tie', 'ForumController@tie');
 Route::get('/forum/tie/{type}', 'ForumController@tie');
 Route::get('/forum/kinkTie', 'ForumController@kinkTie');
 Route::get('/forum/kinkTie/{type}', 'ForumController@kinkTie');
+Route::get('/forum/Detail/{kid}',  'KinkTieController@kinkTie');
 Route::get('/forum', 'ForumController@index');
 Route::get('/forum/{type}', 'ForumController@index');
 
-Route::get('/forum/Detail', 'ForumController@forum');
+
 // 发布界面
 Route::get('/new/tie', 'NewController@newForum');
 Route::post('/new/tie', 'NewController@postForum');

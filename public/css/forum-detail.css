@@ -1,3 +1,6 @@
+body {
+    padding-top: 75px;
+}
 .forumDetailDiv {
     display: flex;
     flex-direction: column;
@@ -168,8 +171,16 @@
     margin-right: 10px;
 }
 
-
 .commentContent > .highlightPart {
     color: #57adfd;
     font-weight: bolder;
+}
+.voteResult {
+    width: 100%;
+}
+.voteResult > p {
+    display: flex;
+}
+.voteResult > p > span:nth-child(2) {
+    flex: 1;
 }

@@ -87,9 +87,13 @@
                             <a href="/kinkTie/{{$tie->kid}}">
                                 <h5>{{ $tie->title }}</h5>
                             </a>
-                            <p>{{ date('Y-m-d', $tie->createTime)  }} 英语</p>
                         </div>
                     @endforeach
+                    <div>
+                        <a href="/forum/Detail/2">
+                            <h5>纠结帖子</h5>
+                        </a>
+                    </div>
                 </div>
             </div>
 
