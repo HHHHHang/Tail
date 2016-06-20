@@ -19,6 +19,16 @@ class KinkTieController extends Controller{
 		$user = $request->user();
 		$userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
 		$comments = DB::table('comments')->where('akid', $kid)->where('type', 'kinkTie')->get();
+
+		$commentsInfo = [];
+		foreach ($comments as $comment) {
+			$commentUser = DB::table('tail_users')->where('uid', $comment->uid)->first();
+			$commentsInfo[] = [
+				'comment' => $comment,
+				'avatar'  => $commentUser->avatar
+			];
+		}
+
 		DB::table('kinkTies')->where('kid', $kid)->increment('viewNum');
 		$article = DB::table('kinkTies')->where('kid', $kid)->first();
 		$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
@@ -41,7 +51,7 @@ class KinkTieController extends Controller{
 			'hasCollect' => $hasCollect,
 			'viewNum'  => $article->viewNum
 		];
-		return view('tail.kinkTie')->with('params', $params)->with('comments', $comments);
+		return view('tail.kinkTie')->with('params', $params)->with('comments', $commentsInfo);
 	}
 
 	public function tiePost(Request $request) {

@@ -200,16 +200,16 @@
 					<button type="submit" class="btn">评论</button>
 				</form>
 
-				@foreach ($comments as $comment)
-					<div class="media" id="{{ $comment->id }}">
+				@foreach ($comments as $commentInfo)
+					<div class="media" id="{{ $commentInfo['comment']->id }}">
 						<a class="pull-left" href="#">
-							<img class="media-object" width="64" height="64" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png" alt="">
+							<img class="media-object" width="64" height="64" src="{{$commentInfo['avatar']}}" alt="">
 						</a>
-						<div class="media-body" id="{{ $comment->uid }}">
-							<input type="hidden" class="rname" value="{{ $comment->receiverName }}">
-							<input type="hidden" class="rcid" value="{{ $comment->receiverCommentId }}">
-							<h4 class="media-heading"><span>{{ $comment->senderName }} </span><small>{{ date('Y-m-d H:i:s', strtotime($comment->createtime))   }}</small></h4>
-							<p class="commentContent">{{ $comment->content  }}</p>
+						<div class="media-body" id="{{ $commentInfo['comment']->uid }}">
+							<input type="hidden" class="rname" value="{{ $commentInfo['comment']->receiverName }}">
+							<input type="hidden" class="rcid" value="{{ $commentInfo['comment']->receiverCommentId }}">
+							<h4 class="media-heading"><span>{{ $commentInfo['comment']->senderName }} </span><small>{{ date('Y-m-d H:i:s', strtotime($commentInfo['comment']->createtime))   }}</small></h4>
+							<p class="commentContent">{{ $commentInfo['comment']->content  }}</p>
 							<p class="commentBtn"><a onclick="makeComment2Comment(this)">回复</a></p>
 						</div>
 					</div>
