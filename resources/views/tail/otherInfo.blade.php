@@ -248,7 +248,7 @@
 
                 <div class="well">
                     <div class="row">
-                        <img width="250" height="130" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-05-19%20%E4%B8%8A%E5%8D%881.14.18.png"></img>
+                        <img class="img-rounded img-circle img-responsive" style="margin-left: 30%; width: 100px;height: 100px;display: inline-block;vertical-align: middle" src={{ $params['userInfo']['avatar'] }}></img>
                         <!-- /.col-lg-6 -->
                         <h1 style="text-align: center; font-size: 16px"> {{ $params['userInfo']['name'] }}</h1>
                         <br/>
