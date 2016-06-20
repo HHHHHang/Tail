@@ -85,6 +85,36 @@ class SearchController extends Controller
 		return view('tail.searchArticle')->with('params', $params)->with('user', $user);
 	}
 
+	function searchTopic(Request $request, $keyword = '') {
+		$user = $request->user();
+		$userInfo = isset($user) ? getUserInfo($user->id) : getUserInfo(2);
+		if (!$keyword) {
+			$topics = DB::table('topics')->get();
+		} else {
+			$topics = DB::table('topics')->where('name', 'like', '%' . $keyword . '%')->get();
+		}
+
+		$topicInfo = [];
+		foreach ($topics as $topic) {
+			$postUser = DB::table('tail_users')->where('uid', $topic->uid)->first();
+			$topicInfo[] = [
+				'name' => $topic->name,
+				'postName'  => $postUser->name,
+				'avatar' => $postUser->avatar,
+				'image'  => $topic->image,
+				'link'   => '/topic/detail/' . $topic->id
+			];
+		}
+
+		$params = [
+			'user' => $userInfo,
+			'topics' => $topicInfo,
+			'keyword'      => $keyword
+		];
+
+		return view('tail.searchTopic')->with('params', $params);
+	}
+
 	function searchArticleWithKW(Request $request, $keyword) {
 		$user = $request->user();
 		$articles = DB::table('articles')->where('title', 'like', '%' . $keyword . '%')->get();

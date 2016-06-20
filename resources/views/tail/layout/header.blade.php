@@ -39,14 +39,14 @@
                             <div class="input-group-btn">
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">标题<span class="caret"></span></button>
                                 <ul class="dropdown-menu dropdown-menu-left">
-                                    <li><a href="#">文章</a></li>
-                                    <li><a href="#">帖子</a></li>
-                                    <li><a href="#">话题</a></li>
+                                    <li><a href="/search/article">文章</a></li>
+                                    <li><a href="/search/forum">帖子</a></li>
+                                    <li><a href="/search/topic">话题</a></li>
                                 </ul>
                             </div>
-                            <input type="text" class="form-control" placeholder="搜索">
+                            <input id="header-keyword" type="text" class="form-control" placeholder="搜索">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">搜索</button>
+                                <button id="header-search" class="btn btn-default" type="button">搜索</button>
                             </span>
                         </div>
                     </div>

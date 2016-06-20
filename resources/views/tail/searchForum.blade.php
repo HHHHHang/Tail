@@ -36,7 +36,7 @@
             <div class="forumTabDiv">
                 <span><a href="/search/article">精选文章</a></span>
                 <span class="checked"><a href="/search/forum">帖子</a></span>
-                <span><a>用户</a></span>
+                <span><a href="/search/topic">话题</a></span>
                 <span></span>
                 <span><a>排序方式</a></span>
             </div>

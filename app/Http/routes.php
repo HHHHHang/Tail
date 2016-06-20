@@ -67,6 +67,8 @@ Route::get('/kinkTie/{kid}', 'KinkTieController@index');
 Route::post('/kinkTie/{kid}', 'KinkTieController@tiePost');
 
 // 搜索界面模板
+Route::get('/search/topic', 'SearchController@searchTopic');
+Route::get('/search/topic/{keyword}', 'SearchController@searchTopic');
 Route::get('/search/forum', 'SearchController@searchForum');
 Route::get('/search/forum/{keyword}', 'SearchController@searchForum');
 Route::get('/search/article', 'SearchController@searchArticle');

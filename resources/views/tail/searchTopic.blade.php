@@ -21,9 +21,9 @@
             <div class="forumSearch well">
                 <span>站内搜索</span>
                 <div class="input-group">
-                    <input id='keyword' type="text" class="form-control" value="{{$params['keyword']}}">
+                    <input id='keywordTopic' type="text" class="form-control" value="{{$params['keyword']}}">
                         <span class="input-group-btn">
-                            <button id='search' class="btn btn-default" type="button">
+                            <button id='searchTopic' class="btn btn-default" type="button">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
                         </span>
@@ -31,27 +31,24 @@
             </div>
 
             <div class="forumTabDiv">
-                <span class="checked"><a href="/search/article">精选文章</a></span>
+                <span><a href="/search/article">精选文章</a></span>
                 <span><a href="/search/forum">帖子</a></span>
-                <span><a href="/search/topic">话题</a></span>
+                <span class="checked"><a href="/search/topic">话题</a></span>
                 <span></span>
                 <span><a>排序方式</a></span>
             </div>
 
             <div class="forumListDiv">
-                @foreach($params['articlesInfo'] as $article)
+                @foreach($params['topics'] as $topic)
                     <div class="forumItemDiv">
-                        <img width="50" height="50" src="{{ $article['avatar'] }}"  class="forumItemPic img-circle img-responsive">
+                        <img width="50" height="50" src="{{ $topic['avatar'] }}"  class="forumItemPic img-circle img-responsive">
 
                         <div class="forumItemContent">
                             <div>
-                                <a href="{{ $article['link'] }}">{{ $article['title'] }}</a>
+                                <a href="{{ $topic['link'] }}">{{ $topic['name'] }}</a>
                             </div>
                             <div class="forumItemContentInfo">
-                                <span><a href="#">{{ $article['name'] }}</a></span>
-                                <span>类别 <a href="#">{{ $article['type'] }}</a></span>
-                                <span>发布时间 {{ $article['publishTime'] }}</span>
-                                <span><span class="glyphicon glyphicon-comment"></span>{{ $article['commentNum'] }}</span>
+                                <span><a href="#">{{ $topic['postName'] }}</a></span>
                             </div>
 
                         </div>

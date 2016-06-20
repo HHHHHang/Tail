@@ -11,4 +11,14 @@ $( document ).ready(function() {
 		window.location.href='/search/forum/'+ keyword;
 	})
 
+    $('#searchTopic').click(function() {
+        let keyword = $('#keywordTopic').val()
+        window.location.href='/search/topic/' + keyword;
+    })
+
+    $('#header-search').click(function() {
+        let keyword = $('#header-keyword').val()
+        window.location.href='/search/article/' + keyword;
+    })
+
 });

@@ -1,3 +1,4 @@
+@if (isset($params['user']) && $params['user']['id'] != 2)
 <div class="forumRightPart col-md-4">
 	<div class="well forumUserInfo">
 		<div>
@@ -15,3 +16,15 @@
 		</div>
 	</div>
 </div>
+@else
+<div class="forumRightPart col-md-4">
+	<div class="well forumUserInfo">
+		<div class="well forumPosterInfo visitor">
+			<div>
+				<button class="btn" onclick="window.location.href='/login'">登录</button>
+				<button class="btn" onclick="window.location.href='/login'">注册</button>
+			</div>
+		</div>
+	</div>
+</div>
+@endif
