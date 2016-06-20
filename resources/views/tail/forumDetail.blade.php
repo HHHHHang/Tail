@@ -185,38 +185,38 @@
             <div class="col-md-8">
                 <div class="well forumDetailDiv">
                     <a href="/forum"><span class="glyphicon glyphicon-chevron-left"></span>纠结帖子</a>
-                    <span>{{ $params['kinkTie']['title'] }}</span>
+                    <span>{{ $params['kinkTie']->title }}</span>
                     <div class="forumDetailInfo">
-                        <span>阅读人数: {{ $params['kinkTie']['viewCount']  }}</span>
-                        <span>{{ $params['kinkTie']['type']  }}</span>
-                        <span>{{ $params['kinkTie']['publishTime']  }}</span>
-                        <span><span class="glyphicon glyphicon-thumbs-up"></span>{{ $params['kinkTie']['likeCount']  }}</span>
-                        <span><span class="glyphicon glyphicon-comment"></span>{{ $params['kinkTie']['commentCount']  }}</span>
+                        <span>阅读人数: {{ $params['kinkTie']->viewNum  }}</span>
+                        <span>{{ $params['kinkTie']->type  }}</span>
+                        <span>{{ date('Y年m月d日 H:i:s', ($params['kinkTie']->createTime))  }}</span>
+                        <span><span class="glyphicon glyphicon-thumbs-up"></span>{{ $params['kinkTie']->upNum  }}</span>
+                        <span><span class="glyphicon glyphicon-comment"></span>{{ $params['kinkTie']->commentNum  }}</span>
                     </div>
                     <div class="forumDetailContent">
                         @if ( $params['hasVote'] == 0 )
-                            @if ( $params['kinkTie']['multi'] )
-                                <span>多项选择 最多选择{{ $params['kinkTie']['maxChoiceNum'] }}项</span>
-                                <span>共有{{ $params['kinkTie']['attendCount']}}人参与投票</span>
-                                <div class="btn-group multiChoice" data-toggle="buttons" id="{{ $params['kinkTie']['maxChoiceNum'] }}">
-                                    @foreach( $params['kinkTie']['options'] as $item )
-                                        <div class="checkbox" id="{{ $item['id'] }}">
+                            @if ( $params['multi'] )
+                                <span>多项选择 最多选择{{ $params['maxChoiceNum'] }}项</span>
+                                <span>共有{{ $params['attendCount'] }}人参与投票</span>
+                                <div class="btn-group multiChoice" data-toggle="buttons" id="{{ $params['maxChoiceNum'] }}">
+                                    @foreach( $params['options'] as $item )
+                                        <div class="checkbox" id="{{ $item->vid }}">
                                             <label>
                                                 <input type="checkbox">
-                                                {{$item['content']}}
+                                                {{ $item->content }}
                                             </label>
                                         </div>
                                     @endforeach
                                 </div>
                             @else
                                 <span>单项选择</span>
-                                <span>共有{{ $params['kinkTie']['attendCount' ]}}人参与投票</span>
+                                <span>共有{{ $params['attendCount'] }}人参与投票</span>
                                 <div class="btn-group" data-toggle="buttons">
-                                    @foreach( $params['kinkTie']['options'] as $item )
-                                        <div class="radio" id="{{ $item['id'] }}">
+                                    @foreach( $params['options'] as $item )
+                                        <div class="radio" id="{{ $item->vid }}">
                                             <label>
                                                 <input type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                                                {{$item['content']}}
+                                                {{ $item->content }}
                                             </label>
                                         </div>
                                     @endforeach
@@ -224,16 +224,16 @@
                             @endif
                             <button type="button" class="btn">提交</button>
                         @else
-                            @if ( $params['kinkTie']['multi'] )
+                            @if ( $params['multi'] )
                                 <span>多项选择 您已参与投票</span>
-                                <span>共有{{ $params['kinkTie']['attendCount' ]}}人参与投票</span>
+                                <span>共有{{ $params['attendCount'] }}人参与投票</span>
 
-                                @foreach( $params['kinkTie']['options'] as $item )
+                                @foreach( $params['options'] as $item )
                                     <div class="voteResult">
-                                        <p><span>{{$item['content']}}</span><span></span><span>已有{{$item['voteCount']}}票 占{{$item['voteProportion']}}%</span></p>
+                                        <p><span>{{ $item->content }}</span><span></span><span>已有{{ $item->voteCount }}票 占{{ $item->voteCount * 100.0 / $params['voteCountSum'] }}%</span></p>
                                         <div class="progress">
-                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{$item['voteProportion']}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$item['voteProportion']}}%">
-                                                <span class="sr-only">{{$item['voteProportion']}}%</span>
+                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ $item->voteCount * 1.0 / $params['voteCountSum'] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $item->voteCount * 100.0 / $params['voteCountSum'] }}%">
+                                                <span class="sr-only">{{ $item->voteCount * 100.0 / $params['voteCountSum'] }}%</span>
                                             </div>
                                         </div>
                                     </div>
@@ -241,14 +241,14 @@
 
                             @else
                                 <span>单项选择</span>
-                                <span>共有{{ $params['kinkTie']['attendCount' ]}}人参与投票</span>
+                                <span>共有{{ $params['attendCount' ]}}人参与投票</span>
                                 <div>
-                                    @foreach( $params['kinkTie']['options'] as $item )
+                                    @foreach( $params['options'] as $item )
                                         <div class="voteResult">
-                                            <span>{{$item['content']}}  已有{{$item['voteCount']}}票 占{{$item['voteProportion']}}%</span>
+                                            <span>{{ $item->content }}  已有{{ $item->voteCount }}票 占{{ $item->voteCount * 100.0 / $params['voteCountSum'] }}%</span>
                                             <div class="progress">
-                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{$item['voteProportion']}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$item['voteProportion']}}%">
-                                                    <span class="sr-only">{{$item['voteProportion']}}%</span>
+                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ $item->voteCount * 1.0 / $params['voteCountSum'] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $item->voteCount * 100.0 / $params['voteCountSum'] }}%">
+                                                    <span class="sr-only">{{ $item->voteCount * 100.0 / $params['voteCountSum'] }}%</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -256,7 +256,7 @@
                                 </div>
                             @endif
                         @endif
-                        <span>{{ $params['kinkTie']['introduction'] }}</span>
+                        <span>{{ $params['introduction'] }}</span>
                     </div>
                     <div>
                         <button id="up">赞</button>
