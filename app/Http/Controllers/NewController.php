@@ -157,6 +157,6 @@ class NewController extends Controller
 }
 
 class data {
-    public $type = array('全部', '手机', '电脑', '平板', '资讯', '周边', '其它');
+    public $type = array('全部', '手机', '电脑', '平板', '资讯', '摄影', '其它');
     public $choiceNum = 3;
 }

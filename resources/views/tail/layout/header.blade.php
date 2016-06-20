@@ -38,16 +38,16 @@
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-btn">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">标题<span class="caret"></span></button>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">文章 <span class="caret"></span></button>
                                 <ul class="dropdown-menu dropdown-menu-left">
-                                    <li><a href="/search/article">文章</a></li>
-                                    <li><a href="/search/forum">帖子</a></li>
-                                    <li><a href="/search/topic">话题</a></li>
+                                    <li><a onclick="changeSearchArea(this)">文章</a></li>
+                                    <li><a onclick="changeSearchArea(this)">帖子</a></li>
+                                    <li><a onclick="changeSearchArea(this)">话题</a></li>
                                 </ul>
                             </div>
-                            <input id="header-keyword" type="text" class="form-control" placeholder="搜索">
+                            <input id="header-keyword" type="text" class="form-control" placeholder="搜索" maxlength="20">
                             <span class="input-group-btn">
-                                <button id="header-search" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                                <button id="header-search" class="btn btn-default" type="button" onclick="gotoSearch()"><span class="glyphicon glyphicon-search"></span></button>
                             </span>
                         </div>
                     </div>
@@ -55,3 +55,31 @@
             </div><!--/.nav-collapse -->
         </div>
     </nav>
+
+    <script>
+        var changeSearchArea = function (e) {
+            var text = $(e).text();
+            $(e).parent().parent().prev().html(text + ' <span class="caret"></span>');
+        };
+
+        $('.header-keyword').on('keydown', function (e) {
+            if (e.keyCode == 13) {
+                gotoSearch();
+            }
+        });
+
+        var gotoSearch = function () {
+            var keyword = $('#header-keyword').val();
+            var type = $('#header-keyword').prev().children('button').text().slice(0, 2);
+
+            console.log(type);
+            if (type == '文章') {
+                window.location.href = '/search/article/' + keyword;
+            } else if (type == '帖子') {
+                var s = '/search/forum/' + keyword;
+                window.location.href = '/search/forum/' + keyword;
+            } else if (type == '话题') {
+                window.location.href = '/search/topic/' + keyword;
+            }
+        };
+    </script>

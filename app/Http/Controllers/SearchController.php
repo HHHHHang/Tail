@@ -23,6 +23,7 @@ class SearchController extends Controller
 		$kinkTies = $keyword ? $articles = DB::table('kinkTies')->where('title', 'like', '%' . $keyword . '%')->get()
 			: DB::select("SELECT * FROM kinkTies ORDER BY createTime DESC");
 
+		$data=[];
 		foreach ($kinkTies as $kinkTie) {
 			$tail_user = isset($kinkTie->uid) ? DB::table('tail_users')->where('uid', $kinkTie->uid)->first() : DB::table('tail_users')->where('uid', 2)->first();
 			$data[] = [

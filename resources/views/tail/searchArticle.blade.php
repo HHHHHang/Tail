@@ -31,9 +31,9 @@
             </div>
 
             <div class="forumTabDiv">
-                <span class="checked"><a href="/search/article">精选文章</a></span>
-                <span><a href="/search/forum">帖子</a></span>
-                <span><a href="/search/topic">话题</a></span>
+                <span class="checked"><a>精选文章</a></span>
+                <span><a onclick="gotoSearchTie()">帖子</a></span>
+                <span><a onclick="gotoSearchTopic()">话题</a></span>
                 <span></span>
                 <span><a>排序方式</a></span>
             </div>
@@ -65,14 +65,18 @@
     </div>
 </div>
 
-<footer>
-    <div>
-        <span>美好生活 从分享开始</span>
-        <span>联系我们: xxx-xxxxxxx</span>
-        <span>专业综合 组7</span>
-        <span>同济大学 软件学院</span>
-    </div>
-</footer>
+@include('tail.layout.footer')
 </body>
 
 </html>
+
+<script>
+    var gotoSearchTie = function() {
+        var kw = $('#keyword').val();
+        window.location.href = '/search/forum/' + kw;
+    };
+    var gotoSearchTopic = function() {
+        var kw = $('#keyword').val();
+        window.location.href = '/search/topic/' + kw;
+    };
+</script>
