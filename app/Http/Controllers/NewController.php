@@ -126,7 +126,7 @@ class NewController extends Controller
 		$imageUrl = asset('images/' . time() . $filename);
 		DB::table('articles')->insertGetId(
 			['title' => $title, 'content' => $content, 'type' => $type,
-			 'image' => $imageUrl, 'uid' => $user['id']]
+			 'image' => $imageUrl, 'uid' => $user['id'], 'all_content' => $content]
 		);
 		if(!$file->move($destPath, $imageUrl)){
 //			exit('保存文件失败！');
