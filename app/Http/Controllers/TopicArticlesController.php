@@ -55,6 +55,15 @@ class TopicArticlesController extends Controller{
         $userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
         $comments = DB::table('comments')->where('akid', $aid)->where('type', 'topicArticle')->get();
 
+		$commentsInfo = [];
+		foreach ($comments as $comment) {
+			$commentUser = DB::table('tail_users')->where('uid', $comment->uid)->first();
+			$commentsInfo[] = [
+				'comment' => $comment,
+				'avatar'  => $commentUser->avatar
+			];
+		}
+
         DB::table('topic_articles')->where('id', $aid)->increment('viewNum');
         $article = DB::table('topic_articles')->where('id',$aid)->first();
 //		$currentUser = DB::table('tail_users')->where('uid',$user->id)->first();
@@ -71,7 +80,7 @@ class TopicArticlesController extends Controller{
             'currentUserInfo' => $currentUser,
             'article' => $article,
             'author' => $author,
-            'comments' => $comments,
+            'comments' => $commentsInfo,
             'hasUp' => $hasUp,
             'hasCollect' => $hasCollect
         ];
