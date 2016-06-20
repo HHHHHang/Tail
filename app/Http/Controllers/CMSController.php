@@ -24,6 +24,8 @@ class CMSController extends Controller{
 			$banner = DB::table( 'banners' )->where( 'type', 'forum_new' )->orWhere( 'type', 'forum_test' )->get();
 		} elseif ($type == 'slide') {
 			$banner = DB::table('banner_imgs')->get();
+		} elseif ($type == 'side') {
+			$banner = DB::table('banners')->where('type', 'article_side')->get();
 		}
 
 		$params = [

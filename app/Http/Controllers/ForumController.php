@@ -43,7 +43,7 @@ class ForumController extends Controller{
 		//forum推广位置
 		$banners = DB::table('banners')->where('type', 'forum_new')->get();
 		$testBanner = DB::table('banners')->where('type', 'forum_test')->get();
-		$side_banners = DB::table('banners')->where('type', 'index_side')->get();
+		$side_banners = DB::table('banners')->where('type', 'article_side')->get();
 
 		$params = [
 			'user' => $userInfo,

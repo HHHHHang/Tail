@@ -45,6 +45,7 @@
             <li><a href="/cms/banner/index"><span class="am-icon-puzzle-piece"></span> 首页Banner</a></li>
             <li><a href="/cms/banner/slide"><span class="am-icon-th"></span> 首页Slider</a></li>
             <li><a href="/cms/banner/forum"><span class="am-icon-th"></span> 文章页Banner</a></li>
+            <li><a href="/cms/banner/side"><span class="am-icon-th"></span> 文章页SideBar</a></li>
           </ul>
         </li>
       </ul>

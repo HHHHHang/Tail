@@ -55,7 +55,8 @@
                     <td>
                       <div class="am-btn-toolbar">
                         <div class="am-btn-group am-btn-group-xs">
-                          <button type="button" onclick="openModal({{$banner->id}})" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                          <button type="button" onclick="openModal({{$banner->id}},'{{$banner->title}}', '{{$banner->content}}', '{{$banner->file}}', '{{$banner->href}}')"
+                           class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
                         </div>
                       </div>
                     </td>
@@ -142,7 +143,13 @@
 <script src="{{ asset('cms/js/app.js') }}"></script>
 <script src="{{ asset('cms/js/tie.js') }}"></script>
 <script>
-    function openModal(id) {
+    function openModal(id, title, content, file, href) {
+
+        $('#title').val(title)
+        $('#content').val(content)
+        $('#file').val(file)
+        $('#href').val(href)
+
         $('#edit').modal({
             onConfirm: function() {
                 var title= $('#title').val()
@@ -167,7 +174,7 @@
 					},
 					success: function(data) {
 						alert("发表成功!")
-//						window.location.reload();
+						window.location.reload();
 						console.log(data)
 					}
 				})

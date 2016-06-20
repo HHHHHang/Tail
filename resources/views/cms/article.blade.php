@@ -37,9 +37,12 @@
           <div class="am-form-group">
             <select id='type' onchange="changeType()" data-am-selected="{btnSize: 'sm'}">
               <option value="all">所有类别</option>
-              <option {{$params['type'] == "影音" ? "selected" : ''}} value="影音">影音</option>
-              <option {{$params['type'] == "周边" ? "selected" : ''}} value="周边">周边</option>
+              <option {{$params['type'] == "手机" ? "selected" : ''}} value="手机">手机</option>
               <option {{$params['type'] == "电脑" ? "selected" : ''}} value="电脑">电脑</option>
+              <option {{$params['type'] == "平板" ? "selected" : ''}} value="平板">平板</option>
+              <option {{$params['type'] == "咨询" ? "selected" : ''}} value="咨询">咨询</option>
+              <option {{$params['type'] == "摄影" ? "selected" : ''}} value="摄影">摄影</option>
+              <option {{$params['type'] == "其他" ? "selected" : ''}} value="其他">其他</option>
             </select>
           </div>
         </div>
