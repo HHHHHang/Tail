@@ -170,7 +170,7 @@ class ArticleController extends Controller{
 			DB::table('ups')->where('type', 'tie')->where('upId', $id)->where('uid', $uid)->delete();
 		} elseif($type=='article') {
 			DB::table('articles')->where('id', $id)->decrement('upNum');
-			DB::table('ups')->where('type', 'topicArticle')->where('upId', $id)->where('uid', $uid)->delete();
+			DB::table('ups')->where('type', 'article')->where('upId', $id)->where('uid', $uid)->delete();
 			
 		}else{
 			DB::table('topic_articles')->where('id', $id)->decrement('upNum');
