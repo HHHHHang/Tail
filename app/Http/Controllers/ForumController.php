@@ -76,6 +76,8 @@ class ForumController extends Controller{
 		$keywords = json_decode($keywords);
 		$hotTags = DB::table('tag')->orderBy('num','desc')->take(4)->get();
 
+		$have = [];
+
 		if($keywords){
 			foreach ($keywords as $keyword){
 				$temp = DB::table('article_tag')
@@ -86,10 +88,12 @@ class ForumController extends Controller{
 
 				foreach ($temp as $aid) {
 //					$aids[] = $aid;
-					if ($type != 'all') {
+					if ($type != 'all' && !isset($have[$aid->aid])) {
+						$have[$aid->aid] = 1;
 						$temp_result = DB::table('articles')->where('id', $aid->aid)->where('type', $type)->first();
 						if ($temp_result) $result[] = $temp_result;
-					} else {
+					} elseif (!isset($have[$aid->aid])) {
+						$have[$aid->aid] = 1;
 						$result[] = DB::table('articles')->where('id', $aid->aid)->first();
 					}
 				}
