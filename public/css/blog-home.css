@@ -16,68 +16,69 @@
     color: #888888;
 }
 
-.topicDisplayDiv {
+.recommendationDiv {
     background: #ffffff;
 }
 
-.topicDisplayMain {
-    padding: 10px 0 0;
-    margin-bottom: -240px;
+.recommendationMain {
+    padding: 25px 0 40px;
 }
 
-.topicDisplayMain > div {
+.recommendationMain > div:first-child > a {
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    transition: .3s;
+    color: #2fa0ec;
+
+}
+.recommendationMain > div:first-child > a:hover {
+    color: #74777b;
+
+    text-decoration: none;
+    cursor: default;
+}
+
+
+.recommendationMain > div {
+    padding: 0 15px;
+    width: 100%;
+    display: flex;
+}
+.recommendationMain > div {
     padding: 0 15px;
     width: 100%;
     display: flex;
 }
 
-.topicDisplayMain > div:first-child {
+.recommendationMain > div:first-child {
     align-items: center;
 }
 
-.topicDisplayMain > div:first-child > span {
+.recommendationMain > div:first-child > span {
     flex: 1;
 }
 
-.topicDisplayMain > div:first-child > a {
-    -webkit-transition: 1s;
-    -moz-transition: 1s;
-    transition: 1s;
-    color: #74777b;
-
-}
-.topicDisplayMain > div:first-child > a:hover {
-    color: #2fa0ec;
-    text-decoration: none;
-    cursor: default;
+.recommendationMain > div:first-child > h4 {
+    color: #888888;
 }
 
-.topicDisplayMain > div:last-child > div:not(.thumbnailCustom) {
+.recommendationMain > div:last-child > div:not(.recommendationItem) {
     width: 5px;
 }
 
-.topicDisplayMain > div:last-child > div.thumbnailCustom {
+.recommendationItem {
     flex: 1;
-    border: none;
-    padding: 0;
-    display: block;
-    margin-bottom: 20px;
-    line-height: 1.42857143;
-    background-color: #fff;
     overflow: hidden;
+
+    height: 200px;
+    background-position: center;
+    background-size: cover;
 }
 
-.topicDisplayMain > div:last-child > div.thumbnailCustom > img {
-    display: inline;
-    height: 250px;
-}
-
-.topicDisplayMain > div:last-child > div.thumbnailCustom > div {
-    height: 250px;
+.recommendationItem > div {
+    height: 100%;
     width: 100%;
     padding: 20px;
-    position: relative;
-    top: -250px;
 
     display: flex;
     flex-direction: column;
@@ -86,7 +87,8 @@
 
     color: #ffffff;
 }
-.topicDisplayMain > div:last-child > div.thumbnailCustom:hover > div {
+
+.recommendationItem:hover > div {
     background-image:-webkit-linear-gradient(to bottom, transparent, #222);
     background-image:linear-gradient(to bottom, transparent, #222);
 }

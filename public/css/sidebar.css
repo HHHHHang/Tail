@@ -150,6 +150,15 @@
   background-size: cover;
 }
 
+.popularTopicSidebar > div:first-child {
+  display: flex;
+  height: 25px;
+}
+
+.popularTopicSidebar > div:first-child > span:nth-child(2) {
+  flex: 1;
+}
+
 .popularTopicSidebar > div > div {
   -webkit-transition: 1s;
   -moz-transition: 1s;
@@ -174,6 +183,16 @@
   margin: 0 0 5px;
 }
 
+.popularForumSidebar > div:first-child {
+  display: flex;
+  height: 25px;
+}
+
+.popularForumSidebar > div:first-child > span:nth-child(2) {
+  flex: 1;
+}
+
+
 .popularForumSidebar > div > p {
   margin-top: -8px;
   color: #888888;
@@ -182,11 +201,15 @@
 .popularForumSidebar > div:hover {
   border-right: 3px solid #458ac9;
 }
+.popularForumSidebar > div:first-child:hover {
+  border-right: none;
+}
 
 .popularForumSidebar > div:hover > p,
 .popularForumSidebar > div:hover > h5 {
   color: #458ac9;
 }
+
 .sidebarBlock > div.affix {
   top: 75px;
   width: 360px;
