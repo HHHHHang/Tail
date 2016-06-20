@@ -47,7 +47,7 @@
 </head>
 <body>
 
-	@include('tail.layout.header', ['active' => 'bbs'])
+	@include('tail.layout.header', ['active' => 'topic'])
 
     <div class="container">
         <div class="row">

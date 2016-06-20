@@ -105,3 +105,21 @@
 </body>
 
 </html>
+
+<script>
+    var switchType = function() {
+        var type = $('.forumTypeDiv').attr('id');
+        var typeList = $('.forumTypeDiv > div');
+        var isCertainType = false;
+        typeList.each(function () {
+            if($(this.firstChild.lastChild).text() == type) {
+                $(this).addClass('checked');
+                isCertainType = true;
+            }
+        });
+        if (!isCertainType) {
+            $('.forumTypeDiv > div:first-child').addClass('checked');
+        }
+    };
+    switchType();
+</script>
