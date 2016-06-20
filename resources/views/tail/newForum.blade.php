@@ -243,7 +243,7 @@
                success: function (data) {
                    console.log(data);
                    console.log('success');
-                   location.href = '/forum';
+                   location.href = '/forum/' + to;
                },
                error: function (error) {
                    console.log(error);

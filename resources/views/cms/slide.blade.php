@@ -156,7 +156,8 @@
 					data: {
 						id : id,
 						file: file,
-						href: href
+						href: href,
+						type: "{{$params['type']}}"
 					},
 					success: function(data) {
 						alert("修改成功!")
