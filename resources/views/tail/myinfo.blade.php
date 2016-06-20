@@ -147,7 +147,7 @@
                         @endforeach
                             @foreach($params['topicArticles'] as $topicArticle)
                                 <div class="info-box">
-                                    <h1><a href="/topic/detail/{{ $topicArticle->id }}">{{ $topicArticle->title }}</a></h1>
+                                    <h1><a href="/topic/article/{{ $topicArticle->id }}">{{ $topicArticle->title }}</a></h1>
                                 </div>
                                 <div class="detail-info">
                                     <span>&nbsp;发布时间 {{ date("Y年m月d日",strtotime($topicArticle->createTime)) }}</span>
