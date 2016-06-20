@@ -97,7 +97,8 @@
 			<div class="item block" data-bgimage="{{ $topic->image }}">
 				<div class="thumbs-wrapper">
 					<div class="thumbs">
-						<img width="260px" height="173px" src="{{ $topic->image }}"/>
+
+						<a href="/topic/detail/{{$topic -> id}}"><img width="260px" height="173px" src="{{ $topic->image }}"/></a>
 					</div>
 				</div>
 				<a href="/topic/detail/{{$topic -> id}}"><h2 class="title">{{ $topic->name }}</h2></a>
