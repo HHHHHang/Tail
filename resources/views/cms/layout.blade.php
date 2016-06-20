@@ -5,7 +5,7 @@
 
 <header class="am-topbar am-topbar-inverse admin-header">
   <div class="am-topbar-brand">
-    <strong>数字尾巴</strong> <small>后台管理系统</small>
+    <strong>数字良品</strong> <small>后台管理系统</small>
   </div>
 
   <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>

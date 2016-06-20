@@ -88,9 +88,9 @@
             <div>
                 <a href="#"><img src="http://o7m73hlz0.bkt.clouddn.com/103410az073wvcww88vcrc.jpg" alt="" style="width: 800px"></a>
                 <br/>
-                <a href="#"><h1 style="color: black; font-size: large; padding-top: 20px">五月搞机季，数字尾巴深圳沙龙回顾</h1></a>
+                <a href="#"><h1 style="color: black; font-size: large; padding-top: 20px">五月搞机季，数字良品深圳沙龙回顾</h1></a>
                 <br/>
-                <p>距离数字尾巴上次沙龙活动的时间已经过去了很久，想必尾巴们都十分期待着又一场精彩的线下沙龙吧。为了满足尾巴们搞机的愿望，数字尾巴特地组织了一次“五月搞机季”的线下沙龙活动，而地点就位于数字尾巴的深圳总部 ...</p>
+                <p>距离数字良品上次沙龙活动的时间已经过去了很久，想必尾巴们都十分期待着又一场精彩的线下沙龙吧。为了满足尾巴们搞机的愿望，数字良品特地组织了一次“五月搞机季”的线下沙龙活动，而地点就位于数字良品的深圳总部 ...</p>
                 <br/>
                 <p>浏览量：1350
                     <span style="float:right; color: #2ca02c">2016-5-23 10:34</span>
