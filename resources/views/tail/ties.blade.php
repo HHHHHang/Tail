@@ -45,14 +45,6 @@
                         </div>
                     </div>
                 @endforeach
-                    <ul class="pager">
-                        <li class="previous disabled">
-                            <a>上一页</a>
-                        </li>
-                        <li class="next disabled">
-                            <a>下一页</a>
-                        </li>
-                    </ul>
             </div>
 
             <!-- Blog Sidebar Widgets Column -->

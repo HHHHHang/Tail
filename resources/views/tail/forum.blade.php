@@ -146,15 +146,6 @@
                     </div>
                 @endforeach
 
-                <ul class="pager">
-                    <li class="previous disabled">
-                        <a>上一页</a>
-                    </li>
-                    <li class="next disabled">
-                        <a>下一页</a>
-                    </li>
-                </ul>
-
                 <!-- Blog Sidebar Widgets Column -->
             </div>
             <div class="sidebarBlock col-md-4">

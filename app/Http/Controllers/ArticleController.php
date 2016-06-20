@@ -79,21 +79,23 @@ class ArticleController extends Controller{
 
 	public function articlePost(Request $request) {
 		$content = $request->get('content');
-		$aid      = $request->get('id');
-//		$comments = DB::table('comments')->;
+		$aid      = $request->get('aid');
+		$receiverId = $request->get('receiverId');
+		$receiverName      = $request->get('receiverName');
+		$receiverCommentId = $request->get('receiverCommentId');
 
 		$user = $request->user();
 		$username = isset($user) ?  $user['name'] : "游客";
 		$uid      = isset($user) ?  $user['id'] : '0';
 
 		DB::table('comments')->insertGetId(
-			array('akid'=> $aid, 'type'=> 'article', 'uid'=> $uid, 'username' => $username, 'content'=>$content)
+			array('akid'=> $aid, 'type'=> 'article', 'content'=>$content,'uid'=> $uid, 'senderName' => $username,
+				'receiverId' => $receiverId, 'receiverName' => $receiverName, 'receiverCommentId' => $receiverCommentId)
 		);
+
 		DB::table('articles')->where('id', $aid)->increment('commentNum');
-		$comments = DB::table('comments')->where('akid', $aid)->get();
-		$params = [
-			'aid' => $aid,
-		];
+
+		// 谁谁谁收到消息 todo
 
 		return redirect('/article/' . $aid);
 	}
