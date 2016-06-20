@@ -90,7 +90,7 @@ class TopicArticlesController extends Controller{
         $username = isset($user) ?  $user['name'] : "游客";
         $uid      = isset($user) ?  $user['id'] : '0';
 
-        DB::table('comments')->insertGetId(
+        $comment_id = DB::table('comments')->insertGetId(
             array('akid'=> $taid, 'type'=> 'topicArticle', 'content'=>$content,'uid'=> $uid, 'senderName' => $username,
                 'receiverId' => $receiverId, 'receiverName' => $receiverName, 'receiverCommentId' => $receiverCommentId)
         );
@@ -98,6 +98,10 @@ class TopicArticlesController extends Controller{
         DB::table('topic_articles')->where('id', $taid)->increment('commentNum');
 
         // 谁谁谁收到消息 todo
+		// 谁谁谁收到消息 todo
+		DB::table('messages')->insertGetId(
+			['type' => 'comment', 'uid' => $receiverId, 'sender_uid' => $uid, 'comment_id' => $comment_id]
+		);
 
         return redirect('/topic/article/' . $taid);
         

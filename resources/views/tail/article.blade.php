@@ -211,7 +211,7 @@
             <textarea name="content" class="form-control" rows="3"></textarea>
         </div>
         <input type="hidden" name="aid" value="{{ $params['aid'] }}" />
-        <input type="hidden" name="receiverId" value="0" />
+        <input type="hidden" name="receiverId" value="{{$params['posterId']}}" />
         <input type="hidden" name="receiverName" value="" />
         <input type="hidden" name="receiverCommentId" value="0" />
         <input type="hidden" name="_token" value="{{ csrf_token() }}">

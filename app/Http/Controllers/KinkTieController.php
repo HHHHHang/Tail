@@ -36,6 +36,7 @@ class KinkTieController extends Controller{
 			'upNum'      => $article->upNum,
 			'avatar' => $postUser->avatar,
 			'postName' => $postUser->name,
+			'postUserId'   => $postUser->uid,
 			'hasUp' => $hasUp,
 			'hasCollect' => $hasCollect,
 			'viewNum'  => $article->viewNum
@@ -54,12 +55,17 @@ class KinkTieController extends Controller{
 		$username = isset($user) ?  $user['name'] : "游客";
 		$uid      = isset($user) ?  $user['id'] : '0';
 
-		DB::table('comments')->insertGetId(
+		$comment_id = DB::table('comments')->insertGetId(
 			array('akid'=> $kid, 'type'=> 'kinkTie', 'content'=>$content,'uid'=> $uid, 'senderName' => $username,
 				'receiverId' => $receiverId, 'receiverName' => $receiverName, 'receiverCommentId' => $receiverCommentId)
 		);
 
 		DB::table('kinkTies')->where('kid', $kid)->increment('commentNum');
+
+		// 谁谁谁收到消息 todo
+		DB::table('messages')->insertGetId(
+			['type' => 'comment', 'uid' => $receiverId, 'sender_uid' => $uid, 'comment_id' => $comment_id]
+		);
 
 		return redirect('/kinkTie/' . $kid);
 	}

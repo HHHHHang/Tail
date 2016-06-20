@@ -150,7 +150,7 @@
                                     </div>
                                     <div class="detail-info">
                                         <span>类别 <a href="#">{{ $tie->type }}</a></span>
-                                        <span>发布时间 {{ date("Y年m月d日",($tie->createTime)) }}</span>
+                                        <span>发布时间 {{ date("Y年m月d日", strtotime($tie->createTime)) }}</span>
                                         <span class="glyphicon glyphicon-thumbs-up">{{ $tie->upNum }}</span>
                                         <span><span class="glyphicon glyphicon-comment"></span>{{ $tie->commentNum }}</span>
                                     </div>
@@ -164,7 +164,7 @@
                                     <h1><a href="/article/{{ $articleComment->akid }}">{{ $articleComment->content }}</a></h1>
                                 </div>
                                 <div class="detail-info">
-                                    <span>发布时间 {{ date("Y年m月d日",($articleComment->createtime)) }}</span>
+                                    <span>发布时间 {{ date("Y年m月d日", strtotime($articleComment->createtime)) }}</span>
                                 </div>
                                 <hr>
                             @endforeach

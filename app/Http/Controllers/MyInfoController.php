@@ -39,6 +39,40 @@ class MyInfoController extends Controller{
 		{
 			$myFollowsInfos = DB::table('tail_users')->where('uid', $myFollow->followUid)->get();
 		}
+
+		//消息提醒
+		$messages = DB::table('messages')->where('uid', $user['id'])->get();
+		$messageInfo = [];
+		$type2action = [
+			'up' => '赞',
+			'collect' => '收藏',
+			'comment' => '评论',
+		];
+
+		foreach ($messages as $message) {
+			$senderUser = DB::table('tail_users')->where('uid', $message->sender_uid)->first();
+
+			if ($message->article_id) {
+				$href = '/article/'. $message->article_id;
+			} elseif ($message->topicArticle_id) {
+				$href = '/topic/article/' . $message->topicArticle_id;
+			} elseif ($message->tie_id) {
+				$href = '/kinkTie/' . $message->topicArticle_id;
+			} else {
+				$comment = DB::table('comments')->where('id', $message->comment_id)->first();
+				if ($comment->type == 'article') $href = '/article/' . $comment->akid;
+				elseif ($comment->type == 'kinkTie') $href = '/kinkTie/' .$comment->akid;
+				else $href = '/topic/article/' . $comment->akid;
+			}
+
+			$messageInfo[] = [
+				'senderUser' => $senderUser,
+				'type'       => $message->type,
+				'action'     => $type2action[$message->type],
+				'href'       => $href
+			];
+		}
+
 		$params = [
 			'user' => $user,
 			'userInfo' => $userInfo,
@@ -53,6 +87,7 @@ class MyInfoController extends Controller{
 			'collectArticles' => $collectArticles,
 			'collectTies' => $collectTies,
 			'myFollowsInfos' => $myFollowsInfos,
+			'messages'     => $messageInfo
 		];
 		if ($user) return view('tail.myinfo')->with('user', $user)->with('params', $params);
 		return view('tail.login');

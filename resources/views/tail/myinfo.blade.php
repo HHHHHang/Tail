@@ -245,21 +245,13 @@
                         @endforeach
                     </div>
                     <div class="tab-pane fade" id="myMessage">
+                    	@foreach($params['messages'] as $message)
                         <div class="message-detail">
                             <br/>
-                            <span>你收到了来自<a href="#" class="tie-head">@测试用户</a>的一条评论。</span>
+                            <span>用户<a href="/otherInfo/{{$message['senderUser']->uid}}" class="tie-head">@测试用户</a>{{$message['action']}}了你的<a href="{{$message['href']}}" class="tie-head">文章</a></span>
                             <hr/>
                         </div>
-                        <div class="message-detail">
-                            <br/>
-                            <span>你收到了来自<a href="#" class="tie-head">@测试用户</a>的一个点赞。</span>
-                            <hr/>
-                        </div>
-                        <div class="message-detail">
-                            <br/>
-                            <span>你收到了来自<a href="#" class="tie-head">@测试用户</a>的一次收藏。</span>
-                            <hr/>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

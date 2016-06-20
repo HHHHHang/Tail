@@ -88,7 +88,7 @@ class ArticleController extends Controller{
 		$username = isset($user) ?  $user['name'] : "游客";
 		$uid      = isset($user) ?  $user['id'] : '0';
 
-		DB::table('comments')->insertGetId(
+		$comment_id = DB::table('comments')->insertGetId(
 			array('akid'=> $aid, 'type'=> 'article', 'content'=>$content,'uid'=> $uid, 'senderName' => $username,
 				'receiverId' => $receiverId, 'receiverName' => $receiverName, 'receiverCommentId' => $receiverCommentId)
 		);
@@ -96,6 +96,10 @@ class ArticleController extends Controller{
 		DB::table('articles')->where('id', $aid)->increment('commentNum');
 
 		// 谁谁谁收到消息 todo
+		DB::table('messages')->insertGetId(
+			['type' => 'comment', 'uid' => $receiverId, 'sender_uid' => $uid, 'comment_id' => $comment_id]
+		);
+
 
 		return redirect('/article/' . $aid);
 	}
@@ -104,6 +108,31 @@ class ArticleController extends Controller{
 		$id = $request->get('id');
 		$type = $request->get('type');
 		$uid  = $request->get('uid');
+
+		$type2id = [
+			'tie' => 'tie_id',
+			'article' => 'article_id',
+			'topicArticle' => 'topicArticle_id'
+		];
+
+		if ($type == 'tie') {
+			$info = DB::table( 'kinkTies' )->where( 'kid', $id )->first();
+		}
+		elseif ($type == 'article') {
+			$info = DB::table( 'articles' )->where( 'id', $id )->first();
+		}
+		else {
+			$info = DB::table('topic_articles')->where( 'id', $id )->first();
+		}
+
+		//给原作者发消息通知
+		$postUserId = $info->uid;
+
+		DB::table('messages')->insertGetId(
+			['type' => 'up', 'uid' => $postUserId, 'sender_uid' => $uid, $type2id[$type] => $id]
+		);
+
+
 		if ($type == 'tie') {
 			DB::table('kinkTies')->where('kid', $id)->increment('upNum');
 			DB::table('ups')->insertGetId(
@@ -145,6 +174,30 @@ class ArticleController extends Controller{
 		$id = $request->get('id');
 		$type = $request->get('type');
 		$uid  = $request->get('uid');
+
+		$type2id = [
+			'tie' => 'tie_id',
+			'article' => 'article_id',
+			'topicArticle' => 'topicArticle_id'
+		];
+
+		if ($type == 'tie') {
+			$info = DB::table( 'kinkTies' )->where( 'kid', $id )->first();
+		}
+		elseif ($type == 'article') {
+			$info = DB::table( 'articles' )->where( 'id', $id )->first();
+		}
+		else {
+			$info = DB::table('topic_articles')->where( 'id', $id )->first();
+		}
+
+		//给原作者发消息通知
+		$postUserId = $info->uid;
+
+		DB::table('messages')->insertGetId(
+			['type' => 'collect', 'uid' => $postUserId, 'sender_uid' => $uid, $type2id[$type] => $id]
+		);
+
 		if ($type == 'tie') {
 			DB::table('kinkTies')->where('kid', $id)->increment('collectNum');
 			DB::table('collects')->insertGetId(
