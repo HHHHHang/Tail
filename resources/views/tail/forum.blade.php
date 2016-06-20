@@ -138,7 +138,6 @@
                             <img class="img-responsive" src="{{ $article->image }}" alt="">
                         </div>
                         <div class="postHead"><a href="/article/{{ $article->id }}" class="title-phone">{{ $article->title  }}</a></div>
-                        <div class="postContent"><p class="content-phone">{{ $article->content  }}</p></div>
                         <div>
                             <a href="javascript:void(0)"><span class="glyphicon glyphicon-thumbs-up"></span>{{ $article->upNum }}</a>
                             <a href="javascript:void(0)"><span class="glyphicon glyphicon-comment"></span>{{ $article->commentNum }}</a>
