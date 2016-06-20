@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- jQuery -->
     <script src="{{URL::asset('js/jquery.js')}}"></script>
 
@@ -195,6 +196,8 @@
                     </div>
                     <div class="forumDetailContent">
                         @if ( $params['hasVote'] == 0 )
+                            <form action="/choice/{{ $params['aid'] }}" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             @if ( $params['multi'] )
                                 <span>多项选择 最多选择{{ $params['maxChoiceNum'] }}项</span>
                                 <span>共有{{ $params['attendCount'] }}人参与投票</span>
@@ -202,7 +205,7 @@
                                     @foreach( $params['options'] as $item )
                                         <div class="checkbox" id="{{ $item->vid }}">
                                             <label>
-                                                <input type="checkbox">
+                                                <input name='check{{ $item->vid }}' type="checkbox">
                                                 {{ $item->content }}
                                             </label>
                                         </div>
@@ -215,14 +218,15 @@
                                     @foreach( $params['options'] as $item )
                                         <div class="radio" id="{{ $item->vid }}">
                                             <label>
-                                                <input type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                                                <input type="radio" name="gridRadios" id="gridRadios1" value="{{ $item->vid }}" checked>
                                                 {{ $item->content }}
                                             </label>
                                         </div>
                                     @endforeach
                                 </div>
                             @endif
-                            <button type="button" class="btn">提交</button>
+                            <button type="submit" class="btn">提交</button>
+                            </form>
                         @else
                             @if ( $params['multi'] )
                                 <span>多项选择 您已参与投票</span>
@@ -230,7 +234,7 @@
 
                                 @foreach( $params['options'] as $item )
                                     <div class="voteResult">
-                                        <p><span>{{ $item->content }}</span><span></span><span>已有{{ $item->voteCount }}票 占{{ $item->voteCount * 100.0 / $params['voteCountSum'] }}%</span></p>
+                                        <p><span>{{ $item->content }}</span><span></span><span>已有{{ $item->voteCount }}票 占{{ number_format($item->voteCount * 100.0 / $params['voteCountSum'], 2, '.', '') }}%</span></p>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ $item->voteCount * 1.0 / $params['voteCountSum'] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $item->voteCount * 100.0 / $params['voteCountSum'] }}%">
                                                 <span class="sr-only">{{ $item->voteCount * 100.0 / $params['voteCountSum'] }}%</span>
@@ -245,7 +249,7 @@
                                 <div>
                                     @foreach( $params['options'] as $item )
                                         <div class="voteResult">
-                                            <span>{{ $item->content }}  已有{{ $item->voteCount }}票 占{{ $item->voteCount * 100.0 / $params['voteCountSum'] }}%</span>
+                                            <span>{{ $item->content }}  已有{{ $item->voteCount }}票 占{{ number_format($item->voteCount * 100.0 / $params['voteCountSum'], 2, '.', '') }}%</span>
                                             <div class="progress">
                                                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ $item->voteCount * 1.0 / $params['voteCountSum'] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $item->voteCount * 100.0 / $params['voteCountSum'] }}%">
                                                     <span class="sr-only">{{ $item->voteCount * 100.0 / $params['voteCountSum'] }}%</span>
@@ -256,7 +260,7 @@
                                 </div>
                             @endif
                         @endif
-                        <span>{{ $params['introduction'] }}</span>
+                        <span>{!! $params['introduction'] !!}</span>
                     </div>
                     <div>
                         <button id="up">赞</button>

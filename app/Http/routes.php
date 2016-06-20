@@ -65,6 +65,7 @@ Route::post('/new/article', 'NewController@postArticle');
 // 纠结帖子页面
 Route::get('/kinkTie/{kid}', 'KinkTieController@index');
 Route::post('/kinkTie/{kid}', 'KinkTieController@tiePost');
+Route::post('/choice/{kid}', 'KinkTieController@postChoice');
 
 // 搜索界面模板
 Route::get('/search/topic', 'SearchController@searchTopic');
