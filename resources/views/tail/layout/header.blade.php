@@ -25,6 +25,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (isset($params['user']) && $params['user']['id'] != 2)
+                        <li><a class="hasNewMessage"><span class="glyphicon glyphicon-envelope"></span></a></li>
                         <li><a href="/myinfo?name={{ $params['user']['name'] }}">{{  $params['user']['name'] }}</a></li>
                         <li><a href="/logout">退出</a></li>
                     @else
@@ -46,7 +47,7 @@
                             </div>
                             <input id="header-keyword" type="text" class="form-control" placeholder="搜索">
                             <span class="input-group-btn">
-                                <button id="header-search" class="btn btn-default" type="button">搜索</button>
+                                <button id="header-search" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
                             </span>
                         </div>
                     </div>

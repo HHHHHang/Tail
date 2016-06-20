@@ -29,6 +29,22 @@ body {
     box-shadow: none;
 }
 
+.glyphicon.glyphicon-envelope {
+    top: 3px;
+}
+
+.hasNewMessage:after {
+    content: ' ';
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: red;
+    position: relative;
+    top: -19px;
+    left: 18px;
+}
+
 footer {
     margin-top: 120px;
     background-color: #222;
