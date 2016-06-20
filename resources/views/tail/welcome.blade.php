@@ -83,7 +83,7 @@
 
                     <span>频道分类</span>
                     <div class="typeSidebar">
-                        <div><a href="/forum"><span class="glyphicon glyphicon-inbox"></span><span>全部</span></a></div>
+                        <div><a href="/forum/all"><span class="glyphicon glyphicon-inbox"></span><span>全部</span></a></div>
                         <div><a href="/forum/手机"><span class="glyphicon glyphicon-phone"></span><span>手机</span></a></div>
                         <div><a href="/forum/电影"><span class="glyphicon glyphicon-floppy-open"></span><span>电脑</span></a></div>
                         <div><a href="/forum/平板"><span class="glyphicon glyphicon-phone"></span><span>平板</span></a></div>
