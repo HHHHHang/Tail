@@ -148,6 +148,7 @@
 .articleDisplayDiv > div:nth-child(2) {
     max-height: 500px;
     width: 100%;
+    overflow: hidden;
 }
 
 .articleDisplayDiv > div:nth-child(2) img {

@@ -66,7 +66,7 @@
 
                         </div>
                         <div>
-                            <img class="img-responsive" src="{{ $articleInfo['article']->image }}" alt="">
+                            <img class="img-responsive" src="{{ $articleInfo['article']->image }}" alt=""  onclick="window.location.href='/article/{{ $articleInfo['article']->id }}'">
                         </div>
                         <div class="postHead"><a href="/article/{{ $articleInfo['article']->id }}" class="title-phone">{{ $articleInfo['article']->title  }}</a></div>
                         <div>
