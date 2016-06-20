@@ -17,7 +17,7 @@ use League\Flysystem\AdapterInterface;
 class MyInfoController extends Controller{
 
 
-	public function index(Request $request)
+	public function index(Request $request, $msg = '')
 	{
 //		$username = $request->get('name');
 //		var_dump($username);
@@ -89,7 +89,8 @@ class MyInfoController extends Controller{
 			'myFollowsInfos' => $myFollowsInfos,
 			'messages'     => $messageInfo
 		];
-		if ($user) return view('tail.myinfo')->with('user', $user)->with('params', $params);
+		if ($user && !$msg) return view('tail.myinfo')->with('user', $user)->with('params', $params);
+		else if ($user && $msg == 'msg') return  view('tail.myMessage')->with('user', $user)->with('params', $params);
 		return view('tail.login');
 	}
 

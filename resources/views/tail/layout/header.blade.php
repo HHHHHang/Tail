@@ -25,7 +25,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (isset($params['user']) && $params['user']['id'] != 2)
-                        <li><a class="hasNewMessage"><span class="glyphicon glyphicon-envelope"></span></a></li>
+                        <li><a href="/myinfo/msg" class=""><span class="glyphicon glyphicon-envelope"></span></a></li>
                         <li><a href="/myinfo?name={{ $params['user']['name'] }}">{{  $params['user']['name'] }}</a></li>
                         <li><a href="/logout">退出</a></li>
                     @else
