@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>数字尾巴</title>
+  <title>数字良品</title>
   <meta name="description" content="这是一个 table 页面">
   <meta name="keywords" content="table">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,18 +31,6 @@
       <hr>
 
       <div class="am-g">
-        <div class="am-u-sm-12 am-u-md-6">
-          <div class="am-btn-toolbar">
-            <div class="am-btn-group am-btn-group-xs">
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 审核</button>
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除</button>
-            </div>
-          </div>
-        </div>
-        <div class="am-u-sm-12 am-u-md-3">
-        </div>
       </div>
 
       <div class="am-g">
@@ -124,7 +112,7 @@
 
     <footer class="admin-content-footer">
       <hr>
-      <p class="am-padding-left">© 2016 数字尾巴. Licensed under MIT license.</p>
+      <p class="am-padding-left">© 2016 数字良品. Licensed under MIT license.</p>
     </footer>
 
   </div>

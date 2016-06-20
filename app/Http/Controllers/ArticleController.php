@@ -48,6 +48,15 @@ class ArticleController extends Controller{
 		$user = $request->user();
 		$userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
 		$comments = DB::table('comments')->where('type', 'article')->where('akid', $id)->get();
+		$commentsInfo = [];
+		foreach ($comments as $comment) {
+			$commentUser = DB::table('tail_users')->where('uid', $comment->uid)->first();
+			$commentsInfo[] = [
+				'comment' => $comment,
+				'avatar'  => $commentUser->avatar
+			];
+		}
+
 		DB::table('articles')->where('id', $id)->increment('viewNum');
 		$article = DB::table('articles')->where('id', $id)->first();
 		$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
@@ -73,8 +82,8 @@ class ArticleController extends Controller{
 			'hasCollect' => $hasCollect,
 			'viewNum'  => $article->viewNum
 		];
-		if ($user) return view('tail.article')->with('params', $params)->with('comments', $comments)->with('user', $user);
-		return view('tail.article')->with('params', $params)->with('comments', $comments);
+		if ($user) return view('tail.article')->with('params', $params)->with('commentsInfo', $commentsInfo)->with('user', $user);
+		return view('tail.article')->with('params', $params)->with('commentsInfo', $commentsInfo);
 	}
 
 	public function articlePost(Request $request) {

@@ -32,6 +32,9 @@ body {
 .glyphicon.glyphicon-envelope {
     top: 3px;
 }
+.hasNewMessage {
+    height: 20px;
+}
 
 .hasNewMessage:after {
     content: ' ';

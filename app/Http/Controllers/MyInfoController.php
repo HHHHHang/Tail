@@ -23,10 +23,10 @@ class MyInfoController extends Controller{
 //		var_dump($username);
 		$user = $request->user();
 		$userInfo = getUserInfo($user['id']);
-		$articleComments = DB::table('comments')->where('type', 'article')->where('uid', $user['id'])->orderBy('createtime', 'desc')->get();
-		$tieComments = DB::table('comments')->where('type','tie')->where('uid', $user['id'])->orderBy('createtime', 'desc')->get();
+		$comments = DB::table('comments')->where('type', 'article')->where('uid', $user['id'])->orderBy('createtime', 'desc')->get();
 		$ties = DB::table('kinkTies')->where('uid', $user['id'])->orderBy('createTime', 'desc')->get();
 		$articles = DB::table('articles')->where('uid', $user['id'])->orderBy('createTime', 'desc')->get();
+		$topicArticles = DB::table('topic_articles')->where('uid', $user['id'])->orderBy('createTime', 'desc')->get();
 		$ups = DB::table('ups')->where('uid', $user['id']);
 		$collects = DB::table('collects')->where('uid', $user['id']);
 		$upArticles = DB::table('ups')->join('articles', function($join){$join->on('articles.id', '=', 'ups.upId');})->where('ups.type','article')->where('ups.uid', $user['id'])->orderBy('createTime', 'desc')->get();
@@ -78,8 +78,8 @@ class MyInfoController extends Controller{
 			'userInfo' => $userInfo,
 			'articles' => $articles,
 			'ties' => $ties,
-			'articleComments' => $articleComments,
-			'tieComments' => $tieComments,
+			'comments' => $comments,
+			'topicArticles' => $topicArticles,
 			'ups' => $ups,
 			'collects' => $collects,
 			'upArticles' => $upArticles,
@@ -98,10 +98,10 @@ class MyInfoController extends Controller{
 		$user = $request->user();
 		$userInfo = getUserInfo($uid);
 
-		$articleComments = DB::table('comments')->where('type', 'article')->where('uid', $uid)->orderBy('createtime', 'desc')->get();
-		$tieComments = DB::table('comments')->where('type','tie')->where('uid', $uid)->orderBy('createtime', 'desc')->get();
+		$comments = DB::table('comments')->where('uid', $uid)->orderBy('createtime', 'desc')->get();
 		$ties = DB::table('kinkTies')->where('uid', $uid)->orderBy('createTime', 'desc')->get();
 		$articles = DB::table('articles')->where('uid', $uid)->orderBy('createTime', 'desc')->get();
+		$topicArticles = DB::table('topic_articles')->where('uid', $uid)->orderBy('createTime', 'desc')->get();
 		$ups = DB::table('ups')->where('uid', $uid);
 		$collects = DB::table('collects')->where('uid', $uid);
 		$upArticles = DB::table('ups')->join('articles', function($join){$join->on('articles.id', '=', 'ups.upId');})->where('ups.type','article')->where('ups.uid', $uid)->orderBy('createTime', 'desc')->get();
@@ -115,8 +115,8 @@ class MyInfoController extends Controller{
 			'userInfo' => $userInfo,
 			'articles' => $articles,
 			'ties' => $ties,
-			'articleComments' => $articleComments,
-			'tieComments' => $tieComments,
+			'topicArticles' => $topicArticles,
+			'comments' => $comments,
 			'ups' => $ups,
 			'collects' => $collects,
 			'upArticles' => $upArticles,

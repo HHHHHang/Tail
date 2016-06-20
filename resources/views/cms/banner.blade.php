@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>数字尾巴</title>
+  <title>数字良品</title>
   <meta name="description" content="这是一个 table 页面">
   <meta name="keywords" content="table">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -131,7 +131,7 @@
 
     <footer class="admin-content-footer">
       <hr>
-      <p class="am-padding-left">© 2016 数字尾巴. Licensed under MIT license.</p>
+      <p class="am-padding-left">© 2016 数字良品. Licensed under MIT license.</p>
     </footer>
 
   </div>

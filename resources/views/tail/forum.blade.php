@@ -28,8 +28,8 @@
                 <div>
                     @foreach($params['banner'] as $banner)
                     <div class="recommendationItem" style="background-image:url({{$banner->file}})">
-                        <div>
-                            <a  style="color:white" href="{{$banner->href}}">
+                        <div onclick="window.location.href='{{$banner->href}}'">
+                            <a  style="color:white"">
                             <h4>{{$banner->title}}</h4>
                             </a>
                             <h5>{{$banner->content}}</h5>
@@ -51,8 +51,8 @@
                 <div>
                 @foreach($params['test'] as $testBanner)
                     <div class="recommendationItem" style="background-image:url({{$testBanner->file}})">
-                        <div>
-                            <a style="color:white" href="{{$testBanner->href}}">
+                        <div onclick="window.location.href='{{$banner->href}}'">
+                            <a style="color:white">
                             <h4>{{$testBanner->title}}</h4>
                             </a>
                             <h5>{{$testBanner->content}}</h5>
@@ -113,25 +113,25 @@
 
 
 
-                @foreach($params['articles'] as $article)
+                @foreach($params['articlesInfo'] as $articleInfo)
                     <div class="well articleDisplayDiv">
                         <div>
-                            <img src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png"   class="img-rounded img-circle img-responsive">
-                            <span class="tie-head">测试用户</span>
+                            <img onclick="window.location.href='/otherInfo/{{ $articleInfo['article']->uid }}'" src="{{$articleInfo['avatar']}}"   class="img-rounded img-circle img-responsive">
+                            <span class="tie-head">{{ $articleInfo['name'] }}</span>
                             <span></span>
                             <div>
-                                <span><span class="glyphicon glyphicon-time"></span>{{ date("Y-m-d",strtotime($article->createTime)) }}</span>
-                                <a href="#"><span class="glyphicon glyphicon-film"></span>{{ $article->type  }}</a>
+                                <span><span class="glyphicon glyphicon-time"></span>{{ date("Y-m-d",strtotime($articleInfo['article']->createTime)) }}</span>
+                                <a href="#"><span class="glyphicon glyphicon-film"></span>{{ $articleInfo['article']->type  }}</a>
                             </div>
 
                         </div>
                         <div>
-                            <img class="img-responsive" src="{{ $article->image }}" alt="">
+                            <img class="img-responsive" src="{{ $articleInfo['article']->image }}" alt="">
                         </div>
-                        <div class="postHead"><a href="/article/{{ $article->id }}" class="title-phone">{{ $article->title  }}</a></div>
+                        <div class="postHead"><a href="/article/{{ $articleInfo['article']->id }}" class="title-phone">{{ $articleInfo['article']->title  }}</a></div>
                         <div>
-                            <a href="javascript:void(0)"><span class="glyphicon glyphicon-thumbs-up"></span>{{ $article->upNum }}</a>
-                            <a href="javascript:void(0)"><span class="glyphicon glyphicon-comment"></span>{{ $article->commentNum }}</a>
+                            <a href="javascript:void(0)"><span class="glyphicon glyphicon-thumbs-up"></span>{{ $articleInfo['article']->upNum }}</a>
+                            <a href="javascript:void(0)"><span class="glyphicon glyphicon-comment"></span>{{ $articleInfo['article']->commentNum }}</a>
                         </div>
                     </div>
                 @endforeach
@@ -172,10 +172,8 @@
                         <span>热门文章</span>
                         @foreach($params['side_banner'] as $banner)
                         <div style="background-image:url({{$banner->file}})">
-                            <div>
-                                <a style="color: white" href="{{$banner->href}}">
+                            <div onclick="window.location.href='{{$banner->href}}'">
                                 <span><b>{{$banner->title}}</b></span>
-                                </a>
                                 <span>{{$banner->content}}</span>
                             </div>
                         </div>

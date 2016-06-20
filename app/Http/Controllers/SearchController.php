@@ -30,13 +30,11 @@ class SearchController extends Controller
 				'writer' => $tail_user->name,
 				'publishTime' => date('y-m-d', $kinkTie->createTime),
 				'type' => $kinkTie->type,
-				'icon'=>'http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png',
+				'icon'=>$tail_user->avatar,
 				'commentCount' => $kinkTie->commentNum,
 				'link'   => '/kinkTie/' . $kinkTie->kid
 			];
 		}
-
-		$user1 = array('icon'=>'http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png', 'name'=>'用户名', 'level'=>'初级', 'forumCount'=>0, 'commentCount'=>0, 'followCount'=>0);
 
 		$searchTar = $request->get('searchTar') ? $request->get('searchTar') : "";
 
@@ -44,9 +42,9 @@ class SearchController extends Controller
 			'user' => $userInfo,
 		];
 
-		if ($user) return view('tail.searchForum')->with('params', $params)->with('user', $user)->with('data', $data)->with('user1', $user1)->with('searchTar', $searchTar);
+		if ($user) return view('tail.searchForum')->with('params', $params)->with('data', $data)->with('searchTar', $searchTar);
 		else {
-			return view('tail.searchForum')->with('params', $params)->with('user1', $user1)->with('data', $data)->with('searchTar', $searchTar);
+			return view('tail.searchForum')->with('params', $params)->with('data', $data)->with('searchTar', $searchTar);
 		}
 	}
 

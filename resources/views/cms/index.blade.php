@@ -28,7 +28,7 @@
 <body>
 <div class="header">
   <div class="am-g">
-    <h1>数字尾巴后台系统</h1>
+    <h1>数字良品后台系统</h1>
     <p>文章管理，贴子管理，话题管理，审核发布</p>
   </div>
   <hr />
@@ -62,7 +62,7 @@
       </div>
     </form>
     <hr>
-    <p>© 2016 数字尾巴. Licensed under MIT license.</p>
+    <p>© 2016 数字良品. Licensed under MIT license.</p>
   </div>
 </div>
 <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>

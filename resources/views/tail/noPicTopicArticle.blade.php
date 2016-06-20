@@ -203,16 +203,16 @@
                     <button onclick="comment()" class="btn">评论</button>
                 </form>
 
-                @foreach ($params['comments'] as $comment)
+                @foreach ($params['comments'] as $commentInfo)
                     <div class="media">
                         <a class="pull-left" href="#">
-                            <img class="media-object" width="64" height="64" src="http://7xq64h.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-03-27%20%E4%B8%8A%E5%8D%884.45.04.png" alt="">
+                            <img class="media-object" width="64" height="64" src="{{$commentInfo['avatar']}}" alt="">
                         </a>
                         <div class="media-body">
-                            <h4 class="media-heading">{{ $comment->username }}
-                                <small>{{ $comment->createtime   }}</small>
+                            <h4 class="media-heading">{{ $commentInfo['comment']->username }}
+                                <small>{{ $commentInfo['comment']->createtime   }}</small>
                             </h4>
-                            {{ $comment->content  }}
+                            {{ $commentInfo['comment']->content  }}
                         </div>
                     </div>
                 @endforeach

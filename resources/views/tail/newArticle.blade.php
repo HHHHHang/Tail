@@ -57,7 +57,7 @@
         <div class="col-md-10 mainBody">
             <a href="/forum"><span class="glyphicon glyphicon-chevron-left"></span>文章</a>
             <div class="postTitleDiv">
-                <a id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-menu-hamburger"></span> 选择类别</a>
+                <a id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-menu-hamburger"></span>选择类别 全部</a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     @foreach ( $params['data']->type as $item )
                         <li><a onclick="chooseType(event)" >{{$item}}</a></li>
@@ -148,7 +148,7 @@
             url: '/api/file',
             params: null,
             fileKey: 'upload_file',
-            connectionCount: 10,
+            connectionCount: 20,
             leaveConfirm: 'Uploading is in progress, are you sure to leave this page?'
 
         },
@@ -171,7 +171,7 @@
 
     var chooseType = function (event) {
         var type = event.target.text;
-        var html = '<span class="glyphicon glyphicon-menu-hamburger"></span> ';
+        var html = '<span class="glyphicon glyphicon-menu-hamburger"></span>选择类别 ';
         $('#dropdownMenu1').html(html + type);
     };
 
@@ -257,7 +257,7 @@
 
         var title = $('#postTitle').val();
         var contentHtml = editor.getValue();
-        var type = $('#dropdownMenu1').text().slice(1);
+        var type = $('#dropdownMenu1').text().slice(5);
         var coverSrc = $('#imgSrc').val();
         console.log('标题: ' + title);
         console.log('关键词: ' + keyWords);
