@@ -127,6 +127,38 @@ class KinkTieController extends Controller{
 		return view('tail.forumDetail')->with('params', $params)->with('comments', $comments);
 	}
 
+	public function postChoice(Request $request, $kid){
+		$user = $request->user();
+		$multi = DB::table('voteOptions')->where('kid', $kid)->first()->multi;
+		if($multi == 1){
+			$vids = DB::table('voteOptions')->where('kid', $kid)->pluck('vid');
+			foreach ($vids as $vid)
+			{
+				$check = $request->get('check' . $vid);
+				if($check != null)
+				{
+					DB::table('voteOptions')->where('kid', $kid)->where('vid', $vid)->increment('voteCount');
+				}
+			}
+
+			DB::table('votes')->insertGetId(
+				['uid' => $user['id'], 'kid' => $kid]
+			);
+		}
+		else
+		{
+			$vid = $request->get('gridRadios');
+			DB::table('voteOptions')->where('kid', $kid)->where('vid', $vid)->increment('voteCount');
+			DB::table('votes')->insertGetId(
+				['uid' => $user['id'], 'kid' => $kid]
+			);
+		}
+
+		return redirect('/forum/Detail/' . $kid);
+
+	}
+
+
 	public function kinkTiePost(Request $request) {
 		$content = $request->get('content');
 		$kid      = $request->get('aid');
