@@ -73,23 +73,22 @@
                 $('#up').click(function(){
                     $('#up').html('已赞')
                     $('#up').unbind()
-                    cantUp()
 
-                    {{--$.ajax({--}}
-                        {{--url: "/article/up",--}}
-                        {{--type: "post",--}}
-                        {{--data: {--}}
-                            {{--type: 'tie',--}}
-                            {{--id : {{ $params['aid'] }},--}}
-                            {{--uid: {{ $params['user']['id'] }}--}}
-                        {{--},--}}
-                        {{--success: function(data) {--}}
-                            {{--$('#up').html('已赞')--}}
-                            {{--$('#up').unbind()--}}
-                            {{--cantUp()--}}
-                            {{--console.log(data)--}}
-                        {{--}--}}
-                    {{--})--}}
+                    $.ajax({
+                        url: "/article/up",
+                        type: "post",
+                        data: {
+                            type: 'tie',
+                            id : {{ $params['aid'] }},
+                            uid: {{ $params['user']['id'] }}
+                        },
+                        success: function(data) {
+                            $('#up').html('已赞')
+                            $('#up').unbind()
+                            cantUp()
+                            console.log(data)
+                        }
+                    })
                 })
             }
 
@@ -98,23 +97,22 @@
                 $('#up').click(function(){
                     $('#up').html('赞')
                     $('#up').unbind()
-                    canUp()
 
-                    {{--$.ajax({--}}
-                        {{--url: "/article/cancelUp",--}}
-                        {{--type: "post",--}}
-                        {{--data: {--}}
-                            {{--type: 'tie',--}}
-                            {{--id : {{ $params['aid'] }},--}}
-                            {{--uid: {{ $params['user']['id'] }}--}}
-                        {{--},--}}
-                        {{--success: function(data) {--}}
-                            {{--$('#up').html('赞')--}}
-                            {{--$('#up').unbind()--}}
-                            {{--canUp()--}}
-                            {{--console.log(data)--}}
-                        {{--}--}}
-                    {{--})--}}
+                    $.ajax({
+                        url: "/article/cancelUp",
+                        type: "post",
+                        data: {
+                            type: 'tie',
+                            id : {{ $params['aid'] }},
+                            uid: {{ $params['user']['id'] }}
+                        },
+                        success: function(data) {
+                            $('#up').html('赞')
+                            $('#up').unbind()
+                            canUp()
+                            console.log(data)
+                        }
+                    })
                 })
             }
 
@@ -124,21 +122,21 @@
                     $('#up').unbind()
                     cantCollect()
 
-                    {{--$.ajax({--}}
-                        {{--url: "/article/collect",--}}
-                        {{--type: "post",--}}
-                        {{--data: {--}}
-                            {{--type: 'tie',--}}
-                            {{--id : {{ $params['aid'] }},--}}
-                            {{--uid: {{ $params['user']['id'] }}--}}
-                        {{--},--}}
-                        {{--success: function(data) {--}}
-                            {{--$('#collect').html('已收藏')--}}
-                            {{--$('#up').unbind()--}}
-                            {{--cantCollect()--}}
-                            {{--console.log(data)--}}
-                        {{--}--}}
-                    {{--})--}}
+                    $.ajax({
+                        url: "/article/collect",
+                        type: "post",
+                        data: {
+                            type: 'tie',
+                            id : {{ $params['aid'] }},
+                            uid: {{ $params['user']['id'] }}
+                        },
+                        success: function(data) {
+                            $('#collect').html('已收藏')
+                            $('#up').unbind()
+                            cantCollect()
+                            console.log(data)
+                        }
+                    })
                 })
             }
 
@@ -148,21 +146,21 @@
                     $('#collect').unbind()
                     canCollect()
 
-                    {{--$.ajax({--}}
-                        {{--url: "/article/cancelCollect",--}}
-                        {{--type: "post",--}}
-                        {{--data: {--}}
-                            {{--type: 'tie',--}}
-                            {{--id : {{ $params['aid'] }},--}}
-                            {{--uid: {{ $params['user']['id'] }}--}}
-                        {{--},--}}
-                        {{--success: function(data) {--}}
-                            {{--$('#collect').html('收藏')--}}
-                            {{--$('#collect').unbind()--}}
-                            {{--canCollect()--}}
-                            {{--console.log(data)--}}
-                        {{--}--}}
-                    {{--})--}}
+                    $.ajax({
+                        url: "/article/cancelCollect",
+                        type: "post",
+                        data: {
+                            type: 'tie',
+                            id : {{ $params['aid'] }},
+                            uid: {{ $params['user']['id'] }}
+                        },
+                        success: function(data) {
+                            $('#collect').html('收藏')
+                            $('#collect').unbind()
+                            canCollect()
+                            console.log(data)
+                        }
+                    })
                 })
             }
 
@@ -225,7 +223,7 @@
                                     @endforeach
                                 </div>
                             @endif
-                            <button type="submit" class="btn">提交</button>
+                            <button type="submit" class="btn" style="width: 100%">提交</button>
                             </form>
                         @else
                             @if ( $params['multi'] )

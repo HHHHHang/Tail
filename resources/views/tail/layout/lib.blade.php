@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog Home - Start Bootstrap Template</title>
+    <title>数字良品</title>
 
     <!-- jQuery -->
     <script src="{{URL::asset('js/jquery.js')}}"></script>

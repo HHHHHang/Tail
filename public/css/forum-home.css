@@ -95,7 +95,7 @@ body > .container {
     padding: 10px 15px;
 }
 .forumTypeDiv > div.checked {
-    background-color: #f2f2f2;
+    background-color: #aaaaaa;
     border-radius: 5px;
 }
 .forumTypeDiv > div > a {

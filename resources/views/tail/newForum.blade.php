@@ -62,7 +62,7 @@
                 @endif
 
                 <div class="postTitleDiv">
-                    <a id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-menu-hamburger"></span>选择类别 全部</a>
+                    <a id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-menu-hamburger"></span>选择频道 全部</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         @foreach ( $params['data']->type as $item )
                             <li><a onclick="chooseType(event)" >{{$item}}</a></li>
@@ -111,10 +111,8 @@
                 <div class="postBtns">
                     @if ($params['isKinkTie'])
                         <button onclick="submitKinkTie()">发表帖子</button>
-                        <button onclick="save()">保存草稿</button>
                     @else
                         <button onclick="submitTie()">发表帖子</button>
-                        <button onclick="save()">保存草稿</button>
                     @endif
 
 

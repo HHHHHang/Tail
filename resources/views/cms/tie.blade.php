@@ -30,25 +30,23 @@
 
       <hr>
 
-      <div class="am-g">
+	<div class="am-g">
+        <div class="am-u-sm-12 am-u-md-6">
         </div>
         <div class="am-u-sm-12 am-u-md-3">
           <div class="am-form-group">
             <select id='type' onchange="changeType()" data-am-selected="{btnSize: 'sm'}">
               <option value="all">所有类别</option>
               <option {{$params['type'] == "手机" ? "selected" : ''}} value="手机">手机</option>
-              <option {{$params['type'] == "摄影" ? "selected" : ''}} value="摄影">摄影</option>
               <option {{$params['type'] == "电脑" ? "selected" : ''}} value="电脑">电脑</option>
+              <option {{$params['type'] == "平板" ? "selected" : ''}} value="平板">平板</option>
+              <option {{$params['type'] == "咨询" ? "selected" : ''}} value="咨询">咨询</option>
+              <option {{$params['type'] == "摄影" ? "selected" : ''}} value="摄影">摄影</option>
+              <option {{$params['type'] == "其他" ? "selected" : ''}} value="其他">其他</option>
             </select>
           </div>
         </div>
         <div class="am-u-sm-12 am-u-md-3">
-          <div class="am-input-group am-input-group-sm">
-            <input type="text" class="am-form-field">
-          <span class="am-input-group-btn">
-            <button class="am-btn am-btn-default" type="button">搜索</button>
-          </span>
-          </div>
         </div>
       </div>
 

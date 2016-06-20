@@ -25,7 +25,6 @@
 			</div>
 			<div>
 				<button class="btn">加关注</button>
-				<button class="btn">发私信</button>
 			</div>
 		</div>
 	</div>

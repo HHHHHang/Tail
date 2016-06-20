@@ -118,7 +118,6 @@
 
                 <div class="postBtns">
                     <button onclick="submit()">发表文章</button>
-                    <button onclick="save()">保存草稿</button>
                 </div>
 
                 <div class="testDiv">

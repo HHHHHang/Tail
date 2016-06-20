@@ -57,7 +57,7 @@
         <div class="col-md-10 mainBody">
             <a href="/forum/all"><span class="glyphicon glyphicon-chevron-left"></span>文章</a>
             <div class="postTitleDiv">
-                <a id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-menu-hamburger"></span>选择类别 全部</a>
+                <a id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-menu-hamburger"></span>选择频道 全部</a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     @foreach ( $params['data']->type as $item )
                         <li><a onclick="chooseType(event)" >{{$item}}</a></li>
@@ -123,7 +123,6 @@
 
             <div class="postBtns">
                 <button onclick="submit()">发表文章</button>
-                <button onclick="save()">保存草稿</button>
             </div>
 
             <div class="testDiv">

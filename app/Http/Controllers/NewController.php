@@ -94,7 +94,7 @@ class NewController extends Controller
             [$num, $title, $content, $type, $time, $userid, 0, 0, $time]);
         foreach ($options as $option) {
             DB::table('voteOptions')->insert(
-                ['vid' => $vidNum,'kid' => $num+1, 'content' => $option, 'voteCount' => 0, 'multi' => $multi, 'maxChoiceNum' => $optionMaxNum, 'introduction' => $content]
+                ['vid' => $vidNum,'kid' => $num, 'content' => $option, 'voteCount' => 0, 'multi' => $multi, 'maxChoiceNum' => $optionMaxNum, 'introduction' => $content]
             );
             $vidNum++;
         }

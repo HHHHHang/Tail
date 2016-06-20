@@ -33,7 +33,8 @@
       <div class="am-g">
         <div class="am-u-sm-12">
           <form class="am-form">
-            <table class="am-table am-table-striped am-table-hover table-main">
+          <div class="am-scrollable-horizontal">
+            <table class="am-table am-scrollable-horizontal  am-table-striped am-table-hover table-main">
               <thead>
               <tr>
                 <th class="table-check"><input type="checkbox" /></th>
@@ -55,7 +56,8 @@
                     <td>
                       <div class="am-btn-toolbar">
                         <div class="am-btn-group am-btn-group-xs">
-                          <button type="button" onclick="openModal({{$banner->id}})" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                          <button type="button" onclick="openModal({{$banner->id}},'{{$banner->title}}', '{{$banner->content}}', '{{$banner->file}}', '{{$banner->href}}')"
+                           class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
                         </div>
                       </div>
                     </td>
@@ -63,6 +65,7 @@
               @endforeach
               </tbody>
             </table>
+            </div>
             <div class="am-cf">
               共 {{ $params['length'] }} 条记录
               {{--<div class="am-fr">--}}
@@ -142,7 +145,13 @@
 <script src="{{ asset('cms/js/app.js') }}"></script>
 <script src="{{ asset('cms/js/tie.js') }}"></script>
 <script>
-    function openModal(id) {
+    function openModal(id, title, content, file, href) {
+
+        $('#title').val(title)
+        $('#content').val(content)
+        $('#file').val(file)
+        $('#href').val(href)
+
         $('#edit').modal({
             onConfirm: function() {
                 var title= $('#title').val()
@@ -167,7 +176,7 @@
 					},
 					success: function(data) {
 						alert("发表成功!")
-//						window.location.reload();
+						window.location.reload();
 						console.log(data)
 					}
 				})
