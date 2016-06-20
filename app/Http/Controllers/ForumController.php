@@ -84,7 +84,8 @@ class ForumController extends Controller{
 			'user' => $userInfo,
 			'articlesInfo' => $articlesInfo,
 			'isKinkTie'    => 1,
-			'hot'	=> $hot_ties
+			'hot'	=> $hot_ties,
+			'type'	=> $type
 		];
 
 		if ($user) return view('tail.ties')->with('params', $params);
@@ -117,7 +118,8 @@ class ForumController extends Controller{
 			'user' => $userInfo,
 			'articlesInfo' => $articlesInfo,
 			'isKinkTie'    => 0,
-			'hot'	=> $hot_ties
+			'hot'	=> $hot_ties,
+			'type'	=> $type
 		];
 
 		if ($user) return view('tail.ties')->with('params', $params);
