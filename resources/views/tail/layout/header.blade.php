@@ -12,7 +12,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="{{$active=='index' ? 'active' : ''}}"><a href="/">首页</a></li>
-                    <li class="{{$active=='article' ? 'active' : ''}}"><a href="/forum">文章</a></li>
+                    <li class="{{$active=='article' ? 'active' : ''}}"><a href="/forum/all">文章</a></li>
                     <li class="{{$active=='bbs' ? 'active' : ''}} dropdown">
                         <a href="/forum/tie" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">论坛 <span class="caret"></span></a>
                         <ul class="dropdown-menu">

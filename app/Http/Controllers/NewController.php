@@ -112,7 +112,6 @@ class NewController extends Controller
 			echo "No!";
 		} else {
 			$file = $request->file('file');
-			echo $file;
 			//判断文件上传过程中是否出错
 			$destPath = realpath( public_path( 'images' ) );
 			$filename = $file->getClientOriginalName();
@@ -124,15 +123,35 @@ class NewController extends Controller
 		$type = $request->get('type');
 
 		$imageUrl = asset('images/' . time() . $filename);
-		DB::table('articles')->insertGetId(
+		$aid = DB::table('articles')->insertGetId(
 			['title' => $title, 'content' => $content, 'type' => $type,
 			 'image' => $imageUrl, 'uid' => $user['id'], 'all_content' => $content]
 		);
+        $keywords = json_decode($keywords);
+
+         var_dump($keywords);
+        foreach($keywords as $keyword){
+            $tag = DB::table('tag')->where('name',$keyword) -> first();
+            if($tag){
+                DB::table('tag')->where('name',$keyword) ->increment('num');
+                DB::table('article_tag')->insert(
+                    ['aid'=>$aid, 'tagId'=>$tag->tagId]
+
+                );
+            }else{
+                $tagId = DB::table('tag')->insertGetId(
+                    ['name'=>$keyword,'num'=>1]
+                );
+                DB::table('article_tag')->insert(
+                    ['aid'=>$aid,'tagId'=>$tagId]
+                );
+            }
+        }
 		if(!$file->move($destPath, $imageUrl)){
 //			exit('保存文件失败！');
 		}
 
-		return redirect('/forum');
+		return redirect('/forum/all');
 
     }
 }

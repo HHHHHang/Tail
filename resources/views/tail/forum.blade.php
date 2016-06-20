@@ -75,45 +75,36 @@
                     <div>
                         <h5>选择频道</h5>
                         <div class="forumTypeDiv smalleForumTypeDiv">
-                            <div class="checked"><a href="/forum"><span class="glyphicon glyphicon-inbox"></span><span>全部</span></a></div>
-                            <div><a href="/forum/手机"><span class="glyphicon glyphicon-phone"></span><span>手机</span></a></div>
-                            <div><a href="/forum/摄影"><span class="glyphicon glyphicon-camera"></span><span>摄影</span></a></div>
-                            <div><a href="/forum/电影"><span class="glyphicon glyphicon-floppy-open"></span><span>电脑</span></a></div>
-                            <div><a href="/forum/平板"><span class="glyphicon glyphicon-phone"></span><span>平板</span></a></div>
-                            <div><a href="/forum/资讯"><span class="glyphicon glyphicon-bullhorn"></span><span>资讯</span></a></div>
-                            <div><a href="/forum/周边"><span class="glyphicon glyphicon-send"></span><span>周边</span></a></div>
-                            <div><a href="/forum/其它"><span class="glyphicon glyphicon glyphicon-tags"></span><span>其它</span></a></div>
+                            <div {{$params['type']=="all"?"class=checked":''}}><a href="/forum/all"><span class="glyphicon glyphicon-inbox"></span><span>全部</span></a></div>
+                            <div {{$params['type']=="手机"?"class=checked":''}}><a href="/forum/手机"><span class="glyphicon glyphicon-phone"></span><span>手机</span></a></div>
+                            <div {{$params['type']=="摄影"?"class=checked":''}}><a href="/forum/摄影"><span class="glyphicon glyphicon-camera"></span><span>摄影</span></a></div>
+                            <div {{$params['type']=="电脑"?"class=checked":''}}><a href="/forum/电脑"><span class="glyphicon glyphicon-floppy-open"></span><span>电脑</span></a></div>
+                            <div {{$params['type']=="平板"?"class=checked":''}}><a href="/forum/平板"><span class="glyphicon glyphicon-phone"></span><span>平板</span></a></div>
+                            <div {{$params['type']=="资讯"?"class=checked":''}}><a href="/forum/资讯"><span class="glyphicon glyphicon-bullhorn"></span><span>资讯</span></a></div>
+                            <div {{$params['type']=="周边"?"class=checked":''}}><a href="/forum/周边"><span class="glyphicon glyphicon-send"></span><span>周边</span></a></div>
+                            <div {{$params['type']=="其它"?"class=checked":''}}><a href="/forum/其它"><span class="glyphicon glyphicon glyphicon-tags"></span><span>其它</span></a></div>
                         </div>
                     </div>
 
                     <div>
                         <h5>添加筛选关键字</h5>
-                        <form class="tagChoosingDiv">
-                            <div class="checkbox">
+                        <form id="form" class="tagChoosingDiv" method="post" action="/forum/{{$params['type']}}/filter">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            @foreach($params['hotTags'] as $tag)
+                                <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" value=""> 标签1
+                                    <input {{(isset($params['keywords'])) ? in_array($tag->name, $params['keywords']) ? "checked" : '' : ''}} name="tag" type="checkbox" value="{{$tag->name}}"> {{$tag->name}}
                                 </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value=""> 标签2 adfa
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value=""> 标签3 adfa
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value=""> 标签4 asdfaw
-                                </label>
-                            </div>
+                                </div>
+                            @endforeach
+
+
                         </form>
                         <div>
                             <button class="btn btn-default addKW" onclick="addKeyWord()">添加关键字</button>
-                            <button type="submit" class="btn btn-default">筛选</button>
+                            <button  onclick="filter()" class="btn btn-default">筛选</button>
                         </div>
+
 
                     </div>
                 </div>
@@ -204,11 +195,70 @@
 </html>
 
 <script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    var filter = function(){
+        var src;
+
+        var tagArr=new Array();
+        $('input[name="tag"]:checked').each(function(){
+            tagArr.push($(this).val());
+        });
+        if($( '#addtag' ).is( ":checked" )){
+            if($('#newKeyword').val()!=''){
+                tagArr.push($('#newKeyword').val());
+            }
+
+        }
+        console.log(tagArr);
+        var keywordsInput = document.createElement("input");
+        // 设置相应参数
+        keywordsInput.type = "hidden";
+        keywordsInput.name = "keywords";
+        keywordsInput.value = JSON.stringify(tagArr);
+        var form = document.getElementById("form");
+        form.appendChild(keywordsInput);
+        form.submit();
+//        $('.smalleForumTypeDiv > div').each(function () {
+//            if($(this).attr("class")=="checked"){
+//                src = $($(this).children(":first")).attr("href");
+//                console.log(src);
+//            }
+//                }
+//        )
+
+
+//        $.ajax({
+//            type: 'POST',
+//            url: '/forum/filter',
+//            data: {
+//                keywords: tagArr,
+//
+//            },
+//            dataType: 'json',
+//            success: function (data) {
+//                console.log(data);
+//                console.log('success');
+//
+//            },
+//            error: function (error) {
+//                console.log(error);
+//                console.log('error');
+//            }
+//        });
+
+
+
+    }
     var addKeyWord = function(){
         console.log('add keyword');
         $('.tagChoosingDiv').append('<div class="checkbox">' +
                 '<label>' +
-                '<input type="checkbox" checked value=""> <input type="text" autofocus value="" maxlength="10" id="newKeyword"> ' +
+                '<input id = "addtag" type="checkbox" checked value=""> <input type="text" autofocus value="" maxlength="10" id="newKeyword"> ' +
                 '</label> ' +
                 '</div>');
 

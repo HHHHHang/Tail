@@ -51,9 +51,9 @@ Route::get('/forum/tie/{type}', 'ForumController@tie');
 Route::get('/forum/kinkTie', 'ForumController@kinkTie');
 Route::get('/forum/kinkTie/{type}', 'ForumController@kinkTie');
 Route::get('/forum/Detail/{kid}',  'KinkTieController@kinkTie');
-Route::get('/forum', 'ForumController@index');
+Route::get('/forum/all', 'ForumController@index');
 Route::get('/forum/{type}', 'ForumController@index');
-
+Route::post('/forum/{type}/filter', 'ForumController@filter');
 
 // 发布界面
 Route::get('/new/tie', 'NewController@newForum');
