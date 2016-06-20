@@ -33,7 +33,8 @@
       <div class="am-g">
         <div class="am-u-sm-12">
           <form class="am-form">
-            <table class="am-table am-table-striped am-table-hover table-main">
+          <div class="am-scrollable-horizontal">
+            <table class="am-table am-scrollable-horizontal  am-table-striped am-table-hover table-main">
               <thead>
               <tr>
                 <th class="table-check"><input type="checkbox" /></th>
@@ -64,6 +65,7 @@
               @endforeach
               </tbody>
             </table>
+            </div>
             <div class="am-cf">
               共 {{ $params['length'] }} 条记录
               {{--<div class="am-fr">--}}
