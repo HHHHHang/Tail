@@ -300,7 +300,7 @@
                 </div>
             </div>
 
-
+            @include('tail.layout.poster')
         </div>
     </div>
     @include('tail.layout.footer')
