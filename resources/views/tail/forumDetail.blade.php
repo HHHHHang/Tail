@@ -223,7 +223,7 @@
                                     @endforeach
                                 </div>
                             @endif
-                            <button type="submit" class="btn" style="width: 100%">提交</button>
+                            <button type="submit" class="btn">提交</button>
                             </form>
                         @else
                             @if ( $params['multi'] )

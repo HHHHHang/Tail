@@ -77,6 +77,8 @@
                         },
                         success: function(data) {
                             $('#up').html('已赞')
+                            var a = parseInt($('.article-view > .glyphicon-thumbs-up').text().slice(1)) + 1;
+                            $('.article-view > .glyphicon-thumbs-up').text(' ' + a);
                             $('#up').unbind()
                             cantUp()
                             console.log(data)
@@ -102,6 +104,8 @@
                         },
                         success: function(data) {
                             $('#up').html('赞')
+                            var a = parseInt($('.article-view > .glyphicon-thumbs-up').text().slice(1)) - 1;
+                            $('.article-view > .glyphicon-thumbs-up').text(' ' + a);
                             $('#up').css('background-color','transparent');
                             $('#up').css('color','black');
                             $('#up').css('border','#B0B4B7 solid 1px');
