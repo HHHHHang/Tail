@@ -95,6 +95,15 @@ class KinkTieController extends Controller{
 //		$userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
 
 		$comments = DB::table('comments')->where('akid', $kid)->where('type', 'kinkTie')->get();
+		$commentsInfo = [];
+		foreach ($comments as $comment) {
+			$commentUser = DB::table('tail_users')->where('uid', $comment->uid)->first();
+			$commentsInfo[] = [
+				'comment' => $comment,
+				'avatar'  => $commentUser->avatar
+			];
+		}
+
 		DB::table('kinkTies')->where('kid', $kid)->increment('viewNum');
 		$article = DB::table('kinkTies')->where('kid', $kid)->first();
 		$userInfo = getUserInfo($article-> uid);
@@ -116,7 +125,7 @@ class KinkTieController extends Controller{
 //		var_dump($voteCountSum);
 //		die;
 		$introduction = $voteInfo->introduction;
-		$attendCount = count(DB::table('votes')->where('kid', $kid)->where('uid', $user['id'])->get());
+		$attendCount = count(DB::table('votes')->where('kid', $kid)->get());
 
 		$params = [
 //			'user' => $user,
@@ -137,7 +146,7 @@ class KinkTieController extends Controller{
 			'hasFollow'=>$hasFollow
 		];
 
-		return view('tail.forumDetail')->with('params', $params)->with('comments', $comments);
+		return view('tail.forumDetail')->with('params', $params)->with('comments', $commentsInfo);
 	}
 
 	public function postChoice(Request $request, $kid){
@@ -168,7 +177,6 @@ class KinkTieController extends Controller{
 		}
 
 		return redirect('/forum/Detail/' . $kid);
-
 	}
 
 
@@ -190,6 +198,6 @@ class KinkTieController extends Controller{
 
 		DB::table('kinkTies')->where('kid', $kid)->increment('commentNum');
 
-		return redirect('/kinkTie/' . $kid);
+		return redirect('/forum/Detail/' . $kid);
 	}
 } 

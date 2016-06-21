@@ -5,7 +5,7 @@
 		<div><a href="/forum/kinkTie/电脑"><span class="glyphicon glyphicon-floppy-open"></span><span>电脑</span></a></div>
 		<div><a href="/forum/kinkTie/平板"><span class="glyphicon glyphicon-phone"></span><span>平板</span></a></div>
 		<div><a href="/forum/kinkTie/资讯"><span class="glyphicon glyphicon-bullhorn"></span><span>资讯</span></a></div>
-		<div><a href="/forum/kinkTie/摄影"><span class="glyphicon glyphicon-send"></span><span>摄影</span></a></div>
+		<div><a href="/forum/kinkTie/摄影"><span class="glyphicon glyphicon-camera"></span><span>摄影</span></a></div>
 		<div><a href="/forum/kinkTie/其它"><span class="glyphicon glyphicon glyphicon-tags"></span><span>其它</span></a></div>
 	@else
 		<div><a href="/forum/tie"><span class="glyphicon glyphicon-inbox"></span><span>全部</span></a></div>
@@ -13,7 +13,7 @@
 		<div><a href="/forum/tie/电脑"><span class="glyphicon glyphicon-floppy-open"></span><span>电脑</span></a></div>
 		<div><a href="/forum/tie/平板"><span class="glyphicon glyphicon-phone"></span><span>平板</span></a></div>
 		<div><a href="/forum/tie/资讯"><span class="glyphicon glyphicon-bullhorn"></span><span>资讯</span></a></div>
-		<div><a href="/forum/tie/摄影"><span class="glyphicon glyphicon-send"></span><span>摄影</span></a></div>
+		<div><a href="/forum/tie/摄影"><span class="glyphicon glyphicon-camera"></span><span>摄影</span></a></div>
 		<div><a href="/forum/tie/其它"><span class="glyphicon glyphicon glyphicon-tags"></span><span>其它</span></a></div>
 	@endif
 </div>
@@ -27,10 +27,6 @@
 	@endif
 	<span></span>
 	<span>
-		<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">排序方法 <span class="caret"></span></a>
-		<ul class="dropdown-menu dropdown-menu-right">
-			<li><a href="#">按时间顺序</a></li>
-			<li><a href="#">按热门顺序</a></li>
-		</ul>
+		<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
 	</span>
 </div>
