@@ -87,6 +87,8 @@ class KinkTieController extends Controller{
 		$userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
 
 		$comments = DB::table('comments')->where('akid', $kid)->where('type', 'kinkTie')->get();
+
+
 		DB::table('kinkTies')->where('kid', $kid)->increment('viewNum');
 		$article = DB::table('kinkTies')->where('kid', $kid)->first();
 		$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
@@ -124,7 +126,7 @@ class KinkTieController extends Controller{
 			'multi' => $multi
 		];
 
-		return view('tail.forumDetail')->with('params', $params)->with('comments', $comments);
+		return view('tail.forumDetail')->with('params', $params)->with('comments', $commentsInfo);
 	}
 
 	public function postChoice(Request $request, $kid){
