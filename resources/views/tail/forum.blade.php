@@ -29,7 +29,7 @@
                     @foreach($params['banner'] as $banner)
                     <div class="recommendationItem" style="background-image:url({{$banner->file}})">
                         <div onclick="window.location.href='{{$banner->href}}'">
-                            <a  style="color:white"">
+                            <a  style="color:white">
                             <h4>{{$banner->title}}</h4>
                             </a>
                             <h5>{{$banner->content}}</h5>
@@ -143,7 +143,7 @@
                 <div class="well forumUserInfo">
                     <div>
                         <img width="90" height="90" src="{{ $params['user']['avatar'] }}"  class="img-responsive">
-                        <span>{{ $params['user']['level'] }}</span>
+                        <span style="height: 23px"></span>
                     </div>
 
                     <div>

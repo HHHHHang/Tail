@@ -55,7 +55,7 @@
             <div class="well forumUserInfo">
                 <div>
                     <img width="90" height="90" src="{{ $params['user']['avatar'] }}"  class="img-responsive">
-                    <span>{{ $params['user']['level'] }}</span>
+                    <span style="height: 25px; font-size: 18px;padding-top: 0px">用户</span>
                 </div>
 
                 <div>

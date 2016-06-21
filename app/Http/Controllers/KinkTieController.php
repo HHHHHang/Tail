@@ -17,7 +17,8 @@ class KinkTieController extends Controller{
 	public function index(Request $request, $kid) {
 
 		$user = $request->user();
-		$userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
+//		$userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
+
 		$comments = DB::table('comments')->where('akid', $kid)->where('type', 'kinkTie')->get();
 
 		$commentsInfo = [];
@@ -31,13 +32,18 @@ class KinkTieController extends Controller{
 
 		DB::table('kinkTies')->where('kid', $kid)->increment('viewNum');
 		$article = DB::table('kinkTies')->where('kid', $kid)->first();
+		$userInfo = getUserInfo($article-> uid);
+
 		$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
 		//判断是否赞过
 		$hasUp = count(DB::table('ups')->where('type', 'tie')->where('upId', $kid)->where('uid', $userInfo['id'])->first());
 		//判断是否收藏
+		$hasFollow = count(DB::table('follows')->where('followUid', $article->uid)->where('uid', $user['id'])->first());
+
 		$hasCollect = count(DB::table('collects')->where('type', 'tie')->where('collectId', $kid)->where('uid', $userInfo['id'])->first());
 		$params = [
-			'user' => $userInfo,
+			'poster' => $userInfo,
+			'user'=>$user,
 			'aid' => $kid,
 			'title' => $article->title,
 			'content' => $article->content,
@@ -49,7 +55,9 @@ class KinkTieController extends Controller{
 			'postUserId'   => $postUser->uid,
 			'hasUp' => $hasUp,
 			'hasCollect' => $hasCollect,
-			'viewNum'  => $article->viewNum
+			'viewNum'  => $article->viewNum,
+			'hasFollow'=>$hasFollow
+
 		];
 		return view('tail.kinkTie')->with('params', $params)->with('comments', $commentsInfo);
 	}
@@ -84,11 +92,13 @@ class KinkTieController extends Controller{
 
 		$kid = $kid == null ? 0 : $kid;
 		$user = $request->user();
-		$userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
+//		$userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
 
 		$comments = DB::table('comments')->where('akid', $kid)->where('type', 'kinkTie')->get();
 		DB::table('kinkTies')->where('kid', $kid)->increment('viewNum');
 		$article = DB::table('kinkTies')->where('kid', $kid)->first();
+		$userInfo = getUserInfo($article-> uid);
+
 		$postUser = DB::table('tail_users')->where('uid', $article->uid)->first();
 		//判断是否投票
 		$hasVote = count(DB::table('votes')->where('kid', $kid)->where('uid', $user['id'])->first());
@@ -97,6 +107,7 @@ class KinkTieController extends Controller{
 		//判断是否收藏
 		$hasCollect = count(DB::table('collects')->where('type', 'article')->where('collectId', $kid)->where('uid', $user['id'])->first());
 		$voteInfo = DB::table('voteOptions')->where('kid', $kid)->first();
+		$hasFollow = count(DB::table('follows')->where('followUid', $article->uid)->where('uid', $user['id'])->first());
 
 		$multi = $voteInfo->multi;
 		$maxChoiceNum = $voteInfo->maxChoiceNum;
@@ -108,8 +119,9 @@ class KinkTieController extends Controller{
 		$attendCount = count(DB::table('votes')->where('kid', $kid)->where('uid', $user['id'])->get());
 
 		$params = [
-			'user' => $user,
-			'userInfo' => $userInfo,
+//			'user' => $user,
+			'poster' => $userInfo,
+			'user'=>$user,
 			'kinkTie' => $article,
 			'postUser' => $postUser,
 			'hasUp' => $hasUp,
@@ -121,7 +133,8 @@ class KinkTieController extends Controller{
 			'maxChoiceNum' => $maxChoiceNum,
 			'voteCountSum' => $voteCountSum,
 			'aid' => $kid,
-			'multi' => $multi
+			'multi' => $multi,
+			'hasFollow'=>$hasFollow
 		];
 
 		return view('tail.forumDetail')->with('params', $params)->with('comments', $comments);

@@ -37,7 +37,10 @@ class MyInfoController extends Controller{
 		$myFollowsInfos = [];
 		foreach ($myFollows as $myFollow)
 		{
-			$myFollowsInfos = DB::table('tail_users')->where('uid', $myFollow->followUid)->get();
+			$temp[] = DB::table('tail_users')->where('uid', $myFollow->followUid)->get();
+		}
+		foreach ($temp as $item){
+			$myFollowsInfos[] = $item[0];
 		}
 
 		//消息提醒
