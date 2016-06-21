@@ -27,10 +27,6 @@
 	@endif
 	<span></span>
 	<span>
-		<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">排序方法 <span class="caret"></span></a>
-		<ul class="dropdown-menu dropdown-menu-right">
-			<li><a href="#">按时间顺序</a></li>
-			<li><a href="#">按热门顺序</a></li>
-		</ul>
+		<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
 	</span>
 </div>
