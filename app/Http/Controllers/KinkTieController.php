@@ -105,7 +105,7 @@ class KinkTieController extends Controller{
 //		var_dump($voteCountSum);
 //		die;
 		$introduction = $voteInfo->introduction;
-		$attendCount = count(DB::table('votes')->where('kid', $kid)->where('uid', $user['id'])->get());
+		$attendCount = count(DB::table('votes')->where('kid', $kid)->get());
 
 		$params = [
 			'user' => $user,
