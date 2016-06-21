@@ -51,7 +51,7 @@
                 <div>
                 @foreach($params['test'] as $testBanner)
                     <div class="recommendationItem" style="background-image:url({{$testBanner->file}})">
-                        <div onclick="window.location.href='{{$banner->href}}'">
+                        <div onclick="window.location.href='{{$testBanner->href}}'">
                             <a style="color:white">
                             <h4>{{$testBanner->title}}</h4>
                             </a>
