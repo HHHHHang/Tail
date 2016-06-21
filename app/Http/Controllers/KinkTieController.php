@@ -155,7 +155,6 @@ class KinkTieController extends Controller{
 		}
 
 		return redirect('/forum/Detail/' . $kid);
-
 	}
 
 
@@ -177,6 +176,6 @@ class KinkTieController extends Controller{
 
 		DB::table('kinkTies')->where('kid', $kid)->increment('commentNum');
 
-		return redirect('/kinkTie/' . $kid);
+		return redirect('/forum/Detail/' . $kid);
 	}
 } 

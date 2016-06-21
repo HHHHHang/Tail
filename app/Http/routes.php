@@ -51,6 +51,7 @@ Route::get('/forum/tie/{type}', 'ForumController@tie');
 Route::get('/forum/kinkTie', 'ForumController@kinkTie');
 Route::get('/forum/kinkTie/{type}', 'ForumController@kinkTie');
 Route::get('/forum/Detail/{kid}',  'KinkTieController@kinkTie');
+Route::post('/forum/Detail/{kid}',  'KinkTieController@kinkTiePost');
 Route::get('/forum/all', 'ForumController@index');
 Route::get('/forum/{type}', 'ForumController@index');
 Route::post('/forum/{type}/filter', 'ForumController@filter');
