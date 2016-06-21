@@ -87,7 +87,14 @@ class KinkTieController extends Controller{
 		$userInfo = getUserInfo(isset($user) ? $user['id'] : 2);
 
 		$comments = DB::table('comments')->where('akid', $kid)->where('type', 'kinkTie')->get();
-
+		$commentsInfo = [];
+		foreach ($comments as $comment) {
+			$commentUser = DB::table('tail_users')->where('uid', $comment->uid)->first();
+			$commentsInfo[] = [
+				'comment' => $comment,
+				'avatar'  => $commentUser->avatar
+			];
+		}
 
 		DB::table('kinkTies')->where('kid', $kid)->increment('viewNum');
 		$article = DB::table('kinkTies')->where('kid', $kid)->first();
